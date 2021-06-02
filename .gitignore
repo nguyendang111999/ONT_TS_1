@@ -37,4 +37,4 @@ sysinfo.txt
 *.apk
 *.unitypackage
 dir_to_ignore/Unity
-ImportFiles.*
+Mixamo.*
