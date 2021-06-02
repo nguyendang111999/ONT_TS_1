@@ -6,6 +6,14 @@
             "id": "923b130b-9aaa-4bd2-a67c-a23eb698c0aa",
             "actions": [
                 {
+                    "name": "MouseLook",
+                    "type": "PassThrough",
+                    "id": "b1a527d7-1b48-4899-beb9-e348fc7453b3",
+                    "expectedControlType": "Vector2",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9",
@@ -36,6 +44,14 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Jump",
+                    "type": "Button",
+                    "id": "1658b034-bb3b-43af-afa9-a4e99a1cc360",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -54,7 +70,7 @@
                     "name": "WASD",
                     "id": "f1e62860-c449-4634-aa61-d3b3396cab72",
                     "path": "2DVector",
-                    "interactions": "Press(pressPoint=0.01)",
+                    "interactions": "",
                     "processors": "",
                     "groups": "",
                     "action": "Movements",
@@ -124,6 +140,28 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Crouch",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "51009797-c527-4e8f-bcaf-e0979eaeba3d",
+                    "path": "<Keyboard>/space",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "a5b0e2ab-91bf-47ee-9219-4e4a1e0c030b",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "MouseLook",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

@@ -5,21 +5,20 @@ using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
-
     [Header("Sub behaviours")]
     public PlayerAnimationBehaviour playerAnimationBehaviour;
+    public PlayerMovementBehaviour playerMovementBehaviour;
 
     [Header("Input Setting")]
-    public Transform cam;
     public PlayerInput input;
     private bool sprintPressed = false;
-    private bool crouchPressed = false;
 
     [Header("Movements")]
     public float velocity = 0f;
     public float acceleration = 0.1f;
     public float decceleration = 1f;
     private Vector3 rawInputMovement;
+    private bool isGrounded = true;
 
     //INPUT ACTION SYSTEM
     public void OnMovement(InputAction.CallbackContext value)
@@ -30,8 +29,14 @@ public class PlayerController : MonoBehaviour
 
     public void OnRunning(InputAction.CallbackContext value)
     {
-        if (value.started) sprintPressed = true;
-        if (value.canceled) sprintPressed = false;
+        if (value.started)
+        {
+            sprintPressed = true;
+        }
+        if (value.canceled)
+        {
+            sprintPressed = false;
+        }
     }
 
     public void OnCrouching(InputAction.CallbackContext value)
@@ -43,6 +48,19 @@ public class PlayerController : MonoBehaviour
         if (value.canceled)
         {
             playerAnimationBehaviour.PlayCrouchAnimation(false);
+        }
+    }
+
+    public void OnJumping(InputAction.CallbackContext value)
+    {
+        if (value.started)
+        {
+            if (isGrounded)
+            {
+                playerAnimationBehaviour.ResetTriggerJumpAnimation();
+                playerAnimationBehaviour.TriggerJumpAnimation();
+                playerMovementBehaviour.Jump();
+            }
         }
     }
 
@@ -89,12 +107,14 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePlayerMovement()
     {
+        playerMovementBehaviour.UpdateMovementData(rawInputMovement);
+        isGrounded = playerMovementBehaviour.isGrounded;
     }
 
     void UpdatePlayerMovementAnimation()
     {
         playerAnimationBehaviour.UpdateVelocity(velocity);
-
+        playerAnimationBehaviour.SetIsGrounded(isGrounded);
     }
 
 }
