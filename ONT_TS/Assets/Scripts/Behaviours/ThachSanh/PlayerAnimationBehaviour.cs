@@ -14,7 +14,7 @@ public class PlayerAnimationBehaviour : MonoBehaviour
     private int id_hashIsSliding;
     private int id_hashIsCrouching;
     private int id_hashIsJumping;
-    private int id_hashIsRunning;
+    private int id_hashIsMoving;
     private int id_hashTriggerJump;
     private int id_isGrounded;
 
@@ -26,9 +26,10 @@ public class PlayerAnimationBehaviour : MonoBehaviour
     void SetupAnimationIDs()
     {
         id_hashVelocity = Animator.StringToHash("velocity");
-        id_hashIsRunning = Animator.StringToHash("isRunning");
+        id_hashIsMoving = Animator.StringToHash("isMoving");
         id_hashIsCrouching = Animator.StringToHash("isCrouching");
         id_hashTriggerJump = Animator.StringToHash("triggerJump");
+        id_hashIsSliding = Animator.StringToHash("isSliding");
         id_isGrounded = Animator.StringToHash("isGrounded");
     }
 
@@ -36,12 +37,10 @@ public class PlayerAnimationBehaviour : MonoBehaviour
     {
         playerAnim.SetFloat(id_hashVelocity, velocity);
     }
-
     public void PlayRunAnimation(bool isRunning)
     {
-        playerAnim.SetBool(id_hashIsRunning, isRunning);
+        playerAnim.SetBool(id_hashIsMoving, isRunning);
     }
-
     public void PlayCrouchAnimation(bool isCrouching){
         playerAnim.SetBool(id_hashIsCrouching, isCrouching);
     }
@@ -50,6 +49,12 @@ public class PlayerAnimationBehaviour : MonoBehaviour
     }
     public void ResetTriggerJumpAnimation(){
         playerAnim.ResetTrigger(id_hashTriggerJump);
+    }
+    public void setIsSliding(bool isSliding){
+        playerAnim.SetBool(id_hashIsSliding, isSliding);
+    }
+    public void setIsMoving(bool isMoving){
+        playerAnim.SetBool(id_hashIsMoving, isMoving);
     }
     public void SetIsGrounded(bool isGrounded){
         playerAnim.SetBool(id_isGrounded, isGrounded);

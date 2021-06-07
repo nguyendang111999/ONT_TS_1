@@ -15,16 +15,18 @@ public class PlayerMovementBehaviour : MonoBehaviour
     public float turnSmoothVelocity;
     public float gravity = 9.81f;
     public float jumpHeight = 3f;
+    private float targetAngle = 0f;
     public Vector3 direction;
     private Vector3 fallVelocity;
 
-    public bool isGrounded = true;
+    private bool isGrounded = true;
+    private bool isSliding = false;
     // Start is called before the first frame update
 
     // Update is called once per frame
     void Update()
     {
-        checkIfGrounded();
+        fallingToGround();
         MoveCharacter();
         controller.Move(fallVelocity * Time.deltaTime);
     }
@@ -35,30 +37,40 @@ public class PlayerMovementBehaviour : MonoBehaviour
     }
     public void MoveCharacter()
     {
-        if (direction.magnitude > 0.1)
+        float magnitudeDir = direction.magnitude;
+        if (magnitudeDir > 0.1 || runSpeed > 0)
         {
-            float targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            if(magnitudeDir > 0){
+                targetAngle = Mathf.Atan2(direction.x, direction.z) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            }
+
+            turnSmoothTime = 0.1f;
+            if(isSliding) turnSmoothTime = 0.5f;
+            
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
-
             transform.rotation = Quaternion.Euler(0, angle, 0);
-
             Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+            if(isSliding) moveDir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+
             controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
         }        
     }
-
-    public void checkIfGrounded(){
-        isGrounded = controller.isGrounded;
+    public void fallingToGround(){
+        isGrounded = checkIfGrounded();
         fallVelocity.y -= gravity * Time.deltaTime;
         if(isGrounded && fallVelocity.y < 0){
             fallVelocity.y = -2f;
         }
-        controller.Move(fallVelocity * Time.deltaTime);
-        Debug.Log("isGrounded: " + isGrounded);
+        // controller.Move(fallVelocity * Time.deltaTime);
     }
-
+    public bool checkIfGrounded(){
+        return controller.isGrounded;
+    }
     public void Jump(){
         fallVelocity.y = Mathf.Sqrt(jumpHeight * 2f * gravity);
         controller.Move(fallVelocity * Time.deltaTime);
+    }
+    public bool isSlide(bool slide){
+        return isSliding = slide;
     }
 }

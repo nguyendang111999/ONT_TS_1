@@ -15,16 +15,25 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movements")]
     public float velocity = 0f;
-    public float acceleration = 0.1f;
-    public float decceleration = 1f;
+    [SerializeField] float acceleration = 0.1f;
+    [SerializeField] float decceleration = 1f;
+    [SerializeField] float slideDecceleration = 1f;
+    [SerializeField] float normalRunSpeed = 7f;
+    [SerializeField] float sprintSpeed = 10;
     private Vector3 rawInputMovement;
     private bool isGrounded = true;
+    private float slideTime = 1f;
+    private float slideCountDown = 0;
+    private bool isCrouching = false;
+    private bool isMoving = false;
 
     //INPUT ACTION SYSTEM
     public void OnMovement(InputAction.CallbackContext value)
     {
+        isMoving = false;
         Vector2 inputMovement = value.ReadValue<Vector2>();
         rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
+        if(rawInputMovement.magnitude > 0) isMoving = true;
     }
 
     public void OnRunning(InputAction.CallbackContext value)
@@ -43,12 +52,18 @@ public class PlayerController : MonoBehaviour
     {
         if (value.started)
         {
-            playerAnimationBehaviour.PlayCrouchAnimation(true);
+            if (velocity >= 7f && slideCountDown <= 0f)
+            {
+                velocity += 5;
+                slideCountDown = slideTime;
+            }
+            isCrouching = true;
         }
         if (value.canceled)
         {
-            playerAnimationBehaviour.PlayCrouchAnimation(false);
+            isCrouching = false;
         }
+        playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
     }
 
     public void OnJumping(InputAction.CallbackContext value)
@@ -78,43 +93,69 @@ public class PlayerController : MonoBehaviour
         UpdatePlayerMovementAnimation();
     }
 
-
     void CaculateMovementVelocity()
     {
         float rawInputMagnitude = rawInputMovement.magnitude;
 
-        if (rawInputMagnitude > 0)
+        if (slideCountDown <= 0)
         {
-            if (velocity <= 0.5)
+            if (rawInputMagnitude > 0)
             {
-                velocity += Time.deltaTime * acceleration;
+                if (velocity <= normalRunSpeed)
+                {
+                    velocity += Time.deltaTime * acceleration;
+                }
+                if (sprintPressed && velocity <= sprintSpeed)
+                {
+                    velocity += Time.deltaTime * acceleration;
+                    if (velocity > sprintSpeed) velocity = sprintSpeed;
+                }
+                if (!sprintPressed && velocity > normalRunSpeed)
+                {
+                    velocity -= Time.deltaTime * decceleration;
+                    if (velocity < normalRunSpeed) velocity = normalRunSpeed;
+                }
             }
-            if (sprintPressed && velocity <= 1)
+            if (rawInputMagnitude <= 0f && velocity > 0f)
             {
-                velocity += Time.deltaTime * acceleration;
-            }
-        }
-        if (rawInputMagnitude > 0 && !sprintPressed && velocity > 0.5f)
-        {
-            velocity -= Time.deltaTime * decceleration;
-            if (velocity < 0.5f) velocity = 0.5f;
-        }
-        if (rawInputMagnitude <= 0 && velocity > 0f)
-        {
-            velocity -= Time.deltaTime * decceleration;
-        }
-    }
+                velocity -= Time.deltaTime * decceleration;
 
+                if (velocity < 0) velocity = 0f;
+            }
+        }
+
+        if (slideCountDown > 0f)
+        {
+            slideCountDown -= Time.deltaTime;
+            velocity -= Time.deltaTime * slideDecceleration;
+            if (velocity < 0) velocity = 0;
+        }
+
+    }
     void UpdatePlayerMovement()
     {
         playerMovementBehaviour.UpdateMovementData(rawInputMovement);
-        isGrounded = playerMovementBehaviour.isGrounded;
+        isGrounded = playerMovementBehaviour.checkIfGrounded();
+        playerMovementBehaviour.runSpeed = velocity;
+        //Slide movement
+        if (slideCountDown > 0)
+            playerMovementBehaviour.isSlide(true);
+        else playerMovementBehaviour.isSlide(false);
+        //If WASD is null
     }
 
     void UpdatePlayerMovementAnimation()
     {
         playerAnimationBehaviour.UpdateVelocity(velocity);
         playerAnimationBehaviour.SetIsGrounded(isGrounded);
+
+        //Slide movement
+        if (slideCountDown > 0)
+            playerAnimationBehaviour.setIsSliding(true);
+        else
+            playerAnimationBehaviour.setIsSliding(false);
+        //if WASD is null
+        playerAnimationBehaviour.setIsMoving(isMoving);
     }
 
 }
