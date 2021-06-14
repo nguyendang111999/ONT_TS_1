@@ -6,7 +6,7 @@
             "id": "923b130b-9aaa-4bd2-a67c-a23eb698c0aa",
             "actions": [
                 {
-                    "name": "MouseLook",
+                    "name": "CamInput",
                     "type": "PassThrough",
                     "id": "b1a527d7-1b48-4899-beb9-e348fc7453b3",
                     "expectedControlType": "Vector2",
@@ -17,6 +17,14 @@
                     "name": "Attack",
                     "type": "Button",
                     "id": "8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "0f28af36-7643-4650-9e19-26e94f19bc56",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -157,11 +165,22 @@
                 {
                     "name": "",
                     "id": "a5b0e2ab-91bf-47ee-9219-4e4a1e0c030b",
-                    "path": "<Mouse>/delta",
+                    "path": "<Pointer>/delta",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "MouseLook",
+                    "action": "CamInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "e6281104-c42f-4089-9d22-6576f91a4877",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Aim",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
