@@ -10,13 +10,14 @@ public class PlayerAnimationBehaviour : MonoBehaviour
     public Animator playerAnim;
 
     //Aanimation String ID
-    private int id_hashVelocity;
-    private int id_hashIsSliding;
-    private int id_hashIsCrouching;
-    private int id_hashIsJumping;
-    private int id_hashIsMoving;
-    private int id_hashTriggerJump;
-    private int id_isGrounded;
+    private int id_HashVelocity;
+    private int id_HashIsSliding;
+    private int id_HashIsCrouching;
+    private int id_HashIsJumping;
+    private int id_HashIsMoving;
+    private int id_HashTriggerJump;
+    private int id_Grounded;
+    private int id_MeleeAttack;
 
     public void SetupBehaviour()
     {
@@ -25,38 +26,42 @@ public class PlayerAnimationBehaviour : MonoBehaviour
 
     void SetupAnimationIDs()
     {
-        id_hashVelocity = Animator.StringToHash("velocity");
-        id_hashIsMoving = Animator.StringToHash("isMoving");
-        id_hashIsCrouching = Animator.StringToHash("isCrouching");
-        id_hashTriggerJump = Animator.StringToHash("triggerJump");
-        id_hashIsSliding = Animator.StringToHash("isSliding");
-        id_isGrounded = Animator.StringToHash("isGrounded");
+        id_HashVelocity = Animator.StringToHash("velocity");
+        id_HashIsMoving = Animator.StringToHash("isMoving");
+        id_HashIsCrouching = Animator.StringToHash("isCrouching");
+        id_HashTriggerJump = Animator.StringToHash("triggerJump");
+        id_HashIsSliding = Animator.StringToHash("isSliding");
+        id_Grounded = Animator.StringToHash("isGrounded");
+        id_MeleeAttack = Animator.StringToHash("MeleeAttack");
     }
 
     public void UpdateVelocity(float velocity)
     {
-        playerAnim.SetFloat(id_hashVelocity, velocity);
+        playerAnim.SetFloat(id_HashVelocity, velocity);
     }
     public void PlayRunAnimation(bool isRunning)
     {
-        playerAnim.SetBool(id_hashIsMoving, isRunning);
+        playerAnim.SetBool(id_HashIsMoving, isRunning);
     }
     public void PlayCrouchAnimation(bool isCrouching){
-        playerAnim.SetBool(id_hashIsCrouching, isCrouching);
+        playerAnim.SetBool(id_HashIsCrouching, isCrouching);
     }
     public void TriggerJumpAnimation(){
-        playerAnim.SetTrigger(id_hashTriggerJump);
+        playerAnim.SetTrigger(id_HashTriggerJump);
     }
     public void ResetTriggerJumpAnimation(){
-        playerAnim.ResetTrigger(id_hashTriggerJump);
+        playerAnim.ResetTrigger(id_HashTriggerJump);
     }
-    public void setIsSliding(bool isSliding){
-        playerAnim.SetBool(id_hashIsSliding, isSliding);
+    public void SetIsSliding(bool isSliding){
+        playerAnim.SetBool(id_HashIsSliding, isSliding);
     }
-    public void setIsMoving(bool isMoving){
-        playerAnim.SetBool(id_hashIsMoving, isMoving);
+    public void SetIsMoving(bool isMoving){
+        playerAnim.SetBool(id_HashIsMoving, isMoving);
     }
     public void SetIsGrounded(bool isGrounded){
-        playerAnim.SetBool(id_isGrounded, isGrounded);
+        playerAnim.SetBool(id_Grounded, isGrounded);
+    }
+    public void TriggerMeleeAttack(){
+        playerAnim.SetTrigger(id_MeleeAttack);
     }
 }

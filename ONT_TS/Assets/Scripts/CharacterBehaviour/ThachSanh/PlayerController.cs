@@ -8,6 +8,9 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    protected static PlayerController s_Instance;
+    public static PlayerController instance { get { return s_Instance; } }
+
     [Header("Sub behaviours")]
     public PlayerAnimationBehaviour playerAnimationBehaviour;
     public PlayerMovementBehaviour playerMovementBehaviour;
@@ -36,16 +39,27 @@ public class PlayerController : MonoBehaviour
     private bool isCrouching = false;
     private bool isMoving = false;
 
+    //Attack setting
+    public bool canAttack;
+    protected bool m_InAttack;
+
+    public void SetCanAttack(bool canAttack){
+        this.canAttack = canAttack;
+    }
+
+
     //INPUT ACTION SYSTEM
-    public void CameraInput(InputAction.CallbackContext value){
+    public void CameraInput(InputAction.CallbackContext value)
+    {
         cameraInput = value.ReadValue<Vector2>();
     }
+
     public void OnMovement(InputAction.CallbackContext value)
     {
         isMoving = false;
         Vector2 inputMovement = value.ReadValue<Vector2>();
         rawInputMovement = new Vector3(inputMovement.x, 0, inputMovement.y);
-        if(rawInputMovement.magnitude > 0) isMoving = true;
+        if (rawInputMovement.magnitude > 0) isMoving = true;
     }
 
     public void OnRunning(InputAction.CallbackContext value)
@@ -82,17 +96,19 @@ public class PlayerController : MonoBehaviour
     {
         if (value.started && isGrounded)
         {
-                playerAnimationBehaviour.ResetTriggerJumpAnimation();
-                playerAnimationBehaviour.TriggerJumpAnimation();
-                playerMovementBehaviour.Jump();
+            playerAnimationBehaviour.ResetTriggerJumpAnimation();
+            playerAnimationBehaviour.TriggerJumpAnimation();
+            playerMovementBehaviour.Jump();
         }
     }
 
-    public void OnAiming(InputAction.CallbackContext value){
-        if(value.performed != m_isAiming){
+    public void OnAiming(InputAction.CallbackContext value)
+    {
+        if (value.performed != m_isAiming)
+        {
             setAim(value.performed);
         }
-        if(value.performed) Aim();
+        if (value.performed) Aim();
     }
 
     // Start is called before the first frame update
@@ -107,6 +123,10 @@ public class PlayerController : MonoBehaviour
         CaculateMovementVelocity();
         UpdatePlayerMovement();
         UpdatePlayerMovementAnimation();
+        if(m_Input.Attack && canAttack)
+        {
+            playerAnimationBehaviour.TriggerMeleeAttack();
+        }
     }
 
     void CaculateMovementVelocity()
@@ -147,25 +167,30 @@ public class PlayerController : MonoBehaviour
             if (velocity < 0) velocity = 0;
         }
     }
-    void setAim(bool aim){
+    void setAim(bool aim)
+    {
         m_isAiming = aim;
-        if(aim){
+        if (aim)
+        {
             transform.rotation = Quaternion.Euler(0f, gameCam.m_XAxis.Value, 0f);
             aimCam.m_Priority = 11;
             DOVirtual.Float(aimRig.weight, 1f, 0.2f, setAimRigWeight);
         }
-        else{
+        else
+        {
             aimCam.m_Priority = 1;
             DOVirtual.Float(aimRig.weight, 0, 0.2f, setAimRigWeight);
         }
-        void setAimRigWeight(float weight){
+        void setAimRigWeight(float weight)
+        {
             aimRig.weight = weight;
         }
     }
-    void Aim(){
+    void Aim()
+    {
         var rot = aimTarget.localRotation.eulerAngles;
         rot.x -= cameraInput.y;
-        if(rot.x > 180) rot.x -= 360;
+        if (rot.x > 180) rot.x -= 360;
         rot.x = Mathf.Clamp(rot.x, -80, 80);
         aimTarget.localRotation = Quaternion.Slerp(aimTarget.localRotation, Quaternion.Euler(rot), .5f);
 
@@ -192,11 +217,11 @@ public class PlayerController : MonoBehaviour
 
         //Slide movement
         if (slideCountDown > 0)
-            playerAnimationBehaviour.setIsSliding(true);
+            playerAnimationBehaviour.SetIsSliding(true);
         else
-            playerAnimationBehaviour.setIsSliding(false);
+            playerAnimationBehaviour.SetIsSliding(false);
         //if WASD is null
-        playerAnimationBehaviour.setIsMoving(isMoving);
+        playerAnimationBehaviour.SetIsMoving(isMoving);
         Debug.Log("OK!!!");
     }
 
