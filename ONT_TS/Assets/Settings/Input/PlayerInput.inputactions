@@ -1,23 +1,15 @@
 {
-    "name": "PlayerAction",
+    "name": "PlayerInput",
     "maps": [
         {
-            "name": "Player",
+            "name": "GamePlay",
             "id": "923b130b-9aaa-4bd2-a67c-a23eb698c0aa",
             "actions": [
                 {
                     "name": "CamInput",
-                    "type": "PassThrough",
-                    "id": "b1a527d7-1b48-4899-beb9-e348fc7453b3",
+                    "type": "Value",
+                    "id": "6143ebc9-58e9-4c63-a850-893d6def6366",
                     "expectedControlType": "Vector2",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Attack",
-                    "type": "Button",
-                    "id": "8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9",
-                    "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
                 },
@@ -60,20 +52,17 @@
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
+                },
+                {
+                    "name": "Attack",
+                    "type": "Button",
+                    "id": "8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
-                {
-                    "name": "",
-                    "id": "13a2a025-aa25-42f4-aaec-5d86a1c80474",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
                 {
                     "name": "WASD",
                     "id": "f1e62860-c449-4634-aa61-d3b3396cab72",
@@ -164,10 +153,21 @@
                 },
                 {
                     "name": "",
-                    "id": "a5b0e2ab-91bf-47ee-9219-4e4a1e0c030b",
-                    "path": "<Pointer>/delta",
+                    "id": "e6281104-c42f-4089-9d22-6576f91a4877",
+                    "path": "<Mouse>/rightButton",
                     "interactions": "",
                     "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af4d4996-b28a-4770-8ce1-d5e70e2a00ac",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=2,y=2)",
                     "groups": "Keyboard and Mouse",
                     "action": "CamInput",
                     "isComposite": false,
@@ -175,12 +175,66 @@
                 },
                 {
                     "name": "",
-                    "id": "e6281104-c42f-4089-9d22-6576f91a4877",
-                    "path": "<Mouse>/rightButton",
+                    "id": "13a2a025-aa25-42f4-aaec-5d86a1c80474",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Aim",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Menu",
+            "id": "9853d5c3-3574-407f-a1cc-01323d714d09",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "ad38b0bf-a84b-4865-b8c2-7ee419880bae",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "d21e5f30-79be-4c1a-8a75-944662ac7ed2",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "New action",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        },
+        {
+            "name": "Dialogue",
+            "id": "49af096d-87d3-4381-860f-62b20fb466b1",
+            "actions": [
+                {
+                    "name": "New action",
+                    "type": "Button",
+                    "id": "9906a98e-bae2-43f9-9bf3-24d476d6b304",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "06dd32e9-6b49-4355-977e-3a2bb13be546",
+                    "path": "",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "New action",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
