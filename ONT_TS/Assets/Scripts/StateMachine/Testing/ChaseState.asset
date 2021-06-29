@@ -12,6 +12,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04d9d5aef29cdd440957297a2ef287be, type: 3}
   m_Name: ChaseState
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  gizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  actions:
+  - {fileID: 11400000, guid: 4ec8bec5518a4e0489cd370a4fc1b85f, type: 2}
+  transitions:
+  - decision: {fileID: 11400000, guid: 0352ebefcb2e68247a12f6f9453c4242, type: 2}
+    trueState: {fileID: 11400000}
+    falseState: {fileID: 11400000, guid: 96d4546280a1413438a58be5e6e53e7c, type: 2}
+  gizmoColor: {r: 1, g: 0, b: 0, a: 1}
