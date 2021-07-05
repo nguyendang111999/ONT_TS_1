@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 67e6253635655ce479c06dbb1629c665, type: 3}
-  m_Name: PatrolAction
+  m_Script: {fileID: 11500000, guid: 44ea6cb307e77364091697ed99e0950e, type: 3}
+  m_Name: Default Action
   m_EditorClassIdentifier: 

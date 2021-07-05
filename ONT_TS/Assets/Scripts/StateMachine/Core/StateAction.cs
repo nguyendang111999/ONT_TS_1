@@ -2,17 +2,22 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class StateAction : MonoBehaviour
+public abstract class StateAction : IStateComponent
 {
-    // Start is called before the first frame update
-    void Start()
+    internal StateActionSO _originSO;
+    protected StateActionSO OriginSO => _originSO;
+
+    public virtual void Awake(StateController stateController) { }
+
+    public abstract void OnStateUpdate();
+
+    public virtual void OnStateEnter() { }
+
+    public virtual void OnStateExit() { }
+
+    public enum SpecificMoment
     {
-        
+        OnStateEnter, OnStateUpdate, OnStateExit,
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
 }

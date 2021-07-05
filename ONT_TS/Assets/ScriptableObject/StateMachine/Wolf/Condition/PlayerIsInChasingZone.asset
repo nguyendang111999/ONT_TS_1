@@ -9,9 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 04d9d5aef29cdd440957297a2ef287be, type: 3}
-  m_Name: DefaultState
+  m_Script: {fileID: 11500000, guid: 19966d198ff4dbf4eb91eca4e3f4dcb4, type: 3}
+  m_Name: PlayerIsInChasingZone
   m_EditorClassIdentifier: 
-  actions: []
-  transitions: []
-  gizmoColor: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+  zone: 0

@@ -2,33 +2,65 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "StateMachine/State")]
-public class State : ScriptableObject
+public class State
 {
-    public Action[] actions;
-    public Transition[] transitions;
-    public Color gizmoColor = Color.grey;
+    internal StateSO _originSO;
+    internal StateController _stateController;
+    internal StateAction[] _actions;
+    internal StateTransition[] _transitions;
 
-    public void UpdateState(StateController controller)
+    internal State() { }
+
+    public State(
+        StateSO originSO,
+        StateController stateController,
+        StateTransition[] transitions,
+        StateAction[] actions)
     {
-        DoActions(controller);
-        CheckTransitions(controller);
+        _originSO = originSO;
+        _stateController = stateController;
+        _transitions = transitions;
+        _actions = actions;
     }
 
-    private void DoActions(StateController controller)
+    public void OnStateEnter()
     {
-        for (int i = 0; i < actions.Length; i++)
+        void OnStateEnter(IStateComponent[] comps)
         {
-            actions[i].Act(controller);
+            for (int i = 0; i < comps.Length; i++)
+                comps[i].OnStateEnter();
         }
+        OnStateEnter(_transitions);
+        OnStateEnter(_actions);
     }
-    private void CheckTransitions(StateController controller)
+    public void OnStateUpdate()
     {
-        for (int i = 0; i < transitions.Length; i++)
+        for (int i = 0; i < _actions.Length; i++)
+            _actions[i].OnStateUpdate();
+    }
+    public void OnStateExit()
+    {
+        void OnStateExit(IStateComponent[] comps)
         {
-            bool decisionSucceeded = transitions[i].decision.Decide(controller);
-            if (decisionSucceeded) controller.TransitionToState(transitions[i].trueState);
-            else controller.TransitionToState(transitions[i].falseState);
+            for (int i = 0; i < comps.Length; i++)
+                comps[i].OnStateExit();
         }
+        OnStateExit(_transitions);
+        OnStateExit(_actions);
+    }
+    public bool TryGetTransition(out State state)
+    {
+        state = null;
+
+        int count = _transitions.Length;
+
+        for (int i = 0; i < count; i++)
+            if (_transitions[i].TryGetTransition(out state))
+                break;
+        //Clear cached result of each condition
+        for (int i = 0; i < count; i++)
+            _transitions[i].ClearConditionsCache();
+            
+        return state != null;
     }
 }

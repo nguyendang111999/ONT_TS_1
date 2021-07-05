@@ -9,6 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15fa9fa22346a7d4ab6ff4d0b96686fa, type: 3}
-  m_Name: ChaseAction
+  m_Script: {fileID: 11500000, guid: 143dfde1db6ce5c4bb7c5c9b0de89f5f, type: 3}
+  m_Name: Protagonist
   m_EditorClassIdentifier: 
+  _transition:
+  - FromState: {fileID: 0}
+    ToState: {fileID: 0}
+    Conditions:
+    - ConditionSO: {fileID: 0}
+      ExpectedResult: 0
+      Operator: 1
