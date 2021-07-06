@@ -1,43 +1,67 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.AI;
 
 public class StateController : MonoBehaviour
 {
-    public State currentState;
-    public CharStats stats;
-    public Transform attackPoint;
-    public State remainState;
-    public Vector3 rootPos;
+    [Tooltip("Set character state to this component")]
+    [SerializeField]private TransitionTableSO _transitionTable = default;
+    internal State _currentState;
+    private readonly Dictionary<Type, Component> _cachedComponents = new Dictionary<Type, Component>();
 
-    [HideInInspector]public NavMeshAgent navMeshAgent;
-    [HideInInspector]public List<Transform> wayPointList;
-    [HideInInspector]public Transform chaseTarget;
-
-    private bool aiActive;
-    // Start is called before the first frame update
     void Awake()
     {
-        navMeshAgent = GetComponent<NavMeshAgent>();
-        rootPos = gameObject.transform.position;
-        navMeshAgent.enabled = true;
+        _currentState = _transitionTable.GetIntitialState(this);
+    }
+    private void OnEnable()
+    {
+        UnityEditor.AssemblyReloadEvents.afterAssemblyReload += OnAfterAssemblyReload;
+    }
+    private void OnAfterAssemblyReload()
+    {
+        _currentState = _transitionTable.GetIntitialState(this);
+    }
+    private void OnDisable()
+    {
+        UnityEditor.AssemblyReloadEvents.afterAssemblyReload -= OnAfterAssemblyReload;
     }
 
-    void Update(){
-        currentState.UpdateState(this);
+    public new bool TryGetComponent<T>(out T component) where T : Component
+    {
+        var type = typeof(T);
+        if (!_cachedComponents.TryGetValue(type, out var value))
+        {
+            if (base.TryGetComponent<T>(out component))
+                _cachedComponents.Add(type, component);
+
+            return component != null;
+        }
+        component = (T)value;
+        return true;
+    }
+    public new T GetComponent<T>() where T : Component
+    {
+        return TryGetComponent(out T component) ?
+            component : throw new InvalidOperationException($"{typeof(T).Name} not found in {name}.");
+    }
+    private void Start()
+    {
+        _currentState.OnStateEnter();
+    }
+    void Update()
+    {
+        if (_currentState.TryGetTransition(out var transitionState))
+            Transition(transitionState);
+            
+        _currentState.OnStateUpdate();
+        Debug.Log($"Current State: {_currentState._originSO.name}");
     }
 
-    private void OnDrawGizmos() {
-        if(currentState != null && attackPoint != null){
-            Gizmos.color = currentState.gizmoColor;
-            Gizmos.DrawWireSphere(attackPoint.position, stats.attackRange);
-        }
+    private void Transition(State transitionState)
+    {
+        _currentState.OnStateExit();
+        _currentState = transitionState;
+        _currentState.OnStateEnter();
     }
-    public void TransitionToState(State nextState){
-        if(nextState != remainState){
-            currentState = nextState;
-        }
-    }
-    
+
 }
