@@ -54,6 +54,7 @@ public class StateController : MonoBehaviour
             Transition(transitionState);
             
         _currentState.OnStateUpdate();
+        Debug.Log($"Current State: {_currentState._originSO.name}");
     }
 
     private void Transition(State transitionState)

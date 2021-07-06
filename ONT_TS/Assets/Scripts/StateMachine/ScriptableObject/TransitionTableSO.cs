@@ -19,6 +19,7 @@ public class TransitionTableSO : ScriptableObject
         {
             if (fromState.Key == null)
                 throw new ArgumentNullException(nameof(fromState.Key), $"TransitionTable: {name}");
+                
             var state = fromState.Key.GetState(stateController, createdInstance);
             states.Add(state);
 
@@ -69,10 +70,6 @@ public class TransitionTableSO : ScriptableObject
         }
 
         resultGroup = resultGroupsList.ToArray();
-        for (int i = 0; i < resultGroup.Length; i++)
-        {
-            Debug.Log("Result group: " + resultGroup[i]);
-        }
     }
 
     [Serializable]

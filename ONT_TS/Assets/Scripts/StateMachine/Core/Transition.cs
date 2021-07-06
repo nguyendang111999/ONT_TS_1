@@ -58,8 +58,6 @@ public class StateTransition : IStateComponent
     internal void ClearConditionsCache()
     {
         for (int i = 0; i < _conditions.Length; i++)
-        {
             _conditions[i]._condition.ClearStatementCache();
-        }
     }
 }

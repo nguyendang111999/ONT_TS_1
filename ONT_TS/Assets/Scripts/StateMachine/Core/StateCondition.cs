@@ -22,7 +22,7 @@ public abstract class Condition : IStateComponent
             _isCached = true;
             _cachedStatement = Statement();
         }
-        return true;
+        return _cachedStatement;
     }
     internal void ClearStatementCache()
     {

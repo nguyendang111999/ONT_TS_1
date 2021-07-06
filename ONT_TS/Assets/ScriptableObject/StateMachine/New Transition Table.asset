@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 166414514e057e0438000681f876a6e5, type: 3}
-  m_Name: Default Action
+  m_Script: {fileID: 11500000, guid: 99e1b92e147837d48aeb4c88ea5450db, type: 3}
+  m_Name: New Transition Table
   m_EditorClassIdentifier: 
+  _transition: []
