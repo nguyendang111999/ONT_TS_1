@@ -13,8 +13,8 @@ MonoBehaviour:
   m_Name: WolfTransitionTable
   m_EditorClassIdentifier: 
   _transition:
-  - FromState: {fileID: 11400000, guid: 1ddcbdaa7f467a44489e7525a285ac01, type: 2}
-    ToState: {fileID: 11400000, guid: d1e6bbbc0c7385a48926cd9dc2e0c3ab, type: 2}
+  - FromState: {fileID: 11400000, guid: 6b2a44db7b285874a809c81556c8039a, type: 2}
+    ToState: {fileID: 11400000, guid: 1a989d6c8b1bec0488986c02addb2e5e, type: 2}
     Conditions:
     - ConditionSO: {fileID: 11400000, guid: df40ca9e278345243a0b14c5b1e1113b, type: 2}
       ExpectedResult: 0
