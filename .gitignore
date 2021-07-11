@@ -6,10 +6,6 @@
 [Ll]ogs/
 [Mm]emoryCaptures/
 [Ss]creenshots/
-UserSettings/
-
-# Asset meta data is ignore when corresponding asset is also ignore
-!/[Aa]ssets/**/*.meta
 
 # Visual Studio cache directory
 .vs/
