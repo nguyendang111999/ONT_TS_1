@@ -39,16 +39,12 @@ debug.log
 
 # Builds
 *.apk
+*.aab
 *.unitypackage
 
-# Package related files that can be ignored or are better kept user-specific
-ProjectSettings/Packages/com.unity.probuilder/Settings.json
-ProjectSettings/Packages/com.unity.polybrush/Settings.json
-/ProjectSettings/Packages/com.unity.progrids/Settings.json
-/ProjectSettings/Packages/com.unity.learn.iet-framework/Settings.json
-Assets/Polybrush Data*
-Assets/PolybrushData*
+# Packed Addressables
+/[Aa]ssets/[Aa]ddressable[Aa]ssets[Dd]ata/*/*.bin*
 
-# Asset Bundles folder and .bin file
-/Assets/StreamingAssets
-*.bin
+# Temporary auto-generated Android Assets
+/[Aa]ssets/[Ss]treamingAssets/aa.meta
+/[Aa]ssets/[Ss]treamingAssets/aa/*
