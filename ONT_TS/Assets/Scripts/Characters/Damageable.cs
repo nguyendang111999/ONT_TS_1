@@ -28,4 +28,9 @@ public class Damageable : MonoBehaviour
             }
         }
     }
+
+    public void ResetHealth(){
+        _currentHealth = _healthConfig.MaxHealth;
+        isDead = false;
+    }
 }
