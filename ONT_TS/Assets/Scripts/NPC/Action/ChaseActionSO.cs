@@ -1,5 +1,7 @@
 using UnityEngine;
 using UnityEngine.AI;
+using ONT_TS.StateMachine;
+using ONT_TS.StateMachine.ScriptableObjects;
 
 [CreateAssetMenu(fileName = "Chase Action", menuName = "State Machines/Actions/Chase Action")]
 public class ChaseActionSO : StateActionSO

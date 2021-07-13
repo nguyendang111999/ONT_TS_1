@@ -24,7 +24,6 @@ public class DetectPlayer : MonoBehaviour
             _chaseTarget = hit.transform;
             result = true;
         }
-        Debug.Log("Detect Player: " + result);
         return result;
     }
     private void OnDrawGizmos() {

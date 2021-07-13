@@ -1,4 +1,6 @@
 using UnityEngine;
+using ONT_TS.StateMachine;
+using ONT_TS.StateMachine.ScriptableObjects;
 
 //Use to detect player position
 

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -38,7 +39,7 @@ public class PlayerController : MonoBehaviour
     private bool isMoving = false;
 
     //Attack setting
-    private bool attackInput = false;
+    [NonSerialized]public bool attackInput = false;
     protected bool m_InAttack;
 
 
@@ -242,23 +243,20 @@ public class PlayerController : MonoBehaviour
         }
         isCrouching = true;
     }
-    private void StopCrouching()
-    {
-        isCrouching = false;
-    }
+    private void StopCrouching() => isCrouching = false;
     private void OnAttack(){
         attackInput = true;
-        attack();
     }
     private void OnAttackCanceled(){
         attackInput = false;
     }
-    void attack(){
-        Collider[] hitEnemies = Physics.OverlapSphere(hitPoint.position, attackRange, enemyLayers);
-        foreach(Collider enemy in hitEnemies){
-            Debug.Log("We hit: " + enemy.name);
-        }
-    }
+    // void attack(){
+    //     playerAnimationBehaviour.SetMeleeAttack(true);
+    //     Collider[] hitEnemies = Physics.OverlapSphere(hitPoint.position, attackRange, enemyLayers);
+    //     foreach(Collider enemy in hitEnemies){
+    //         Debug.Log("We hit: " + enemy.name);
+    //     }
+    // }
     void OnDrawGizmosSelected() {
         if(hitPoint == null){
             return;

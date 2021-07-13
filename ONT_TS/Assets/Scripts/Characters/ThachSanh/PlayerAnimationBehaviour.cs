@@ -32,7 +32,7 @@ public class PlayerAnimationBehaviour : MonoBehaviour
         id_HashTriggerJump = Animator.StringToHash("triggerJump");
         id_HashIsSliding = Animator.StringToHash("isSliding");
         id_Grounded = Animator.StringToHash("isGrounded");
-        id_MeleeAttack = Animator.StringToHash("MeleeAttack");
+        id_MeleeAttack = Animator.StringToHash("Attack");
     }
 
     public void UpdateVelocity(float velocity)
@@ -61,7 +61,7 @@ public class PlayerAnimationBehaviour : MonoBehaviour
     public void SetIsGrounded(bool isGrounded){
         playerAnim.SetBool(id_Grounded, isGrounded);
     }
-    public void TriggerMeleeAttack(){
-        playerAnim.SetTrigger(id_MeleeAttack);
+    public void SetMeleeAttack(bool val){
+        playerAnim.SetBool(id_MeleeAttack, val);
     }
 }
