@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 305e635114e1df84195c2618dc79a31c, type: 3}
-  m_Name: Attack
+  m_Name: WalkAttack
   m_EditorClassIdentifier: 
   _actions:
   - {fileID: 11400000, guid: ac0c638a38247834fab12347b9c67607, type: 2}

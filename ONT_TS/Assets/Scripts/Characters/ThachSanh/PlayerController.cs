@@ -33,10 +33,12 @@ public class PlayerController : MonoBehaviour
     [SerializeField] float crouchSpeed = 3f;
     [SerializeField] float slideTime = 1f;
     private float slideCountDown = 0f;
-    private Vector3 rawInputMovement;
     private bool isGrounded = true;
     private bool isCrouching = false;
     private bool isMoving = false;
+    public Vector3 rawInputMovement;
+    //Final movement vector
+    public Vector3 vectorMovement;
 
     //Attack setting
     [NonSerialized]public bool attackInput = false;
@@ -47,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public Transform hitPoint;
     public float attackRange = 2f;
     public LayerMask enemyLayers;
+
     private void OnEnable()
     {
         _inputReader.moveEvent += OnMove;
@@ -93,13 +96,13 @@ public class PlayerController : MonoBehaviour
     {
         CaculateMovementVelocity();
         UpdatePlayerMovement();
-        UpdatePlayerMovementAnimation();
+        // UpdatePlayerMovementAnimation();
     }
 
     void CaculateMovementVelocity()
     {
         float rawInputMagnitude = rawInputMovement.magnitude;
-        if (rawInputMagnitude > 0) isMoving = true; else isMoving = false;
+        isMoving = rawInputMagnitude > 0 ? true : false;
 
         if (slideCountDown <= 0)
         {
@@ -195,18 +198,18 @@ public class PlayerController : MonoBehaviour
 
     void UpdatePlayerMovementAnimation()
     {
-        playerAnimationBehaviour.UpdateVelocity(velocity);
-        playerAnimationBehaviour.SetIsGrounded(isGrounded);
+        // playerAnimationBehaviour.UpdateVelocity(velocity);
+        // playerAnimationBehaviour.SetIsGrounded(isGrounded);
 
-        //Slide movement
-        if (slideCountDown > 0)
-            playerAnimationBehaviour.SetIsSliding(true);
-        else
-            playerAnimationBehaviour.SetIsSliding(false);
-        //if WASD is null
-        playerAnimationBehaviour.SetIsMoving(isMoving);
-        //play crouch
-        playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
+        // //Slide movement
+        // if (slideCountDown > 0)
+        //     playerAnimationBehaviour.SetIsSliding(true);
+        // else
+        //     playerAnimationBehaviour.SetIsSliding(false);
+        // //if WASD is null
+        // playerAnimationBehaviour.SetIsMoving(isMoving);
+        // //play crouch
+        // playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
     }
 
     //--- Event Listener ---
@@ -234,6 +237,7 @@ public class PlayerController : MonoBehaviour
             playerMovementBehaviour.Jump();
         }
     }
+
     private void OnCrouching()
     {
         if (velocity >= 7f && slideCountDown <= 0f)
@@ -243,20 +247,17 @@ public class PlayerController : MonoBehaviour
         }
         isCrouching = true;
     }
+
     private void StopCrouching() => isCrouching = false;
+
     private void OnAttack(){
         attackInput = true;
     }
+
     private void OnAttackCanceled(){
         attackInput = false;
     }
-    // void attack(){
-    //     playerAnimationBehaviour.SetMeleeAttack(true);
-    //     Collider[] hitEnemies = Physics.OverlapSphere(hitPoint.position, attackRange, enemyLayers);
-    //     foreach(Collider enemy in hitEnemies){
-    //         Debug.Log("We hit: " + enemy.name);
-    //     }
-    // }
+
     void OnDrawGizmosSelected() {
         if(hitPoint == null){
             return;

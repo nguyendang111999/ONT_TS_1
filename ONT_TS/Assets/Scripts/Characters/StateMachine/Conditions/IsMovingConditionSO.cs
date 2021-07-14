@@ -2,6 +2,7 @@ using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 
+[CreateAssetMenu(menuName = "State Machines/Conditions/IsMoving")]
 public class IsMovingConditionSO : StateConditionSO<IsMovingCondition>
 {
     public float minSpeed = 0.01f;
@@ -14,11 +15,12 @@ public class IsMovingCondition : Condition
 
     public override void Awake(StateController stateController)
     {
-        base.Awake(stateController);
+        _playerController = stateController.GetComponent<PlayerController>();
     }
 
     protected override bool Statement()
     {
-        return false;
+        float vel = _playerController.velocity;
+        return vel > _originSO.minSpeed;
     }
 }

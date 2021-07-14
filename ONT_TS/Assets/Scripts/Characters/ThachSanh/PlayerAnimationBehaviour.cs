@@ -5,7 +5,6 @@ using UnityEngine;
 
 public class PlayerAnimationBehaviour : MonoBehaviour
 {
-
     [Header("Component References")]
     public Animator playerAnim;
 

@@ -1,5 +1,4 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class PlayerMovementBehaviour : MonoBehaviour
@@ -10,6 +9,7 @@ public class PlayerMovementBehaviour : MonoBehaviour
     public Transform cam;
 
     [Header("Movement Settings")]
+    [NonSerialized]public Vector3 movementVector;
     public float runSpeed = 3f;
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
@@ -50,10 +50,10 @@ public class PlayerMovementBehaviour : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
             transform.rotation = Quaternion.Euler(0, angle, 0);
             
-            Vector3 moveDir = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
-            if(isSliding) moveDir = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+            movementVector = Quaternion.Euler(0, targetAngle, 0) * Vector3.forward;
+            if(isSliding) movementVector = Quaternion.Euler(0, angle, 0) * Vector3.forward;
 
-            controller.Move(moveDir.normalized * runSpeed * Time.deltaTime);
+            controller.Move(movementVector.normalized * runSpeed * Time.deltaTime);
         }        
     }
     public void fallingToGround(){

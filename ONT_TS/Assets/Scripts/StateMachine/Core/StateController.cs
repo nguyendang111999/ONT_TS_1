@@ -56,6 +56,9 @@ namespace ONT_TS.StateMachine
                 Transition(transitionState);
 
             _currentState.OnStateUpdate();
+
+            //Curren state!
+            Debug.Log(gameObject.name + " :" + _currentState._originSO.name);
         }
 
         private void Transition(State transitionState)

@@ -24,7 +24,7 @@ public class AnimatorParameterActionSO : StateActionSO
 }
 public class AnimatorParameterAction : StateAction
 {
-    private Animator _animator;
+    private Animator _anim;
     private AnimatorParameterActionSO _originSO => (AnimatorParameterActionSO)base.OriginSO;
     private int _parameterHash;
 
@@ -35,7 +35,7 @@ public class AnimatorParameterAction : StateAction
 
     public override void Awake(StateController stateController)
     {
-        _animator = stateController.GetComponent<Animator>();
+        _anim = stateController.GetComponent<Animator>();
     }
 
     public override void OnStateEnter()
@@ -57,16 +57,16 @@ public class AnimatorParameterAction : StateAction
         switch (_originSO.parameterType)
         {
             case AnimatorParameterActionSO.ParameterType.Bool:
-                _animator.SetBool(_parameterHash, _originSO.boolValue);
+                _anim.SetBool(_parameterHash, _originSO.boolValue);
                 break;
             case AnimatorParameterActionSO.ParameterType.Float:
-                _animator.SetFloat(_parameterHash, _originSO.floatValue);
+                _anim.SetFloat(_parameterHash, _originSO.floatValue);
                 break;
             case AnimatorParameterActionSO.ParameterType.Int:
-                _animator.SetInteger(_parameterHash, _originSO.intValue);
+                _anim.SetInteger(_parameterHash, _originSO.intValue);
                 break;
             case AnimatorParameterActionSO.ParameterType.Trigger:
-                _animator.SetTrigger(_parameterHash);
+                _anim.SetTrigger(_parameterHash);
                 break;
         }
     }
