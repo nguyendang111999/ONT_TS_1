@@ -17,7 +17,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction crouchStopEvent = delegate { };
     public event UnityAction attackEvent = delegate { };
     public event UnityAction attackCanceledEvent = delegate { };
-
+    public event UnityAction skill1 = delegate { };
+    public event UnityAction skill2 = delegate { };
 
     private PlayerInput playerInput;
 
@@ -68,6 +69,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         rotateCamera.Invoke(context.ReadValue<Vector2>());
     }
+
     public void OnAim(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
@@ -92,7 +94,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         {
             crouchEvent.Invoke();
         }
-        if(context.phase == InputActionPhase.Canceled){
+        if (context.phase == InputActionPhase.Canceled)
+        {
             crouchStopEvent.Invoke();
         }
     }
@@ -121,10 +124,23 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         }
     }
 
-    public void OnNewaction(InputAction.CallbackContext context)
+    public void OnSkill1(InputAction.CallbackContext context)
+    {
+        skill1.Invoke();
+    }
+
+    public void OnSkill2(InputAction.CallbackContext context)
+    {
+        skill2.Invoke();
+    }
+
+    public void OnChoose(InputAction.CallbackContext context)
     {
         throw new NotImplementedException();
     }
 
-
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
 }

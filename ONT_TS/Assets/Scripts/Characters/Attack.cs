@@ -4,18 +4,25 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    [SerializeField]private AttackConfigSO _attackConfigSO;
+    [SerializeField] private AttackConfigSO _attackConfigSO;
 
-    private void Awake() {
+    public AttackConfigSO AttackConfig => _attackConfigSO;
+
+    private void Awake()
+    {
         gameObject.SetActive(false);
     }
 
-    private void OnTriggerEnter(Collider other) {
-        if(!other.CompareTag(gameObject.tag)){
-            if(other.TryGetComponent(out Damageable dmgComponent)){
-                if(!dmgComponent.GetHit)
-                    dmgComponent.ReceiveAttack(_attackConfigSO.AttackStrength);
-            }
-        }
-    }
+    private void OnTriggerEnter(Collider other)
+	{
+		if (!other.CompareTag(gameObject.tag))
+		{
+			if (other.TryGetComponent(out Damageable damageableComp))
+			{
+                if(damageableComp == null) Debug.Log("shiet");
+				if (!damageableComp.GetHit)
+					damageableComp.ReceiveAttack(_attackConfigSO.AttackStrength);
+			}
+		}
+	}
 }

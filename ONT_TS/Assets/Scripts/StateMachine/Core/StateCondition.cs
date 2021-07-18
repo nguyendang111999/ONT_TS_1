@@ -34,7 +34,6 @@ namespace ONT_TS.StateMachine
 
         public virtual void OnStateEnter() { }
         public virtual void OnStateExit() { }
-
     }
 
     //This contain condition and expected result

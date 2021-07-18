@@ -14,14 +14,6 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Aim",
-                    "type": "Value",
-                    "id": "0f28af36-7643-4650-9e19-26e94f19bc56",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
                     "name": "Movements",
                     "type": "Value",
                     "id": "6d6acc04-9048-4427-8a35-1f5dc98862f6",
@@ -54,15 +46,94 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Aim",
+                    "type": "Value",
+                    "id": "0f28af36-7643-4650-9e19-26e94f19bc56",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Attack",
                     "type": "Button",
                     "id": "8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": "Tap"
+                },
+                {
+                    "name": "Skill1",
+                    "type": "Button",
+                    "id": "6c68c841-dead-4d4b-a016-43216de0ab24",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
+                },
+                {
+                    "name": "Skill2",
+                    "type": "Button",
+                    "id": "a11b6c83-23de-455e-b565-d1187fac4f4b",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": "Tap"
                 }
             ],
             "bindings": [
+                {
+                    "name": "",
+                    "id": "e6281104-c42f-4089-9d22-6576f91a4877",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Aim",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "af4d4996-b28a-4770-8ce1-d5e70e2a00ac",
+                    "path": "<Mouse>/delta",
+                    "interactions": "",
+                    "processors": "ScaleVector2(x=2,y=2)",
+                    "groups": "Keyboard and Mouse",
+                    "action": "CamInput",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "13a2a025-aa25-42f4-aaec-5d86a1c80474",
+                    "path": "<Mouse>/leftButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Attack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "38aa656c-b311-44f0-8978-ce64beb65026",
+                    "path": "<Keyboard>/1",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Skill1",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "fc85b466-1f1d-412f-a32f-95fb157b2295",
+                    "path": "<Keyboard>/2",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Skill2",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
                 {
                     "name": "WASD",
                     "id": "f1e62860-c449-4634-aa61-d3b3396cab72",
@@ -150,39 +221,6 @@
                     "action": "Jump",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "e6281104-c42f-4089-9d22-6576f91a4877",
-                    "path": "<Mouse>/rightButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Aim",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "af4d4996-b28a-4770-8ce1-d5e70e2a00ac",
-                    "path": "<Mouse>/delta",
-                    "interactions": "",
-                    "processors": "ScaleVector2(x=2,y=2)",
-                    "groups": "Keyboard and Mouse",
-                    "action": "CamInput",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "13a2a025-aa25-42f4-aaec-5d86a1c80474",
-                    "path": "<Mouse>/leftButton",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Attack",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -191,7 +229,7 @@
             "id": "9853d5c3-3574-407f-a1cc-01323d714d09",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Choose",
                     "type": "Button",
                     "id": "ad38b0bf-a84b-4865-b8c2-7ee419880bae",
                     "expectedControlType": "Button",
@@ -203,11 +241,11 @@
                 {
                     "name": "",
                     "id": "d21e5f30-79be-4c1a-8a75-944662ac7ed2",
-                    "path": "",
+                    "path": "<Mouse>/leftButton",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "New action",
+                    "action": "Choose",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -218,7 +256,7 @@
             "id": "49af096d-87d3-4381-860f-62b20fb466b1",
             "actions": [
                 {
-                    "name": "New action",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "9906a98e-bae2-43f9-9bf3-24d476d6b304",
                     "expectedControlType": "Button",
@@ -230,11 +268,11 @@
                 {
                     "name": "",
                     "id": "06dd32e9-6b49-4355-977e-3a2bb13be546",
-                    "path": "",
+                    "path": "<Keyboard>/e",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "New action",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

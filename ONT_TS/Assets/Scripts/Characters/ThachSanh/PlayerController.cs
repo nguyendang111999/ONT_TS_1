@@ -24,38 +24,41 @@ public class PlayerController : MonoBehaviour
     public bool m_isAiming;
 
     [Header("Movements")]
+    public CharacterStatsSO statsSO;
     public float velocity = 0f;
-    [SerializeField] float acceleration = 0.1f;
-    [SerializeField] float decceleration = 1f;
-    [SerializeField] float slideDecceleration = 1f;
-    [SerializeField] float normalRunSpeed = 7f;
-    [SerializeField] float sprintSpeed = 10f;
-    [SerializeField] float crouchSpeed = 3f;
-    [SerializeField] float slideTime = 1f;
+
+    //Movement stats
+    private float acceleration;
+    private float decceleration;
+    private float normalRunSpeed;
+    private float sprintSpeed;
+    private float crouchSpeed;
+    private float slideDuration;
     private float slideCountDown = 0f;
+    //End: Movement stats
+
     private bool isGrounded = true;
     private bool isCrouching = false;
     private bool isMoving = false;
+    private bool isSliding = false;
+    private bool isDodging = false;
     public Vector3 rawInputMovement;
-    //Final movement vector
-    public Vector3 vectorMovement;
 
     //Attack setting
-    [NonSerialized]public bool attackInput = false;
-    protected bool m_InAttack;
-
+    [NonSerialized] public bool attackInput = false;
 
     [Header("Hit Point")]
     public Transform hitPoint;
     public float attackRange = 2f;
     public LayerMask enemyLayers;
 
+    //INPUT ACTION SYSTEM
     private void OnEnable()
     {
         _inputReader.moveEvent += OnMove;
         _inputReader.startRunning += OnStartRunning;
         _inputReader.stopRunning += OnStopRunning;
-        _inputReader.jumpEvent += OnJumpTrigger;
+        _inputReader.jumpEvent += OnDodgeTrigger;
         _inputReader.crouchEvent += OnCrouching;
         _inputReader.crouchStopEvent += StopCrouching;
         _inputReader.attackEvent += OnAttack;
@@ -67,15 +70,22 @@ public class PlayerController : MonoBehaviour
         _inputReader.moveEvent -= OnMove;
         _inputReader.startRunning -= OnStartRunning;
         _inputReader.stopRunning -= OnStopRunning;
-        _inputReader.jumpEvent -= OnJumpTrigger;
+        _inputReader.jumpEvent -= OnDodgeTrigger;
         _inputReader.crouchEvent -= OnCrouching;
         _inputReader.crouchStopEvent -= StopCrouching;
         _inputReader.attackEvent -= OnAttack;
         _inputReader.attackCanceledEvent -= OnAttackCanceled;
     }
 
-    //INPUT ACTION SYSTEM
-
+    private void InstantiateMovementData()
+    {
+        acceleration = statsSO.Acceleration;
+        decceleration = statsSO.Decceleration;
+        normalRunSpeed = statsSO.RunSpeed;
+        sprintSpeed = statsSO.SprintSpeed;
+        crouchSpeed = statsSO.CrouchSpeed;
+        slideDuration = statsSO.SlideDuration;
+    }
     public void OnAiming(InputAction.CallbackContext value)
     {
         if (value.performed != m_isAiming)
@@ -96,61 +106,57 @@ public class PlayerController : MonoBehaviour
     {
         CaculateMovementVelocity();
         UpdatePlayerMovement();
-        // UpdatePlayerMovementAnimation();
+        UpdatePlayerMovementAnimation();
+        InstantiateMovementData();
     }
 
     void CaculateMovementVelocity()
     {
         float rawInputMagnitude = rawInputMovement.magnitude;
         isMoving = rawInputMagnitude > 0 ? true : false;
+        isSliding = (slideCountDown > 0) ? true : false;
+        slideCountDown = slideCountDown > 0 ? slideCountDown - Time.deltaTime : 0;
 
-        if (slideCountDown <= 0)
+        if (rawInputMagnitude > 0)
         {
-            if (rawInputMagnitude > 0)
+            if (!isCrouching)
             {
-                if (!isCrouching)
+                if (velocity <= normalRunSpeed)
                 {
-                    if (velocity <= normalRunSpeed)
-                    {
-                        velocity += Time.deltaTime * acceleration;
-                    }
-                    if (sprintPressed && velocity <= sprintSpeed)
-                    {
-                        velocity += Time.deltaTime * acceleration;
-                        if (velocity > sprintSpeed) velocity = sprintSpeed;
-                    }
-                    if (!sprintPressed && velocity > normalRunSpeed)
-                    {
-                        velocity -= Time.deltaTime * decceleration;
-                        if (velocity < normalRunSpeed) velocity = normalRunSpeed;
-                    }
+                    velocity += Time.deltaTime * acceleration;
                 }
-                if (isCrouching)
+                if (sprintPressed && velocity <= sprintSpeed)
                 {
-                    if (velocity > crouchSpeed)
-                    {
-                        velocity -= Time.deltaTime * decceleration;
-                        if (velocity < crouchSpeed) velocity = crouchSpeed;
-                    }
-                    if (velocity < crouchSpeed)
-                    {
-                        velocity += Time.deltaTime * acceleration;
-                        if (velocity > crouchSpeed) velocity = crouchSpeed;
-                    }
+                    velocity += Time.deltaTime * acceleration;
+                    if (velocity > sprintSpeed && !isSliding) velocity = sprintSpeed;
+                }
+                if(velocity > sprintSpeed){
+                    velocity -= Time.deltaTime * decceleration;
+                }
+                if (!sprintPressed && velocity > normalRunSpeed)
+                {
+                    velocity -= Time.deltaTime * decceleration;
+                    if (velocity < normalRunSpeed) velocity = normalRunSpeed;
                 }
             }
-            if (rawInputMagnitude <= 0f && velocity > 0f)
+            if (isCrouching)
             {
-                velocity -= Time.deltaTime * decceleration;
-                if (velocity < 0) velocity = 0f;
+                if (velocity > crouchSpeed)
+                {
+                    velocity -= Time.deltaTime * decceleration;
+                    if (velocity < crouchSpeed) velocity = crouchSpeed;
+                }
+                if (velocity < crouchSpeed)
+                {
+                    velocity += Time.deltaTime * acceleration;
+                    if (velocity > crouchSpeed) velocity = crouchSpeed;
+                }
             }
         }
-
-        if (slideCountDown > 0f)
+        if (rawInputMagnitude <= 0f && velocity > 0f)
         {
-            slideCountDown -= Time.deltaTime;
-            velocity -= Time.deltaTime * slideDecceleration;
-            if (velocity < 0) velocity = 0;
+            velocity -= Time.deltaTime * decceleration;
+            if (velocity < 0) velocity = 0f;
         }
     }
     void setAim(bool aim)
@@ -190,30 +196,26 @@ public class PlayerController : MonoBehaviour
         isGrounded = playerMovementBehaviour.checkIfGrounded();
         playerMovementBehaviour.runSpeed = velocity;
         //Slide movement
-        if (slideCountDown > 0)
-            playerMovementBehaviour.isSlide(true);
-        else playerMovementBehaviour.isSlide(false);
-        //If WASD is null
+        playerMovementBehaviour.isSlide(isSliding);
     }
 
     void UpdatePlayerMovementAnimation()
     {
-        // playerAnimationBehaviour.UpdateVelocity(velocity);
-        // playerAnimationBehaviour.SetIsGrounded(isGrounded);
+        playerAnimationBehaviour.UpdateVelocity(velocity);
+        playerAnimationBehaviour.SetIsGrounded(isGrounded);
 
-        // //Slide movement
-        // if (slideCountDown > 0)
-        //     playerAnimationBehaviour.SetIsSliding(true);
-        // else
-        //     playerAnimationBehaviour.SetIsSliding(false);
-        // //if WASD is null
-        // playerAnimationBehaviour.SetIsMoving(isMoving);
-        // //play crouch
-        // playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
+        //Slide movement
+        if (slideCountDown > 0)
+            playerAnimationBehaviour.SetIsSliding(true);
+        else
+            playerAnimationBehaviour.SetIsSliding(false);
+        //if WASD is null
+        playerAnimationBehaviour.SetIsMoving(isMoving);
+        //play crouch
+        playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
     }
 
     //--- Event Listener ---
-
     private void OnMove(Vector2 movement)
     {
         movement = movement.normalized;
@@ -228,14 +230,18 @@ public class PlayerController : MonoBehaviour
     {
         sprintPressed = false;
     }
-    private void OnJumpTrigger()
+    private void OnDodgeTrigger()
     {
-        if (isGrounded)
-        {
-            playerAnimationBehaviour.ResetTriggerJumpAnimation();
-            playerAnimationBehaviour.TriggerJumpAnimation();
-            playerMovementBehaviour.Jump();
-        }
+        // if (isGrounded)
+        // {
+        //     playerAnimationBehaviour.ResetTriggerJumpAnimation();
+        //     playerAnimationBehaviour.TriggerJumpAnimation();
+        //     // playerMovementBehaviour.Jump();
+        // }
+        isDodging = true;
+    }
+    private void ResetDodgeTrigger(){
+        isDodging = false;
     }
 
     private void OnCrouching()
@@ -243,23 +249,27 @@ public class PlayerController : MonoBehaviour
         if (velocity >= 7f && slideCountDown <= 0f)
         {
             velocity += 5;
-            slideCountDown = slideTime;
+            slideCountDown = slideDuration;
         }
         isCrouching = true;
     }
 
     private void StopCrouching() => isCrouching = false;
 
-    private void OnAttack(){
+    private void OnAttack()
+    {
         attackInput = true;
     }
 
-    private void OnAttackCanceled(){
+    private void OnAttackCanceled()
+    {
         attackInput = false;
     }
 
-    void OnDrawGizmosSelected() {
-        if(hitPoint == null){
+    void OnDrawGizmosSelected()
+    {
+        if (hitPoint == null)
+        {
             return;
         }
         Gizmos.DrawWireSphere(hitPoint.position, attackRange);

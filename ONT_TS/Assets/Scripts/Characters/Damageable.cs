@@ -8,28 +8,34 @@ public class Damageable : MonoBehaviour
     [SerializeField] private HealthConfig _healthConfig;
 
     private int _currentHealth = default;
-    public bool GetHit{get;set;}
-    public bool isDead{get;set;}
+    public bool GetHit { get; set; }
+    public bool isDead { get; set; }
     public int CurrentHealth => _currentHealth;
     public UnityAction OnDie;
 
-    private void Awake() {
+    private void Awake()
+    {
         _currentHealth = _healthConfig.MaxHealth;
+        Debug.Log(gameObject.name + " health: " + _currentHealth);
     }
-    public void ReceiveAttack(int dmg){
-        if(isDead) return;
+    public void ReceiveAttack(int dmg)
+    {
+        if (isDead) return;
 
         _currentHealth -= dmg;
-        GetHit = true;
-        if(_currentHealth <= 0){
+        // GetHit = true;
+        if (_currentHealth <= 0)
+        {
             isDead = true;
-            if(OnDie != null){
+            if (OnDie != null)
+            {
                 OnDie.Invoke();
             }
         }
     }
 
-    public void ResetHealth(){
+    public void ResetHealth()
+    {
         _currentHealth = _healthConfig.MaxHealth;
         isDead = false;
     }

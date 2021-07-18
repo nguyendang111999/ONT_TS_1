@@ -62,7 +62,6 @@ public class PlayerMovementBehaviour : MonoBehaviour
         if(isGrounded && fallVelocity.y < 0){
             fallVelocity.y = -2f;
         }
-        // controller.Move(fallVelocity * Time.deltaTime);
     }
     public bool checkIfGrounded(){
         return controller.isGrounded;

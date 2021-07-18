@@ -9,10 +9,17 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f6bbc16199b60374f9a4fb888637ef26, type: 3}
+  m_Script: {fileID: 11500000, guid: a964d27a580ffad4180ac9b392b03f34, type: 3}
   m_Name: WolfStats
   m_EditorClassIdentifier: 
-  patrolSpeed: 2
   attackRange: 1
   lookRange: 10
-  startPos: {x: 25, y: 5.5, z: -35}
+  _acceleration: 0
+  _decceleration: 0
+  _slideDecceleration: 0
+  _walkSpeed: 4
+  _runSpeed: 0
+  _sprintSpeed: 0
+  _crouchSpeed: 0
+  _slideDuration: 0
+  _startPos: {x: 25, y: 5.5, z: -35}

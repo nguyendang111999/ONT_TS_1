@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "HealthConfig", menuName = "EntityConfig/Health Config")]
+[CreateAssetMenu(fileName = "HealthConfig", menuName = "CharacterConfig/Health Config")]
 public class HealthConfig : ScriptableObject
 {
     [Tooltip("Initial health")]

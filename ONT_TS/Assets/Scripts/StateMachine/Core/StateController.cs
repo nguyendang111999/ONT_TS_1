@@ -6,6 +6,7 @@ namespace ONT_TS.StateMachine
 {
     public class StateController : MonoBehaviour
     {
+        public String currentState;
         [Tooltip("Set character state to this component")]
         [SerializeField] private ScriptableObjects.TransitionTableSO _transitionTable = default;
         internal State _currentState;
@@ -56,9 +57,9 @@ namespace ONT_TS.StateMachine
                 Transition(transitionState);
 
             _currentState.OnStateUpdate();
-
             //Curren state!
-            Debug.Log(gameObject.name + " :" + _currentState._originSO.name);
+            currentState = gameObject.name + " :" + _currentState._originSO.name;
+            
         }
 
         private void Transition(State transitionState)

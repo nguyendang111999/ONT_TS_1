@@ -15,22 +15,23 @@ namespace ONT_TS.StateMachine.ScriptableObjects
             var transitions = new List<StateTransition>();
             var createdInstance = new Dictionary<ScriptableObject, object>();
 
-            var fromStates = _transition.GroupBy(transition => transition.FromState);
+            var fromStates = _transition;
+
+            if (fromStates == null)
+                throw new ArgumentNullException(fromStates.GetType().Name, $"TransitionTable: {name}");
 
             foreach (var fromState in fromStates)
             {
-                if (fromState.Key == null)
-                    throw new ArgumentNullException(nameof(fromState.Key), $"TransitionTable: {name}");
-
-                var state = fromState.Key.GetState(stateController, createdInstance);
+                var state = fromState.FromState.GetState(stateController, createdInstance);
                 states.Add(state);
 
                 transitions.Clear();
-                foreach (var transitionItem in fromState)
+
+                foreach (var transitionItem in fromState.StateAndCondition)
                 {
                     if (transitionItem.ToState == null)
                         throw new ArgumentNullException(nameof(transitionItem.ToState),
-                        $"TransitionTable: {name}, From State: {fromState.Key.name}");
+                        $"TransitionTable: {name}, From State: {fromState.GetType().Name}");
 
                     var toState = transitionItem.ToState.GetState(stateController, createdInstance);
                     ProcessConditionUsages(stateController, transitionItem.Conditions, createdInstance,
@@ -78,6 +79,11 @@ namespace ONT_TS.StateMachine.ScriptableObjects
         public struct TransitionItem
         {
             public StateSO FromState;
+            public TransitionTo[] StateAndCondition;
+        }
+        [Serializable]
+        public struct TransitionTo
+        {
             public StateSO ToState;
             public ConditionUsage[] Conditions;
         }

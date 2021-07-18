@@ -25,7 +25,7 @@ public class PlayerAnimationBehaviour : MonoBehaviour
 
     void SetupAnimationIDs()
     {
-        id_HashVelocity = Animator.StringToHash("velocity");
+        id_HashVelocity = Animator.StringToHash("Velocity");
         id_HashIsMoving = Animator.StringToHash("isMoving");
         id_HashIsCrouching = Animator.StringToHash("isCrouching");
         id_HashTriggerJump = Animator.StringToHash("triggerJump");
