@@ -7,18 +7,21 @@ using System;
 public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, PlayerInput.IMenuActions, PlayerInput.IDialogueActions
 {
     //Gameplay
-    public event UnityAction<Vector2> moveEvent = delegate { };
-    public event UnityAction<Vector2> rotateCamera = delegate { };
-    public event UnityAction startRunning = delegate { };
-    public event UnityAction stopRunning = delegate { };
-    public event UnityAction jumpEvent = delegate { };
-    public event UnityAction jumpCanceledEvent = delegate { };
-    public event UnityAction crouchEvent = delegate { };
-    public event UnityAction crouchStopEvent = delegate { };
-    public event UnityAction attackEvent = delegate { };
-    public event UnityAction attackCanceledEvent = delegate { };
-    public event UnityAction skill1 = delegate { };
-    public event UnityAction skill2 = delegate { };
+    public event UnityAction<Vector2> MoveEvent = delegate { };
+    public event UnityAction<Vector2> RotateCameraEvent = delegate { };
+    public event UnityAction OnAimEvent = delegate { };
+    public event UnityAction StartRunningEvent = delegate { };
+    public event UnityAction StopRunningEvent = delegate { };
+    public event UnityAction DodgeEvent = delegate { };
+    public event UnityAction JumpCanceledEvent = delegate { };
+    public event UnityAction CrouchEvent = delegate { };
+    public event UnityAction CrouchStopEvent = delegate { };
+    public event UnityAction AttackEvent = delegate { };
+    public event UnityAction AttackCanceledEvent = delegate { };
+    public event UnityAction Skill1Event = delegate { };
+    public event UnityAction Skill2Event = delegate { };
+    public event UnityAction HeavyAttackEvent = delegate { };
+    public event UnityAction HeavyAttackCanceledEvent = delegate { };
 
     private PlayerInput playerInput;
 
@@ -67,7 +70,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     //Implements from PlayerInterface
     void PlayerInput.IGamePlayActions.OnCamInput(InputAction.CallbackContext context)
     {
-        rotateCamera.Invoke(context.ReadValue<Vector2>());
+        RotateCameraEvent.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnAim(InputAction.CallbackContext context)
@@ -80,10 +83,22 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                attackEvent.Invoke();
+                AttackEvent.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                attackCanceledEvent.Invoke();
+                AttackCanceledEvent.Invoke();
+                break;
+        }
+    }
+    public void OnHeavyAttack(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Performed:
+                HeavyAttackEvent.Invoke();
+                break;
+            case InputActionPhase.Canceled:
+                HeavyAttackCanceledEvent.Invoke();
                 break;
         }
     }
@@ -92,23 +107,23 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            crouchEvent.Invoke();
+            CrouchEvent.Invoke();
         }
         if (context.phase == InputActionPhase.Canceled)
         {
-            crouchStopEvent.Invoke();
+            CrouchStopEvent.Invoke();
         }
     }
 
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            jumpEvent.Invoke();
+            DodgeEvent.Invoke();
     }
 
     public void OnMovements(InputAction.CallbackContext context)
     {
-        moveEvent.Invoke(context.ReadValue<Vector2>());
+        MoveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -116,22 +131,22 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                startRunning.Invoke();
+                StartRunningEvent.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                stopRunning.Invoke();
+                StopRunningEvent.Invoke();
                 break;
         }
     }
 
     public void OnSkill1(InputAction.CallbackContext context)
     {
-        skill1.Invoke();
+        Skill1Event.Invoke();
     }
 
     public void OnSkill2(InputAction.CallbackContext context)
     {
-        skill2.Invoke();
+        Skill2Event.Invoke();
     }
 
     public void OnChoose(InputAction.CallbackContext context)
@@ -143,4 +158,5 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         throw new NotImplementedException();
     }
+
 }

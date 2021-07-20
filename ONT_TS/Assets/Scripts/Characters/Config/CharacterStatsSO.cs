@@ -7,6 +7,7 @@ public class CharacterStatsSO : ScriptableObject
 {
     public float attackRange = 2f;
     public float lookRange = 15f;
+    [Header("Movements info")]
     [SerializeField] private float _acceleration = default;
     [SerializeField] private float _decceleration = default;
     [SerializeField] private float _slideDecceleration = default;

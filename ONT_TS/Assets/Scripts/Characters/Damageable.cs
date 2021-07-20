@@ -16,7 +16,7 @@ public class Damageable : MonoBehaviour
     private void Awake()
     {
         _currentHealth = _healthConfig.MaxHealth;
-        Debug.Log(gameObject.name + " health: " + _currentHealth);
+        // Debug.Log(gameObject.name + " health: " + _currentHealth);
     }
     public void ReceiveAttack(int dmg)
     {

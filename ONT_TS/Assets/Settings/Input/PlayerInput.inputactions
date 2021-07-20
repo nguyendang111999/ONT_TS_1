@@ -62,6 +62,14 @@
                     "interactions": "Tap"
                 },
                 {
+                    "name": "HeavyAttack",
+                    "type": "Button",
+                    "id": "fa895f92-9748-4450-9ecc-3fe972a79400",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Skill1",
                     "type": "Button",
                     "id": "6c68c841-dead-4d4b-a016-43216de0ab24",
@@ -82,7 +90,7 @@
                 {
                     "name": "",
                     "id": "e6281104-c42f-4089-9d22-6576f91a4877",
-                    "path": "<Mouse>/rightButton",
+                    "path": "<Keyboard>/t",
                     "interactions": "Press",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
@@ -219,6 +227,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "Jump",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "96b15980-12b9-4239-9ca4-e4a5e9bdcaeb",
+                    "path": "<Mouse>/rightButton",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "HeavyAttack",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

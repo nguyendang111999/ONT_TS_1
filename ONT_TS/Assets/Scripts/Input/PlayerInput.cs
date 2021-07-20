@@ -75,6 +75,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Tap""
                 },
                 {
+                    ""name"": ""HeavyAttack"",
+                    ""type"": ""Button"",
+                    ""id"": ""fa895f92-9748-4450-9ecc-3fe972a79400"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Skill1"",
                     ""type"": ""Button"",
                     ""id"": ""6c68c841-dead-4d4b-a016-43216de0ab24"",
@@ -95,7 +103,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 {
                     ""name"": """",
                     ""id"": ""e6281104-c42f-4089-9d22-6576f91a4877"",
-                    ""path"": ""<Mouse>/rightButton"",
+                    ""path"": ""<Keyboard>/t"",
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
@@ -234,6 +242,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Jump"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""96b15980-12b9-4239-9ca4-e4a5e9bdcaeb"",
+                    ""path"": ""<Mouse>/rightButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""HeavyAttack"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -320,6 +339,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
+        m_GamePlay_HeavyAttack = m_GamePlay.FindAction("HeavyAttack", throwIfNotFound: true);
         m_GamePlay_Skill1 = m_GamePlay.FindAction("Skill1", throwIfNotFound: true);
         m_GamePlay_Skill2 = m_GamePlay.FindAction("Skill2", throwIfNotFound: true);
         // Menu
@@ -384,6 +404,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_Attack;
+    private readonly InputAction m_GamePlay_HeavyAttack;
     private readonly InputAction m_GamePlay_Skill1;
     private readonly InputAction m_GamePlay_Skill2;
     public struct GamePlayActions
@@ -397,6 +418,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
+        public InputAction @HeavyAttack => m_Wrapper.m_GamePlay_HeavyAttack;
         public InputAction @Skill1 => m_Wrapper.m_GamePlay_Skill1;
         public InputAction @Skill2 => m_Wrapper.m_GamePlay_Skill2;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
@@ -429,6 +451,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Attack.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAttack;
                 @Attack.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAttack;
                 @Attack.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAttack;
+                @HeavyAttack.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHeavyAttack;
+                @HeavyAttack.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHeavyAttack;
+                @HeavyAttack.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHeavyAttack;
                 @Skill1.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill1;
                 @Skill1.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill1;
                 @Skill1.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill1;
@@ -460,6 +485,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Attack.started += instance.OnAttack;
                 @Attack.performed += instance.OnAttack;
                 @Attack.canceled += instance.OnAttack;
+                @HeavyAttack.started += instance.OnHeavyAttack;
+                @HeavyAttack.performed += instance.OnHeavyAttack;
+                @HeavyAttack.canceled += instance.OnHeavyAttack;
                 @Skill1.started += instance.OnSkill1;
                 @Skill1.performed += instance.OnSkill1;
                 @Skill1.canceled += instance.OnSkill1;
@@ -554,6 +582,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnJump(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
+        void OnHeavyAttack(InputAction.CallbackContext context);
         void OnSkill1(InputAction.CallbackContext context);
         void OnSkill2(InputAction.CallbackContext context);
     }

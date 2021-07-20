@@ -16,10 +16,7 @@ public class ApplyMovementVelocityAction : StateAction
     private ApplyMovementVelocityActionSO _originSO => (ApplyMovementVelocityActionSO)base.OriginSO;
     private int _parameterHash;
 
-    public ApplyMovementVelocityAction(int parameterHash)
-    {
-        _parameterHash = parameterHash;
-    }
+    public ApplyMovementVelocityAction(int parameterHash) => _parameterHash = parameterHash;
 
     public override void Awake(StateController stateController)
     {
@@ -29,7 +26,7 @@ public class ApplyMovementVelocityAction : StateAction
 
     public override void OnStateUpdate()
     {
-        float velocity = _playerController.velocity;
-        _anim.SetFloat(_parameterHash, velocity);
+        // float velocity = _playerController._velocity;
+        // _anim.SetFloat(_parameterHash, velocity);
     }
 }
