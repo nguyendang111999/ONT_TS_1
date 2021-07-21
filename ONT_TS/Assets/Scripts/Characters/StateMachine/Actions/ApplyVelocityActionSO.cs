@@ -18,6 +18,5 @@ public class ApplyVelocityAction : StateAction
     {
         _characterController.Move(_playerController.movementInput * Time.deltaTime);
         _playerController.movementVector = _characterController.velocity;
-        Debug.Log("?");
     }
 }

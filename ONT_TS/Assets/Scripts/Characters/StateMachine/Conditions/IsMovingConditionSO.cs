@@ -20,7 +20,8 @@ public class IsMovingCondition : Condition
 
     protected override bool Statement()
     {
-        float vel = _playerController._velocity;
-        return vel > _originSO.minSpeed;
+        Vector3 movementVector = _playerController.movementInput;
+        movementVector.y = 0;
+        return movementVector.magnitude > _originSO.minSpeed;
     }
 }

@@ -29,6 +29,10 @@ public class PlayerController : MonoBehaviour
     public Vector2 _inputVector;
     public float _velocity = 0f;
 
+    //These variable is use to smooth character rotation
+    public float turnSmoothTime = 0.1f;
+    public float turnSmoothVelocity;
+
     //Movement stats
     private float acceleration;
     private float decceleration;
@@ -39,11 +43,9 @@ public class PlayerController : MonoBehaviour
     private float slideCountDown = 0f;
     //End: Movement stats
 
-    private bool isGrounded = true;
-    private bool isCrouching = false;
-    private bool isMoving = false;
+    public bool isCrouching = false;
     private bool isSliding = false;
-    private bool isDodging = false;
+    [SerializeField] private bool isDodging = false;
     public Vector3 _rawInputMovement;//Movement behaviour
 
     //Manipulate by state machine
@@ -65,7 +67,7 @@ public class PlayerController : MonoBehaviour
         _inputReader.CrouchStopEvent += StopCrouching;
         _inputReader.AttackEvent += OnAttack;
         _inputReader.AttackCanceledEvent += OnAttackCanceled;
-        _inputReader.HeavyAttackEvent += OnHeavyAttack;
+        _inputReader.TapHeavyAttackEvent += OnHeavyAttack;
         _inputReader.HeavyAttackCanceledEvent += OnHeavyAttackCancel;
 
     }
@@ -79,7 +81,7 @@ public class PlayerController : MonoBehaviour
         _inputReader.CrouchStopEvent -= StopCrouching;
         _inputReader.AttackEvent -= OnAttack;
         _inputReader.AttackCanceledEvent -= OnAttackCanceled;
-        _inputReader.HeavyAttackEvent -= OnHeavyAttack;
+        _inputReader.TapHeavyAttackEvent -= OnHeavyAttack;
         _inputReader.HeavyAttackCanceledEvent -= OnHeavyAttackCancel;
     }
 
@@ -109,9 +111,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // CaculateMovementVelocity();
-        // UpdatePlayerMovement();
-        // UpdatePlayerMovementAnimation();
         ReCalculateMovement();
     }
 
@@ -168,32 +167,35 @@ public class PlayerController : MonoBehaviour
     void ReCalculateMovement()
     {
         float targetSpeed = 0f;
-        Vector3 tempDirection = new Vector3(_inputVector.x, 0, _inputVector.y);
-
-        Vector3 camForward = cam.forward;
-        camForward.y = 0f;
-        Vector3 camRight = cam.right;
-        camRight.y = 0f;
-
-        tempDirection = camRight.normalized * _inputVector.x + 
-            camForward.normalized * _inputVector.y;
+        Vector3 tempDirection = new Vector3();
 
         if (_inputVector.sqrMagnitude == 0f)
         {
             tempDirection = transform.forward * (tempDirection.magnitude + .01f);
         }
 
-        //Adjust velocity
         targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
         if (targetSpeed > 0)
         {
+            //Calculate character's direction
+            float targetAngle = Mathf.Atan2(_inputVector.x, _inputVector.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+            tempDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+            transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+
+            //Adjust velocity
             targetSpeed = statsSO.RunSpeed;
 
             if (isSprinting)
                 targetSpeed = statsSO.SprintSpeed;
 
             if (attackInput)
-                targetSpeed = 0f;
+                targetSpeed = 0.5f;
+
+            if(isCrouching && _velocity>= statsSO.RunSpeed){
+                targetSpeed += 5f;
+            }
         }
         if (targetSpeed < .01f) _velocity = 0;
         targetSpeed = Mathf.Lerp(_velocity, targetSpeed, Time.deltaTime * 4f);
@@ -201,6 +203,7 @@ public class PlayerController : MonoBehaviour
         movementInput = tempDirection.normalized * targetSpeed;
 
         _velocity = targetSpeed;
+        playerAnimationBehaviour.UpdateVelocity(_velocity);
     }
     void setAim(bool aim)
     {
@@ -225,33 +228,6 @@ public class PlayerController : MonoBehaviour
     {
         //Aiming with bow
     }
-    void UpdatePlayerMovement()
-    {
-        playerMovementBehaviour.UpdateMovementData(_rawInputMovement);
-        isGrounded = playerMovementBehaviour.checkIfGrounded();
-        playerMovementBehaviour.Velocity = _velocity;
-        //Slide movement
-        playerMovementBehaviour.IsSliding(isSliding);
-    }
-
-    void UpdatePlayerMovementAnimation()
-    {
-        playerAnimationBehaviour.UpdateVelocity(_velocity);
-        playerAnimationBehaviour.SetIsGrounded(isGrounded);
-
-        //Slide movement
-        if (slideCountDown > 0)
-            playerAnimationBehaviour.SetIsSliding(true);
-        else
-            playerAnimationBehaviour.SetIsSliding(false);
-
-        //if WASD is null
-        playerAnimationBehaviour.SetIsMoving(isMoving);
-        //play crouch
-        playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
-        playerAnimationBehaviour.SetDodgeParameter(isDodging);
-    }
-
     //--- Event Listener ---
     private void OnMove(Vector2 movement)
     {

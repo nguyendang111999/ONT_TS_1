@@ -51,6 +51,14 @@ MonoBehaviour:
       - ConditionSO: {fileID: 11400000, guid: d00d1cf1d796e4d4a8fccd112b0132a1, type: 2}
         ExpectedResult: 1
         Operator: 0
+    - ToState: {fileID: 11400000, guid: 893e03a851152e34eb7a6b6f2d546d32, type: 2}
+      Conditions:
+      - ConditionSO: {fileID: 11400000, guid: acc585a414789a945b7ec78d63e28140, type: 2}
+        ExpectedResult: 0
+        Operator: 0
+      - ConditionSO: {fileID: 11400000, guid: d00d1cf1d796e4d4a8fccd112b0132a1, type: 2}
+        ExpectedResult: 1
+        Operator: 0
   - FromState: {fileID: 11400000, guid: 893e03a851152e34eb7a6b6f2d546d32, type: 2}
     StateAndCondition:
     - ToState: {fileID: 11400000, guid: d6ad13a53371b964d84c7840f0c4c4ba, type: 2}
@@ -83,6 +91,29 @@ MonoBehaviour:
       Conditions:
       - ConditionSO: {fileID: 11400000, guid: acc585a414789a945b7ec78d63e28140, type: 2}
         ExpectedResult: 0
+        Operator: 0
+      - ConditionSO: {fileID: 11400000, guid: d00d1cf1d796e4d4a8fccd112b0132a1, type: 2}
+        ExpectedResult: 0
+        Operator: 0
+    - ToState: {fileID: 11400000, guid: e4f594c2f14cb6f4582a8a8888949fae, type: 2}
+      Conditions:
+      - ConditionSO: {fileID: 11400000, guid: 3c3c7461c52b5a143950f9593f8e313e, type: 2}
+        ExpectedResult: 0
+        Operator: 0
+  - FromState: {fileID: 11400000, guid: e4f594c2f14cb6f4582a8a8888949fae, type: 2}
+    StateAndCondition:
+    - ToState: {fileID: 11400000, guid: d6ad13a53371b964d84c7840f0c4c4ba, type: 2}
+      Conditions:
+      - ConditionSO: {fileID: 11400000, guid: 3c3c7461c52b5a143950f9593f8e313e, type: 2}
+        ExpectedResult: 1
+        Operator: 0
+      - ConditionSO: {fileID: 11400000, guid: d00d1cf1d796e4d4a8fccd112b0132a1, type: 2}
+        ExpectedResult: 1
+        Operator: 0
+    - ToState: {fileID: 11400000, guid: 03e8cec387fc7d546ae197413d9dd98c, type: 2}
+      Conditions:
+      - ConditionSO: {fileID: 11400000, guid: 3c3c7461c52b5a143950f9593f8e313e, type: 2}
+        ExpectedResult: 1
         Operator: 0
       - ConditionSO: {fileID: 11400000, guid: d00d1cf1d796e4d4a8fccd112b0132a1, type: 2}
         ExpectedResult: 0

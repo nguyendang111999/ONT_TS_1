@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Events;
 using System;
 
@@ -20,8 +21,12 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction AttackCanceledEvent = delegate { };
     public event UnityAction Skill1Event = delegate { };
     public event UnityAction Skill2Event = delegate { };
-    public event UnityAction HeavyAttackEvent = delegate { };
+    //Control tap and hold interaction
+    public event UnityAction TapHeavyAttackEvent = delegate { };
+    public event UnityAction HoldHeavyAttackStarted = delegate { };
+    public event UnityAction HoldHeavyAttackPerformed = delegate { };
     public event UnityAction HeavyAttackCanceledEvent = delegate { };
+
 
     private PlayerInput playerInput;
 
@@ -94,11 +99,23 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         switch (context.phase)
         {
+            case InputActionPhase.Started:
+                if (context.interaction is HoldInteraction)
+                {
+                    HoldHeavyAttackStarted?.Invoke();
+                }
+                break;
             case InputActionPhase.Performed:
-                HeavyAttackEvent.Invoke();
+                if (context.interaction is HoldInteraction)
+                {
+                    HoldHeavyAttackPerformed?.Invoke();
+                }
+                else{    
+                TapHeavyAttackEvent?.Invoke();
+                } 
                 break;
             case InputActionPhase.Canceled:
-                HeavyAttackCanceledEvent.Invoke();
+                HeavyAttackCanceledEvent?.Invoke();
                 break;
         }
     }
@@ -115,7 +132,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         }
     }
 
-    public void OnJump(InputAction.CallbackContext context)
+    public void OnDodge(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
             DodgeEvent.Invoke();
@@ -159,4 +176,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         throw new NotImplementedException();
     }
 
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
 }

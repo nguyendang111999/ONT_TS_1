@@ -58,9 +58,8 @@ public class PlayerMovementBehaviour : MonoBehaviour
     }
     public void fallingToGround()
     {
-        isGrounded = checkIfGrounded();
         fallVelocity.y -= gravity * Time.deltaTime;
-        if (isGrounded && fallVelocity.y < 0)
+        if (checkIfGrounded() && fallVelocity.y < 0)
         {
             fallVelocity.y = -2f;
         }
@@ -70,6 +69,6 @@ public class PlayerMovementBehaviour : MonoBehaviour
     public void Jump()
     {
         fallVelocity.y = Mathf.Sqrt(jumpHeight * 2f * gravity);
-        controller.Move(fallVelocity * Time.deltaTime);
+        controller.Move(fallVelocity * Time.deltaTime); 
     }
 }

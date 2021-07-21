@@ -67,7 +67,7 @@
                     "id": "fa895f92-9748-4450-9ecc-3fe972a79400",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Hold(duration=0.6),Tap"
                 },
                 {
                     "name": "Skill1",
