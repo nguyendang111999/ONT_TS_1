@@ -18,7 +18,6 @@ namespace ONT_TS.StateMachine
             _results = new bool[_resultGroups.Length];
         }
 
-
         public void OnStateEnter()
         {
             for (int i = 0; i < _conditions.Length; i++)

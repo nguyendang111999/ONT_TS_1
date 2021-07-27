@@ -7,12 +7,12 @@ public class IsHoldingHeavyAttackSO : StateConditionSO<IsHoldingHeavyAttack> { }
 
 public class IsHoldingHeavyAttack : Condition
 {
-    PlayerController _playerController;
+    PlayerController _ThachSanh;
 
     public override void Awake(StateController stateController)
     {
-        _playerController = stateController.GetComponent<PlayerController>();
+        _ThachSanh = stateController.GetComponent<PlayerController>();
     }
 
-    protected override bool Statement() => _playerController.onHeavyAttack;
+    protected override bool Statement() => _ThachSanh.onHoldHeavyAttack;
 }

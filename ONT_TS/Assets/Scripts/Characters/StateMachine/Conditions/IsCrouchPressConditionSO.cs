@@ -6,15 +6,14 @@ using ONT_TS.StateMachine.ScriptableObjects;
 public class IsCrouchPressConditionSO : StateConditionSO<IsCrouchPressCondition> { }
 public class IsCrouchPressCondition : Condition
 {
-    private PlayerController _playerController;
+    private PlayerController _ThachSanh;
 
     public override void Awake(StateController stateController)
     {
-        _playerController = stateController.GetComponent<PlayerController>();
+        _ThachSanh = stateController.GetComponent<PlayerController>();
     }
     protected override bool Statement()
     {
-        Debug.Log("isCrouching: " + _playerController.isCrouching);
-        return _playerController.isCrouching;
+        return _ThachSanh.isCrouching;
     }
 }

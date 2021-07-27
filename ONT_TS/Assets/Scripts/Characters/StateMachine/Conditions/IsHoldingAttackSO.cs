@@ -6,11 +6,11 @@ using ONT_TS.StateMachine.ScriptableObjects;
 public class IsHoldingAttackSO : StateConditionSO<IsHoldingAttack> { }
 public class IsHoldingAttack : Condition
 {
-    private PlayerController _playerController;
+    private PlayerController _ThachSanh;
     public override void Awake(StateController stateController)
     {
-        _playerController = stateController.GetComponent<PlayerController>();
+        _ThachSanh = stateController.GetComponent<PlayerController>();
     }
-    protected override bool Statement() => _playerController.attackInput;
+    protected override bool Statement() => _ThachSanh.attackInput;
 
 }

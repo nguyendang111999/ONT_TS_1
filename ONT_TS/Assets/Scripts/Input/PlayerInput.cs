@@ -43,12 +43,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""Crouch"",
+                    ""name"": ""Dodge"",
                     ""type"": ""Button"",
                     ""id"": ""d93834e4-0c19-46f6-b41a-4c6b013270f6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Tap""
                 },
                 {
                     ""name"": ""Jump"",
@@ -80,7 +80,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""fa895f92-9748-4450-9ecc-3fe972a79400"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Hold(duration=0.6),Tap""
+                    ""interactions"": ""Hold(duration=0.7),Tap(duration=0.5,pressPoint=0.5)""
                 },
                 {
                     ""name"": ""Skill1"",
@@ -228,7 +228,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Crouch"",
+                    ""action"": ""Dodge"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -335,7 +335,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_CamInput = m_GamePlay.FindAction("CamInput", throwIfNotFound: true);
         m_GamePlay_Movements = m_GamePlay.FindAction("Movements", throwIfNotFound: true);
         m_GamePlay_Run = m_GamePlay.FindAction("Run", throwIfNotFound: true);
-        m_GamePlay_Crouch = m_GamePlay.FindAction("Crouch", throwIfNotFound: true);
+        m_GamePlay_Dodge = m_GamePlay.FindAction("Dodge", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
@@ -400,7 +400,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_CamInput;
     private readonly InputAction m_GamePlay_Movements;
     private readonly InputAction m_GamePlay_Run;
-    private readonly InputAction m_GamePlay_Crouch;
+    private readonly InputAction m_GamePlay_Dodge;
     private readonly InputAction m_GamePlay_Jump;
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_Attack;
@@ -414,7 +414,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @CamInput => m_Wrapper.m_GamePlay_CamInput;
         public InputAction @Movements => m_Wrapper.m_GamePlay_Movements;
         public InputAction @Run => m_Wrapper.m_GamePlay_Run;
-        public InputAction @Crouch => m_Wrapper.m_GamePlay_Crouch;
+        public InputAction @Dodge => m_Wrapper.m_GamePlay_Dodge;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
@@ -439,9 +439,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Run.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRun;
                 @Run.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRun;
                 @Run.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnRun;
-                @Crouch.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCrouch;
-                @Crouch.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCrouch;
-                @Crouch.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnCrouch;
+                @Dodge.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDodge;
+                @Dodge.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDodge;
+                @Dodge.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnDodge;
                 @Jump.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
@@ -473,9 +473,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Run.started += instance.OnRun;
                 @Run.performed += instance.OnRun;
                 @Run.canceled += instance.OnRun;
-                @Crouch.started += instance.OnCrouch;
-                @Crouch.performed += instance.OnCrouch;
-                @Crouch.canceled += instance.OnCrouch;
+                @Dodge.started += instance.OnDodge;
+                @Dodge.performed += instance.OnDodge;
+                @Dodge.canceled += instance.OnDodge;
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
@@ -578,7 +578,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnCamInput(InputAction.CallbackContext context);
         void OnMovements(InputAction.CallbackContext context);
         void OnRun(InputAction.CallbackContext context);
-        void OnCrouch(InputAction.CallbackContext context);
+        void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);

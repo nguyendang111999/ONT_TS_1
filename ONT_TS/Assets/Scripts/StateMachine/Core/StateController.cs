@@ -6,7 +6,7 @@ namespace ONT_TS.StateMachine
 {
     public class StateController : MonoBehaviour
     {
-        public String currentState;
+        public String currentState; //Use for debbugging
         [Tooltip("Set character state to this component")]
         [SerializeField] private ScriptableObjects.TransitionTableSO _transitionTable = default;
         internal State _currentState;
@@ -14,7 +14,7 @@ namespace ONT_TS.StateMachine
 
         void Awake()
         {
-            _currentState = _transitionTable.GetIntitialState(this);
+            _currentState = _transitionTable.GetInitialState(this);
         }
         private void OnEnable()
         {
@@ -22,7 +22,7 @@ namespace ONT_TS.StateMachine
         }
         private void OnAfterAssemblyReload()
         {
-            _currentState = _transitionTable.GetIntitialState(this);
+            _currentState = _transitionTable.GetInitialState(this);
         }
         private void OnDisable()
         {

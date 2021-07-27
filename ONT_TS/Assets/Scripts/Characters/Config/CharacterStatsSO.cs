@@ -5,8 +5,14 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterConfig/Movement Stats")]
 public class CharacterStatsSO : ScriptableObject
 {
-    public float attackRange = 2f;
-    public float lookRange = 15f;
+    [SerializeField] private float _attackRange = 2f;
+    [SerializeField] private float _lookRange = 15f;
+    [SerializeField] private int _health;
+
+    public float AttackRange => _attackRange;
+    public float LookRange => _lookRange;
+    public int Health => _health;
+
     [Header("Movements info")]
     [SerializeField] private float _acceleration = default;
     [SerializeField] private float _decceleration = default;

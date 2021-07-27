@@ -1,7 +1,6 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
@@ -9,10 +8,12 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader = default;
+    [SerializeField] private InputReader _inputReader;
     [Header("Sub behaviours")]
-    public PlayerAnimationBehaviour playerAnimationBehaviour;
-    public PlayerMovementBehaviour playerMovementBehaviour;
+
+    private HealthBar _healthBar;
+    public ObjectPositionSO PlayerPos;
+    public Damageable _damageable;
 
     [Header("Input Setting")]
     private bool isSprinting = false;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     public float turnSmoothVelocity;
 
     //Movement stats
+    private float timer;
     private float acceleration;
     private float decceleration;
     private float normalRunSpeed;
@@ -44,9 +46,8 @@ public class PlayerController : MonoBehaviour
     //End: Movement stats
 
     public bool isCrouching = false;
-    private bool isSliding = false;
-    [SerializeField] private bool isDodging = false;
-    public Vector3 _rawInputMovement;//Movement behaviour
+    private bool isDashing = false;
+    public bool IsDashing => isDashing;
 
     //Manipulate by state machine
     [NonSerialized] public Vector3 movementInput;
@@ -55,34 +56,52 @@ public class PlayerController : MonoBehaviour
     //Attack setting
     [NonSerialized] public bool attackInput = false;
     [NonSerialized] public bool onHeavyAttack = false;
+    [NonSerialized] public bool onHoldHeavyAttack = false;
 
     //INPUT ACTION SYSTEM
     private void OnEnable()
     {
+        //Resgister movement
         _inputReader.MoveEvent += OnMove;
         _inputReader.StartRunningEvent += OnStartRunning;
         _inputReader.StopRunningEvent += OnStopRunning;
-        _inputReader.DodgeEvent += OnDodgeTrigger;
-        _inputReader.CrouchEvent += OnCrouching;
-        _inputReader.CrouchStopEvent += StopCrouching;
+        //Resgister dodge
+        _inputReader.DoubleTapDodgeEventPerformed += OnDashTrigger;
+
+        //Resgister crouch
+        // _inputReader.CrouchEvent += OnCrouching;
+        // _inputReader.CrouchStopEvent += StopCrouching;
+        //Resgister attack
         _inputReader.AttackEvent += OnAttack;
         _inputReader.AttackCanceledEvent += OnAttackCanceled;
-        _inputReader.TapHeavyAttackEvent += OnHeavyAttack;
-        _inputReader.HeavyAttackCanceledEvent += OnHeavyAttackCancel;
-
+        //Resgister heavy attack
+        _inputReader.TapHeavyAttackEvent += OnTapHeavyAttack;
+        _inputReader.TapHeavyAttackCanceled += OnTapHeavyAttackCancel;
+        _inputReader.HoldHeavyAttackStarted += OnHoldHeavyAttackStart;
+        _inputReader.HoldHeavyAttackPerformed += OnHoldHeavyAttackPerform;
+        _inputReader.HoldHeavyAttackCanceled += OnHoldHeavyAttackCancel;
     }
+
     private void OnDisable()
     {
+        //Unresgister movement
         _inputReader.MoveEvent -= OnMove;
         _inputReader.StartRunningEvent -= OnStartRunning;
         _inputReader.StopRunningEvent -= OnStopRunning;
-        _inputReader.DodgeEvent -= OnDodgeTrigger;
-        _inputReader.CrouchEvent -= OnCrouching;
-        _inputReader.CrouchStopEvent -= StopCrouching;
+        //Unresgister dodge
+        _inputReader.DoubleTapDodgeEventStarted -= OnDashTrigger;
+        //Unresgister crouch
+        //_inputReader.CrouchEvent -= OnCrouching;
+        //_inputReader.CrouchStopEvent -= StopCrouching;
+        //Unresgister attack
         _inputReader.AttackEvent -= OnAttack;
         _inputReader.AttackCanceledEvent -= OnAttackCanceled;
-        _inputReader.TapHeavyAttackEvent -= OnHeavyAttack;
-        _inputReader.HeavyAttackCanceledEvent -= OnHeavyAttackCancel;
+        //Unresgister heavy attack
+        _inputReader.TapHeavyAttackEvent -= OnTapHeavyAttack;
+        _inputReader.TapHeavyAttackCanceled -= OnTapHeavyAttackCancel;
+        _inputReader.HoldHeavyAttackStarted -= OnHoldHeavyAttackStart;
+        _inputReader.HoldHeavyAttackPerformed -= OnHoldHeavyAttackPerform;
+        _inputReader.HoldHeavyAttackCanceled -= OnHoldHeavyAttackCancel;
     }
 
     private void InstantiateMovementData()
@@ -106,64 +125,16 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         InstantiateMovementData();
-        playerAnimationBehaviour.SetupBehaviour();
+        PlayerPos.Transform = gameObject.transform;
     }
 
     void Update()
     {
         ReCalculateMovement();
+        PlayerPos.Transform = gameObject.transform;
+        Debug.Log("isDashing: " + isDashing);
     }
 
-    // void CaculateMovementVelocity()
-    // {
-    //     float rawInputMagnitude = _rawInputMovement.magnitude;
-    //     isMoving = rawInputMagnitude > 0 ? true : false;
-    //     isSliding = (slideCountDown > 0) ? true : false;
-    //     slideCountDown = slideCountDown > 0 ? slideCountDown - Time.deltaTime : 0;
-
-    //     if (rawInputMagnitude > 0)
-    //     {
-    //         if (!isCrouching)
-    //         {
-    //             if (_velocity <= normalRunSpeed)
-    //             {
-    //                 _velocity += Time.deltaTime * acceleration;
-    //             }
-    //             if (isSprinting && _velocity <= sprintSpeed)
-    //             {
-    //                 _velocity = (_velocity > sprintSpeed && !isSliding) ?
-    //                 sprintSpeed : (_velocity + Time.deltaTime * acceleration);
-    //             }
-    //             if (_velocity > sprintSpeed)
-    //             {
-    //                 _velocity -= Time.deltaTime * decceleration;
-    //             }
-    //             if (!isSprinting && _velocity > normalRunSpeed)
-    //             {
-    //                 _velocity -= Time.deltaTime * decceleration;
-    //                 if (_velocity < normalRunSpeed) _velocity = normalRunSpeed;
-    //             }
-    //         }
-    //         if (isCrouching)
-    //         {
-    //             if (_velocity > crouchSpeed)
-    //             {
-    //                 _velocity -= Time.deltaTime * decceleration;
-    //                 if (_velocity < crouchSpeed) _velocity = crouchSpeed;
-    //             }
-    //             if (_velocity < crouchSpeed)
-    //             {
-    //                 _velocity += Time.deltaTime * acceleration;
-    //                 if (_velocity > crouchSpeed) _velocity = crouchSpeed;
-    //             }
-    //         }
-    //     }
-    //     if (rawInputMagnitude <= 0f && _velocity > 0f)
-    //     {
-    //         _velocity -= Time.deltaTime * decceleration;
-    //         if (_velocity < 0) _velocity = 0f;
-    //     }
-    // }
     void ReCalculateMovement()
     {
         float targetSpeed = 0f;
@@ -191,38 +162,26 @@ public class PlayerController : MonoBehaviour
                 targetSpeed = statsSO.SprintSpeed;
 
             if (attackInput)
-                targetSpeed = 0.5f;
+                targetSpeed = 0f;
 
-            if(isCrouching && _velocity>= statsSO.RunSpeed){
-                targetSpeed += 5f;
+            if (isCrouching && _velocity >= statsSO.RunSpeed)
+            {
+                targetSpeed += 10f;
             }
+
         }
-        if (targetSpeed < .01f) _velocity = 0;
-        targetSpeed = Mathf.Lerp(_velocity, targetSpeed, Time.deltaTime * 4f);
+        //Attach velocity
+        _velocity = _velocity == targetSpeed ? _velocity = targetSpeed : _velocity < targetSpeed
+        ? _velocity += acceleration * Time.deltaTime : _velocity -= decceleration * Time.deltaTime;
+        //Round the velocity
+        if ((_velocity < targetSpeed && _velocity + acceleration * Time.deltaTime > targetSpeed) ||
+            (_velocity > targetSpeed && _velocity - acceleration * Time.deltaTime < targetSpeed))
+            _velocity = targetSpeed;
 
-        movementInput = tempDirection.normalized * targetSpeed;
-
-        _velocity = targetSpeed;
-        playerAnimationBehaviour.UpdateVelocity(_velocity);
+        movementInput = tempDirection.normalized * _velocity;
     }
     void setAim(bool aim)
     {
-        m_isAiming = aim;
-        if (aim)
-        {
-            transform.rotation = Quaternion.Euler(0f, gameCam.m_XAxis.Value, 0f);
-            aimCam.m_Priority = 11;
-            DOVirtual.Float(aimRig.weight, 1f, 0.2f, setAimRigWeight);
-        }
-        else
-        {
-            aimCam.m_Priority = 1;
-            DOVirtual.Float(aimRig.weight, 0, 0.2f, setAimRigWeight);
-        }
-        void setAimRigWeight(float weight)
-        {
-            aimRig.weight = weight;
-        }
     }
     void Aim()
     {
@@ -232,12 +191,15 @@ public class PlayerController : MonoBehaviour
     private void OnMove(Vector2 movement)
     {
         _inputVector = movement.normalized;
-        _rawInputMovement = new Vector3(_inputVector.x, 0, _inputVector.y);
     }
     private void OnStartRunning() => isSprinting = true;
     private void OnStopRunning() => isSprinting = false;
-    private void OnDodgeTrigger() => isDodging = true;
-    private void ResetDodgeTrigger() => isDodging = false;
+    private void OnDashTrigger()
+    {
+        isDashing = true;
+    }
+    private void OnDashReset() => isDashing = false;
+
     private void OnCrouching()
     {
         if (_velocity >= 7f && slideCountDown <= 0f)
@@ -250,6 +212,9 @@ public class PlayerController : MonoBehaviour
     private void StopCrouching() => isCrouching = false;
     private void OnAttack() => attackInput = true;
     private void OnAttackCanceled() => attackInput = false;//Handle by Animation Event
-    private void OnHeavyAttack() => onHeavyAttack = true;
-    public void OnHeavyAttackCancel() => onHeavyAttack = false;
+    private void OnTapHeavyAttack() => onHeavyAttack = true;
+    private void OnTapHeavyAttackCancel() => onHeavyAttack = false;
+    private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
+    private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
+    public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;
 }

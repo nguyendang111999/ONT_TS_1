@@ -8,7 +8,7 @@ namespace ONT_TS.StateMachine.ScriptableObjects
     public class TransitionTableSO : ScriptableObject
     {
         [SerializeField] private TransitionItem[] _transition = default;
-        internal State GetIntitialState(StateController stateController)
+        internal State GetInitialState(StateController stateController)
         {
             var states = new List<State>();
             var transitions = new List<StateTransition>();

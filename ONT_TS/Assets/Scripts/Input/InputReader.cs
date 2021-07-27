@@ -13,19 +13,30 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction OnAimEvent = delegate { };
     public event UnityAction StartRunningEvent = delegate { };
     public event UnityAction StopRunningEvent = delegate { };
-    public event UnityAction DodgeEvent = delegate { };
+
+    //Dodge event tap and double tap
+    public event UnityAction TapDodgeEventPerformed = delegate { };
+    public event UnityAction TapDodgeEventCancel = delegate { };
+    public event UnityAction DoubleTapDodgeEventStarted = delegate { };
+    public event UnityAction DoubleTapDodgeEventPerformed = delegate { };
+    public event UnityAction DoubleTapDodgeEventCancel = delegate { };
+    //Jump events
     public event UnityAction JumpCanceledEvent = delegate { };
-    public event UnityAction CrouchEvent = delegate { };
-    public event UnityAction CrouchStopEvent = delegate { };
+    //Crouch events
+    // public event UnityAction CrouchEvent = delegate { };
+    // public event UnityAction CrouchStopEvent = delegate { };
+    //Melee attack event
     public event UnityAction AttackEvent = delegate { };
     public event UnityAction AttackCanceledEvent = delegate { };
+    //Skills event
     public event UnityAction Skill1Event = delegate { };
     public event UnityAction Skill2Event = delegate { };
-    //Control tap and hold interaction
+    //Heavy Attack
     public event UnityAction TapHeavyAttackEvent = delegate { };
+    public event UnityAction TapHeavyAttackCanceled = delegate { };
     public event UnityAction HoldHeavyAttackStarted = delegate { };
     public event UnityAction HoldHeavyAttackPerformed = delegate { };
-    public event UnityAction HeavyAttackCanceledEvent = delegate { };
+    public event UnityAction HoldHeavyAttackCanceled = delegate { };
 
 
     private PlayerInput playerInput;
@@ -102,7 +113,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
             case InputActionPhase.Started:
                 if (context.interaction is HoldInteraction)
                 {
-                    HoldHeavyAttackStarted?.Invoke();
+                    HoldHeavyAttackStarted.Invoke();
                 }
                 break;
             case InputActionPhase.Performed:
@@ -110,34 +121,52 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
                 {
                     HoldHeavyAttackPerformed?.Invoke();
                 }
-                else{    
-                TapHeavyAttackEvent?.Invoke();
-                } 
+                else
+                {
+                    TapHeavyAttackEvent?.Invoke();
+                }
                 break;
             case InputActionPhase.Canceled:
-                HeavyAttackCanceledEvent?.Invoke();
+                if (context.interaction is HoldInteraction)
+                {
+                    HoldHeavyAttackCanceled?.Invoke();
+                }
+                else
+                {
+                    TapHeavyAttackCanceled?.Invoke();
+                }
                 break;
         }
     }
 
-    public void OnCrouch(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-        {
-            CrouchEvent.Invoke();
-        }
-        if (context.phase == InputActionPhase.Canceled)
-        {
-            CrouchStopEvent.Invoke();
-        }
-    }
+    // public void OnCrouch(InputAction.CallbackContext context)
+    // {
+    //     if (context.phase == InputActionPhase.Performed)
+    //     {
+    //         CrouchEvent.Invoke();
+    //     }
+    //     if (context.phase == InputActionPhase.Canceled)
+    //     {
+    //         CrouchStopEvent.Invoke();
+    //     }
+    // }
 
     public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
-            DodgeEvent.Invoke();
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                TapDodgeEventPerformed.Invoke();
+                break;
+            case InputActionPhase.Performed:
+                DoubleTapDodgeEventPerformed.Invoke();
+                break;
+        }
     }
-
+    public void OnJump(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
     public void OnMovements(InputAction.CallbackContext context)
     {
         MoveEvent.Invoke(context.ReadValue<Vector2>());
@@ -176,8 +205,5 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         throw new NotImplementedException();
     }
 
-    public void OnJump(InputAction.CallbackContext context)
-    {
-        throw new NotImplementedException();
-    }
+
 }

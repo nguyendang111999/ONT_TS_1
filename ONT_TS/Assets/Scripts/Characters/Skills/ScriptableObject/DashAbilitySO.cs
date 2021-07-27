@@ -1,7 +1,7 @@
 using UnityEngine;
 using DG.Tweening;
 
-[CreateAssetMenu(menuName = "CharacterAbility/Earth/New Dash Ability")]
+[CreateAssetMenu(menuName = "CharacterConfig/Ability/Earth/New Dash Ability")]
 public class DashAbilitySO : AbilityBaseSO
 {
     [SerializeField] private float _speed;

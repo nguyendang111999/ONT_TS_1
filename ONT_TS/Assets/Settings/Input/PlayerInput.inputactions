@@ -30,12 +30,12 @@
                     "interactions": ""
                 },
                 {
-                    "name": "Crouch",
+                    "name": "Dodge",
                     "type": "Button",
                     "id": "d93834e4-0c19-46f6-b41a-4c6b013270f6",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap"
                 },
                 {
                     "name": "Jump",
@@ -67,7 +67,7 @@
                     "id": "fa895f92-9748-4450-9ecc-3fe972a79400",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Hold(duration=0.6),Tap"
+                    "interactions": "Hold(duration=0.7),Tap(duration=0.5,pressPoint=0.5)"
                 },
                 {
                     "name": "Skill1",
@@ -215,7 +215,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Crouch",
+                    "action": "Dodge",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

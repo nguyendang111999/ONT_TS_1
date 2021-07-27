@@ -14,7 +14,7 @@ namespace ONT_TS.StateMachine
         //Get the result statement to evaluate
         protected abstract bool Statement();
 
-        //Cache the statement
+        //Cache the statement result
         internal bool GetStatement()
         {
             if (!_isCached)
