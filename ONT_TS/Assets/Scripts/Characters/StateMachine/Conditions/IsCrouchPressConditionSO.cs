@@ -14,6 +14,6 @@ public class IsCrouchPressCondition : Condition
     }
     protected override bool Statement()
     {
-        return _ThachSanh.isCrouching;
+        return _ThachSanh.IsCrouching;
     }
 }

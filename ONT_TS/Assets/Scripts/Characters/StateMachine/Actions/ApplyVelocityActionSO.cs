@@ -2,8 +2,11 @@ using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "AnimatorParameterAction", menuName = "State Machines/Actions/Update Character Velocity")]
-public class ApplyVelocityActionSO : StateActionSO<ApplyVelocityAction> { }
+[CreateAssetMenu(fileName = "AnimatorParameterAction", menuName = "State Machines/ThachSanh/Actions/Update Character Velocity")]
+public class ApplyVelocityActionSO : StateActionSO
+{
+    protected override StateAction CreateAction() => new ApplyVelocityAction();
+}
 
 public class ApplyVelocityAction : StateAction
 {

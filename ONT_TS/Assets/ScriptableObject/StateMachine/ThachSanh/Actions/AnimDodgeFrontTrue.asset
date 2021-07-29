@@ -9,7 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a1fab9b8354198f4491763c07ffbf4bb, type: 3}
-  m_Name: AnimUpdateCharacterVelocityAction
+  m_Script: {fileID: 11500000, guid: d9734fc43f8e0f143bc38de02c416b8a, type: 3}
+  m_Name: AnimDodgeFrontTrue
   m_EditorClassIdentifier: 
-  parameterName: Velocity
+  parameterType: 0
+  parameterName: DodgeFront
+  boolValue: 1
+  intValue: 0
+  floatValue: 0
+  whenToRun: 0

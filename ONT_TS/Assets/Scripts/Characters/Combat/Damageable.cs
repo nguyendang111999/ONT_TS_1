@@ -10,18 +10,18 @@ public class Damageable : MonoBehaviour
 
     private int _currentHealth = default;
     public bool GetHit { get; set; }
-    public bool isDead { get; set; }
+    public bool IsDead { get; set; }
     public int CurrentHealth => _currentHealth;
     public UnityAction OnDie;
 
     void Awake()
     {
-        _currentHealth = _healthConfig.MaxHealth;
+        _currentHealth = _healthConfig.MaxHealth();
         _healthBar.SetMaxHealth(_currentHealth);
     }
     public void ReceiveAttack(int dmg)
     {
-        if (isDead) return;
+        if (IsDead) return;
 
         _currentHealth -= dmg;
         _healthBar.SetHealth(_currentHealth);
@@ -30,7 +30,7 @@ public class Damageable : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            isDead = true;
+            IsDead = true;
             if (OnDie != null)
             {
                 OnDie.Invoke();
@@ -40,7 +40,7 @@ public class Damageable : MonoBehaviour
 
     public void ResetHealth()
     {
-        _currentHealth = _healthConfig.MaxHealth;
-        isDead = false;
+        _currentHealth = _healthConfig.MaxHealth();
+        IsDead = false;
     }
 }

@@ -2,7 +2,7 @@ using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "State Machines/Actions/Reset Wolf After Dead")]
+[CreateAssetMenu(menuName = "State Machines/Wolf/Actions/Reset Wolf After Dead")]
 public class ResetAfterDeadActionSO : StateActionSO
 {
     protected override StateAction CreateAction() => new ResetAfterDeadAction();

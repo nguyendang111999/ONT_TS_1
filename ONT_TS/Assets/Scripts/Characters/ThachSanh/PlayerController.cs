@@ -16,7 +16,6 @@ public class PlayerController : MonoBehaviour
     public Damageable _damageable;
 
     [Header("Input Setting")]
-    private bool isSprinting = false;
     public CinemachineFreeLook gameCam;
     [SerializeField] Transform cam;
     public CinemachineVirtualCamera aimCam;
@@ -45,7 +44,9 @@ public class PlayerController : MonoBehaviour
     private float slideCountDown = 0f;
     //End: Movement stats
 
-    public bool isCrouching = false;
+    private bool isSprinting = false;
+    private bool isCrouching = false;
+    public bool IsCrouching => isCrouching;
     private bool isDashing = false;
     public bool IsDashing => isDashing;
 
@@ -168,7 +169,6 @@ public class PlayerController : MonoBehaviour
             {
                 targetSpeed += 10f;
             }
-
         }
         //Attach velocity
         _velocity = _velocity == targetSpeed ? _velocity = targetSpeed : _velocity < targetSpeed

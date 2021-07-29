@@ -18,7 +18,6 @@ public class AbilityHolder : MonoBehaviour
     }
     public bool CoolDownCounter(){
         AbilityBaseSO _currentAbility = meleeAbilities.AbilityList[meleeAbilities.Index];
-        // Debug.Log(_currentAbility.AbilityName);
         float _coolDownCounter = _currentAbility.CoolDownCounter;
         _coolDownCounter = _coolDownCounter >= 0 ? -Time.deltaTime : 0;
         _currentAbility.CoolDownCounter = _coolDownCounter;

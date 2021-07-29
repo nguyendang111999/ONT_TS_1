@@ -2,7 +2,7 @@ using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 using UnityEngine;
 
-[CreateAssetMenu(menuName = "State Machines/Actions/Reset Being Hit")]
+[CreateAssetMenu(menuName = "State Machines/ThachSanh/Actions/Reset Being Hit")]
 public class ResetGetHitSO : StateActionSO
 {
     protected override StateAction CreateAction() => new ResetGetHit();

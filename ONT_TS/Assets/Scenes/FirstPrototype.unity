@@ -668,7 +668,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 86204438}
-  m_LocalRotation: {x: -0.018151764, y: 0.06436192, z: 0.0011709044, w: 0.99776083}
+  m_LocalRotation: {x: -0.018151857, y: 0.064279966, z: 0.0011694131, w: 0.99776614}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -898,8 +898,6 @@ MonoBehaviour:
   _velocity: 0
   turnSmoothTime: 0.1
   turnSmoothVelocity: 0
-  isCrouching: 0
-  isDodging: 0
 --- !u!143 &242716410
 CharacterController:
   m_ObjectHideFlags: 0
@@ -1405,7 +1403,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 465195165}
-  m_LocalRotation: {x: -1e-45, y: 0.06437257, z: -0, w: 0.99792594}
+  m_LocalRotation: {x: -0.000000017825869, y: 0.064290605, z: 0.0000000011484116,
+    w: 0.99793124}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -2965,7 +2964,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
-  m_LocalRotation: {x: -0.018151762, y: 0.06436192, z: 0.0011709043, w: 0.99776083}
+  m_LocalRotation: {x: -0.01815186, y: 0.064279966, z: 0.0011694133, w: 0.99776614}
   m_LocalPosition: {x: -0.04353237, y: 0.7107706, z: -2.9017344}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -3560,6 +3559,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SK_Wolf
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: a0e430add2b65ba4e8221b2aa55a9344,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: a0e430add2b65ba4e8221b2aa55a9344,
         type: 3}
@@ -5230,7 +5234,7 @@ RectTransform:
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: -0.00074768066, y: 0}
   m_SizeDelta: {x: -0.0013428, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -5308,7 +5312,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18370
+  m_Name: pb_Mesh18368
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2
@@ -5552,7 +5556,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2110250250}
-  m_LocalRotation: {x: -0.036249608, y: 0.064330086, z: 0.0023383298, w: 0.99726737}
+  m_LocalRotation: {x: -0.03624981, y: 0.064248174, z: 0.0023353535, w: 0.9972726}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -5578,7 +5582,7 @@ Mesh:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: pb_Mesh18252
+  m_Name: pb_Mesh18250
   serializedVersion: 10
   m_SubMeshes:
   - serializedVersion: 2

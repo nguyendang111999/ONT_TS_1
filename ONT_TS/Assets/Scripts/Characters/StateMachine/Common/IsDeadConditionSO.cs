@@ -15,5 +15,5 @@ public class IsDeadCondition : Condition
     public override void Awake(StateController stateController){
         _damageable = stateController.GetComponent<Damageable>();
     }
-    protected override bool Statement() => _damageable.isDead;
+    protected override bool Statement() => _damageable.IsDead;
 }

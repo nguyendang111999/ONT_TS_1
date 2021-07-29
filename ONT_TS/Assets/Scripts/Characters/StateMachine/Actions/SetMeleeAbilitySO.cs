@@ -3,17 +3,17 @@ using ONT_TS.StateMachine.ScriptableObjects;
 using UnityEngine;
 using System;
 
-[CreateAssetMenu(menuName = "State Machines/Actions/Set ability")]
+[CreateAssetMenu(menuName = "State Machines/ThachSanh/Actions/Set ability")]
 public class SetMeleeAbilitySO : StateActionSO
 {
     public AbilityType abilityType;
     public string _abilityName;
-    protected override StateAction CreateAction() => new SetMeleeAbility();
+    protected override StateAction CreateAction() => new SetAbility();
     public enum AbilityType{
         Melee, Earth, Live,
     }
 }
-public class SetMeleeAbility : StateAction
+public class SetAbility : StateAction
 {
     SetMeleeAbilitySO _originSO => (SetMeleeAbilitySO)base.OriginSO;
     private string _abilityName;
@@ -23,7 +23,7 @@ public class SetMeleeAbility : StateAction
     public override void Awake(StateController stateController)
     {
         _abilityHolder = stateController.GetComponent<AbilityHolder>();
-        SetAbility();
+        GetAbility();
         _abilityName = _originSO._abilityName;
     }
 
@@ -36,7 +36,7 @@ public class SetMeleeAbility : StateAction
         
     }
 
-    public void SetAbility(){
+    public void GetAbility(){
         switch (_originSO.abilityType)
         {
             case SetMeleeAbilitySO.AbilityType.Melee:

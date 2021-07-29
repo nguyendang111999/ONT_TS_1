@@ -5,7 +5,7 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public AbilityContainerSO containerSO;
-    public int Damage { get; set; } = 0;
+    private int _damage = 0;
     private void Awake()
     {
         gameObject.SetActive(false);
@@ -14,17 +14,16 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.Log("index: " + containerSO.Index);
-        Damage = containerSO.GetDamage();
-        Debug.Log("Damage: " + Damage);
+        _damage = containerSO.GetDamageByIndex();
+        Debug.Log("Damage: " + _damage);
         if (!other.CompareTag(gameObject.tag))
         {
             if (other.TryGetComponent(out Damageable damageableComp))
             {
-                if (damageableComp == null) Debug.Log("shiet");
                 if (!damageableComp.GetHit)
-                    damageableComp.ReceiveAttack(Damage);
+                    damageableComp.ReceiveAttack(_damage);
             }
         }
-        Damage = 0;
+        _damage = 0;
     }
 }
