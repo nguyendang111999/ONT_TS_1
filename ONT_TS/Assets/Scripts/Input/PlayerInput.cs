@@ -83,20 +83,20 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": ""Hold(duration=0.7),Tap(duration=0.5,pressPoint=0.5)""
                 },
                 {
-                    ""name"": ""Skill1"",
+                    ""name"": ""EarthAbility"",
                     ""type"": ""Button"",
                     ""id"": ""6c68c841-dead-4d4b-a016-43216de0ab24"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap""
+                    ""interactions"": """"
                 },
                 {
-                    ""name"": ""Skill2"",
+                    ""name"": ""LifeAbility"",
                     ""type"": ""Button"",
                     ""id"": ""a11b6c83-23de-455e-b565-d1187fac4f4b"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap""
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -140,7 +140,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Skill1"",
+                    ""action"": ""EarthAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -151,7 +151,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Skill2"",
+                    ""action"": ""LifeAbility"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 },
@@ -340,8 +340,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
         m_GamePlay_HeavyAttack = m_GamePlay.FindAction("HeavyAttack", throwIfNotFound: true);
-        m_GamePlay_Skill1 = m_GamePlay.FindAction("Skill1", throwIfNotFound: true);
-        m_GamePlay_Skill2 = m_GamePlay.FindAction("Skill2", throwIfNotFound: true);
+        m_GamePlay_EarthAbility = m_GamePlay.FindAction("EarthAbility", throwIfNotFound: true);
+        m_GamePlay_LifeAbility = m_GamePlay.FindAction("LifeAbility", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Choose = m_Menu.FindAction("Choose", throwIfNotFound: true);
@@ -405,8 +405,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_Attack;
     private readonly InputAction m_GamePlay_HeavyAttack;
-    private readonly InputAction m_GamePlay_Skill1;
-    private readonly InputAction m_GamePlay_Skill2;
+    private readonly InputAction m_GamePlay_EarthAbility;
+    private readonly InputAction m_GamePlay_LifeAbility;
     public struct GamePlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -419,8 +419,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
         public InputAction @HeavyAttack => m_Wrapper.m_GamePlay_HeavyAttack;
-        public InputAction @Skill1 => m_Wrapper.m_GamePlay_Skill1;
-        public InputAction @Skill2 => m_Wrapper.m_GamePlay_Skill2;
+        public InputAction @EarthAbility => m_Wrapper.m_GamePlay_EarthAbility;
+        public InputAction @LifeAbility => m_Wrapper.m_GamePlay_LifeAbility;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -454,12 +454,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @HeavyAttack.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHeavyAttack;
                 @HeavyAttack.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnHeavyAttack;
-                @Skill1.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill1;
-                @Skill1.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill1;
-                @Skill1.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill1;
-                @Skill2.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill2;
-                @Skill2.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill2;
-                @Skill2.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnSkill2;
+                @EarthAbility.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEarthAbility;
+                @EarthAbility.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEarthAbility;
+                @EarthAbility.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEarthAbility;
+                @LifeAbility.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
+                @LifeAbility.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
+                @LifeAbility.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -488,12 +488,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @HeavyAttack.started += instance.OnHeavyAttack;
                 @HeavyAttack.performed += instance.OnHeavyAttack;
                 @HeavyAttack.canceled += instance.OnHeavyAttack;
-                @Skill1.started += instance.OnSkill1;
-                @Skill1.performed += instance.OnSkill1;
-                @Skill1.canceled += instance.OnSkill1;
-                @Skill2.started += instance.OnSkill2;
-                @Skill2.performed += instance.OnSkill2;
-                @Skill2.canceled += instance.OnSkill2;
+                @EarthAbility.started += instance.OnEarthAbility;
+                @EarthAbility.performed += instance.OnEarthAbility;
+                @EarthAbility.canceled += instance.OnEarthAbility;
+                @LifeAbility.started += instance.OnLifeAbility;
+                @LifeAbility.performed += instance.OnLifeAbility;
+                @LifeAbility.canceled += instance.OnLifeAbility;
             }
         }
     }
@@ -583,8 +583,8 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnAim(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);
-        void OnSkill1(InputAction.CallbackContext context);
-        void OnSkill2(InputAction.CallbackContext context);
+        void OnEarthAbility(InputAction.CallbackContext context);
+        void OnLifeAbility(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {

@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: EarthAbilities
   m_EditorClassIdentifier: 
   index: 0
-  list: []
+  _abilityList:
+  - {fileID: 11400000, guid: fcc342f308c7ff945a95dea2f68a29cd, type: 2}
+  - {fileID: 11400000, guid: 19e415057330292449d98f27c62d8058, type: 2}

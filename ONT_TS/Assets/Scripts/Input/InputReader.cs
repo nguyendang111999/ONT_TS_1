@@ -21,6 +21,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction DoubleTapDodgeEventPerformed = delegate { };
     public event UnityAction DoubleTapDodgeEventCancel = delegate { };
     //Jump events
+    public event UnityAction JumpEvent = delegate { };
     public event UnityAction JumpCanceledEvent = delegate { };
     //Crouch events
     // public event UnityAction CrouchEvent = delegate { };
@@ -38,6 +39,10 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction HoldHeavyAttackPerformed = delegate { };
     public event UnityAction HoldHeavyAttackCanceled = delegate { };
 
+    public event UnityAction EarthAbilityEvent = delegate { };
+    public event UnityAction EarthAbilityCancelEvent = delegate { };
+    public event UnityAction LifeAbilityEvent = delegate { };
+    public event UnityAction LifeAbilityCancelEvent = delegate { };
 
     private PlayerInput playerInput;
 
@@ -165,7 +170,10 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     }
     public void OnJump(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+            JumpEvent.Invoke();
+        if (context.phase == InputActionPhase.Canceled)
+            JumpCanceledEvent.Invoke();
     }
     public void OnMovements(InputAction.CallbackContext context)
     {
@@ -185,16 +193,6 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         }
     }
 
-    public void OnSkill1(InputAction.CallbackContext context)
-    {
-        Skill1Event.Invoke();
-    }
-
-    public void OnSkill2(InputAction.CallbackContext context)
-    {
-        Skill2Event.Invoke();
-    }
-
     public void OnChoose(InputAction.CallbackContext context)
     {
         throw new NotImplementedException();
@@ -205,5 +203,19 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         throw new NotImplementedException();
     }
 
+    public void OnEarthAbility(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+            EarthAbilityEvent.Invoke();
+        if(context.phase == InputActionPhase.Canceled)
+            EarthAbilityCancelEvent.Invoke();
+    }
 
+    public void OnLifeAbility(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+            LifeAbilityEvent.Invoke();
+        if(context.phase == InputActionPhase.Canceled)
+            LifeAbilityCancelEvent.Invoke();
+    }
 }
