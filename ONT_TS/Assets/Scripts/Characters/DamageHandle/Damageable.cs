@@ -5,7 +5,7 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    [SerializeField] private HealthConfig _healthConfig;
+    [SerializeField] private HealthConfigSO _healthConfig;
     [SerializeField] private HealthBar _healthBar;
 
     private int _currentHealth = default;
