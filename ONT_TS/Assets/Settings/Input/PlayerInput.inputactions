@@ -189,29 +189,8 @@
         {
             "name": "Menu",
             "id": "9853d5c3-3574-407f-a1cc-01323d714d09",
-            "actions": [
-                {
-                    "name": "New action",
-                    "type": "Button",
-                    "id": "ad38b0bf-a84b-4865-b8c2-7ee419880bae",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                }
-            ],
-            "bindings": [
-                {
-                    "name": "",
-                    "id": "d21e5f30-79be-4c1a-8a75-944662ac7ed2",
-                    "path": "",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "New action",
-                    "isComposite": false,
-                    "isPartOfComposite": false
-                }
-            ]
+            "actions": [],
+            "bindings": []
         },
         {
             "name": "Dialogue",
