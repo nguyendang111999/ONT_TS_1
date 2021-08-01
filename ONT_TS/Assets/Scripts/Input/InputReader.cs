@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Interactions;
 using UnityEngine.Events;
 using System;
 
@@ -7,17 +8,41 @@ using System;
 public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, PlayerInput.IMenuActions, PlayerInput.IDialogueActions
 {
     //Gameplay
-    public event UnityAction<Vector2> moveEvent = delegate { };
-    public event UnityAction<Vector2> rotateCamera = delegate { };
-    public event UnityAction startRunning = delegate { };
-    public event UnityAction stopRunning = delegate { };
-    public event UnityAction jumpEvent = delegate { };
-    public event UnityAction jumpCanceledEvent = delegate { };
-    public event UnityAction crouchEvent = delegate { };
-    public event UnityAction crouchStopEvent = delegate { };
-    public event UnityAction attackEvent = delegate { };
-    public event UnityAction attackCanceledEvent = delegate { };
+    public event UnityAction<Vector2> MoveEvent = delegate { };
+    public event UnityAction<Vector2> RotateCameraEvent = delegate { };
+    public event UnityAction OnAimEvent = delegate { };
+    public event UnityAction StartRunningEvent = delegate { };
+    public event UnityAction StopRunningEvent = delegate { };
 
+    //Dodge event tap and double tap
+    public event UnityAction TapDodgeEventPerformed = delegate { };
+    public event UnityAction TapDodgeEventCancel = delegate { };
+    public event UnityAction DoubleTapDodgeEventStarted = delegate { };
+    public event UnityAction DoubleTapDodgeEventPerformed = delegate { };
+    public event UnityAction DoubleTapDodgeEventCancel = delegate { };
+    //Jump events
+    public event UnityAction JumpEvent = delegate { };
+    public event UnityAction JumpCanceledEvent = delegate { };
+    //Crouch events
+    // public event UnityAction CrouchEvent = delegate { };
+    // public event UnityAction CrouchStopEvent = delegate { };
+    //Melee attack event
+    public event UnityAction AttackEvent = delegate { };
+    public event UnityAction AttackCanceledEvent = delegate { };
+    //Skills event
+    public event UnityAction Skill1Event = delegate { };
+    public event UnityAction Skill2Event = delegate { };
+    //Heavy Attack
+    public event UnityAction TapHeavyAttackEvent = delegate { };
+    public event UnityAction TapHeavyAttackCanceled = delegate { };
+    public event UnityAction HoldHeavyAttackStarted = delegate { };
+    public event UnityAction HoldHeavyAttackPerformed = delegate { };
+    public event UnityAction HoldHeavyAttackCanceled = delegate { };
+
+    public event UnityAction EarthAbilityEvent = delegate { };
+    public event UnityAction EarthAbilityCancelEvent = delegate { };
+    public event UnityAction LifeAbilityEvent = delegate { };
+    public event UnityAction LifeAbilityCancelEvent = delegate { };
 
     private PlayerInput playerInput;
 
@@ -66,8 +91,9 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     //Implements from PlayerInterface
     void PlayerInput.IGamePlayActions.OnCamInput(InputAction.CallbackContext context)
     {
-        rotateCamera.Invoke(context.ReadValue<Vector2>());
+        RotateCameraEvent.Invoke(context.ReadValue<Vector2>());
     }
+
     public void OnAim(InputAction.CallbackContext context)
     {
         throw new System.NotImplementedException();
@@ -78,34 +104,80 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                attackEvent.Invoke();
+                AttackEvent.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                attackCanceledEvent.Invoke();
+                AttackCanceledEvent.Invoke();
+                break;
+        }
+    }
+    public void OnHeavyAttack(InputAction.CallbackContext context)
+    {
+        switch (context.phase)
+        {
+            case InputActionPhase.Started:
+                if (context.interaction is HoldInteraction)
+                {
+                    HoldHeavyAttackStarted.Invoke();
+                }
+                break;
+            case InputActionPhase.Performed:
+                if (context.interaction is HoldInteraction)
+                {
+                    HoldHeavyAttackPerformed?.Invoke();
+                }
+                else
+                {
+                    TapHeavyAttackEvent?.Invoke();
+                }
+                break;
+            case InputActionPhase.Canceled:
+                if (context.interaction is HoldInteraction)
+                {
+                    HoldHeavyAttackCanceled?.Invoke();
+                }
+                else
+                {
+                    TapHeavyAttackCanceled?.Invoke();
+                }
                 break;
         }
     }
 
-    public void OnCrouch(InputAction.CallbackContext context)
+    // public void OnCrouch(InputAction.CallbackContext context)
+    // {
+    //     if (context.phase == InputActionPhase.Performed)
+    //     {
+    //         CrouchEvent.Invoke();
+    //     }
+    //     if (context.phase == InputActionPhase.Canceled)
+    //     {
+    //         CrouchStopEvent.Invoke();
+    //     }
+    // }
+
+    public void OnDodge(InputAction.CallbackContext context)
     {
-        if (context.phase == InputActionPhase.Performed)
+        switch (context.phase)
         {
-            crouchEvent.Invoke();
-        }
-        if(context.phase == InputActionPhase.Canceled){
-            crouchStopEvent.Invoke();
+            case InputActionPhase.Started:
+                TapDodgeEventPerformed.Invoke();
+                break;
+            case InputActionPhase.Performed:
+                DoubleTapDodgeEventPerformed.Invoke();
+                break;
         }
     }
-
     public void OnJump(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
-            jumpEvent.Invoke();
+            JumpEvent.Invoke();
+        if (context.phase == InputActionPhase.Canceled)
+            JumpCanceledEvent.Invoke();
     }
-
     public void OnMovements(InputAction.CallbackContext context)
     {
-        moveEvent.Invoke(context.ReadValue<Vector2>());
+        MoveEvent.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnRun(InputAction.CallbackContext context)
@@ -113,18 +185,37 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         switch (context.phase)
         {
             case InputActionPhase.Performed:
-                startRunning.Invoke();
+                StartRunningEvent.Invoke();
                 break;
             case InputActionPhase.Canceled:
-                stopRunning.Invoke();
+                StopRunningEvent.Invoke();
                 break;
         }
     }
 
-    public void OnNewaction(InputAction.CallbackContext context)
+    public void OnChoose(InputAction.CallbackContext context)
     {
         throw new NotImplementedException();
     }
 
+    public void OnInteract(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
+    }
 
+    public void OnEarthAbility(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+            EarthAbilityEvent.Invoke();
+        if(context.phase == InputActionPhase.Canceled)
+            EarthAbilityCancelEvent.Invoke();
+    }
+
+    public void OnLifeAbility(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed)
+            LifeAbilityEvent.Invoke();
+        if(context.phase == InputActionPhase.Canceled)
+            LifeAbilityCancelEvent.Invoke();
+    }
 }

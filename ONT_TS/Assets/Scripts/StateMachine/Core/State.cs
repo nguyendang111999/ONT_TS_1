@@ -1,66 +1,67 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ONT_TS.StateMachine.ScriptableObjects;
 
-public class State
+namespace ONT_TS.StateMachine
 {
-    internal StateSO _originSO;
-    internal StateController _stateController;
-    internal StateAction[] _actions;
-    internal StateTransition[] _transitions;
-
-    internal State() { }
-
-    public State(
-        StateSO originSO,
-        StateController stateController,
-        StateTransition[] transitions,
-        StateAction[] actions)
+    public class State
     {
-        _originSO = originSO;
-        _stateController = stateController;
-        _transitions = transitions;
-        _actions = actions;
-    }
+        internal StateSO _originSO;
+        internal StateController _stateController;
+        internal StateAction[] _actions;
+        internal StateTransition[] _transitions;
 
-    public void OnStateEnter()
-    {
-        void OnStateEnter(IStateComponent[] comps)
+        internal State() { }
+
+        public State(
+            StateSO originSO,
+            StateController stateController,
+            StateTransition[] transitions,
+            StateAction[] actions)
         {
-            for (int i = 0; i < comps.Length; i++)
-                comps[i].OnStateEnter();
+            _originSO = originSO;
+            _stateController = stateController;
+            _transitions = transitions;
+            _actions = actions;
         }
-        OnStateEnter(_transitions);
-        OnStateEnter(_actions);
-    }
-    public void OnStateUpdate()
-    {
-        for (int i = 0; i < _actions.Length; i++)
-            _actions[i].OnStateUpdate();
-    }
-    public void OnStateExit()
-    {
-        void OnStateExit(IStateComponent[] comps)
+
+        public void OnStateEnter()
         {
-            for (int i = 0; i < comps.Length; i++)
-                comps[i].OnStateExit();
+            void OnStateEnter(IStateComponent[] comps)
+            {
+                for (int i = 0; i < comps.Length; i++)
+                    comps[i].OnStateEnter();
+            }
+            OnStateEnter(_transitions);
+            OnStateEnter(_actions);
         }
-        OnStateExit(_transitions);
-        OnStateExit(_actions);
-    }
-    public bool TryGetTransition(out State state)
-    {
-        state = null;
+        public void OnStateUpdate()
+        {
+            for (int i = 0; i < _actions.Length; i++)
+                _actions[i].OnStateUpdate();
+        }
+        public void OnStateExit()
+        {
+            void OnStateExit(IStateComponent[] comps)
+            {
+                for (int i = 0; i < comps.Length; i++)
+                    comps[i].OnStateExit();
+            }
+            OnStateExit(_transitions);
+            OnStateExit(_actions);
+        }
+        public bool TryGetTransition(out State state)
+        {
+            state = null;
 
-        int count = _transitions.Length;
+            int count = _transitions.Length;
 
-        for (int i = 0; i < count; i++)
-            if (_transitions[i].TryGetTransition(out state))
-                break;
-        //Clear cached result of each condition
-        for (int i = 0; i < count; i++)
-            _transitions[i].ClearConditionsCache();
-            
-        return state != null;
+            for (int i = 0; i < count; i++)
+                if (_transitions[i].TryGetTransition(out state))
+                    break;
+            //Clear cached result of each condition
+            for (int i = 0; i < count; i++)
+                _transitions[i].ClearConditionsCache();
+
+            return state != null;
+        }
     }
 }

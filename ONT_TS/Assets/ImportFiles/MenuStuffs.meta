@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: d0f4144ba337d12409ab30ac6ec9921b
+<<<<<<< HEAD:ONT_TS/Assets/ImportFiles/MenuStuffs.meta
+guid: 9bbaf35cb75a975469da2035194eaedf
+=======
+guid: ef56e849db24caa48b8b2aeae73b2095
+>>>>>>> CombatSystem:ONT_TS/Assets/ScriptableObject/StateMachine/ThachSanh/Ability/Melee.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

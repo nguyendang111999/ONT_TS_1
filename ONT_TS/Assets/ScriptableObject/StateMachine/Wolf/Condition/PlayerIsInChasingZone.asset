@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8894f358180aabf41b033446f7b6701b, type: 3}
   m_Name: PlayerIsInChasingZone
   m_EditorClassIdentifier: 
+  _transform: {fileID: 11400000, guid: 9344a26111cf125479cc86e362f1c51a, type: 2}

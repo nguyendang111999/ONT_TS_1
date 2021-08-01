@@ -1,5 +1,9 @@
 fileFormatVersion: 2
-guid: 13a62970cf652644e86f53f2cfeb3f00
+<<<<<<< HEAD:ONT_TS/Assets/Scripts/Config.meta
+guid: 93050b712bd3a4b45906d125ff059452
+=======
+guid: a1b6eec16f5715c44b688a2777b9be10
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/Grruzam Powerful Sword Animation(Great Sword, Katana)/Animation.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

@@ -1,23 +1,24 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+using ONT_TS.StateMachine.ScriptableObjects;
 
-public abstract class StateAction : IStateComponent
+namespace ONT_TS.StateMachine
 {
-    internal StateActionSO _originSO;
-    protected StateActionSO OriginSO => _originSO;
-
-    public virtual void Awake(StateController stateController) { }
-
-    public abstract void OnStateUpdate();
-
-    public virtual void OnStateEnter() { }
-
-    public virtual void OnStateExit() { }
-
-    public enum SpecificMoment
+    public abstract class StateAction : IStateComponent
     {
-        OnStateEnter, OnStateUpdate, OnStateExit,
-    }
+        internal StateActionSO _originSO;
+        protected StateActionSO OriginSO => _originSO;
 
+        public virtual void Awake(StateController stateController) { }
+
+        public abstract void OnStateUpdate();
+
+        public virtual void OnStateEnter() { }
+
+        public virtual void OnStateExit() { }
+
+        public enum SpecificMoment
+        {
+            OnStateEnter, OnStateUpdate, OnStateExit,
+        }
+
+    }
 }

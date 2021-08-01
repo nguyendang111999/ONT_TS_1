@@ -1,6 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.InputSystem;
 using UnityEngine.Animations.Rigging;
 using Cinemachine;
@@ -8,14 +8,16 @@ using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
-    [SerializeField] private InputReader _inputReader = default;
+    [SerializeField] private InputReader _inputReader;
     [Header("Sub behaviours")]
-    public PlayerAnimationBehaviour playerAnimationBehaviour;
-    public PlayerMovementBehaviour playerMovementBehaviour;
+
+    private HealthBar _healthBar;
+    public ObjectPositionSO PlayerPos;
+    public Damageable _damageable;
 
     [Header("Input Setting")]
-    private bool sprintPressed = false;
     public CinemachineFreeLook gameCam;
+    [SerializeField] Transform cam;
     public CinemachineVirtualCamera aimCam;
     public Rig aimRig;
     public Transform aimTarget;
@@ -23,246 +25,225 @@ public class PlayerController : MonoBehaviour
     public bool m_isAiming;
 
     [Header("Movements")]
-    public float velocity = 0f;
-    [SerializeField] float acceleration = 0.1f;
-    [SerializeField] float decceleration = 1f;
-    [SerializeField] float slideDecceleration = 1f;
-    [SerializeField] float normalRunSpeed = 7f;
-    [SerializeField] float sprintSpeed = 10f;
-    [SerializeField] float crouchSpeed = 3f;
-    [SerializeField] float slideTime = 1f;
+    public CharacterStatsSO statsSO;
+    public Vector2 _inputVector;
+    public float _velocity = 0f;
+
+    //These variable is use to smooth character rotation
+    public float turnSmoothTime = 0.1f;
+    public float turnSmoothVelocity;
+
+    //Movement stats
+    private float timer;
+    private float acceleration;
+    private float decceleration;
+    private float normalRunSpeed;
+    private float sprintSpeed;
+    private float crouchSpeed;
+    private float slideDuration;
     private float slideCountDown = 0f;
-    private Vector3 rawInputMovement;
-    private bool isGrounded = true;
+    //End: Movement stats
+
+    private bool isSprinting = false;
     private bool isCrouching = false;
-    private bool isMoving = false;
+    public bool IsCrouching => isCrouching;
+    private bool isDashing = false;
+    public bool IsDashing => isDashing;
+    public bool earthPerform = false;
+    public bool IsPerformingEarth => earthPerform;
+    private bool lifePerform = false;
+    private bool IsPerformingLife => lifePerform;
+
+    //Manipulate by state machine
+    [NonSerialized] public Vector3 movementInput;
+    [NonSerialized] public Vector3 movementVector;
 
     //Attack setting
-    private bool attackInput = false;
-    protected bool m_InAttack;
+    [NonSerialized] public bool attackInput = false;
+    [NonSerialized] public bool onHeavyAttack = false;
+    [NonSerialized] public bool onHoldHeavyAttack = false;
 
-
-    [Header("Hit Point")]
-    public Transform hitPoint;
-    public float attackRange = 2f;
-    public LayerMask enemyLayers;
+    //INPUT ACTION SYSTEM
     private void OnEnable()
     {
-        _inputReader.moveEvent += OnMove;
-        _inputReader.startRunning += OnStartRunning;
-        _inputReader.stopRunning += OnStopRunning;
-        _inputReader.jumpEvent += OnJumpTrigger;
-        _inputReader.crouchEvent += OnCrouching;
-        _inputReader.crouchStopEvent += StopCrouching;
-        _inputReader.attackEvent += OnAttack;
-        _inputReader.attackCanceledEvent += OnAttackCanceled;
+        //Resgister movement
+        _inputReader.MoveEvent += OnMove;
+        _inputReader.StartRunningEvent += OnStartRunning;
+        _inputReader.StopRunningEvent += OnStopRunning;
+
+        //Resgister dodge
+        _inputReader.DoubleTapDodgeEventPerformed += OnDashTrigger;
+
+        //Resgister crouch
+        // _inputReader.CrouchEvent += OnCrouching;
+        // _inputReader.CrouchStopEvent += StopCrouching;
+
+        //Resgister attack
+        _inputReader.AttackEvent += OnAttack;
+        _inputReader.AttackCanceledEvent += OnAttackCanceled;
+
+        //Resgister heavy attack
+        _inputReader.TapHeavyAttackEvent += OnTapHeavyAttack;
+        _inputReader.TapHeavyAttackCanceled += OnTapHeavyAttackCancel;
+        _inputReader.HoldHeavyAttackStarted += OnHoldHeavyAttackStart;
+        _inputReader.HoldHeavyAttackPerformed += OnHoldHeavyAttackPerform;
+        _inputReader.HoldHeavyAttackCanceled += OnHoldHeavyAttackCancel;
+
+        //Register earth ability
+        _inputReader.EarthAbilityEvent += EarthPerform;
+        _inputReader.EarthAbilityCancelEvent += EarthAbilityCancel;
+
+        //Register life ability
+        _inputReader.LifeAbilityEvent += OnLifeAbilityPerform;
+        _inputReader.LifeAbilityCancelEvent += OnLifeAbilityCancel;
 
     }
     private void OnDisable()
     {
-        _inputReader.moveEvent -= OnMove;
-        _inputReader.startRunning -= OnStartRunning;
-        _inputReader.stopRunning -= OnStopRunning;
-        _inputReader.jumpEvent -= OnJumpTrigger;
-        _inputReader.crouchEvent -= OnCrouching;
-        _inputReader.crouchStopEvent -= StopCrouching;
-        _inputReader.attackEvent -= OnAttack;
-        _inputReader.attackCanceledEvent -= OnAttackCanceled;
+        //Unresgister movement
+        _inputReader.MoveEvent -= OnMove;
+        _inputReader.StartRunningEvent -= OnStartRunning;
+        _inputReader.StopRunningEvent -= OnStopRunning;
+
+        //Unresgister dodge
+        _inputReader.DoubleTapDodgeEventStarted -= OnDashTrigger;
+
+        //Unresgister crouch
+        //_inputReader.CrouchEvent -= OnCrouching;
+        //_inputReader.CrouchStopEvent -= StopCrouching;
+
+        //Unresgister attack
+        _inputReader.AttackEvent -= OnAttack;
+        _inputReader.AttackCanceledEvent -= OnAttackCanceled;
+
+        //Unresgister heavy attack
+        _inputReader.TapHeavyAttackEvent -= OnTapHeavyAttack;
+        _inputReader.TapHeavyAttackCanceled -= OnTapHeavyAttackCancel;
+        _inputReader.HoldHeavyAttackStarted -= OnHoldHeavyAttackStart;
+        _inputReader.HoldHeavyAttackPerformed -= OnHoldHeavyAttackPerform;
+        _inputReader.HoldHeavyAttackCanceled -= OnHoldHeavyAttackCancel;
+
+        //Unregister earth ability
+        _inputReader.EarthAbilityEvent -= EarthPerform;
+        // _inputReader.EarthAbilityCancelEvent -= EarthAbilityCancel;
+
+        //Unregister life ability
+        _inputReader.LifeAbilityEvent -= OnLifeAbilityPerform;
+        _inputReader.LifeAbilityCancelEvent -= OnLifeAbilityCancel;
+
     }
 
-    //INPUT ACTION SYSTEM
-
-    public void OnAiming(InputAction.CallbackContext value)
+    private void InstantiateMovementData()
     {
-        if (value.performed != m_isAiming)
-        {
-            setAim(value.performed);
-        }
-        if (value.performed) Aim();
+        acceleration = statsSO.Acceleration;
+        decceleration = statsSO.Decceleration;
+        normalRunSpeed = statsSO.RunSpeed;
+        sprintSpeed = statsSO.SprintSpeed;
+        crouchSpeed = statsSO.CrouchSpeed;
+        slideDuration = statsSO.SlideDuration;
     }
 
-    // Start is called before the first frame update
     void Awake()
     {
-        playerAnimationBehaviour.SetupBehaviour();
+        InstantiateMovementData();
+        PlayerPos.Transform = gameObject.transform;
     }
 
-    // Update is called once per frame
     void Update()
     {
-        CaculateMovementVelocity();
-        UpdatePlayerMovement();
-        UpdatePlayerMovementAnimation();
+        ReCalculateMovement();
+        PlayerPos.Transform = gameObject.transform;
     }
 
-    void CaculateMovementVelocity()
+    void ReCalculateMovement()
     {
-        float rawInputMagnitude = rawInputMovement.magnitude;
-        if (rawInputMagnitude > 0) isMoving = true; else isMoving = false;
+        float targetSpeed = 0f;
+        Vector3 tempDirection = new Vector3();
 
-        if (slideCountDown <= 0)
+        if (_inputVector.sqrMagnitude == 0f)
         {
-            if (rawInputMagnitude > 0)
+            tempDirection = transform.forward * (tempDirection.magnitude + .01f);
+        }
+
+        targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
+        if (targetSpeed > 0)
+        {
+            //Calculate character's direction
+            float targetAngle = Mathf.Atan2(_inputVector.x, _inputVector.y) * Mathf.Rad2Deg + cam.eulerAngles.y;
+            float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
+
+            tempDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
+            transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+
+            //Adjust velocity
+            targetSpeed = statsSO.RunSpeed;
+
+            if (isSprinting)
+                targetSpeed = statsSO.SprintSpeed;
+
+            if (attackInput)
+                targetSpeed = 0f;
+
+            if (isCrouching && _velocity >= statsSO.RunSpeed)
             {
-                if (!isCrouching)
-                {
-                    if (velocity <= normalRunSpeed)
-                    {
-                        velocity += Time.deltaTime * acceleration;
-                    }
-                    if (sprintPressed && velocity <= sprintSpeed)
-                    {
-                        velocity += Time.deltaTime * acceleration;
-                        if (velocity > sprintSpeed) velocity = sprintSpeed;
-                    }
-                    if (!sprintPressed && velocity > normalRunSpeed)
-                    {
-                        velocity -= Time.deltaTime * decceleration;
-                        if (velocity < normalRunSpeed) velocity = normalRunSpeed;
-                    }
-                }
-                if (isCrouching)
-                {
-                    if (velocity > crouchSpeed)
-                    {
-                        velocity -= Time.deltaTime * decceleration;
-                        if (velocity < crouchSpeed) velocity = crouchSpeed;
-                    }
-                    if (velocity < crouchSpeed)
-                    {
-                        velocity += Time.deltaTime * acceleration;
-                        if (velocity > crouchSpeed) velocity = crouchSpeed;
-                    }
-                }
-            }
-            if (rawInputMagnitude <= 0f && velocity > 0f)
-            {
-                velocity -= Time.deltaTime * decceleration;
-                if (velocity < 0) velocity = 0f;
+                targetSpeed += 10f;
             }
         }
+        //Attach velocity
+        _velocity = _velocity == targetSpeed ? _velocity = targetSpeed : _velocity < targetSpeed
+        ? _velocity += acceleration * Time.deltaTime : _velocity -= decceleration * Time.deltaTime;
+        //Round the velocity
+        if ((_velocity < targetSpeed && _velocity + acceleration * Time.deltaTime > targetSpeed) ||
+            (_velocity > targetSpeed && _velocity - acceleration * Time.deltaTime < targetSpeed))
+            _velocity = targetSpeed;
 
-        if (slideCountDown > 0f)
-        {
-            slideCountDown -= Time.deltaTime;
-            velocity -= Time.deltaTime * slideDecceleration;
-            if (velocity < 0) velocity = 0;
-        }
-    }
-    void setAim(bool aim)
-    {
-        m_isAiming = aim;
-        if (aim)
-        {
-            transform.rotation = Quaternion.Euler(0f, gameCam.m_XAxis.Value, 0f);
-            aimCam.m_Priority = 11;
-            DOVirtual.Float(aimRig.weight, 1f, 0.2f, setAimRigWeight);
-        }
-        else
-        {
-            aimCam.m_Priority = 1;
-            DOVirtual.Float(aimRig.weight, 0, 0.2f, setAimRigWeight);
-        }
-        void setAimRigWeight(float weight)
-        {
-            aimRig.weight = weight;
-        }
-    }
-    void Aim()
-    {
-        var rot = aimTarget.localRotation.eulerAngles;
-        rot.x -= cameraInput.y;
-        if (rot.x > 180) rot.x -= 360;
-        rot.x = Mathf.Clamp(rot.x, -80, 80);
-        aimTarget.localRotation = Quaternion.Slerp(aimTarget.localRotation, Quaternion.Euler(rot), .5f);
-
-        rot = transform.eulerAngles;
-        rot.y += cameraInput.x;
-        transform.rotation = Quaternion.Slerp(transform.rotation, Quaternion.Euler(rot), .5f);
-    }
-    void UpdatePlayerMovement()
-    {
-        playerMovementBehaviour.UpdateMovementData(rawInputMovement);
-        isGrounded = playerMovementBehaviour.checkIfGrounded();
-        playerMovementBehaviour.runSpeed = velocity;
-        //Slide movement
-        if (slideCountDown > 0)
-            playerMovementBehaviour.isSlide(true);
-        else playerMovementBehaviour.isSlide(false);
-        //If WASD is null
-    }
-
-    void UpdatePlayerMovementAnimation()
-    {
-        playerAnimationBehaviour.UpdateVelocity(velocity);
-        playerAnimationBehaviour.SetIsGrounded(isGrounded);
-
-        //Slide movement
-        if (slideCountDown > 0)
-            playerAnimationBehaviour.SetIsSliding(true);
-        else
-            playerAnimationBehaviour.SetIsSliding(false);
-        //if WASD is null
-        playerAnimationBehaviour.SetIsMoving(isMoving);
-        //play crouch
-        playerAnimationBehaviour.PlayCrouchAnimation(isCrouching);
+        movementInput = tempDirection.normalized * _velocity;
     }
 
     //--- Event Listener ---
-
+    void setAim(bool aim)
+    {
+    }
+    void Aim()
+    {
+        //Aiming with bow
+    }
+    public void OnAiming()
+    {
+        // if (value.performed != m_isAiming)
+        // {
+        //     setAim(value.performed);
+        // }
+        // if (value.performed) Aim();
+    }
     private void OnMove(Vector2 movement)
     {
-        movement = movement.normalized;
-        rawInputMovement = new Vector3(movement.x, 0, movement.y);
+        _inputVector = movement.normalized;
     }
+    private void OnStartRunning() => isSprinting = true;
+    private void OnStopRunning() => isSprinting = false;
+    private void OnDashTrigger() => isDashing = true;
+    public void OnDashReset() => isDashing = false; //Handle by Animation Event
 
-    private void OnStartRunning()
-    {
-        sprintPressed = true;
-    }
-    private void OnStopRunning()
-    {
-        sprintPressed = false;
-    }
-    private void OnJumpTrigger()
-    {
-        if (isGrounded)
-        {
-            playerAnimationBehaviour.ResetTriggerJumpAnimation();
-            playerAnimationBehaviour.TriggerJumpAnimation();
-            playerMovementBehaviour.Jump();
-        }
-    }
     private void OnCrouching()
     {
-        if (velocity >= 7f && slideCountDown <= 0f)
+        if (_velocity >= 7f && slideCountDown <= 0f)
         {
-            velocity += 5;
-            slideCountDown = slideTime;
+            _velocity += 5;
+            slideCountDown = slideDuration;
         }
         isCrouching = true;
     }
-    private void StopCrouching()
-    {
-        isCrouching = false;
-    }
-    private void OnAttack(){
-        attackInput = true;
-        attack();
-    }
-    private void OnAttackCanceled(){
-        attackInput = false;
-    }
-    void attack(){
-        Collider[] hitEnemies = Physics.OverlapSphere(hitPoint.position, attackRange, enemyLayers);
-        foreach(Collider enemy in hitEnemies){
-            Debug.Log("We hit: " + enemy.name);
-        }
-    }
-    void OnDrawGizmosSelected() {
-        if(hitPoint == null){
-            return;
-        }
-        Gizmos.DrawWireSphere(hitPoint.position, attackRange);
-    }
+    private void StopCrouching() => isCrouching = false;
+    private void OnAttack() => attackInput = true;
+    private void OnAttackCanceled() => attackInput = false;//Handle by Animation Event
+    private void OnTapHeavyAttack() => onHeavyAttack = true;
+    private void OnTapHeavyAttackCancel() => onHeavyAttack = false;//Handle by Animation Event
+    private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
+    private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
+    public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Handle by Animation Event
+    private void EarthAbilityCancel() => earthPerform = false;
+    private void EarthPerform() => earthPerform = true;//Handle by Animation Event
+    private void OnLifeAbilityPerform() => lifePerform = true;
+    private void OnLifeAbilityCancel() => lifePerform = false;//Handle by Animation Event
 }

@@ -1,9 +1,8 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-interface IStateComponent
+namespace ONT_TS.StateMachine
 {
-    void OnStateEnter();
-    void OnStateExit();
+    interface IStateComponent
+    {
+        void OnStateEnter();
+        void OnStateExit();
+    }
 }
