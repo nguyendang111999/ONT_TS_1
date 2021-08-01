@@ -91,7 +91,7 @@ public class PlayerController : MonoBehaviour
 
         //Register earth ability
         _inputReader.EarthAbilityEvent += EarthPerform;
-        // _inputReader.EarthAbilityCancelEvent += EarthAbilityCancel;
+        _inputReader.EarthAbilityCancelEvent += EarthAbilityCancel;
 
         //Register life ability
         _inputReader.LifeAbilityEvent += OnLifeAbilityPerform;

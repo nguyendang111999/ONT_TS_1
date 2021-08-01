@@ -29,10 +29,7 @@ public class PlayAudioAction : StateAction
     {
         _audioSO.Source.Play();
     }
-    public override void OnStateUpdate()
-    {
-
-    }
+    public override void OnStateUpdate() { }
 
     public override void OnStateExit()
     {
