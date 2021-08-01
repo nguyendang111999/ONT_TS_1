@@ -70,20 +70,20 @@
                     "interactions": "Hold(duration=0.7),Tap(duration=0.5,pressPoint=0.5)"
                 },
                 {
-                    "name": "Skill1",
+                    "name": "EarthAbility",
                     "type": "Button",
                     "id": "6c68c841-dead-4d4b-a016-43216de0ab24",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": ""
                 },
                 {
-                    "name": "Skill2",
+                    "name": "LifeAbility",
                     "type": "Button",
                     "id": "a11b6c83-23de-455e-b565-d1187fac4f4b",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap"
+                    "interactions": ""
                 }
             ],
             "bindings": [
@@ -127,7 +127,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Skill1",
+                    "action": "EarthAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -138,7 +138,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Skill2",
+                    "action": "LifeAbility",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

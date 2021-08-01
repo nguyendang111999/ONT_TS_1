@@ -6,6 +6,7 @@ namespace ONT_TS.StateMachine
 {
     public class StateController : MonoBehaviour
     {
+        [Tooltip("This string is only use for debugging")]
         public String currentState; //Use for debbugging
         [Tooltip("Set character state to this component")]
         [SerializeField] private ScriptableObjects.TransitionTableSO _transitionTable = default;

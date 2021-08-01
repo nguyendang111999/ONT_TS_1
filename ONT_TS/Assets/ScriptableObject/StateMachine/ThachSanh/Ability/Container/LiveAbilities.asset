@@ -13,4 +13,6 @@ MonoBehaviour:
   m_Name: LiveAbilities
   m_EditorClassIdentifier: 
   index: 0
-  list: []
+  _abilityList:
+  - {fileID: 11400000, guid: ea56fa0b6bfa5034f9e7d21daae066f6, type: 2}
+  - {fileID: 11400000, guid: 812a47b21fc99de4fb0482bb37da4b42, type: 2}

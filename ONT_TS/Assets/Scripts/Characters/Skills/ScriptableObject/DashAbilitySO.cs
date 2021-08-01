@@ -10,9 +10,9 @@ public class DashAbilitySO : AbilityBaseSO
 
     public override void Perform()
     {
-        obj = GameObject.FindWithTag("Enemy");
-        Transform transform = obj.transform;
-        obj.transform.DOMove(transform.position + (transform.forward * _speed), .2f);
-        Debug.Log("Hooli shiet");
+        // obj = GameObject.FindWithTag("Enemy");
+        // Transform transform = obj.transform;
+        // obj.transform.DOMove(transform.position + (transform.forward * _speed), .2f);
+        // Debug.Log("Hooli shiet");
     }
 }

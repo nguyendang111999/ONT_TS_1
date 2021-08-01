@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3afc7bf71eb7b6044a460071fb167d38, type: 3}
   m_Name: MeleeAbilities
   m_EditorClassIdentifier: 
-  list:
+  index: 0
+  _abilityList:
   - {fileID: 11400000, guid: 19b8051553a1ca44688e77414445f8aa, type: 2}
   - {fileID: 11400000, guid: 2d5f450b0d743f346b9e1d0b901f8919, type: 2}

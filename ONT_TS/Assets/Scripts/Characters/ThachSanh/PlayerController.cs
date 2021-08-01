@@ -49,6 +49,10 @@ public class PlayerController : MonoBehaviour
     public bool IsCrouching => isCrouching;
     private bool isDashing = false;
     public bool IsDashing => isDashing;
+    public bool earthPerform = false;
+    public bool IsPerformingEarth => earthPerform;
+    private bool lifePerform = false;
+    private bool IsPerformingLife => lifePerform;
 
     //Manipulate by state machine
     [NonSerialized] public Vector3 movementInput;
@@ -66,43 +70,67 @@ public class PlayerController : MonoBehaviour
         _inputReader.MoveEvent += OnMove;
         _inputReader.StartRunningEvent += OnStartRunning;
         _inputReader.StopRunningEvent += OnStopRunning;
+
         //Resgister dodge
         _inputReader.DoubleTapDodgeEventPerformed += OnDashTrigger;
 
         //Resgister crouch
         // _inputReader.CrouchEvent += OnCrouching;
         // _inputReader.CrouchStopEvent += StopCrouching;
+
         //Resgister attack
         _inputReader.AttackEvent += OnAttack;
         _inputReader.AttackCanceledEvent += OnAttackCanceled;
+
         //Resgister heavy attack
         _inputReader.TapHeavyAttackEvent += OnTapHeavyAttack;
         _inputReader.TapHeavyAttackCanceled += OnTapHeavyAttackCancel;
         _inputReader.HoldHeavyAttackStarted += OnHoldHeavyAttackStart;
         _inputReader.HoldHeavyAttackPerformed += OnHoldHeavyAttackPerform;
         _inputReader.HoldHeavyAttackCanceled += OnHoldHeavyAttackCancel;
-    }
 
+        //Register earth ability
+        _inputReader.EarthAbilityEvent += EarthPerform;
+        _inputReader.EarthAbilityCancelEvent += EarthAbilityCancel;
+
+        //Register life ability
+        _inputReader.LifeAbilityEvent += OnLifeAbilityPerform;
+        _inputReader.LifeAbilityCancelEvent += OnLifeAbilityCancel;
+
+    }
     private void OnDisable()
     {
         //Unresgister movement
         _inputReader.MoveEvent -= OnMove;
         _inputReader.StartRunningEvent -= OnStartRunning;
         _inputReader.StopRunningEvent -= OnStopRunning;
+
         //Unresgister dodge
         _inputReader.DoubleTapDodgeEventStarted -= OnDashTrigger;
+
         //Unresgister crouch
         //_inputReader.CrouchEvent -= OnCrouching;
         //_inputReader.CrouchStopEvent -= StopCrouching;
+
         //Unresgister attack
         _inputReader.AttackEvent -= OnAttack;
         _inputReader.AttackCanceledEvent -= OnAttackCanceled;
+
         //Unresgister heavy attack
         _inputReader.TapHeavyAttackEvent -= OnTapHeavyAttack;
         _inputReader.TapHeavyAttackCanceled -= OnTapHeavyAttackCancel;
         _inputReader.HoldHeavyAttackStarted -= OnHoldHeavyAttackStart;
         _inputReader.HoldHeavyAttackPerformed -= OnHoldHeavyAttackPerform;
         _inputReader.HoldHeavyAttackCanceled -= OnHoldHeavyAttackCancel;
+
+        //Unregister earth ability
+        _inputReader.EarthAbilityEvent -= EarthPerform;
+        // _inputReader.EarthAbilityCancelEvent -= EarthAbilityCancel;
+
+        //Unregister life ability
+        _inputReader.LifeAbilityEvent -= OnLifeAbilityPerform;
+        _inputReader.LifeAbilityCancelEvent -= OnLifeAbilityCancel;
+
     }
 
     private void InstantiateMovementData()
@@ -113,14 +141,6 @@ public class PlayerController : MonoBehaviour
         sprintSpeed = statsSO.SprintSpeed;
         crouchSpeed = statsSO.CrouchSpeed;
         slideDuration = statsSO.SlideDuration;
-    }
-    public void OnAiming(InputAction.CallbackContext value)
-    {
-        // if (value.performed != m_isAiming)
-        // {
-        //     setAim(value.performed);
-        // }
-        // if (value.performed) Aim();
     }
 
     void Awake()
@@ -133,7 +153,6 @@ public class PlayerController : MonoBehaviour
     {
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
-        Debug.Log("isDashing: " + isDashing);
     }
 
     void ReCalculateMovement()
@@ -180,6 +199,8 @@ public class PlayerController : MonoBehaviour
 
         movementInput = tempDirection.normalized * _velocity;
     }
+
+    //--- Event Listener ---
     void setAim(bool aim)
     {
     }
@@ -187,18 +208,22 @@ public class PlayerController : MonoBehaviour
     {
         //Aiming with bow
     }
-    //--- Event Listener ---
+    public void OnAiming()
+    {
+        // if (value.performed != m_isAiming)
+        // {
+        //     setAim(value.performed);
+        // }
+        // if (value.performed) Aim();
+    }
     private void OnMove(Vector2 movement)
     {
         _inputVector = movement.normalized;
     }
     private void OnStartRunning() => isSprinting = true;
     private void OnStopRunning() => isSprinting = false;
-    private void OnDashTrigger()
-    {
-        isDashing = true;
-    }
-    private void OnDashReset() => isDashing = false;
+    private void OnDashTrigger() => isDashing = true;
+    public void OnDashReset() => isDashing = false; //Handle by Animation Event
 
     private void OnCrouching()
     {
@@ -213,8 +238,12 @@ public class PlayerController : MonoBehaviour
     private void OnAttack() => attackInput = true;
     private void OnAttackCanceled() => attackInput = false;//Handle by Animation Event
     private void OnTapHeavyAttack() => onHeavyAttack = true;
-    private void OnTapHeavyAttackCancel() => onHeavyAttack = false;
+    private void OnTapHeavyAttackCancel() => onHeavyAttack = false;//Handle by Animation Event
     private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
     private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
-    public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;
+    public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Handle by Animation Event
+    private void EarthAbilityCancel() => earthPerform = false;
+    private void EarthPerform() => earthPerform = true;//Handle by Animation Event
+    private void OnLifeAbilityPerform() => lifePerform = true;
+    private void OnLifeAbilityCancel() => lifePerform = false;//Handle by Animation Event
 }

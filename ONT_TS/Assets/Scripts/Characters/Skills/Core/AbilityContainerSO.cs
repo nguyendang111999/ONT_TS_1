@@ -5,19 +5,32 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterConfig/Ability/New Ability Container")]
 public class AbilityContainerSO : ScriptableObject
 {
-    public List<string> a = new List<string>();
-    [SerializeField] private AbilityBaseSO[] abilityList;
-    public AbilityBaseSO[] AbilityList => abilityList;
-    public int Index { get; set; } = 0; //Show what ability is being seleced
-    public int GetAbility(string name){
-        for(int i=0; i<abilityList.Length; i++){
-            if(abilityList[i].AbilityName.Equals(name)){
+    [Tooltip("Index show that what ability is being seleced")]
+    [SerializeField] private int index;
+    public AbilityBaseSO[] _abilityList;
+    public AbilityBaseSO[] AbilityList => _abilityList;
+    public int Index
+    {
+        get { return index; }
+        set
+        {
+            if (value < 0 || value > _abilityList.Length)
+                value = 0;
+        }
+    }
+    public int GetAbilityByName(string name)
+    {
+        for (int i = 0; i < _abilityList.Length; i++)
+        {
+            if (_abilityList[i].AbilityName.Equals(name))
+            {
                 return i;
             }
         }
         return 0;
     }
-    public int GetDamageByIndex(){
-        return abilityList[Index].Damage;
+    public int GetDamageByIndex()
+    {
+        return _abilityList[Index].Damage;
     }
 }
