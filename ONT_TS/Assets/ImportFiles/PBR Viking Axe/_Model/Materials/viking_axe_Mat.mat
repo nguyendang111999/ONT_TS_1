@@ -7,11 +7,18 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat
+  m_Name: Crate - Surface Shader Scene
+  m_Shader: {fileID: 46, guid: 0000000000000000f000000000000000, type: 0}
+  m_ShaderKeywords: _EMISSION _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
+  m_LightmapFlags: 1
+=======
   m_Name: viking_axe_Mat
   m_Shader: {fileID: 45, guid: 0000000000000000f000000000000000, type: 0}
   m_ShaderKeywords: _METALLICGLOSSMAP _NORMALMAP _SMOOTHNESS_TEXTURE_ALBEDO_CHANNEL_A
     _SPECGLOSSMAP
   m_LightmapFlags: 4
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials/viking_axe_Mat.mat
   m_EnableInstancingVariants: 0
   m_DoubleSidedGI: 0
   m_CustomRenderQueue: -1
@@ -21,7 +28,11 @@ Material:
     serializedVersion: 3
     m_TexEnvs:
     - _BumpMap:
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat
+        m_Texture: {fileID: 2800000, guid: 8878a782f4334ecbbcf683b3ac780966, type: 3}
+=======
         m_Texture: {fileID: 2800000, guid: d504c56b0f189f54487c2bb3b6c31a44, type: 3}
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials/viking_axe_Mat.mat
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _DetailAlbedoMap:
@@ -41,7 +52,11 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat
+        m_Texture: {fileID: 2800000, guid: 602cb87b6a29443b8636370ea0751574, type: 3}
+=======
         m_Texture: {fileID: 2800000, guid: 9614cd2eb374be040b4a4fade6858bbe, type: 3}
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials/viking_axe_Mat.mat
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _MetallicGlossMap:
@@ -57,16 +72,26 @@ Material:
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     - _SpecGlossMap:
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat
+        m_Texture: {fileID: 0}
+=======
         m_Texture: {fileID: 2800000, guid: 54e84127200dda94e9c97ac99668e4af, type: 3}
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials/viking_axe_Mat.mat
         m_Scale: {x: 1, y: 1}
         m_Offset: {x: 0, y: 0}
     m_Floats:
-    - _BumpScale: 1
+    - _BumpScale: 0.5
     - _Cutoff: 0.5
     - _DetailNormalMapScale: 1
     - _DstBlend: 0
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat
+    - _EmissionScaleUI: 0
+    - _GlossMapScale: 1
+    - _Glossiness: 0.233
+=======
     - _GlossMapScale: 0.85
     - _Glossiness: 0.5
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials/viking_axe_Mat.mat
     - _GlossyReflections: 1
     - _Metallic: 0
     - _Mode: 0
@@ -78,7 +103,14 @@ Material:
     - _UVSec: 0
     - _ZWrite: 1
     m_Colors:
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Crate - Surface Shader Scene.mat
+    - _Color: {r: 1, g: 1, b: 1, a: 0.712}
+    - _EmissionColor: {r: 0, g: 0, b: 0, a: 0}
+    - _EmissionColorUI: {r: 1, g: 1, b: 1, a: 1}
+    - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
+=======
     - _Color: {r: 0.75, g: 0.75, b: 0.75, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials/viking_axe_Mat.mat

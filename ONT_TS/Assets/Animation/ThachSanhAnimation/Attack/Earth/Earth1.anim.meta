@@ -1,10 +1,12 @@
 fileFormatVersion: 2
-<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials/Ground - Logo Scene.mat.meta
-guid: 71ee2c96862060c4f8c5cf7e8122f8d6
+<<<<<<< HEAD:ONT_TS/Assets/Animation/ThachSanhAnimation/Combo/AxeMelee1.anim.meta
+guid: 784f58d26cad1ba42af7f46b3a4c4d7c
 =======
 guid: 5b9a2239a90983647a0abb9421af1725
 >>>>>>> CombatSystem:ONT_TS/Assets/Animation/ThachSanhAnimation/Attack/Earth/Earth1.anim.meta
 NativeFormatImporter:
+  externalObjects: {}
+  mainObjectFileID: 7400000
   userData: 
   assetBundleName: 
   assetBundleVariant: 

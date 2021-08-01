@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ONT_TS/Assets/Animation/ThachSanhAnimation/Attack/Life.meta
+guid: 26d5b027376e32340b03d0de536122d7
+=======
 guid: dd01ad7cb33b89d45b97e111e97fceaf
+>>>>>>> CombatSystem:ONT_TS/Assets/Animation/ThachSanhAnimation/Attack.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

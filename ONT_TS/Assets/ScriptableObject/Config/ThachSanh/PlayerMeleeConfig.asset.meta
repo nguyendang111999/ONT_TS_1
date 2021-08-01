@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ONT_TS/Assets/ScriptableObject/Config/ThachSanh/Melee2.asset.meta
+guid: 87b9d88d65947cf498ad627ea48a7082
+=======
 guid: 12f8eaafe17561a4ca6102ae92890821
+>>>>>>> CombatSystem:ONT_TS/Assets/ScriptableObject/Config/ThachSanh/PlayerMeleeConfig.asset.meta
 NativeFormatImporter:
   externalObjects: {}
   mainObjectFileID: 11400000

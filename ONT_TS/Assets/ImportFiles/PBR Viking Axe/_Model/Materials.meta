@@ -1,8 +1,15 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:ONT_TS/Assets/TextMesh Pro/Examples & Extras/Materials.meta
+guid: 5808953df7a24274a851aa6dee52d30e
+folderAsset: yes
+timeCreated: 1436068007
+licenseType: Pro
+=======
 guid: 17d3968348cc52642bb83bd09e85c6f6
 folderAsset: yes
 timeCreated: 1501398802
 licenseType: Store
+>>>>>>> CombatSystem:ONT_TS/Assets/ImportFiles/PBR Viking Axe/_Model/Materials.meta
 DefaultImporter:
   userData: 
   assetBundleName: 
