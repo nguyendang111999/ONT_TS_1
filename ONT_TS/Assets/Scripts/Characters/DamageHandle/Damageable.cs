@@ -5,13 +5,17 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
+    public SpawnLocationSO Location
+    {
+        get; set;
+    }
     [SerializeField] private HealthConfigSO _healthConfig;
     [SerializeField] private HealthBar _healthBar;
 
     private int _currentHealth = default;
     public bool GetHit { get; set; }
     public bool IsDead { get; set; }
-    public int CurrentHealth => _currentHealth;
+    // public int CurrentHealth => _currentHealth;
     public UnityAction OnDie;
 
     void Awake()
@@ -21,6 +25,7 @@ public class Damageable : MonoBehaviour
     }
     public void ReceiveAttack(int dmg)
     {
+        Debug.Log(gameObject.name + ": " + dmg);
         if (IsDead) return;
 
         _currentHealth -= dmg;
@@ -30,6 +35,7 @@ public class Damageable : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
+            Location.SpawnedNumber = Location.SpawnedNumber + 1;
             IsDead = true;
             if (OnDie != null)
             {

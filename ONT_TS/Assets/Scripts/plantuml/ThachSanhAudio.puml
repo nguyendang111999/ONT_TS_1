@@ -1,0 +1,12 @@
+@startuml
+class ThachSanhAudio {
+    Awake() : void
+    + PlayMelleSound1() : void
+    + PlayMelleSound2() : void
+    + PlayRunSound() : void
+    + PlayAudio(name:string) : void
+    + StopAudio(name:string) : void
+    + SetupAudio(audio:AudioSO) : void
+}
+MonoBehaviour <|-- ThachSanhAudio
+@enduml

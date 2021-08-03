@@ -11,18 +11,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [Header("Sub behaviours")]
 
-    private HealthBar _healthBar;
     public ObjectPositionSO PlayerPos;
-    public Damageable _damageable;
 
     [Header("Input Setting")]
-    public CinemachineFreeLook gameCam;
     [SerializeField] Transform cam;
-    public CinemachineVirtualCamera aimCam;
-    public Rig aimRig;
-    public Transform aimTarget;
-    Vector2 cameraInput;
-    public bool m_isAiming;
 
     [Header("Movements")]
     public CharacterStatsSO statsSO;
@@ -34,7 +26,7 @@ public class PlayerController : MonoBehaviour
     public float turnSmoothVelocity;
 
     //Movement stats
-    private float timer;
+    // private float timer;
     private float acceleration;
     private float decceleration;
     private float normalRunSpeed;
@@ -201,21 +193,6 @@ public class PlayerController : MonoBehaviour
     }
 
     //--- Event Listener ---
-    void setAim(bool aim)
-    {
-    }
-    void Aim()
-    {
-        //Aiming with bow
-    }
-    public void OnAiming()
-    {
-        // if (value.performed != m_isAiming)
-        // {
-        //     setAim(value.performed);
-        // }
-        // if (value.performed) Aim();
-    }
     private void OnMove(Vector2 movement)
     {
         _inputVector = movement.normalized;
@@ -223,7 +200,7 @@ public class PlayerController : MonoBehaviour
     private void OnStartRunning() => isSprinting = true;
     private void OnStopRunning() => isSprinting = false;
     private void OnDashTrigger() => isDashing = true;
-    public void OnDashReset() => isDashing = false; //Handle by Animation Event
+    public void OnDashReset() => isDashing = false; //Used by Animation Event
 
     private void OnCrouching()
     {
@@ -236,14 +213,14 @@ public class PlayerController : MonoBehaviour
     }
     private void StopCrouching() => isCrouching = false;
     private void OnAttack() => attackInput = true;
-    private void OnAttackCanceled() => attackInput = false;//Handle by Animation Event
+    private void OnAttackCanceled() => attackInput = false;//Used by Animation Event
     private void OnTapHeavyAttack() => onHeavyAttack = true;
-    private void OnTapHeavyAttackCancel() => onHeavyAttack = false;//Handle by Animation Event
+    private void OnTapHeavyAttackCancel() => onHeavyAttack = false;//Used by Animation Event
     private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
     private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
-    public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Handle by Animation Event
+    public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Used by Animation Event
     private void EarthAbilityCancel() => earthPerform = false;
-    private void EarthPerform() => earthPerform = true;//Handle by Animation Event
+    private void EarthPerform() => earthPerform = true;//Used by Animation Event
     private void OnLifeAbilityPerform() => lifePerform = true;
-    private void OnLifeAbilityCancel() => lifePerform = false;//Handle by Animation Event
+    private void OnLifeAbilityCancel() => lifePerform = false;//Used by Animation Event
 }

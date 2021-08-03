@@ -16,6 +16,7 @@ public class PatrolAction : StateAction
     private Vector3 _startPos;
     private float _patrolRange;
     private CharacterStatsSO _stats;
+    Vector3 wolf;
 
     public override void Awake(StateController stateController)
     {
@@ -23,7 +24,8 @@ public class PatrolAction : StateAction
         _isActiveAgent = _agent != null && _agent.isActiveAndEnabled && _agent.isOnNavMesh;
         _detectPlayer = stateController.GetComponent<WolfBehaviour>();
         _stats = _detectPlayer.CharStatsSO();
-        _startPos = _stats.StartPosition;
+        wolf = stateController.gameObject.transform.position;
+        _startPos = wolf;
         _patrolRange = _stats.LookRange;
     }
     public override void OnStateUpdate()
@@ -32,12 +34,14 @@ public class PatrolAction : StateAction
         {
             float x = Random.Range(_startPos.x - _patrolRange, _startPos.x + _patrolRange);
             float z = Random.Range(_startPos.z - _patrolRange, _startPos.z + _patrolRange);
+
             _agent.SetDestination(new Vector3(x, _startPos.y, z));
         }
     }
 
     public override void OnStateEnter()
     {
+        _startPos = wolf;
         if (_isActiveAgent)
         {
             _agent.speed = _stats.WalkSpeed;
