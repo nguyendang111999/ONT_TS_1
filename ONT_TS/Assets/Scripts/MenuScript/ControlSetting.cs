@@ -4,15 +4,5 @@ using UnityEngine;
 
 public class ControlSetting : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    //insert bind button stuffs here
 }
