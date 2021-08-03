@@ -25,7 +25,6 @@ public class Damageable : MonoBehaviour
     }
     public void ReceiveAttack(int dmg)
     {
-        Debug.Log(gameObject.name + ": " + dmg);
         if (IsDead) return;
 
         _currentHealth -= dmg;
@@ -35,7 +34,7 @@ public class Damageable : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            Location.SpawnedNumber = Location.SpawnedNumber + 1;
+            Location.TargetKilled = Location.TargetKilled + 1;
             IsDead = true;
             if (OnDie != null)
             {

@@ -10,11 +10,12 @@ public class SpawnLocationSO : ScriptableObject
     [Tooltip("Spawn range")]
     [SerializeField] float range;
     [Tooltip("Max number of enemy to spawn")]
-    [SerializeField] int number;
+    [SerializeField] int numberToSpawn;
     [Tooltip("Max number of enemy at once")]
-    [SerializeField] int rate;
-    [SerializeField]int spawnedNumber = 0;
-    private bool isSuccessed = false;
+    [SerializeField] int spawnRate;
+    [SerializeField] int spawnedNumber = 0;
+
+    private bool isSuccessed = false;//Check if user is finished this area
 
     public Vector3 Location
     {
@@ -27,11 +28,11 @@ public class SpawnLocationSO : ScriptableObject
     public int NumberToSpawn
     {
         get
-        { return number; }
+        { return numberToSpawn; }
     }
     public int Rate
     {
-        get { return rate; }
+        get { return spawnRate; }
     }
 
     public int SpawnedNumber{
@@ -45,4 +46,5 @@ public class SpawnLocationSO : ScriptableObject
         get { return isSuccessed;}
         set { isSuccessed = value;}
     }
+    public int TargetKilled {get; set;} = 0;
 }
