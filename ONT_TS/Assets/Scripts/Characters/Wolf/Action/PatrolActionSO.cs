@@ -12,20 +12,17 @@ public class PatrolAction : StateAction
 {
     private NavMeshAgent _agent;
     private bool _isActiveAgent;
-    private WolfBehaviour _detectPlayer;
+    private WolfBehaviour _wolfBehaviour;
     private Vector3 _startPos;
     private float _patrolRange;
     private CharacterStatsSO _stats;
-    Vector3 wolf;
 
     public override void Awake(StateController stateController)
     {
         _agent = stateController.GetComponent<NavMeshAgent>();
         _isActiveAgent = _agent != null && _agent.isActiveAndEnabled && _agent.isOnNavMesh;
-        _detectPlayer = stateController.GetComponent<WolfBehaviour>();
-        _stats = _detectPlayer.CharStatsSO();
-        wolf = stateController.gameObject.transform.position;
-        _startPos = wolf;
+        _wolfBehaviour = stateController.GetComponent<WolfBehaviour>();
+        _stats = _wolfBehaviour.CharStatsSO();
         _patrolRange = _stats.LookRange;
     }
     public override void OnStateUpdate()
@@ -41,7 +38,8 @@ public class PatrolAction : StateAction
 
     public override void OnStateEnter()
     {
-        _startPos = wolf;
+        _startPos = _wolfBehaviour.Location.Location;
+        _wolfBehaviour.isInActive = false;
         if (_isActiveAgent)
         {
             _agent.speed = _stats.WalkSpeed;

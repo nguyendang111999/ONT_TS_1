@@ -9,11 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165132f1c1a7cd046ac633d5a3986fbd, type: 3}
-  m_Name: Location1
+  m_Script: {fileID: 11500000, guid: 9cc908e3303a5274cba75170ed6943bc, type: 3}
+  m_Name: IsInactiveCondition
   m_EditorClassIdentifier: 
-  location: {x: 109.27, y: 6.53, z: 125.48}
-  range: 0
-  numberToSpawn: 5
-  spawnRate: 0
-  spawnedNumber: 5

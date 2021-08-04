@@ -5,10 +5,6 @@ using UnityEngine.Events;
 
 public class Damageable : MonoBehaviour
 {
-    public SpawnLocationSO Location
-    {
-        get; set;
-    }
     [SerializeField] private HealthConfigSO _healthConfig;
     [SerializeField] private HealthBar _healthBar;
 
@@ -34,7 +30,6 @@ public class Damageable : MonoBehaviour
 
         if (_currentHealth <= 0)
         {
-            Location.TargetKilled = Location.TargetKilled + 1;
             IsDead = true;
             if (OnDie != null)
             {
@@ -46,6 +41,7 @@ public class Damageable : MonoBehaviour
     public void ResetHealth()
     {
         _currentHealth = _healthConfig.MaxHealth();
+        _healthBar.SetMaxHealth(_currentHealth);
         IsDead = false;
     }
 }

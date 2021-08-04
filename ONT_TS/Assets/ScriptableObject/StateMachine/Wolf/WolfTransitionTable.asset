@@ -20,6 +20,11 @@ MonoBehaviour:
       - ConditionSO: {fileID: 11400000, guid: b4ee820bdd5d6ff428bab11bacc87878, type: 2}
         ExpectedResult: 0
         Operator: 0
+    - ToState: {fileID: 11400000, guid: 6171795075dab2e47af441a5adbf9a7c, type: 2}
+      Conditions:
+      - ConditionSO: {fileID: 11400000, guid: 3a89fd3603f2d61478ffa0f9b48943cb, type: 2}
+        ExpectedResult: 0
+        Operator: 0
   - FromState: {fileID: 11400000, guid: 2626193ee2f8d7e49816309747f0a1be, type: 2}
     StateAndCondition:
     - ToState: {fileID: 11400000, guid: 1a989d6c8b1bec0488986c02addb2e5e, type: 2}

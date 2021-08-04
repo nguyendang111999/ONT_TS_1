@@ -26,7 +26,6 @@ public class PlayerController : MonoBehaviour
     public float turnSmoothVelocity;
 
     //Movement stats
-    // private float timer;
     private float acceleration;
     private float decceleration;
     private float normalRunSpeed;
