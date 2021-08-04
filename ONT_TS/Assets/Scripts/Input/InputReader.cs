@@ -91,7 +91,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     //Implements from PlayerInterface
     void PlayerInput.IGamePlayActions.OnCamInput(InputAction.CallbackContext context)
     {
-        RotateCameraEvent.Invoke(context.ReadValue<Vector2>());
+        // RotateCameraEvent.Invoke(context.ReadValue<Vector2>());
     }
 
     public void OnAim(InputAction.CallbackContext context)

@@ -11,8 +11,11 @@ public class IsActiveConditionSO : StateConditionSO
 public class IsActiveCondition : Condition
 {
     bool isActive = false;
+    Damageable _damageable;
+    GameObject _gameObject;
     public override void Awake(StateController stateController){
-        isActive = stateController.gameObject.activeSelf;
+        _damageable = stateController.GetComponent<Damageable>();
+        _gameObject = stateController.gameObject;
     }
-    protected override bool Statement() => isActive;
+    protected override bool Statement() => _gameObject.activeSelf && !_damageable.IsDead;
 }

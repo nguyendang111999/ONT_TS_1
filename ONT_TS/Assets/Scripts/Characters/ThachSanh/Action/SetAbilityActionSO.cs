@@ -23,12 +23,13 @@ public class SetAbility : StateAction
     private string _abilityName;
     private AbilityContainerSO _abilities;
     private Attack _attack;
+    private GameObject _tempObj;
 
     public override void Awake(StateController stateController)
     {
         _abilities = _originSO.AbilityList;
         _abilityName = _originSO._abilityName;
-        _attack = stateController.gameObject.GetComponentInChildren<Attack>();
+        _attack = stateController.gameObject.GetComponentInChildren<Attack>(true);
     }
 
     public override void OnStateEnter()
@@ -37,9 +38,7 @@ public class SetAbility : StateAction
     }
 
     public override void OnStateUpdate()
-    {
-
-    }
+    {}
 
     public void GetAbilityDamage()
     {

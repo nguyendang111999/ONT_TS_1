@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    // public AbilityContainerSO containerSO;
-    private int _damage = 0;
     public int Damage {get; set;} = 0;
     private void Awake()
     {
@@ -14,7 +12,6 @@ public class Attack : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        Debug.Log("Damage: " + Damage);
         if (!other.CompareTag(gameObject.tag))
         {
             if (other.TryGetComponent(out Damageable damageableComp))
