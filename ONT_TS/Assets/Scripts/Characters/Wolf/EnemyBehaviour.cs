@@ -1,12 +1,11 @@
 using UnityEngine;
 using UnityEngine.AI;
 
-public class WolfBehaviour : MonoBehaviour
+public class EnemyBehaviour : MonoBehaviour
 {
     [SerializeField] private Transform _attackPoint;
     [SerializeField] private ObjectPositionSO _playerPos;
     [SerializeField] private CharacterStatsSO _stat;
-    private NavMeshAgent _agent;
     public CharacterStatsSO CharStatsSO() => _stat;
     public ObjectPositionSO PlayerPosition() => _playerPos;
     public Transform AttackPoint() => _attackPoint;
@@ -23,20 +22,11 @@ public class WolfBehaviour : MonoBehaviour
     private void Awake()
     {
         _damageable = gameObject.GetComponent<Damageable>();
-        _agent = GetComponent<NavMeshAgent>();
     }
 
-    public void DeadAction()
+    private void DeadAction()
     {
         Location.TargetKilled += 1;
     }
 
-    private void OnDrawGizmos()
-    {
-        if (_agent != null)
-        {
-            Gizmos.color = Color.red;
-            Gizmos.DrawWireSphere(_agent.transform.position, _stat.AttackRange);
-        }
-    }
 }

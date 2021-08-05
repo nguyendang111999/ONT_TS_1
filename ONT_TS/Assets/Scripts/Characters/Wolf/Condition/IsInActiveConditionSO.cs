@@ -9,10 +9,10 @@ public class IsInActiveConditionSO : StateConditionSO
 }
 public class IsInActiveCondition : Condition
 {
-    private WolfBehaviour _wolf;
+    private EnemyBehaviour _wolf;
     public override void Awake(StateController stateController)
     {
-        _wolf = stateController.GetComponent<WolfBehaviour>();
+        _wolf = stateController.GetComponent<EnemyBehaviour>();
     }
     protected override bool Statement() => _wolf.isInActive;
 }

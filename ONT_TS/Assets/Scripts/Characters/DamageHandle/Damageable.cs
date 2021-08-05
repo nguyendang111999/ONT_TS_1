@@ -11,7 +11,6 @@ public class Damageable : MonoBehaviour
     private int _currentHealth = default;
     public bool GetHit { get; set; }
     public bool IsDead { get; set; }
-    // public int CurrentHealth => _currentHealth;
     public UnityAction OnDie;
 
     void Awake()

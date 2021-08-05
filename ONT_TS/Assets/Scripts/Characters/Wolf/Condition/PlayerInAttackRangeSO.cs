@@ -14,11 +14,11 @@ public class PlayerInAttackRange : Condition
 {
     private PlayerInAttackRangeSO _originSO => (PlayerInAttackRangeSO)base.OriginSO;
     private Transform _playerPos;
-    private WolfBehaviour _wolf;
+    private EnemyBehaviour _wolf;
     private CharacterStatsSO _wolfStat;
 
     public override void Awake(StateController stateController){
-        _wolf = stateController.GetComponent<WolfBehaviour>();
+        _wolf = stateController.GetComponent<EnemyBehaviour>();
         _wolfStat = _wolf.CharStatsSO();
     }
     protected override bool Statement()

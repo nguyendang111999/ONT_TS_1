@@ -25,7 +25,6 @@ public class EnemySpawn : MonoBehaviour
 
     void SpawnEnemy()
     {
-
         for (int i = 0; i < locations.Length; i++)
         {
             SpawnLocationSO location = locations[i];
@@ -56,14 +55,11 @@ public class EnemySpawn : MonoBehaviour
         {
             if (!wolf.activeSelf && location.SpawnedNumber < location.NumberToSpawn)
             {
-
-                // float x = Random.Range(startPos.x - 20f, startPos.x + 20f);
-                // float z = Random.Range(startPos.z - 20f, startPos.z + 20f);
                 wolf.transform.position = location.Location;
                 wolf.SetActive(true);
                 Damageable damageable = wolf.GetComponent<Damageable>();
                 damageable.ResetHealth();
-                WolfBehaviour wolfBehaviour = wolf.GetComponent<WolfBehaviour>();
+                EnemyBehaviour wolfBehaviour = wolf.GetComponent<EnemyBehaviour>();
                 wolfBehaviour.Location = location;
                 location.SpawnedNumber++;
             }
@@ -93,11 +89,10 @@ public class EnemySpawn : MonoBehaviour
         for (int i = 0; i < locations.Length; i++)
         {
             SpawnLocationSO location = locations[i];
-            Debug.Log("Location " + (i+1) +" is successed: " + location.IsSuccessed);
-            // if (location.IsSuccessed)
-            // {
-            //     i++;
-            // }
+            if (location.IsSuccessed)
+            {
+                continue;
+            }
             if (Vector3.Distance((playerPos.Transform.position), (location.Location)) < 50f && !location.IsSuccessed)
             {
                 location.IsActive = true;
@@ -130,7 +125,7 @@ public class EnemySpawn : MonoBehaviour
         location.TargetKilled = 0;
         foreach (var wolf in agents)
         {
-            WolfBehaviour wolfBehaviour = wolf.GetComponent<WolfBehaviour>();
+            EnemyBehaviour wolfBehaviour = wolf.GetComponent<EnemyBehaviour>();
             if (wolfBehaviour.Location == location)
             {
                 wolfBehaviour.isInActive = true;

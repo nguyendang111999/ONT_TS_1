@@ -15,7 +15,7 @@ public class FacePlayerAction : StateAction
     public override void Awake(StateController stateController)
     {
         _wolf = stateController.transform;
-        _playerPos = stateController.GetComponent<WolfBehaviour>().PlayerPosition();
+        _playerPos = stateController.GetComponent<EnemyBehaviour>().PlayerPosition();
     }
 
     public override void OnStateUpdate()

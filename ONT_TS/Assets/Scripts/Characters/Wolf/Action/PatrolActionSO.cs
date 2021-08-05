@@ -12,7 +12,7 @@ public class PatrolAction : StateAction
 {
     private NavMeshAgent _agent;
     private bool _isActiveAgent;
-    private WolfBehaviour _wolfBehaviour;
+    private EnemyBehaviour _wolfBehaviour;
     private Vector3 _startPos;
     private float _patrolRange;
     private CharacterStatsSO _stats;
@@ -21,7 +21,7 @@ public class PatrolAction : StateAction
     {
         _agent = stateController.GetComponent<NavMeshAgent>();
         _isActiveAgent = _agent != null && _agent.isActiveAndEnabled && _agent.isOnNavMesh;
-        _wolfBehaviour = stateController.GetComponent<WolfBehaviour>();
+        _wolfBehaviour = stateController.GetComponent<EnemyBehaviour>();
         _stats = _wolfBehaviour.CharStatsSO();
         _patrolRange = _stats.LookRange;
     }

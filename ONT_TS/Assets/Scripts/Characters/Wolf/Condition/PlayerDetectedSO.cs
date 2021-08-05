@@ -15,12 +15,12 @@ public class PlayerDetected : Condition
 {
     private PlayerDetectedSO _originSO => (PlayerDetectedSO)base.OriginSO;
     private Transform _attackPoint;
-    private WolfBehaviour detectPlayer;
+    private EnemyBehaviour detectPlayer;
     private Transform _chaseTarget;
     private CharacterStatsSO _stat;
     public override void Awake(StateController stateController)
     {
-        detectPlayer = stateController.GetComponent<WolfBehaviour>();
+        detectPlayer = stateController.GetComponent<EnemyBehaviour>();
         _stat = detectPlayer?.CharStatsSO();
         _attackPoint = detectPlayer.AttackPoint();
         _chaseTarget = _originSO.PlayerPosition()?.Transform;
