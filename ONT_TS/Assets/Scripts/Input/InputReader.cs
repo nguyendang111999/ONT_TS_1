@@ -26,6 +26,10 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     //Crouch events
     // public event UnityAction CrouchEvent = delegate { };
     // public event UnityAction CrouchStopEvent = delegate { };
+
+    //Interact event
+    public event UnityAction InteractEvent = delegate{};
+
     //Melee attack event
     public event UnityAction AttackEvent = delegate { };
     public event UnityAction AttackCanceledEvent = delegate { };
@@ -200,7 +204,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if(context.phase == InputActionPhase.Performed)
+            InteractEvent.Invoke();
     }
 
     public void OnEarthAbility(InputAction.CallbackContext context)

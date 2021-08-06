@@ -59,6 +59,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""Interact"",
+                    ""type"": ""Button"",
+                    ""id"": ""3e6ba581-7f19-4b21-8fd8-b57906f62ab3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""Aim"",
                     ""type"": ""Value"",
                     ""id"": ""0f28af36-7643-4650-9e19-26e94f19bc56"",
@@ -253,6 +261,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""HeavyAttack"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ee3e3399-7a49-4ca9-8cdb-6008b5509392"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Interact"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -337,6 +356,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_Run = m_GamePlay.FindAction("Run", throwIfNotFound: true);
         m_GamePlay_Dodge = m_GamePlay.FindAction("Dodge", throwIfNotFound: true);
         m_GamePlay_Jump = m_GamePlay.FindAction("Jump", throwIfNotFound: true);
+        m_GamePlay_Interact = m_GamePlay.FindAction("Interact", throwIfNotFound: true);
         m_GamePlay_Aim = m_GamePlay.FindAction("Aim", throwIfNotFound: true);
         m_GamePlay_Attack = m_GamePlay.FindAction("Attack", throwIfNotFound: true);
         m_GamePlay_HeavyAttack = m_GamePlay.FindAction("HeavyAttack", throwIfNotFound: true);
@@ -402,6 +422,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_Run;
     private readonly InputAction m_GamePlay_Dodge;
     private readonly InputAction m_GamePlay_Jump;
+    private readonly InputAction m_GamePlay_Interact;
     private readonly InputAction m_GamePlay_Aim;
     private readonly InputAction m_GamePlay_Attack;
     private readonly InputAction m_GamePlay_HeavyAttack;
@@ -416,6 +437,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @Run => m_Wrapper.m_GamePlay_Run;
         public InputAction @Dodge => m_Wrapper.m_GamePlay_Dodge;
         public InputAction @Jump => m_Wrapper.m_GamePlay_Jump;
+        public InputAction @Interact => m_Wrapper.m_GamePlay_Interact;
         public InputAction @Aim => m_Wrapper.m_GamePlay_Aim;
         public InputAction @Attack => m_Wrapper.m_GamePlay_Attack;
         public InputAction @HeavyAttack => m_Wrapper.m_GamePlay_HeavyAttack;
@@ -445,6 +467,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Jump.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
                 @Jump.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
                 @Jump.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnJump;
+                @Interact.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnInteract;
                 @Aim.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
                 @Aim.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
                 @Aim.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnAim;
@@ -479,6 +504,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Jump.started += instance.OnJump;
                 @Jump.performed += instance.OnJump;
                 @Jump.canceled += instance.OnJump;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
                 @Aim.started += instance.OnAim;
                 @Aim.performed += instance.OnAim;
                 @Aim.canceled += instance.OnAim;
@@ -580,6 +608,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnRun(InputAction.CallbackContext context);
         void OnDodge(InputAction.CallbackContext context);
         void OnJump(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
         void OnAim(InputAction.CallbackContext context);
         void OnAttack(InputAction.CallbackContext context);
         void OnHeavyAttack(InputAction.CallbackContext context);

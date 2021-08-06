@@ -46,6 +46,14 @@
                     "interactions": ""
                 },
                 {
+                    "name": "Interact",
+                    "type": "Button",
+                    "id": "3e6ba581-7f19-4b21-8fd8-b57906f62ab3",
+                    "expectedControlType": "Button",
+                    "processors": "",
+                    "interactions": ""
+                },
+                {
                     "name": "Aim",
                     "type": "Value",
                     "id": "0f28af36-7643-4650-9e19-26e94f19bc56",
@@ -238,6 +246,17 @@
                     "processors": "",
                     "groups": "Keyboard and Mouse",
                     "action": "HeavyAttack",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                },
+                {
+                    "name": "",
+                    "id": "ee3e3399-7a49-4ca9-8cdb-6008b5509392",
+                    "path": "<Keyboard>/e",
+                    "interactions": "",
+                    "processors": "",
+                    "groups": "Keyboard and Mouse",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }

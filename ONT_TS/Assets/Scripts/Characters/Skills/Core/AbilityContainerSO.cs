@@ -7,20 +7,20 @@ public class AbilityContainerSO : ScriptableObject
 {
     [Tooltip("Index show that what ability is being seleced")]
     [SerializeField] private int index;
-    public AbilityBaseSO[] _abilityList;
-    public AbilityBaseSO[] AbilityList => _abilityList;
+    public List<AbilityBaseSO> _abilityList;
+    public List<AbilityBaseSO> AbilityList => _abilityList;
     public int Index
     {
         get { return index; }
         set
         {
-            if (value < 0 || value > _abilityList.Length)
+            if (value < 0 || value > _abilityList.Count)
                 value = 0;
         }
     }
     public int GetAbilityByName(string name)
     {
-        for (int i = 0; i < _abilityList.Length; i++)
+        for (int i = 0; i < _abilityList.Count; i++)
         {
             if (_abilityList[i].AbilityName.Equals(name))
             {
