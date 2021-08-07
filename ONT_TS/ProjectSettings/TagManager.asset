@@ -7,6 +7,7 @@ TagManager:
   - Enemy
   - Weapon
   - Pickable
+  - NPC
   layers:
   - Default
   - TransparentFX

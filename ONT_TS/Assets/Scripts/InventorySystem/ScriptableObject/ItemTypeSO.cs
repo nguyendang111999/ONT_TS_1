@@ -4,7 +4,7 @@ public enum ItemType{
     Food, Material
 }
 public enum ItemActionType{
-    Eat, Equip, Nothing
+    Eat, Equip, 
 }
 
 [CreateAssetMenu(menuName = "Inventory/ItemType")]

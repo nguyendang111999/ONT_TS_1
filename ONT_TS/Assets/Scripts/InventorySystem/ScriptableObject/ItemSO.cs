@@ -2,6 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Quality{
+    Normal, Good, Elite
+}
+
 [CreateAssetMenu(menuName = "Inventory/Item")]
 public class ItemSO : ScriptableObject
 {
@@ -30,4 +34,6 @@ public class ItemSO : ScriptableObject
     public ItemTypeSO ItemType => _itemType;
     public string Description => _description;
     public GameObject Prefab => _prefab;
+
+    public virtual void UseItem(){}
 }

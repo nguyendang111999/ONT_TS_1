@@ -1,13 +1,16 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class Interactable : MonoBehaviour
 {
-    InteractionType type;
-    float radius = 3f;
+    public InteractionType type;
+    public GameObject interactableGameobject;
+    public Interactable(InteractionType t, GameObject obj)
+	{
+		type = t;
+		interactableGameobject = obj;
+	}
 
 }
 public enum InteractionType{
-    None = 0, PickUp, Talk
+    PickUp, Talk, None = 0,
 }

@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InteractableItems : MonoBehaviour
+public class CollectableItems : MonoBehaviour
 {
     [SerializeField] private ItemSO _currentItem = default;
     [SerializeField] private GameObject _go = default;

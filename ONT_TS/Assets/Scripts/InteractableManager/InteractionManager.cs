@@ -8,4 +8,5 @@ public class InteractionManager : MonoBehaviour
     public InputReader _inputReader = default;
 
     
+    
 }
