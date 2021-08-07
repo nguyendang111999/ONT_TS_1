@@ -12,5 +12,9 @@ public class InventoryManager : MonoBehaviour
     void RemoveItem(ItemSO item){
         _currentInventory.Remove(item);
     }
+
+    public void UseItem(ItemSO item){
+        item.UseItem();
+    }
     
 }

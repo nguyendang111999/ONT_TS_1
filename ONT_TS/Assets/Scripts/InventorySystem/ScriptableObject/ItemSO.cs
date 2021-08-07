@@ -35,5 +35,7 @@ public class ItemSO : ScriptableObject
     public string Description => _description;
     public GameObject Prefab => _prefab;
 
-    public virtual void UseItem(){}
+    public virtual void UseItem(){
+        Debug.Log("Using: " + _itemName);
+    }
 }

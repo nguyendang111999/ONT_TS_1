@@ -105,6 +105,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""OpenInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""28ee5097-72fd-4d72-8289-a6e28bfb2131"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -272,6 +280,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d73cb5b5-b831-4c47-b15b-4f4652737bc6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""OpenInventory"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -286,6 +305,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""CloseInventory"",
+                    ""type"": ""Button"",
+                    ""id"": ""c31660cd-d5e8-4d1b-bc2d-60531a003669"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -297,6 +324,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""Choose"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""605297fe-0ba6-453e-90e8-7f4650dac55c"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""CloseInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -362,9 +400,11 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_HeavyAttack = m_GamePlay.FindAction("HeavyAttack", throwIfNotFound: true);
         m_GamePlay_EarthAbility = m_GamePlay.FindAction("EarthAbility", throwIfNotFound: true);
         m_GamePlay_LifeAbility = m_GamePlay.FindAction("LifeAbility", throwIfNotFound: true);
+        m_GamePlay_OpenInventory = m_GamePlay.FindAction("OpenInventory", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Choose = m_Menu.FindAction("Choose", throwIfNotFound: true);
+        m_Menu_CloseInventory = m_Menu.FindAction("CloseInventory", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
         m_Dialogue_Interact = m_Dialogue.FindAction("Interact", throwIfNotFound: true);
@@ -428,6 +468,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_HeavyAttack;
     private readonly InputAction m_GamePlay_EarthAbility;
     private readonly InputAction m_GamePlay_LifeAbility;
+    private readonly InputAction m_GamePlay_OpenInventory;
     public struct GamePlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -443,6 +484,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @HeavyAttack => m_Wrapper.m_GamePlay_HeavyAttack;
         public InputAction @EarthAbility => m_Wrapper.m_GamePlay_EarthAbility;
         public InputAction @LifeAbility => m_Wrapper.m_GamePlay_LifeAbility;
+        public InputAction @OpenInventory => m_Wrapper.m_GamePlay_OpenInventory;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -485,6 +527,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @LifeAbility.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
                 @LifeAbility.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
                 @LifeAbility.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
+                @OpenInventory.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -522,6 +567,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @LifeAbility.started += instance.OnLifeAbility;
                 @LifeAbility.performed += instance.OnLifeAbility;
                 @LifeAbility.canceled += instance.OnLifeAbility;
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
             }
         }
     }
@@ -531,11 +579,13 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputActionMap m_Menu;
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_Choose;
+    private readonly InputAction m_Menu_CloseInventory;
     public struct MenuActions
     {
         private @PlayerInput m_Wrapper;
         public MenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Choose => m_Wrapper.m_Menu_Choose;
+        public InputAction @CloseInventory => m_Wrapper.m_Menu_CloseInventory;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -548,6 +598,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Choose.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnChoose;
                 @Choose.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnChoose;
                 @Choose.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnChoose;
+                @CloseInventory.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseInventory;
+                @CloseInventory.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseInventory;
+                @CloseInventory.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseInventory;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -555,6 +608,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @Choose.started += instance.OnChoose;
                 @Choose.performed += instance.OnChoose;
                 @Choose.canceled += instance.OnChoose;
+                @CloseInventory.started += instance.OnCloseInventory;
+                @CloseInventory.performed += instance.OnCloseInventory;
+                @CloseInventory.canceled += instance.OnCloseInventory;
             }
         }
     }
@@ -614,10 +670,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnEarthAbility(InputAction.CallbackContext context);
         void OnLifeAbility(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
         void OnChoose(InputAction.CallbackContext context);
+        void OnCloseInventory(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {
