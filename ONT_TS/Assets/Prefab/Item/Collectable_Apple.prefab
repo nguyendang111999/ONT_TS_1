@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 4344712757876245779}
   - component: {fileID: 4344712757876245871}
   m_Layer: 0
-  m_Name: Collectable_Banana
+  m_Name: Collectable_Apple
   m_TagString: Pickable
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -61,7 +61,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 7b43a2dec397caf40b51db01f02d2911, type: 2}
+  - {fileID: 2100000, guid: e22e4c3073293a44f8453d23daab5b8e, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -108,5 +108,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fcd39f7d914cb1d47b7b22f3477b4285, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _currentItem: {fileID: 11400000, guid: 7f183222da0434b40b6fa6fbef0ecdb4, type: 2}
+  _currentItem: {fileID: 11400000, guid: b213ec829421fc644b191836907f6c98, type: 2}
   _go: {fileID: 4344712757876245780}

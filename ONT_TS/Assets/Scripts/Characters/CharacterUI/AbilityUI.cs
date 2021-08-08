@@ -18,7 +18,7 @@ public class AbilityUI : MonoBehaviour
         if(index != _container.Index){
             index = _container.Index;
             _ability = _container.AbilityList[_container.Index];
-            Debug.Log("Ability name: " + _ability.AbilityName);
+            // Debug.Log("Ability name: " + _ability.AbilityName);
             SetIcon(_ability.Icon);
             SetMaxCooldown(_ability.CoolDownDuration);
         }

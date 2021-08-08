@@ -2,17 +2,10 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ItemIncreaseHealthSO : MonoBehaviour
+[CreateAssetMenu(menuName = "Inventory/Item/Health")]
+public class ItemIncreaseHealthSO : ItemSO
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public override void UseItem(){
+        Debug.Log("Increase health");
     }
 }

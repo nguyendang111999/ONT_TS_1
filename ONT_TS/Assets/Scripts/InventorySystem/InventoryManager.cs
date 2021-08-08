@@ -6,15 +6,21 @@ public class InventoryManager : MonoBehaviour
 {
     [SerializeField] private InventorySO _currentInventory;
 
+    private void OnEnable() {
+        
+    }
+    private void OnDisable() {
+        
+    }
+
     void AddItem(ItemSO item){
         _currentInventory.Add(item);
     }
     void RemoveItem(ItemSO item){
         _currentInventory.Remove(item);
     }
-
-    public void UseItem(ItemSO item){
-        item.UseItem();
-    }
     
+    void FillInventory(){
+
+    }
 }

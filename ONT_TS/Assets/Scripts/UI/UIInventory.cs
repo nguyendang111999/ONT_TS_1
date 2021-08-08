@@ -4,15 +4,20 @@ using UnityEngine;
 
 public class UIInventory : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
+    [SerializeField] private InventorySO _currentInventory;
+
+    private void OnEnable() {
+        InventorySlot[] slots = gameObject.GetComponentsInChildren<InventorySlot>();
+        FillInventory(slots);
     }
 
-    // Update is called once per frame
-    void Update()
-    {
-        
+    public void FillInventory(InventorySlot[] slots){
+        for (int i = 0; i < _currentInventory.Items.Count; i++)
+        {
+            slots[i]._items = _currentInventory.Items[i];
+            GameObject obj = slots[i].gameObject.transform.GetChild(1).gameObject;
+            obj.SetActive(true);
+            Debug.Log("Set obj to true");
+        }
     }
 }
