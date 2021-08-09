@@ -5,19 +5,37 @@ using UnityEngine;
 public class UIInventory : MonoBehaviour
 {
     [SerializeField] private InventorySO _currentInventory;
+    [SerializeField] private AbilityHolder _abilityHolder;
 
-    private void OnEnable() {
+    private void OnEnable()
+    {
         InventorySlot[] slots = gameObject.GetComponentsInChildren<InventorySlot>();
         FillInventory(slots);
     }
 
-    public void FillInventory(InventorySlot[] slots){
-        for (int i = 0; i < _currentInventory.Items.Count; i++)
+    public void FillInventory(InventorySlot[] slots)
+    {
+        for (int i = 0; i < slots.Length; i++)
         {
-            slots[i]._items = _currentInventory.Items[i];
-            GameObject obj = slots[i].gameObject.transform.GetChild(1).gameObject;
-            obj.SetActive(true);
-            Debug.Log("Set obj to true");
+            if(i<_currentInventory.Items.Count)
+            {
+                slots[i]._items = _currentInventory.Items[i];
+                slots[i].DisplayIcon();
+            }
+            else
+            {
+                slots[i]._items = null;
+                slots[i].DisplayIcon();
+            }   
         }
+    }
+
+    public void UseItem(ItemSO item)
+    {
+        _abilityHolder.AddUsedItem(item);
+        if(item == null){Debug.Log("Shiet");}
+        _currentInventory.Remove(item);
+        gameObject.SetActive(false);
+        gameObject.SetActive(true);
     }
 }

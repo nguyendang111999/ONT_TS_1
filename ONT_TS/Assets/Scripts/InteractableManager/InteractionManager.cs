@@ -13,7 +13,7 @@ public class InteractionManager : MonoBehaviour
     // [HideInInspector] public InteractionType currentInteractionType;
     [SerializeField] private ZoneTrigger _zone;
     [SerializeField] private InputReader _inputReader = default;
-    [SerializeField] private InventorySO _currentInventory;
+    [SerializeField] private InventorySO _foodInventory;
 
     private void OnEnable()
     {
@@ -52,15 +52,8 @@ public class InteractionManager : MonoBehaviour
     public void Collect(GameObject obj)
     {
         CollectableItems collectableItem = obj.gameObject.GetComponent<CollectableItems>();
-        // _currentInventory.Items.Clear();
-        _currentInventory.Add(collectableItem.GetItem());
-        List<ItemSO> list = _currentInventory.Items;
-        Debug.Log("Inventory size: " + list.Count);
-        for (int i = 0; i < list.Count; i++)
-        {
-            Debug.Log("item name: " + list[i].ItemName);
-        }
-        
+        _foodInventory.Add(collectableItem.GetItem());
+        List<ItemSO> list = _foodInventory.Items;
         Destroy(collectableItem.gameObject);
     }
 

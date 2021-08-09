@@ -24,10 +24,6 @@ public class ZoneTrigger : MonoBehaviour
             {
                 currentCollisionsList.Add(other.gameObject);
             }
-            foreach (GameObject o in currentCollisionsList)
-            {
-                Debug.Log("Add ObjectName: " + obj.name);
-            }
         }
 
     }

@@ -2,7 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Quality{
+public enum Quality
+{
     Normal, Good, Elite
 }
 
@@ -35,7 +36,5 @@ public class ItemSO : ScriptableObject
     public string Description => _description;
     public GameObject Prefab => _prefab;
 
-    public virtual void UseItem(){
-        Debug.Log("Using: " + _itemName);
-    }
+    public virtual void ResetCoolDown() { }
 }

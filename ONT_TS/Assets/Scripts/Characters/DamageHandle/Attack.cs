@@ -4,10 +4,16 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
-    public int Damage {get; set;} = 0;
+    public int Damage { get; set; } = 0;
+    public int BoostedDamage { get; set;}
     private void Awake()
     {
         gameObject.SetActive(false);
+    }
+
+    public void SetAdditionDamage(int percentage)
+    {
+        BoostedDamage += Damage * percentage;
     }
 
     private void OnTriggerEnter(Collider other)

@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: Apple
   m_EditorClassIdentifier: 
   _itemName: Apple
-  _previewImage: {fileID: 0}
-  _itemType: {fileID: 11400000, guid: 328c0bc229e9fe34e9808266552f515a, type: 2}
-  _description: This is gud
+  _previewImage: {fileID: 21300000, guid: 0634e33368ada1542acade1bb82dfe55, type: 3}
+  _itemType: {fileID: 11400000, guid: 75d796f1d2b126c439a08836d4dbebf5, type: 2}
+  _description: This Increase 10 health
   _prefab: {fileID: 4344712757876245780, guid: 6a5e601d06909be49abb9cf15393d27f, type: 3}
+  _additionHealth: 10

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Banana
   m_EditorClassIdentifier: 
   _itemName: Banana
-  _previewImage: {fileID: 0}
+  _previewImage: {fileID: 21300000, guid: a30cb24b294db2e43b5b68e454dbf340, type: 3}
   _itemType: {fileID: 11400000, guid: 328c0bc229e9fe34e9808266552f515a, type: 2}
   _description: This increase speed by 10%
   _prefab: {fileID: 4344712757876245780, guid: b6827e06f8c98674b9501a8d73f5b393, type: 3}
