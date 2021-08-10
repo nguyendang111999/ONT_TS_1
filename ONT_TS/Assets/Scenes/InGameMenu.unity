@@ -10042,7 +10042,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
+      - m_Target: {fileID: 1532014354}
         m_TargetAssemblyTypeName: VideoSetting, Assembly-CSharp
         m_MethodName: SetResolution
         m_Mode: 0
@@ -13047,7 +13047,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd290e1e3f8b32643aa36c4a1e5a5776, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  resolutionDropdown: {fileID: 0}
+  resolutionDropdown: {fileID: 1219686890}
 --- !u!114 &1532014355
 MonoBehaviour:
   m_ObjectHideFlags: 0
