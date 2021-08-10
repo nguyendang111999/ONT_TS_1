@@ -10,14 +10,15 @@ public class BoolEvent : UnityEvent<bool, GameObject>
 }
 public class ZoneTrigger : MonoBehaviour
 {
-    public List<GameObject> currentCollisionsList = new List<GameObject>();
+    [HideInInspector] public List<GameObject> currentCollisionsList = new List<GameObject>();
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Pickable") || other.CompareTag("NPC"))
         {
             GameObject obj = other.gameObject;
-            if (currentCollisionsList.Find(gameobject => gameObject==obj)){
+            if (currentCollisionsList.Find(gameobject => gameObject == obj))
+            {
                 return;
             }
             else

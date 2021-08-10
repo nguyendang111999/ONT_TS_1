@@ -20,7 +20,4 @@ public class InventoryManager : MonoBehaviour
         _currentInventory.Remove(item);
     }
     
-    void FillInventory(){
-
-    }
 }
