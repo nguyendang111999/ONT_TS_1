@@ -175,7 +175,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 6496258838806988481}
         m_TargetAssemblyTypeName: InventorySlot, Assembly-CSharp
-        m_MethodName: UseItem
+        m_MethodName: DisplayItem
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

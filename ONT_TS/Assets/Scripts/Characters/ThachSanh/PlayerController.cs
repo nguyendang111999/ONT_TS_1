@@ -25,6 +25,9 @@ public class PlayerController : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     public float turnSmoothVelocity;
 
+    public const float GRAVITY = 10f;
+    public const float MAX_FALL_SPEED = 20f;
+
     //Movement stats
     private float acceleration;
     private float decceleration;

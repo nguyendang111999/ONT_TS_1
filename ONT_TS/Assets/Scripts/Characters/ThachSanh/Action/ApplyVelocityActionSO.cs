@@ -12,12 +12,10 @@ public class ApplyVelocityAction : StateAction
 {
     private PlayerController _thachSanh;
     private CharacterController _characterController;
-    private Damageable _damageable;
     public override void Awake(StateController stateController)
     {
         _thachSanh = stateController.GetComponent<PlayerController>();
         _characterController = stateController.GetComponent<CharacterController>();
-        _damageable = stateController.GetComponent<Damageable>();
     }
     public override void OnStateUpdate()
     {

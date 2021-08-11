@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Earth2
   m_EditorClassIdentifier: 
   _abilityName: Earth2
-  _icon: {fileID: 21300000, guid: 23f49e1037607324e95dc81f9a531144, type: 3}
+  _icon: {fileID: 21300000, guid: c974c9d007d9b6c4996ff7e36f51c14a, type: 3}
   _coolDownDuration: 4
   _damage: 0
   _speed: 4

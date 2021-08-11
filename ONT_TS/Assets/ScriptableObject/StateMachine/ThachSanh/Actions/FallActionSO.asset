@@ -9,12 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a8faceb6d7a0d5241a48b67055e9f05e, type: 3}
-  m_Name: Earth1
+  m_Script: {fileID: 11500000, guid: b2396a5df729dbf4a81892234e384a0d, type: 3}
+  m_Name: FallActionSO
   m_EditorClassIdentifier: 
-  _abilityName: Earth1
-  _icon: {fileID: 21300000, guid: a02417a568e5ce7418274c3395e155a8, type: 3}
-  _coolDownDuration: 5
-  _damage: 10
-  _speed: 10
-  dashDuration: 1
+  fallVelocity: 9

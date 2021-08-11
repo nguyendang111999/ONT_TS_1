@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: Life1
   m_EditorClassIdentifier: 
   _abilityName: Life1
-  _icon: {fileID: 21300000, guid: 4ccbb13e3b705a2449770e8a86310f93, type: 3}
+  _icon: {fileID: 21300000, guid: cfd1beece98ca2a4fa6dacc94a4d20c8, type: 3}
   _coolDownDuration: 5
   _damage: 5
