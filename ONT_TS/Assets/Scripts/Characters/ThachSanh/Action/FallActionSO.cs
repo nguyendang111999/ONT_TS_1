@@ -13,21 +13,24 @@ public class FallActionSO : StateActionSO
 public class FallAction : StateAction
 {
     private PlayerController _thachSanh;
-
+    private float _fallVelocity;
     private float _fallingMovement;
+    private FallActionSO _originSO => (FallActionSO)base.OriginSO;
     public override void Awake(StateController stateController)
     {
         _thachSanh = stateController.GetComponent<PlayerController>();
     }
 
-    public override void OnStateEnter(){
-        _fallingMovement = _thachSanh.movementInput.y;
+    public override void OnStateEnter()
+    {
+        _fallingMovement = 0f;
+        _fallVelocity = _originSO.FallVelocity;
     }
 
     public override void OnStateUpdate()
     {
-        _fallingMovement += Physics.gravity.y * PlayerController.GRAVITY * Time.deltaTime;
-        Debug.Log("Gravity Y: " + _fallingMovement);
-        _thachSanh.movementInput.y = _fallingMovement;
+        if (_fallingMovement > -30f)
+            _fallingMovement += Physics.gravity.y * _fallVelocity * Time.deltaTime;
+        _thachSanh.movementInput.y += _fallingMovement;
     }
 }

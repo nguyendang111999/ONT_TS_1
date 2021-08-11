@@ -10,7 +10,6 @@ public class IsActiveConditionSO : StateConditionSO
 
 public class IsActiveCondition : Condition
 {
-    bool isActive = false;
     Damageable _damageable;
     GameObject _gameObject;
     public override void Awake(StateController stateController){

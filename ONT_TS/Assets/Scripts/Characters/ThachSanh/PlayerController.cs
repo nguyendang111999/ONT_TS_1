@@ -1,31 +1,33 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using UnityEngine.Animations.Rigging;
-using Cinemachine;
-using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;
-    [Header("Sub behaviours")]
 
+    [Header("Sub behaviours")]
     public ObjectPositionSO PlayerPos;
+    public Transform groundDetector;
+    public float groundDistance = 0.3f;
+    public LayerMask groundLayer;
+
+    private bool isGrounded = false;
+    public bool IsGrounded => isGrounded;
+
 
     [Header("Input Setting")]
     [SerializeField] Transform cam;
 
-    [Header("Movements")]
+    [Header("Movements Setting")]
     public CharacterStatsSO statsSO;
     public Vector2 _inputVector;
-    public float _velocity = 0f;
+    private float _velocity = 0f;
+    public float Velocity => _velocity;
 
     //These variable is use to smooth character rotation
     public float turnSmoothTime = 0.1f;
-    public float turnSmoothVelocity;
+    private float turnSmoothVelocity;
 
-    public const float GRAVITY = 10f;
     public const float MAX_FALL_SPEED = 20f;
 
     //Movement stats
@@ -41,16 +43,17 @@ public class PlayerController : MonoBehaviour
     private bool isSprinting = false;
     private bool isCrouching = false;
     public bool IsCrouching => isCrouching;
+    private bool isJump = false;
+    public bool IsJump => isJump;
     private bool isDashing = false;
     public bool IsDashing => isDashing;
-    public bool earthPerform = false;
+    private bool earthPerform = false;
     public bool IsPerformingEarth => earthPerform;
     private bool lifePerform = false;
     private bool IsPerformingLife => lifePerform;
 
     //Manipulate by state machine
     [NonSerialized] public Vector3 movementInput;
-    [NonSerialized] public Vector3 movementVector;
 
     //Attack setting
     [NonSerialized] public bool attackInput = false;
@@ -68,6 +71,9 @@ public class PlayerController : MonoBehaviour
         //Resgister dodge
         _inputReader.DoubleTapDodgeEventPerformed += OnDashTrigger;
 
+        //Register jump
+        _inputReader.JumpEvent += OnJump;
+        _inputReader.JumpCanceledEvent += OnJumpCanceled;
         //Resgister crouch
         // _inputReader.CrouchEvent += OnCrouching;
         // _inputReader.CrouchStopEvent += StopCrouching;
@@ -101,6 +107,10 @@ public class PlayerController : MonoBehaviour
 
         //Unresgister dodge
         _inputReader.DoubleTapDodgeEventStarted -= OnDashTrigger;
+
+        //Unregister jump
+        _inputReader.JumpEvent -= OnJump;
+        _inputReader.JumpCanceledEvent -= OnJumpCanceled;
 
         //Unresgister crouch
         //_inputReader.CrouchEvent -= OnCrouching;
@@ -145,8 +155,10 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckIfGrounded();
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
+        Debug.Log("Is Jump: " + isJump);
     }
 
     void ReCalculateMovement()
@@ -167,7 +179,7 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             tempDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-            transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
 
             //Adjust velocity
             targetSpeed = statsSO.RunSpeed;
@@ -194,6 +206,9 @@ public class PlayerController : MonoBehaviour
         movementInput = tempDirection.normalized * _velocity;
     }
 
+    private void CheckIfGrounded(){
+        isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
+    }
     //--- Event Listener ---
     private void OnMove(Vector2 movement)
     {
@@ -203,7 +218,6 @@ public class PlayerController : MonoBehaviour
     private void OnStopRunning() => isSprinting = false;
     private void OnDashTrigger() => isDashing = true;
     public void OnDashReset() => isDashing = false; //Used by Animation Event
-
     private void OnCrouching()
     {
         if (_velocity >= 7f && slideCountDown <= 0f)
@@ -213,6 +227,8 @@ public class PlayerController : MonoBehaviour
         }
         isCrouching = true;
     }
+    private void OnJump() => isJump = true;
+    private void OnJumpCanceled() => isJump = false;
     private void StopCrouching() => isCrouching = false;
     private void OnAttack() => attackInput = true;
     private void OnAttackCanceled() => attackInput = false;//Used by Animation Event

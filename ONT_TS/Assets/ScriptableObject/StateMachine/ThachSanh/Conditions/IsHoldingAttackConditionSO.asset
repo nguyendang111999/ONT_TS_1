@@ -9,6 +9,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 27cd1b727ac3f9c46873e1b2ddb4bc20, type: 3}
-  m_Name: IsOnGroundCondition
+  m_Script: {fileID: 11500000, guid: 6680e995f0527e74d8b2355beb3f072f, type: 3}
+  m_Name: IsHoldingAttackConditionSO
   m_EditorClassIdentifier: 

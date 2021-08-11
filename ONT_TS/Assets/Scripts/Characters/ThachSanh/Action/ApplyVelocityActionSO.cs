@@ -20,6 +20,5 @@ public class ApplyVelocityAction : StateAction
     public override void OnStateUpdate()
     {
         _characterController.Move(_thachSanh.movementInput * Time.deltaTime);
-        _thachSanh.movementVector = _characterController.velocity;
     }
 }

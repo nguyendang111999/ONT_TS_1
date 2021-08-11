@@ -27,7 +27,7 @@ public class AnimatorVelocityAction : StateAction
     }
     public override void OnStateUpdate()
     {
-        _velocity = _thachSanh._velocity;
+        _velocity = _thachSanh.Velocity;
         _anim.SetFloat(_parameterHash, _velocity);
     }
 }

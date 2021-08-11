@@ -301,7 +301,7 @@ PrefabInstance:
     - target: {fileID: 2953921902809309504, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 1.6057076
+      value: 7.64
       objectReference: {fileID: 0}
     - target: {fileID: 2953921902809309504, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
@@ -358,6 +358,11 @@ PrefabInstance:
       propertyPath: gameCam
       value: 
       objectReference: {fileID: 1274949753}
+    - target: {fileID: 6928349154133370867, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: groundDistance
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 7549689209835414069, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: m_TagString
@@ -832,7 +837,7 @@ GameObject:
   - component: {fileID: 588382916}
   - component: {fileID: 588382915}
   - component: {fileID: 588382914}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Terrain
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -3682,7 +3687,7 @@ PrefabInstance:
     - target: {fileID: 6594060057591914726, guid: 08d4813515f31df4c8a58a166c164347,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6835217
+      value: 2.35077
       objectReference: {fileID: 0}
     - target: {fileID: 6594060057591914726, guid: 08d4813515f31df4c8a58a166c164347,
         type: 3}
@@ -3717,7 +3722,7 @@ PrefabInstance:
     - target: {fileID: 7612984467765867884, guid: 08d4813515f31df4c8a58a166c164347,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -3.6835217
+      value: 2.35077
       objectReference: {fileID: 0}
     - target: {fileID: 7612984467765867884, guid: 08d4813515f31df4c8a58a166c164347,
         type: 3}
@@ -3727,6 +3732,11 @@ PrefabInstance:
     - target: {fileID: 8514726308507989302, guid: 08d4813515f31df4c8a58a166c164347,
         type: 3}
       propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8514726308507989302, guid: 08d4813515f31df4c8a58a166c164347,
+        type: 3}
+      propertyPath: m_LocalPosition.y
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 8514726308507989302, guid: 08d4813515f31df4c8a58a166c164347,

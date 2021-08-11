@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 61d54db710fdfdc4384f98326d027037, type: 3}
-  m_Name: IsMovingCondition
+  m_Script: {fileID: 11500000, guid: 038ced93ad1ced24c988a026ee1600a3, type: 3}
+  m_Name: JumpActionSO
   m_EditorClassIdentifier: 
-  minSpeed: 0.01
+  jumpForce: 20
