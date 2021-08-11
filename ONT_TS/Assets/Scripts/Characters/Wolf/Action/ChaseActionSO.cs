@@ -13,7 +13,7 @@ public class ChaseActionSO : StateActionSO
 public class ChaseAction : StateAction
 {
     private ChaseActionSO _originSO => (ChaseActionSO)base.OriginSO;
-    private WolfBehaviour _wolfBehaviour;
+    private EnemyBehaviour _wolfBehaviour;
     private Transform _chaseTarget;
     private CharacterStatsSO _stat;
     private NavMeshAgent _agent;
@@ -21,7 +21,7 @@ public class ChaseAction : StateAction
     public override void Awake(StateController stateController)
     {
         _agent = stateController.GetComponent<NavMeshAgent>();
-        _stat = stateController.GetComponent<WolfBehaviour>().CharStatsSO();
+        _stat = stateController.GetComponent<EnemyBehaviour>().CharStatsSO();
     }
 
     public override void OnStateUpdate()

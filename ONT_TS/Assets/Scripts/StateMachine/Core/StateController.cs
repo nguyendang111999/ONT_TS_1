@@ -12,11 +12,11 @@ namespace ONT_TS.StateMachine
         [SerializeField] private ScriptableObjects.TransitionTableSO _transitionTable = default;
         internal State _currentState;
         private readonly Dictionary<Type, Component> _cachedComponents = new Dictionary<Type, Component>();
-
         void Awake()
         {
             _currentState = _transitionTable.GetInitialState(this);
         }
+#if UNITY_EDITOR
         private void OnEnable()
         {
             UnityEditor.AssemblyReloadEvents.afterAssemblyReload += OnAfterAssemblyReload;
@@ -29,7 +29,7 @@ namespace ONT_TS.StateMachine
         {
             UnityEditor.AssemblyReloadEvents.afterAssemblyReload -= OnAfterAssemblyReload;
         }
-
+#endif
         public new bool TryGetComponent<T>(out T component) where T : Component
         {
             var type = typeof(T);

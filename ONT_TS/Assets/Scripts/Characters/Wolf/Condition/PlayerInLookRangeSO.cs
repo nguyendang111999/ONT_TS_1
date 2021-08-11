@@ -13,10 +13,10 @@ public class PlayerInLookRange : Condition
     private PlayerInLookRangeSO _originSO => (PlayerInLookRangeSO)base.OriginSO;
     private ObjectPositionSO _playerPosition;
     private Transform _playerPos;
-    private WolfBehaviour _wolf;
+    private EnemyBehaviour _wolf;
     private CharacterStatsSO _stat;
     public override void Awake(StateController stateController){
-        _wolf = stateController.GetComponent<WolfBehaviour>();
+        _wolf = stateController.GetComponent<EnemyBehaviour>();
         _stat = _wolf.CharStatsSO();
         _playerPosition = _wolf.PlayerPosition();
     }

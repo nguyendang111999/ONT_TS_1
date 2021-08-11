@@ -15,9 +15,8 @@ public class ResetGetHit : StateAction
     public override void Awake(StateController stateController){
         _damageable = stateController.GetComponent<Damageable>();
     }
-    public override void OnStateUpdate(){}
-
-    public override void OnStateExit(){
+    public override void OnStateUpdate(){
         _damageable.GetHit = false;
     }
+
 }

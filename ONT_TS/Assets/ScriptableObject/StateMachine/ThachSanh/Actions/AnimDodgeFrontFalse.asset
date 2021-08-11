@@ -17,4 +17,4 @@ MonoBehaviour:
   boolValue: 0
   intValue: 0
   floatValue: 0
-  whenToRun: 0
+  whenToRun: 2
