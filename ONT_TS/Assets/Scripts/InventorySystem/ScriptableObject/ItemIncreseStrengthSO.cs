@@ -1,4 +1,4 @@
-using System.Collections;
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -7,7 +7,7 @@ public class ItemIncreseStrengthSO : ItemSO
 {
     [SerializeField] private int _additionStrength;
     [SerializeField] private float _coolDown;
-    public float AdditionSpeed{
+    public int AdditionStrength{
         get { return _additionStrength;}
         set { value = _additionStrength;}
     }

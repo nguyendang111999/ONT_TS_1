@@ -14,7 +14,9 @@ public class OnDescription : MonoBehaviour
             item = value;
         }
     }
-    public void UseItem(){
+    
+    public void UseItem() //Get call when click use button
+    {
         // UseItemEvent.Invoke();
         gameObject.SetActive(false);
         _uiInventory.UseItem(item);

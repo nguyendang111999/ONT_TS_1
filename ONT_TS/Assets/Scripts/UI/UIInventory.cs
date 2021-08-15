@@ -19,12 +19,12 @@ public class UIInventory : MonoBehaviour
         {
             if(i<_currentInventory.Items.Count)
             {
-                slots[i]._items = _currentInventory.Items[i];
+                slots[i].Item = _currentInventory.Items[i];
                 slots[i].DisplayIcon();
             }
             else
             {
-                slots[i]._items = null;
+                slots[i].Item = null;
                 slots[i].DisplayIcon();
             }   
         }
@@ -33,7 +33,6 @@ public class UIInventory : MonoBehaviour
     public void UseItem(ItemSO item)
     {
         _abilityHolder.AddUsedItem(item);
-        if(item == null){Debug.Log("Shiet");}
         _currentInventory.Remove(item);
         gameObject.SetActive(false);
         gameObject.SetActive(true);

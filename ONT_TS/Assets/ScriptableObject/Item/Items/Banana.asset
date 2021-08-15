@@ -9,11 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d8bee490a90304949a5bd110bf93b113, type: 3}
+  m_Script: {fileID: 11500000, guid: b5659c00b1dd77d4b94acaec7f5dc084, type: 3}
   m_Name: Banana
   m_EditorClassIdentifier: 
   _itemName: Banana
   _previewImage: {fileID: 21300000, guid: a30cb24b294db2e43b5b68e454dbf340, type: 3}
-  _itemType: {fileID: 11400000, guid: 328c0bc229e9fe34e9808266552f515a, type: 2}
+  _itemType: {fileID: 11400000, guid: 5b0ebf0bd8e926445b996d303f62965d, type: 2}
   _description: This increase speed by 10%
   _prefab: {fileID: 4344712757876245780, guid: b6827e06f8c98674b9501a8d73f5b393, type: 3}
+  _additionSpeed: 10
+  _coolDown: 5

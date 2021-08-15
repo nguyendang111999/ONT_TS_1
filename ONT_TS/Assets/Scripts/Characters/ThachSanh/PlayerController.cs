@@ -3,9 +3,12 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Input Setting")]
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] Transform cam;
 
     [Header("Sub behaviours")]
+
     public ObjectPositionSO PlayerPos;
     public Transform groundDetector;
     public float groundDistance = 0.3f;
@@ -14,15 +17,14 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded = false;
     public bool IsGrounded => isGrounded;
 
-
-    [Header("Input Setting")]
-    [SerializeField] Transform cam;
-
     [Header("Movements Setting")]
     public CharacterStatsSO statsSO;
     public Vector2 _inputVector;
     private float _velocity = 0f;
     public float Velocity => _velocity;
+
+    public float _velocityBoost = 0f;
+
 
     //These variable is use to smooth character rotation
     public float turnSmoothTime = 0.1f;
@@ -40,6 +42,7 @@ public class PlayerController : MonoBehaviour
     private float slideCountDown = 0f;
     //End: Movement stats
 
+    private bool onVelocityBoost = false;
     private bool isSprinting = false;
     private bool isCrouching = false;
     public bool IsCrouching => isCrouching;
@@ -158,7 +161,6 @@ public class PlayerController : MonoBehaviour
         CheckIfGrounded();
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
-        Debug.Log("Is Jump: " + isJump);
     }
 
     void ReCalculateMovement()
@@ -172,6 +174,7 @@ public class PlayerController : MonoBehaviour
         }
 
         targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
+
         if (targetSpeed > 0)
         {
             //Calculate character's direction
@@ -185,29 +188,40 @@ public class PlayerController : MonoBehaviour
             targetSpeed = statsSO.RunSpeed;
 
             if (isSprinting)
+            {
                 targetSpeed = statsSO.SprintSpeed;
-
-            if (attackInput)
+            }
+            if (attackInput || onHeavyAttack)
+            {
                 targetSpeed = 0f;
-
+            }
+            
             if (isCrouching && _velocity >= statsSO.RunSpeed)
             {
                 targetSpeed += 10f;
             }
         }
         //Attach velocity
-        _velocity = _velocity == targetSpeed ? _velocity = targetSpeed : _velocity < targetSpeed
+        _velocity = _velocity == targetSpeed ? _velocity : _velocity < targetSpeed
         ? _velocity += acceleration * Time.deltaTime : _velocity -= decceleration * Time.deltaTime;
+
         //Round the velocity
         if ((_velocity < targetSpeed && _velocity + acceleration * Time.deltaTime > targetSpeed) ||
             (_velocity > targetSpeed && _velocity - acceleration * Time.deltaTime < targetSpeed))
             _velocity = targetSpeed;
 
+        if (onVelocityBoost) _velocity += _velocity * _velocityBoost;
+
         movementInput = tempDirection.normalized * _velocity;
     }
 
-    private void CheckIfGrounded(){
+    private void CheckIfGrounded()
+    {
         isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
+    }
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(groundDetector.position, groundDistance);
     }
     //--- Event Listener ---
     private void OnMove(Vector2 movement)

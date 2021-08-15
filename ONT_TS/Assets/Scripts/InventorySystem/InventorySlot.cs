@@ -4,6 +4,12 @@ using UnityEngine.UI;
 public class InventorySlot : MonoBehaviour
 {
     public ItemSO _items;
+    public ItemSO Item
+    {
+        get { return _items; }
+        set { _items = value; }
+    }
+    [Tooltip("This is description panel")]
     [SerializeField] private GameObject panel;
     private GameObject textName;
     private GameObject textDescription;
@@ -14,8 +20,8 @@ public class InventorySlot : MonoBehaviour
         textName = panel.transform.GetChild(0).gameObject;
         textDescription = panel.transform.GetChild(1).gameObject;
     }
-    //Display when click on item. Using by item button.
-    public void DisplayItem()
+    
+    public void DisplayItem() //Display when click on item. Using by item button.
     {
         if (_items == null)
         {

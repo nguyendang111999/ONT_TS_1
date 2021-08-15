@@ -5,25 +5,22 @@ using UnityEngine;
 public class Attack : MonoBehaviour
 {
     public int Damage { get; set; } = 0;
-    public int BoostedDamage { get; set;}
+    public int BoostedDamage { get; set;} = 0;
     private void Awake()
     {
         gameObject.SetActive(false);
     }
 
-    public void SetAdditionDamage(int percentage)
-    {
-        BoostedDamage += Damage * percentage;
-    }
-
     private void OnTriggerEnter(Collider other)
     {
+        int dmg = Damage + BoostedDamage;
         if (!other.CompareTag(gameObject.tag))
         {
             if (other.TryGetComponent(out Damageable damageableComp))
             {
                 if (!damageableComp.GetHit)
-                    damageableComp.ReceiveAttack(Damage);
+                    damageableComp.ReceiveAttack(dmg);
+                    Debug.Log("Damage is: " + dmg);
             }
         }
     }

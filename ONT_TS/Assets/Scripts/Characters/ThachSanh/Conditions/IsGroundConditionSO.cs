@@ -11,5 +11,8 @@ public class IsGroundCondition : Condition
     {
         _playerController = stateController.GetComponent<PlayerController>();
     }
-    protected override bool Statement() => _playerController.IsGrounded;
+    protected override bool Statement(){
+        Debug.Log("If grounded: " + _playerController.IsGrounded);
+        return _playerController.IsGrounded;
+    } 
 }

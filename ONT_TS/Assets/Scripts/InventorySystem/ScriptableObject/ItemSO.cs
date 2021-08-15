@@ -7,7 +7,7 @@ public enum Quality
     Normal, Good, Elite
 }
 
-[CreateAssetMenu(menuName = "Inventory/Item")]
+// [CreateAssetMenu(menuName = "Inventory/Item")]
 public class ItemSO : ScriptableObject
 {
     [Tooltip("Name of the item")]
