@@ -633,8 +633,10 @@ GameObject:
   - component: {fileID: 2953921902809309504}
   - component: {fileID: 9087802826164026170}
   - component: {fileID: 5572955459539382565}
+  - component: {fileID: 2365981588254009974}
   - component: {fileID: 2199688977289755985}
   - component: {fileID: 2232556145966500127}
+  - component: {fileID: 3472876872384513998}
   - component: {fileID: 382996608981470433}
   - component: {fileID: 6928349154133370867}
   - component: {fileID: 7176197177425960266}
@@ -704,6 +706,20 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.87, z: 0.08}
+--- !u!136 &2365981588254009974
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2573139772570713082}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.08
+  m_Direction: 1
+  m_Center: {x: 0, y: 1.19, z: 0.08}
 --- !u!136 &2199688977289755985
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -733,7 +749,19 @@ MonoBehaviour:
   _meleeAbilities: {fileID: 11400000, guid: 083c108c9debd5e40852b11b95e782f1, type: 2}
   _earthAbilities: {fileID: 11400000, guid: 1bb33f289d733294887ee3009d6da07d, type: 2}
   _lifeAbilities: {fileID: 11400000, guid: 3bf3d597e5fe4c84bb00aab2b6285348, type: 2}
-  _playerController: {fileID: 0}
+--- !u!114 &3472876872384513998
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2573139772570713082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5c197f0923f68e74485c1a581bcfc382, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _playerController: {fileID: 6928349154133370867}
   _attack: {fileID: 8228139909810070383}
   _damageable: {fileID: 3594260881157124737}
 --- !u!114 &382996608981470433
@@ -773,7 +801,7 @@ MonoBehaviour:
     m_Bits: 64
   statsSO: {fileID: 11400000, guid: ba01f7e38df2efe4daba5904997207d9, type: 2}
   _inputVector: {x: 0, y: 0}
-  _velocityBoost: 0
+  VelocityBoost: 0
   turnSmoothTime: 0.1
 --- !u!114 &7176197177425960266
 MonoBehaviour:

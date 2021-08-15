@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-[System.Serializable]
-public class BoolEvent : UnityEvent<bool, GameObject>
-{
+// [System.Serializable]
+// public class BoolEvent : UnityEvent<bool, GameObject>
+// {
 
-}
+// }
 public class ZoneTrigger : MonoBehaviour
 {
     [HideInInspector] public List<GameObject> currentCollisionsList = new List<GameObject>();

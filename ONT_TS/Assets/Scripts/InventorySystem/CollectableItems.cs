@@ -5,7 +5,7 @@ using UnityEngine;
 public class CollectableItems : MonoBehaviour
 {
     [SerializeField] private ItemSO _currentItem = default;
-    [SerializeField] private GameObject _go = default;
+    // [SerializeField] private GameObject _go = default;
 
     public ItemSO GetItem(){
         return _currentItem;
@@ -14,5 +14,4 @@ public class CollectableItems : MonoBehaviour
     public void SetItem(ItemSO item){
         _currentItem = item;
     }
-
 }

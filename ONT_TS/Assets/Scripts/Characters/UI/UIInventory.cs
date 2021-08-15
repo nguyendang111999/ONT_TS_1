@@ -5,7 +5,7 @@ using UnityEngine;
 public class UIInventory : MonoBehaviour
 {
     [SerializeField] private InventorySO _currentInventory;
-    [SerializeField] private AbilityHolder _abilityHolder;
+    [SerializeField] private ConsumableManager _consumableManager;
 
     private void OnEnable()
     {
@@ -32,7 +32,7 @@ public class UIInventory : MonoBehaviour
 
     public void UseItem(ItemSO item)
     {
-        _abilityHolder.AddUsedItem(item);
+        _consumableManager.AddUsedItem(item);
         _currentInventory.Remove(item);
         gameObject.SetActive(false);
         gameObject.SetActive(true);

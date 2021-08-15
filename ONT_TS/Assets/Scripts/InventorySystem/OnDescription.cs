@@ -4,7 +4,6 @@ using UnityEngine.Events;
 public class OnDescription : MonoBehaviour
 {
     private ItemSO item;
-    // public event UnityAction UseItemEvent;
     [SerializeField] private UIInventory _uiInventory;
     public ItemSO Item{
         get{
@@ -14,10 +13,9 @@ public class OnDescription : MonoBehaviour
             item = value;
         }
     }
-    
+
     public void UseItem() //Get call when click use button
     {
-        // UseItemEvent.Invoke();
         gameObject.SetActive(false);
         _uiInventory.UseItem(item);
     }

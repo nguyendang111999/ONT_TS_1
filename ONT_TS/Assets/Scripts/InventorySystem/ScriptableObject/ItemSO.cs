@@ -7,7 +7,7 @@ public enum Quality
     Normal, Good, Elite
 }
 
-// [CreateAssetMenu(menuName = "Inventory/Item")]
+[CreateAssetMenu(fileName="New Item", menuName = "Inventory/Item/Item")]
 public class ItemSO : ScriptableObject
 {
     [Tooltip("Name of the item")]
@@ -26,6 +26,14 @@ public class ItemSO : ScriptableObject
     [SerializeField]
     private string _description = default;
 
+    [Tooltip("Addition number to boost(Strength, Speed, Health)")]
+    [SerializeField]
+    private int _boostNumber;
+
+    [Tooltip("Time till effect ends")]
+    [SerializeField]
+    private float _coolDown;
+
     [Tooltip("Prefab model for item")]
     [SerializeField]
     private GameObject _prefab = default;
@@ -34,7 +42,15 @@ public class ItemSO : ScriptableObject
     public Sprite PreviewImage => _previewImage;
     public ItemTypeSO ItemType => _itemType;
     public string Description => _description;
+    public int BoostNumber => _boostNumber;
     public GameObject Prefab => _prefab;
+    
+    // public float CoolDown
+    // {
+    //     get { return _coolDown; }
+    //     set { value = _coolDown; }
+    // }
+    public float CoolDownCounter { get; set; }
 
-    public virtual void ResetCoolDown() { }
+    public virtual void ResetCoolDown() => CoolDownCounter = _coolDown;
 }

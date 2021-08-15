@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d8bee490a90304949a5bd110bf93b113, type: 3}
-  m_Name: Apple
+  m_Name: Mango
   m_EditorClassIdentifier: 
-  _itemName: Apple
-  _previewImage: {fileID: 21300000, guid: 0634e33368ada1542acade1bb82dfe55, type: 3}
-  _itemType: {fileID: 11400000, guid: 75d796f1d2b126c439a08836d4dbebf5, type: 2}
-  _description: This in crease health by 10
-  _boostNumber: 10
-  _coolDown: 0
-  _prefab: {fileID: 4344712757876245780, guid: 6a5e601d06909be49abb9cf15393d27f, type: 3}
+  _itemName: Mango
+  _previewImage: {fileID: 21300000, guid: 972c291fd04f8584cb61f17bac2c2884, type: 3}
+  _itemType: {fileID: 11400000, guid: 5b0ebf0bd8e926445b996d303f62965d, type: 2}
+  _description: This increase speed by 20%
+  _boostNumber: 20
+  _coolDown: 10
+  _prefab: {fileID: 4344712757876245780, guid: b6827e06f8c98674b9501a8d73f5b393, type: 3}

@@ -1,7 +1,6 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+//Open and close inventory tab
 public class UIManager : MonoBehaviour
 {
     [SerializeField] private InputReader _inputReader;

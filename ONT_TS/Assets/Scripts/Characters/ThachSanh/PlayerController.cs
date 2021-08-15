@@ -21,10 +21,10 @@ public class PlayerController : MonoBehaviour
     public CharacterStatsSO statsSO;
     public Vector2 _inputVector;
     private float _velocity = 0f;
+    public float _velocityDebug;
     public float Velocity => _velocity;
 
-    public float _velocityBoost = 0f;
-
+    public float VelocityBoost = 0f; //Speed boosted when using consumable item
 
     //These variable is use to smooth character rotation
     public float turnSmoothTime = 0.1f;
@@ -42,7 +42,7 @@ public class PlayerController : MonoBehaviour
     private float slideCountDown = 0f;
     //End: Movement stats
 
-    private bool onVelocityBoost = false;
+    public bool onVelocityBoost = false;
     private bool isSprinting = false;
     private bool isCrouching = false;
     public bool IsCrouching => isCrouching;
@@ -200,6 +200,8 @@ public class PlayerController : MonoBehaviour
             {
                 targetSpeed += 10f;
             }
+            
+            targetSpeed += targetSpeed * VelocityBoost/100;
         }
         //Attach velocity
         _velocity = _velocity == targetSpeed ? _velocity : _velocity < targetSpeed
@@ -210,8 +212,7 @@ public class PlayerController : MonoBehaviour
             (_velocity > targetSpeed && _velocity - acceleration * Time.deltaTime < targetSpeed))
             _velocity = targetSpeed;
 
-        if (onVelocityBoost) _velocity += _velocity * _velocityBoost;
-
+        _velocityDebug = _velocity;
         movementInput = tempDirection.normalized * _velocity;
     }
 
