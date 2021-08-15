@@ -37,6 +37,12 @@ public class Damageable : MonoBehaviour
         }
     }
 
+    public void Heal(int heal){
+        int maxHealth = _healthConfig.MaxHealth();
+        _currentHealth = (_currentHealth + heal < maxHealth) ? _currentHealth + heal : maxHealth;
+        _healthBar.SetHealth(_currentHealth);
+    }
+
     public void ResetHealth()
     {
         _currentHealth = _healthConfig.MaxHealth();

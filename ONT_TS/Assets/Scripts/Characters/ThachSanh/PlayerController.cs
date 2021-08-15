@@ -1,29 +1,36 @@
 using System;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.InputSystem;
-using UnityEngine.Animations.Rigging;
-using Cinemachine;
-using DG.Tweening;
 
 public class PlayerController : MonoBehaviour
 {
+    [Header("Input Setting")]
     [SerializeField] private InputReader _inputReader;
+    [SerializeField] Transform cam;
+
     [Header("Sub behaviours")]
 
     public ObjectPositionSO PlayerPos;
+    public Transform groundDetector;
+    public float groundDistance = 0.3f;
+    public LayerMask groundLayer;
 
-    [Header("Input Setting")]
-    [SerializeField] Transform cam;
+    private bool isGrounded = false;
+    public bool IsGrounded => isGrounded;
 
-    [Header("Movements")]
+    [Header("Movements Setting")]
     public CharacterStatsSO statsSO;
     public Vector2 _inputVector;
-    public float _velocity = 0f;
+    private float _velocity = 0f;
+    public float _velocityDebug;
+    public float Velocity => _velocity;
+
+    public float VelocityBoost = 0f; //Speed boosted when using consumable item
 
     //These variable is use to smooth character rotation
     public float turnSmoothTime = 0.1f;
-    public float turnSmoothVelocity;
+    private float turnSmoothVelocity;
+
+    public const float MAX_FALL_SPEED = 20f;
 
     //Movement stats
     private float acceleration;
@@ -35,19 +42,21 @@ public class PlayerController : MonoBehaviour
     private float slideCountDown = 0f;
     //End: Movement stats
 
+    public bool onVelocityBoost = false;
     private bool isSprinting = false;
     private bool isCrouching = false;
     public bool IsCrouching => isCrouching;
+    private bool isJump = false;
+    public bool IsJump => isJump;
     private bool isDashing = false;
     public bool IsDashing => isDashing;
-    public bool earthPerform = false;
+    private bool earthPerform = false;
     public bool IsPerformingEarth => earthPerform;
     private bool lifePerform = false;
     private bool IsPerformingLife => lifePerform;
 
     //Manipulate by state machine
     [NonSerialized] public Vector3 movementInput;
-    [NonSerialized] public Vector3 movementVector;
 
     //Attack setting
     [NonSerialized] public bool attackInput = false;
@@ -65,6 +74,9 @@ public class PlayerController : MonoBehaviour
         //Resgister dodge
         _inputReader.DoubleTapDodgeEventPerformed += OnDashTrigger;
 
+        //Register jump
+        _inputReader.JumpEvent += OnJump;
+        _inputReader.JumpCanceledEvent += OnJumpCanceled;
         //Resgister crouch
         // _inputReader.CrouchEvent += OnCrouching;
         // _inputReader.CrouchStopEvent += StopCrouching;
@@ -98,6 +110,10 @@ public class PlayerController : MonoBehaviour
 
         //Unresgister dodge
         _inputReader.DoubleTapDodgeEventStarted -= OnDashTrigger;
+
+        //Unregister jump
+        _inputReader.JumpEvent -= OnJump;
+        _inputReader.JumpCanceledEvent -= OnJumpCanceled;
 
         //Unresgister crouch
         //_inputReader.CrouchEvent -= OnCrouching;
@@ -142,6 +158,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckIfGrounded();
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
     }
@@ -157,6 +174,7 @@ public class PlayerController : MonoBehaviour
         }
 
         targetSpeed = Mathf.Clamp01(_inputVector.magnitude);
+
         if (targetSpeed > 0)
         {
             //Calculate character's direction
@@ -164,33 +182,48 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSmoothVelocity, turnSmoothTime);
 
             tempDirection = Quaternion.Euler(0, angle, 0) * Vector3.forward;
-            transform.rotation = Quaternion.Euler(0, targetAngle, 0);
+            transform.rotation = Quaternion.Euler(0, angle, 0);
 
             //Adjust velocity
             targetSpeed = statsSO.RunSpeed;
 
             if (isSprinting)
+            {
                 targetSpeed = statsSO.SprintSpeed;
-
-            if (attackInput)
+            }
+            if (attackInput || onHeavyAttack)
+            {
                 targetSpeed = 0f;
-
+            }
+            
             if (isCrouching && _velocity >= statsSO.RunSpeed)
             {
                 targetSpeed += 10f;
             }
+            
+            targetSpeed += targetSpeed * VelocityBoost/100;
         }
         //Attach velocity
-        _velocity = _velocity == targetSpeed ? _velocity = targetSpeed : _velocity < targetSpeed
+        _velocity = _velocity == targetSpeed ? _velocity : _velocity < targetSpeed
         ? _velocity += acceleration * Time.deltaTime : _velocity -= decceleration * Time.deltaTime;
+
         //Round the velocity
         if ((_velocity < targetSpeed && _velocity + acceleration * Time.deltaTime > targetSpeed) ||
             (_velocity > targetSpeed && _velocity - acceleration * Time.deltaTime < targetSpeed))
             _velocity = targetSpeed;
 
+        _velocityDebug = _velocity;
         movementInput = tempDirection.normalized * _velocity;
     }
 
+    private void CheckIfGrounded()
+    {
+        isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
+    }
+    private void OnDrawGizmosSelected() {
+        Gizmos.color = Color.red;
+        Gizmos.DrawSphere(groundDetector.position, groundDistance);
+    }
     //--- Event Listener ---
     private void OnMove(Vector2 movement)
     {
@@ -200,7 +233,6 @@ public class PlayerController : MonoBehaviour
     private void OnStopRunning() => isSprinting = false;
     private void OnDashTrigger() => isDashing = true;
     public void OnDashReset() => isDashing = false; //Used by Animation Event
-
     private void OnCrouching()
     {
         if (_velocity >= 7f && slideCountDown <= 0f)
@@ -210,6 +242,8 @@ public class PlayerController : MonoBehaviour
         }
         isCrouching = true;
     }
+    private void OnJump() => isJump = true;
+    private void OnJumpCanceled() => isJump = false;
     private void StopCrouching() => isCrouching = false;
     private void OnAttack() => attackInput = true;
     private void OnAttackCanceled() => attackInput = false;//Used by Animation Event
@@ -218,8 +252,11 @@ public class PlayerController : MonoBehaviour
     private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
     private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
     public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Used by Animation Event
+    private void EarthPerform(){
+        earthPerform = true;//Used by Animation Event
+        Debug.Log("Earth Ability: " + earthPerform);
+    } 
     private void EarthAbilityCancel() => earthPerform = false;
-    private void EarthPerform() => earthPerform = true;//Used by Animation Event
     private void OnLifeAbilityPerform() => lifePerform = true;
     private void OnLifeAbilityCancel() => lifePerform = false;//Used by Animation Event
 }

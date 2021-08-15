@@ -26,6 +26,14 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     //Crouch events
     // public event UnityAction CrouchEvent = delegate { };
     // public event UnityAction CrouchStopEvent = delegate { };
+
+    //Interact event
+    public event UnityAction InteractEvent = delegate { };
+
+    //Open inventory event
+    public event UnityAction OpenInventoryEvent = delegate { };
+    public event UnityAction CloseInventoryEvent = delegate { };
+
     //Melee attack event
     public event UnityAction AttackEvent = delegate { };
     public event UnityAction AttackCanceledEvent = delegate { };
@@ -193,29 +201,45 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         }
     }
 
-    public void OnChoose(InputAction.CallbackContext context)
-    {
-        throw new NotImplementedException();
-    }
-
     public void OnInteract(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if (context.phase == InputActionPhase.Performed)
+            InteractEvent.Invoke();
+    }
+
+    public void OnOpenInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            OpenInventoryEvent.Invoke();
     }
 
     public void OnEarthAbility(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
             EarthAbilityEvent.Invoke();
-        if(context.phase == InputActionPhase.Canceled)
+        if (context.phase == InputActionPhase.Canceled)
             EarthAbilityCancelEvent.Invoke();
     }
 
     public void OnLifeAbility(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
             LifeAbilityEvent.Invoke();
-        if(context.phase == InputActionPhase.Canceled)
+        if (context.phase == InputActionPhase.Canceled)
             LifeAbilityCancelEvent.Invoke();
+    }
+
+    public void OnChoose(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+
+        }
+    }
+
+    public void OnCloseInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            CloseInventoryEvent.Invoke();
     }
 }

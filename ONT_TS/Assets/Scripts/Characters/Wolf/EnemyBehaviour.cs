@@ -11,7 +11,7 @@ public class EnemyBehaviour : MonoBehaviour
     public Transform AttackPoint() => _attackPoint;
     private Damageable _damageable;
     public SpawnLocationSO Location { get; set; }
-    public bool isInActive = false;
+    [HideInInspector]public bool isInActive = false;
 
     private void OnEnable() {
         _damageable.OnDie += DeadAction;

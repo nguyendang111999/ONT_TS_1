@@ -2,14 +2,14 @@ using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(menuName = "State Machines/Conditions/IsGrounded")]
+[CreateAssetMenu(menuName = "State Machines/ThachSanh/Condition/IsGrounded")]
 public class IsGroundConditionSO : StateConditionSO<IsGroundCondition>{}
 public class IsGroundCondition : Condition
 {
-    private CharacterController _controller;
+    private PlayerController _playerController;
     public override void Awake(StateController stateController)
     {
-        _controller = stateController.GetComponent<CharacterController>();
+        _playerController = stateController.GetComponent<PlayerController>();
     }
-    protected override bool Statement() => _controller.isGrounded;
+    protected override bool Statement() => _playerController.IsGrounded;
 }
