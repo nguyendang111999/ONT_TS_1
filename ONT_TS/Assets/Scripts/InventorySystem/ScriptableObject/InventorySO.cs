@@ -27,4 +27,6 @@ public class InventorySO : ScriptableObject
         _items = _items.OrderBy(item => item.ItemName).ToList();
     }
 
+    public bool SlotIsFull() => Items.Count >= _slot;
+
 }

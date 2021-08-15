@@ -231,14 +231,15 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     public void OnChoose(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed){
-            
+        if (context.phase == InputActionPhase.Performed)
+        {
+
         }
     }
 
     public void OnCloseInventory(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed)
+        if (context.phase == InputActionPhase.Performed)
             CloseInventoryEvent.Invoke();
     }
 }

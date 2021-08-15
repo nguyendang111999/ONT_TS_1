@@ -28,7 +28,6 @@ public class InteractionManager : MonoBehaviour
     {
         List<GameObject> listObj = _zone.currentCollisionsList;
         if(listObj == null){
-            Debug.Log("No interaction");
             return;
         }
             
@@ -51,6 +50,9 @@ public class InteractionManager : MonoBehaviour
 
     public void Collect(GameObject obj)
     {
+        if(_foodInventory.SlotIsFull()){
+            return;
+        }
         CollectableItems collectableItem = obj.gameObject.GetComponent<CollectableItems>();
         _foodInventory.Add(collectableItem.GetItem());
         List<ItemSO> list = _foodInventory.Items;

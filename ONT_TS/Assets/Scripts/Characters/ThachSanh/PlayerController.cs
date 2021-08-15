@@ -252,8 +252,11 @@ public class PlayerController : MonoBehaviour
     private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
     private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
     public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Used by Animation Event
+    private void EarthPerform(){
+        earthPerform = true;//Used by Animation Event
+        Debug.Log("Earth Ability: " + earthPerform);
+    } 
     private void EarthAbilityCancel() => earthPerform = false;
-    private void EarthPerform() => earthPerform = true;//Used by Animation Event
     private void OnLifeAbilityPerform() => lifePerform = true;
     private void OnLifeAbilityCancel() => lifePerform = false;//Used by Animation Event
 }
