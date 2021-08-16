@@ -1467,6 +1467,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthConfig: {fileID: 11400000, guid: 2e0be56aef311ab4c8416d5a21f16c50, type: 2}
   _healthBar: {fileID: 4998797217658577314}
+  _droppableRewardConfig: {fileID: 11400000, guid: e43e330de3d85cd4f9402045dd48f510,
+    type: 2}
 --- !u!114 &4998797218364639638
 MonoBehaviour:
   m_ObjectHideFlags: 0

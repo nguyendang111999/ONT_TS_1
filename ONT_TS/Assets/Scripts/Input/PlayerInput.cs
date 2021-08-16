@@ -113,6 +113,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
+                },
+                {
+                    ""name"": ""Escape"",
+                    ""type"": ""Button"",
+                    ""id"": ""5a92bdd7-59dd-46d1-94d7-96a2eef034b3"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
                 }
             ],
             ""bindings"": [
@@ -291,6 +299,17 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""43c9badc-e973-4545-add2-8a0612a79bba"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""Escape"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -401,6 +420,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_EarthAbility = m_GamePlay.FindAction("EarthAbility", throwIfNotFound: true);
         m_GamePlay_LifeAbility = m_GamePlay.FindAction("LifeAbility", throwIfNotFound: true);
         m_GamePlay_OpenInventory = m_GamePlay.FindAction("OpenInventory", throwIfNotFound: true);
+        m_GamePlay_Escape = m_GamePlay.FindAction("Escape", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Choose = m_Menu.FindAction("Choose", throwIfNotFound: true);
@@ -469,6 +489,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_EarthAbility;
     private readonly InputAction m_GamePlay_LifeAbility;
     private readonly InputAction m_GamePlay_OpenInventory;
+    private readonly InputAction m_GamePlay_Escape;
     public struct GamePlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -485,6 +506,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @EarthAbility => m_Wrapper.m_GamePlay_EarthAbility;
         public InputAction @LifeAbility => m_Wrapper.m_GamePlay_LifeAbility;
         public InputAction @OpenInventory => m_Wrapper.m_GamePlay_OpenInventory;
+        public InputAction @Escape => m_Wrapper.m_GamePlay_Escape;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -530,6 +552,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @OpenInventory.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
+                @Escape.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -570,6 +595,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -671,6 +699,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnEarthAbility(InputAction.CallbackContext context);
         void OnLifeAbility(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
