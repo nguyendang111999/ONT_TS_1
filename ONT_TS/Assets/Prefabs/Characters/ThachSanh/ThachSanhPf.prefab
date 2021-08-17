@@ -643,6 +643,7 @@ GameObject:
   - component: {fileID: 2148671120120324169}
   - component: {fileID: 3594260881157124737}
   - component: {fileID: 8850889882803351951}
+  - component: {fileID: 2924650866901665249}
   m_Layer: 0
   m_Name: ThachSanhPf
   m_TagString: Player
@@ -657,8 +658,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2573139772570713082}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 10, y: 6, z: -14}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 6799183258936639847}
@@ -702,10 +703,10 @@ CharacterController:
   m_Height: 1.73
   m_Radius: 0.26
   m_SlopeLimit: 45
-  m_StepOffset: 0.3
-  m_SkinWidth: 0.08
-  m_MinMoveDistance: 0.001
-  m_Center: {x: 0, y: 0.87, z: 0.08}
+  m_StepOffset: 0.15
+  m_SkinWidth: 0.02
+  m_MinMoveDistance: 0.005
+  m_Center: {x: 0, y: 0.84, z: 0.08}
 --- !u!136 &2365981588254009974
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -801,8 +802,10 @@ MonoBehaviour:
     m_Bits: 64
   statsSO: {fileID: 11400000, guid: ba01f7e38df2efe4daba5904997207d9, type: 2}
   _inputVector: {x: 0, y: 0}
+  _velocityDebug: 0
   VelocityBoost: 0
   turnSmoothTime: 0.1
+  onVelocityBoost: 0
 --- !u!114 &7176197177425960266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -844,6 +847,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthConfig: {fileID: 11400000, guid: 0622bdb3d8cb4174a8b8ca8efbc22673, type: 2}
   _healthBar: {fileID: 0}
+  _droppableRewardConfig: {fileID: 0}
 --- !u!114 &8850889882803351951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -860,6 +864,33 @@ MonoBehaviour:
   - {fileID: 11400000, guid: eb4cc9a117a73984b8961517badeb682, type: 2}
   - {fileID: 11400000, guid: bdcf85cc6519f6746922a30d252e6f17, type: 2}
   - {fileID: 11400000, guid: 0cd2af460b7673a458f33c6703a35a76, type: 2}
+--- !u!114 &2924650866901665249
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2573139772570713082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e7ab24c1cc9ea542a3d252244eaf123, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 9087802826164026170}
+  _controller: {fileID: 5572955459539382565}
+  enableFeetIK: 1
+  heightFromGroundRaycast: 1.14
+  raycastDownDistance: 1.5
+  environmentLayer:
+    serializedVersion: 2
+    m_Bits: 64
+  pelvisOffset: 0
+  pelvisUpDownSpeed: 0.7
+  feetToIKPositionSpeed: 0.5
+  leftFootAnimVariableName: LeftFootCurve
+  rightFootAnimVariableName: RightFootCurve
+  useProIKFeature: 0
+  showSolverDebug: 1
 --- !u!1 &2821557116141279269
 GameObject:
   m_ObjectHideFlags: 0
@@ -1505,7 +1536,7 @@ BoxCollider:
   m_Enabled: 1
   serializedVersion: 2
   m_Size: {x: 0.4, y: 1.5, z: 1}
-  m_Center: {x: 0, y: -0.03, z: 0.66}
+  m_Center: {x: 0, y: -0.08, z: 0.66}
 --- !u!54 &8429939291626623763
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1699,7 +1730,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2362380581815810354}
   m_Layer: 0
-  m_Name: CamPoint
+  m_Name: FPSCamPoint
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

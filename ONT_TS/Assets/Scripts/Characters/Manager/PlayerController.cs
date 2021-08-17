@@ -30,7 +30,7 @@ public class PlayerController : MonoBehaviour
     public float turnSmoothTime = 0.1f;
     private float turnSmoothVelocity;
 
-    public const float MAX_FALL_SPEED = 20f;
+    public const float MAX_FALL_SPEED = -20f;
 
     //Movement stats
     private float acceleration;
@@ -57,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
     //Manipulate by state machine
     [NonSerialized] public Vector3 movementInput;
+    [NonSerialized] public Vector3 movementVector;
 
     //Attack setting
     [NonSerialized] public bool attackInput = false;

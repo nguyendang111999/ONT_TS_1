@@ -14,23 +14,23 @@ OcclusionCullingSettings:
 RenderSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 9
-  m_Fog: 0
-  m_FogColor: {r: 0.3207547, g: 0.3207547, b: 0.3207547, a: 1}
-  m_FogMode: 3
+  m_Fog: 1
+  m_FogColor: {r: 0.4811321, g: 0.4811321, b: 0.4811321, a: 1}
+  m_FogMode: 1
   m_FogDensity: 0.01
   m_LinearFogStart: 0
-  m_LinearFogEnd: 300
+  m_LinearFogEnd: 1000
   m_AmbientSkyColor: {r: 0.212, g: 0.227, b: 0.259, a: 1}
   m_AmbientEquatorColor: {r: 0.114, g: 0.125, b: 0.133, a: 1}
   m_AmbientGroundColor: {r: 0.047, g: 0.043, b: 0.035, a: 1}
   m_AmbientIntensity: 1
   m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
-  m_SkyboxMaterial: {fileID: 2100000, guid: 67950864b84c5db4f9eee7ca51c85571, type: 2}
-  m_HaloStrength: 0.5
+  m_SkyboxMaterial: {fileID: 2100000, guid: b5a27fa4b11bfb24cbc6daff3802c229, type: 2}
+  m_HaloStrength: 0.358
   m_FlareStrength: 1
-  m_FlareFadeSpeed: 3
-  m_HaloTexture: {fileID: 0}
+  m_FlareFadeSpeed: 2
+  m_HaloTexture: {fileID: 2800000, guid: 8caa437b19957a045866b84c6218a0db, type: 3}
   m_SpotCookie: {fileID: 10001, guid: 0000000000000000e000000000000000, type: 0}
   m_DefaultReflectionMode: 0
   m_DefaultReflectionResolution: 128
@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1086259569}
-  m_IndirectSpecularColor: {r: 0.35861322, g: 0.7300453, b: 0.9642526, a: 1}
+  m_IndirectSpecularColor: {r: 0.07851578, g: 0.13420716, b: 0.16658711, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1117,6 +1117,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: ThachSanhPf
       objectReference: {fileID: 0}
+    - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: useProIKFeature
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: pelvisUpDownSpeed
+      value: 0.717
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: environmentLayer.m_Bits
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2953921902809309504, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: m_RootOrder
@@ -1177,6 +1197,11 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 1490232870}
+    - target: {fileID: 5572955459539382565, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_Center.y
+      value: 0.7
+      objectReference: {fileID: 0}
     - target: {fileID: 6928349154133370867, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: cam
@@ -1424,7 +1449,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1086259570}
   - component: {fileID: 1086259569}
-  - component: {fileID: 1086259571}
   m_Layer: 0
   m_Name: Directional Light
   m_TagString: Untagged
@@ -1443,8 +1467,8 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9647059, g: 0.9529412, b: 0.827451, a: 1}
-  m_Intensity: 1.5
+  m_Color: {r: 0.95657593, g: 0.9622642, b: 0.4765931, a: 1}
+  m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
   m_InnerSpotAngle: 21.80208
@@ -1477,7 +1501,7 @@ Light:
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 0}
+  m_Flare: {fileID: 12100000, guid: 54fbbf098d116effa00081aba8ad6659, type: 2}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
@@ -1508,22 +1532,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 26.03, y: -48.364, z: -25.203}
---- !u!123 &1086259571
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1086259568}
-  m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: 54fbbf098d116effa00081aba8ad6659, type: 2}
-  m_Color: {r: 1, g: 1, b: 1, a: 0}
-  m_Brightness: 2
-  m_FadeSpeed: 30
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 1
 --- !u!1 &1311689632
 GameObject:
   m_ObjectHideFlags: 0

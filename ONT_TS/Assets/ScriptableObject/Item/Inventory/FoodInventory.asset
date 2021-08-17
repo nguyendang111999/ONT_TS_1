@@ -15,14 +15,9 @@ MonoBehaviour:
   _items:
   - {fileID: 11400000, guid: b213ec829421fc644b191836907f6c98, type: 2}
   - {fileID: 11400000, guid: b213ec829421fc644b191836907f6c98, type: 2}
-  - {fileID: 11400000, guid: b213ec829421fc644b191836907f6c98, type: 2}
   - {fileID: 11400000, guid: 43224b58ef4e54f44b6d02d3bcf597ff, type: 2}
   - {fileID: 11400000, guid: 43224b58ef4e54f44b6d02d3bcf597ff, type: 2}
   - {fileID: 11400000, guid: 43224b58ef4e54f44b6d02d3bcf597ff, type: 2}
   - {fileID: 11400000, guid: 43224b58ef4e54f44b6d02d3bcf597ff, type: 2}
-  - {fileID: 11400000, guid: dddd7aae419dcfd43a4a9103feb79bb9, type: 2}
-  - {fileID: 11400000, guid: dddd7aae419dcfd43a4a9103feb79bb9, type: 2}
-  - {fileID: 11400000, guid: dddd7aae419dcfd43a4a9103feb79bb9, type: 2}
-  - {fileID: 11400000, guid: dddd7aae419dcfd43a4a9103feb79bb9, type: 2}
   - {fileID: 11400000, guid: dddd7aae419dcfd43a4a9103feb79bb9, type: 2}
   _slot: 24

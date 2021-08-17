@@ -742,10 +742,30 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2199688977289755985, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365981588254009974, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2365981588254009974, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_IsTrigger
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2573139772570713082, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: m_Name
       value: ThachSanhPf
+      objectReference: {fileID: 0}
+    - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2953921902809309504, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
@@ -807,6 +827,17 @@ PrefabInstance:
       propertyPath: _healthBar
       value: 
       objectReference: {fileID: 964705643}
+    - target: {fileID: 3594260881157124737, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: _droppableRewardConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 7649a29189d05994683a9661242458e8,
+        type: 2}
+    - target: {fileID: 5572955459539382565, guid: d0fff06aee67ca24c87c98185036c290,
+        type: 3}
+      propertyPath: m_StepOffset
+      value: 0.15
+      objectReference: {fileID: 0}
     - target: {fileID: 6928349154133370867, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: cam
@@ -2313,6 +2344,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthConfig: {fileID: 11400000, guid: f4571699a8185d04f92f53ff9cf44b66, type: 2}
   _healthBar: {fileID: 964705643}
+  _droppableRewardConfig: {fileID: 0}
 --- !u!65 &1709048958
 BoxCollider:
   m_ObjectHideFlags: 0

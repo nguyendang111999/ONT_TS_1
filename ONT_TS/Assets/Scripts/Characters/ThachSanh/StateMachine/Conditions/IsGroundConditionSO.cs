@@ -6,10 +6,10 @@ using ONT_TS.StateMachine.ScriptableObjects;
 public class IsGroundConditionSO : StateConditionSO<IsGroundCondition>{}
 public class IsGroundCondition : Condition
 {
-    private PlayerController _playerController;
+    private CharacterController _controller;
     public override void Awake(StateController stateController)
     {
-        _playerController = stateController.GetComponent<PlayerController>();
+        _controller = stateController.GetComponent<CharacterController>();
     }
-    protected override bool Statement() => _playerController.IsGrounded;
+    protected override bool Statement() => _controller.isGrounded;
 }

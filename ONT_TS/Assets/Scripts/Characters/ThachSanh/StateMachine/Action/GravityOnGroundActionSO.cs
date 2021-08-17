@@ -22,6 +22,6 @@ public class GravityOnGroundAction : StateAction
     
     public override void OnStateUpdate()
     {
-        _playerController.movementInput.y = _originSO.VerticalPull;
+        _playerController.movementVector.y = _originSO.VerticalPull;
     }
 }

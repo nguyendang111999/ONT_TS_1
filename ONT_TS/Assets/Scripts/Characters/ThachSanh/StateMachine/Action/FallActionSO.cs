@@ -29,8 +29,9 @@ public class FallAction : StateAction
 
     public override void OnStateUpdate()
     {
-        if (_fallingMovement > -30f)
+        if (_fallingMovement > PlayerController.MAX_FALL_SPEED)
             _fallingMovement += Physics.gravity.y * _fallVelocity * Time.deltaTime;
-        _thachSanh.movementInput.y += _fallingMovement;
+        Debug.Log("Falling movement: " + _fallingMovement);
+        _thachSanh.movementVector.y = _fallingMovement;
     }
 }

@@ -12,11 +12,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4cb61af6358ce1946b64d9412d8d1e9e, type: 3}
   m_Name: WolfDropGroup
   m_EditorClassIdentifier: 
-  _distance: 0
+  _distance: 1
   _dropGroups:
     _drops:
     - _item: {fileID: 11400000, guid: dddd7aae419dcfd43a4a9103feb79bb9, type: 2}
       _dropRate: 0.3
     - _item: {fileID: 11400000, guid: 43224b58ef4e54f44b6d02d3bcf597ff, type: 2}
       _dropRate: 0.8
-    _dropRate: 0.8
+    _dropRate: 1
