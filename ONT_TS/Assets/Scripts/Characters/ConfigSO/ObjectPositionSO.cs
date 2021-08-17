@@ -1,6 +1,6 @@
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "Character/Config/Player Position")]
+[CreateAssetMenu(menuName = "CharacterConfig/Player Position")]
 public class ObjectPositionSO : ScriptableObject
 {
     [HideInInspector] public bool isSet = false;

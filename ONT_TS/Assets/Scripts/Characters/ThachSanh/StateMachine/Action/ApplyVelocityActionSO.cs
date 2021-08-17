@@ -19,8 +19,6 @@ public class ApplyVelocityAction : StateAction
     }
     public override void OnStateUpdate()
     {
-        Debug.Log("Movement vector x: " + _thachSanh.movementVector.x);
-        Debug.Log("Movement vector z: " + _thachSanh.movementVector.z);
         _characterController.Move(_thachSanh.movementVector * Time.deltaTime);
         _thachSanh.movementVector = _characterController.velocity;
     }
