@@ -233,7 +233,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         if (context.phase == InputActionPhase.Performed)
         {
-
+            
         }
     }
 
@@ -241,5 +241,10 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         if (context.phase == InputActionPhase.Performed)
             CloseInventoryEvent.Invoke();
+    }
+
+    public void OnEscape(InputAction.CallbackContext context)
+    {
+        throw new NotImplementedException();
     }
 }

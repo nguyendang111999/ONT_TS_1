@@ -45,11 +45,6 @@ public class ItemSO : ScriptableObject
     public int BoostNumber => _boostNumber;
     public GameObject Prefab => _prefab;
     
-    // public float CoolDown
-    // {
-    //     get { return _coolDown; }
-    //     set { value = _coolDown; }
-    // }
     public float CoolDownCounter { get; set; }
 
     public virtual void ResetCoolDown() => CoolDownCounter = _coolDown;

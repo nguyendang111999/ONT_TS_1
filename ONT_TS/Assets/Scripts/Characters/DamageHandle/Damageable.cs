@@ -8,6 +8,9 @@ public class Damageable : MonoBehaviour
     [SerializeField] private HealthConfigSO _healthConfig;
     [SerializeField] private HealthBar _healthBar;
 
+    [SerializeField] private DroppableRewardSO _droppableRewardConfig;
+    public DroppableRewardSO DroppableRewardConfig => _droppableRewardConfig;
+
     private int _currentHealth = default;
     public bool GetHit { get; set; }
     public bool IsDead { get; set; }
