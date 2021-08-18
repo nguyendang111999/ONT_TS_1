@@ -3,7 +3,7 @@ using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 using UnityEngine;
 
-[CreateAssetMenu(fileName = "PlayerIsInZone", menuName = "State Machines/Conditions/Timer")]
+[CreateAssetMenu(fileName = "New Time Counter", menuName = "State Machines/Conditions/Timer")]
 public class IsWaitingSO : StateConditionSO
 {
     [Tooltip("After the certain time you've declare, this condition will return true")]

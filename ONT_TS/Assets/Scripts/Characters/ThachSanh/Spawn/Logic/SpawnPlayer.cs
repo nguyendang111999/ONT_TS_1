@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class SpawnPlayer : MonoBehaviour
 {
-    /// <summary>
-    /// Add save point to saved list
-    /// </summary>
-    public void SavePoint(){
+    [SerializeField] private Damageable _damageable;
 
+    [SerializeField] private SavePointListSO _savePoint;
+
+    public void Spawn(){
+        _damageable.ResetHealth();
+        gameObject.transform.position = _savePoint.GetLastSavePoint();
     }
+    
 }

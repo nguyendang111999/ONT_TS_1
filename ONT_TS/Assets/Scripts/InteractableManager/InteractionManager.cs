@@ -26,6 +26,7 @@ public class InteractionManager : MonoBehaviour
 
     public void OnInteractionButtonPress()
     {
+        Debug.Log("Press");
         List<GameObject> listObj = _zone.currentCollisionsList;
         if(listObj == null){
             return;
@@ -43,6 +44,12 @@ public class InteractionManager : MonoBehaviour
             {
                 Talk(obj);
                 listObj.Remove(obj);
+                break;
+            }
+            if(obj.CompareTag("Savepoint")){
+                Debug.Log("Save point");
+                SavePointHandler sph = obj.GetComponent<SavePointHandler>();
+                sph.SaveToList();
                 break;
             }
         }

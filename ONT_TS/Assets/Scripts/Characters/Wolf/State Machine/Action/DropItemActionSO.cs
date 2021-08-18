@@ -47,8 +47,6 @@ public class DropItemAction : StateAction
         ItemSO item = null;
         GameObject itemPrefab = null;
 
-        Debug.Log("list size: " + dropGroup.Drops.Count);
-
         foreach (DropItem dropItem in dropGroup.Drops)
         {
             Debug.Log("Item: " + dropItem.Item.ItemName);

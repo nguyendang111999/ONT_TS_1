@@ -10,6 +10,7 @@ TagManager:
   - NPC
   - ItemDescription
   - Fire
+  - Savepoint
   layers:
   - Default
   - TransparentFX

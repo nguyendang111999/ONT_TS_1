@@ -2,17 +2,13 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class SavePointLocationSO : MonoBehaviour
+[CreateAssetMenu(fileName = "New Savepoint", menuName = "SavePoint/Savepoint Location")]
+public class SavePointLocationSO : ScriptableObject
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private Vector3 _location;//Location to spawn player
+    public Vector3 SpawnLocation
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        get { return _location; }
+        set { _location = value; }
     }
 }

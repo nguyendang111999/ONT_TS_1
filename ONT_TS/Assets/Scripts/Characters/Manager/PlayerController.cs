@@ -7,8 +7,8 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] Transform cam;
 
-    [Header("Sub behaviours")]
 
+    [Header("Sub behaviours")]
     public ObjectPositionSO PlayerPos;
     public Transform groundDetector;
     public float groundDistance = 0.3f;
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
 
         //Unregister earth ability
         _inputReader.EarthAbilityEvent -= EarthPerform;
-        // _inputReader.EarthAbilityCancelEvent -= EarthAbilityCancel;
+        _inputReader.EarthAbilityCancelEvent -= EarthAbilityCancel;
 
         //Unregister life ability
         _inputReader.LifeAbilityEvent -= OnLifeAbilityPerform;
