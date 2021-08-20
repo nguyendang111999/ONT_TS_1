@@ -24,7 +24,7 @@ RenderSettings:
   m_AmbientEquatorColor: {r: 0.33962262, g: 0.2688679, b: 0.25151297, a: 1}
   m_AmbientGroundColor: {r: 0.122641504, g: 0.10513824, b: 0.08851014, a: 1}
   m_AmbientIntensity: 1
-  m_AmbientMode: 1
+  m_AmbientMode: 0
   m_SubtractiveShadowColor: {r: 0.42, g: 0.478, b: 0.627, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: b5a27fa4b11bfb24cbc6daff3802c229, type: 2}
   m_HaloStrength: 0.358
@@ -1265,7 +1265,7 @@ PrefabInstance:
     - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
       propertyPath: m_Enabled
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2924650866901665249, guid: d0fff06aee67ca24c87c98185036c290,
         type: 3}
@@ -1995,7 +1995,7 @@ Light:
   serializedVersion: 10
   m_Type: 1
   m_Shape: 0
-  m_Color: {r: 0.9607843, g: 0.8724938, b: 0.47843137, a: 1}
+  m_Color: {r: 0.9622642, g: 0.9138853, b: 0.70354223, a: 1}
   m_Intensity: 1.2
   m_Range: 10
   m_SpotAngle: 30
@@ -2029,7 +2029,7 @@ Light:
     m_UseCullingMatrixOverride: 0
   m_Cookie: {fileID: 0}
   m_DrawHalo: 0
-  m_Flare: {fileID: 12100000, guid: 54fbbf098d116effa00081aba8ad6659, type: 2}
+  m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:
     serializedVersion: 2
