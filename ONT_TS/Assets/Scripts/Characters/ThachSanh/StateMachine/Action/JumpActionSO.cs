@@ -25,7 +25,7 @@ class JumpAction : StateAction
     }
     public override void OnStateEnter(){
         _verticalHeight = _originSO.JumpForce;
-        _playerController.movementVector.y = Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y);
+        _playerController.movementVector.y = Mathf.Sqrt(jumpForce * -2f * Physics.gravity.y) ;
     }
     public override void OnStateUpdate()
     {
