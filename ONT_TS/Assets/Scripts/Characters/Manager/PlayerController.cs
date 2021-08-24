@@ -10,7 +10,6 @@ public class PlayerController : MonoBehaviour
 
     [Header("Sub behaviours")]
     public ObjectPositionSO PlayerPos;
-    public Transform groundDetector;
     public float groundDistance = 0.3f;
     public LayerMask groundLayer;
 
@@ -159,7 +158,6 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        CheckIfGrounded();
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
     }
@@ -217,14 +215,6 @@ public class PlayerController : MonoBehaviour
         movementInput = tempDirection.normalized * _velocity;
     }
 
-    private void CheckIfGrounded()
-    {
-        isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
-    }
-    private void OnDrawGizmosSelected() {
-        Gizmos.color = Color.red;
-        Gizmos.DrawSphere(groundDetector.position, groundDistance);
-    }
     //--- Event Listener ---
     private void OnMove(Vector2 movement)
     {

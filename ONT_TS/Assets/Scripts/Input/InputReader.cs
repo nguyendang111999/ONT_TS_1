@@ -7,6 +7,7 @@ using System;
 [CreateAssetMenu(fileName = "InputReader", menuName = "Input")]
 public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, PlayerInput.IMenuActions, PlayerInput.IDialogueActions
 {
+    #region Action
     //Gameplay
     public event UnityAction<Vector2> MoveEvent = delegate { };
     public event UnityAction<Vector2> RotateCameraEvent = delegate { };
@@ -51,9 +52,11 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction EarthAbilityCancelEvent = delegate { };
     public event UnityAction LifeAbilityEvent = delegate { };
     public event UnityAction LifeAbilityCancelEvent = delegate { };
+    #endregion
 
     private PlayerInput playerInput;
 
+    #region Setup Functions
     private void OnEnable()
     {
         if (playerInput == null)
@@ -94,7 +97,9 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         playerInput.GamePlay.Disable();
         playerInput.Dialogue.Disable();
     }
+    #endregion
 
+    #region Raise Unity Action for each input
 
     //Implements from PlayerInterface
     void PlayerInput.IGamePlayActions.OnCamInput(InputAction.CallbackContext context)
@@ -247,4 +252,5 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         throw new NotImplementedException();
     }
+    #endregion
 }

@@ -23,7 +23,7 @@ public class SetAbility : StateAction
     private string _abilityName;
     private AbilityContainerSO _abilities;
     private Attack _attack;
-    private GameObject _tempObj;
+    // private GameObject _tempObj;
 
     public override void Awake(StateController stateController)
     {

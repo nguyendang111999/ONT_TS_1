@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: AlertState
   m_EditorClassIdentifier: 
   _actions:
+  - {fileID: 11400000, guid: fed3eb90bd0b44747a4a4c61e7b39e3c, type: 2}
   - {fileID: 11400000, guid: 02f21ac322af03448a5a3f3e5972aa08, type: 2}
   - {fileID: 11400000, guid: 01c067919cf69924f911e8e94026a675, type: 2}
   - {fileID: 11400000, guid: a762b2970ed9d6547838ebf4895b89ea, type: 2}
