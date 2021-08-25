@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 155d6eed3fec197449811cafb0738584, type: 3}
+  m_Name: AxeMelee2Sound
+  m_EditorClassIdentifier: 
+  _source: {fileID: 0}
+  _name: AxeMelee2Sound
+  _audio: {fileID: 8300000, guid: 1e6cc5b24d1b5f9449f407968b629207, type: 3}
+  _volume: 1
+  _pitch: 1
+  _isLoop: 0
