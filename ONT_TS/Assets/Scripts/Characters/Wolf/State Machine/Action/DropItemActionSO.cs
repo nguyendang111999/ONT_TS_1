@@ -23,12 +23,12 @@ public class DropItemAction : StateAction
 
     public override void OnStateEnter()
     {
-        DropAllRewards(_currenTransform.position);
+        DropRewards(_currenTransform.position);
     }
 
     public override void OnStateUpdate() { }
 
-    private void DropAllRewards(Vector3 pos)
+    private void DropRewards(Vector3 pos)
     {
         DropGroup dropGroup = _dropReward.DropGroup;
         float randValue = Random.value;

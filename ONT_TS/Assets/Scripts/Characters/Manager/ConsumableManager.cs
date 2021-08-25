@@ -43,7 +43,6 @@ public class ConsumableManager : MonoBehaviour
         for (int i = 0; i < list.Count; i++)
         {
             ItemSO item = list[i];
-            Debug.Log("Cooldown: " + item.CoolDownCounter);
             if (item.CoolDownCounter <= 0)
             {
                 list.Remove(item);

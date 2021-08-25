@@ -10,14 +10,14 @@ public class AudioManager : MonoBehaviour
     {
         SetupAudio();
     }
-    private void OnDisable()
-    {
-        // AudioSource[] a = GetComponents<AudioSource>();
-        // foreach (AudioSource audio in a)
-        // {
-        //     Destroy(audio);
-        // }
-    }
+    // private void OnDisable()
+    // {
+    //     AudioSource[] a = GetComponents<AudioSource>();
+    //     foreach (AudioSource audio in a)
+    //     {
+    //         Destroy(audio);
+    //     }
+    // }
     public void PlayMelleSound1() => PlayAudio("AxeMelee1Sound");
     public void PlayMelleSound2() => PlayAudio("AxeMelee2Sound");
     public void PlayRunSound() => PlayAudio("RunningSound");
