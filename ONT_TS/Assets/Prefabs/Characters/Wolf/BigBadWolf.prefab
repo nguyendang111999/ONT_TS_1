@@ -1264,13 +1264,14 @@ GameObject:
   - component: {fileID: 328742164875037287}
   - component: {fileID: 4998797218364639640}
   - component: {fileID: 4998797218364639642}
-  - component: {fileID: 4998797218364639637}
-  - component: {fileID: 4998797218364639635}
   - component: {fileID: 4998797218364639636}
+  - component: {fileID: 4998797218364639637}
   - component: {fileID: 4998797218364639639}
   - component: {fileID: 4998797218364639638}
   - component: {fileID: 4998797218364639641}
   - component: {fileID: 4998797218364639643}
+  - component: {fileID: 4998797218364639635}
+  - component: {fileID: -9208310277013084716}
   m_Layer: 0
   m_Name: BigBadWolf
   m_TagString: Enemy
@@ -1353,84 +1354,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.31, y: 1, z: 1.73}
   m_Center: {x: 0, y: 0.5, z: 0}
---- !u!95 &4998797218364639637
-Animator:
-  serializedVersion: 3
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304715086968858540}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 242fc2488bef56640a2548063941513f, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &4998797218364639635
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304715086968858540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  boneShape: 1
-  drawBones: 1
-  drawTripods: 0
-  boneSize: 1
-  tripodSize: 1
-  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
-  m_Transforms:
-  - {fileID: 4816022457001409814}
-  - {fileID: 8704887070506481282}
-  - {fileID: 5101156955497010375}
-  - {fileID: 6043772560449716894}
-  - {fileID: 1586164456126560166}
-  - {fileID: 4973805238761721643}
-  - {fileID: 6377667554557455616}
-  - {fileID: 1858073574682070679}
-  - {fileID: 6765795080128961580}
-  - {fileID: 1287267225524847136}
-  - {fileID: 4214687038211532142}
-  - {fileID: 4158767636890879229}
-  - {fileID: 7082276094311666528}
-  - {fileID: 7157134653225399527}
-  - {fileID: 3693406501055018415}
-  - {fileID: 6586516643419301467}
-  - {fileID: 5697119811279398328}
-  - {fileID: 5726787176294508879}
-  - {fileID: 8807131760865949590}
-  - {fileID: 6264856866120354929}
-  - {fileID: 389297914641945499}
-  - {fileID: 8291566897738605045}
-  - {fileID: 2975205834516296885}
-  - {fileID: 8382761247653265528}
-  - {fileID: 4181690861724941566}
-  - {fileID: 3128648917619728205}
-  - {fileID: 7440388121315812594}
-  - {fileID: 8660551112156107897}
-  - {fileID: 7236744208755474155}
-  - {fileID: 4148583673539058279}
-  - {fileID: 737254974390827878}
-  - {fileID: 2395257527927447721}
-  - {fileID: 7700696398466591651}
-  - {fileID: 6647348916078921361}
-  - {fileID: 356033539423451256}
-  - {fileID: 8390838405611020799}
-  - {fileID: 2557544275330913611}
-  - {fileID: 5826414979461324620}
-  - {fileID: 5807598500140114099}
-  - {fileID: 1011570604164168661}
 --- !u!195 &4998797218364639636
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1453,6 +1376,25 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
+--- !u!95 &4998797218364639637
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715086968858540}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 242fc2488bef56640a2548063941513f, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!114 &4998797218364639639
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1512,6 +1454,78 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCollider: {fileID: 4998797217361136291}
+--- !u!114 &4998797218364639635
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715086968858540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b2d8418b0b9634b1892b0268dd9c2743, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boneShape: 1
+  drawBones: 1
+  drawTripods: 0
+  boneSize: 1
+  tripodSize: 1
+  boneColor: {r: 0, g: 0, b: 1, a: 0.5}
+  m_Transforms:
+  - {fileID: 4816022457001409814}
+  - {fileID: 8704887070506481282}
+  - {fileID: 5101156955497010375}
+  - {fileID: 6043772560449716894}
+  - {fileID: 1586164456126560166}
+  - {fileID: 4973805238761721643}
+  - {fileID: 6377667554557455616}
+  - {fileID: 1858073574682070679}
+  - {fileID: 6765795080128961580}
+  - {fileID: 1287267225524847136}
+  - {fileID: 4214687038211532142}
+  - {fileID: 4158767636890879229}
+  - {fileID: 7082276094311666528}
+  - {fileID: 7157134653225399527}
+  - {fileID: 3693406501055018415}
+  - {fileID: 6586516643419301467}
+  - {fileID: 5697119811279398328}
+  - {fileID: 5726787176294508879}
+  - {fileID: 8807131760865949590}
+  - {fileID: 6264856866120354929}
+  - {fileID: 389297914641945499}
+  - {fileID: 8291566897738605045}
+  - {fileID: 2975205834516296885}
+  - {fileID: 8382761247653265528}
+  - {fileID: 4181690861724941566}
+  - {fileID: 3128648917619728205}
+  - {fileID: 7440388121315812594}
+  - {fileID: 8660551112156107897}
+  - {fileID: 7236744208755474155}
+  - {fileID: 4148583673539058279}
+  - {fileID: 737254974390827878}
+  - {fileID: 2395257527927447721}
+  - {fileID: 7700696398466591651}
+  - {fileID: 6647348916078921361}
+  - {fileID: 356033539423451256}
+  - {fileID: 8390838405611020799}
+  - {fileID: 2557544275330913611}
+  - {fileID: 5826414979461324620}
+  - {fileID: 5807598500140114099}
+  - {fileID: 1011570604164168661}
+--- !u!114 &-9208310277013084716
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715086968858540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ec2b9600939c77468d85970e8897f74, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audios: {fileID: 11400000, guid: f72b6e04251ba5c478ae01f05b5dd106, type: 2}
 --- !u!1 &5623917879622794040
 GameObject:
   m_ObjectHideFlags: 0

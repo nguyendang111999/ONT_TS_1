@@ -24,7 +24,7 @@ public class InteractionManager : MonoBehaviour
         _inputReader.InteractEvent -= OnInteractionButtonPress;
     }
 
-    public void OnInteractionButtonPress()
+    private void OnInteractionButtonPress()
     {
         Debug.Log("Press");
         List<GameObject> listObj = _zone.currentCollisionsList;

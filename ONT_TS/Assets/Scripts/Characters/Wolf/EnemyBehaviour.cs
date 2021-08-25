@@ -19,7 +19,7 @@ public class EnemyBehaviour : MonoBehaviour
     private void OnDisable() {
         _damageable.OnDie -= DeadAction;
     }
-    private void Awake()
+    private void Awake() 
     {
         _damageable = gameObject.GetComponent<Damageable>();
     }

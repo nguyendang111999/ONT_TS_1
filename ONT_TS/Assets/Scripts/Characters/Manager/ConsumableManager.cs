@@ -13,8 +13,9 @@ public class ConsumableManager : MonoBehaviour
     void Update()
     {
         AffectCoolDownCounter(ItemStrengthList);
-        AffectCoolDownCounter(ItemSpeedList);
+        // AffectCoolDownCounter(ItemSpeedList);
         ApplyStrength();
+        Debug.Log("Apply " + ItemStrengthList.Count);
         ApplySpeed();
     }
 
@@ -25,6 +26,7 @@ public class ConsumableManager : MonoBehaviour
         {
             case (ItemActionType.IncreaseStrength):
                 ItemStrengthList.Add(item);
+                Debug.Log("Add " + ItemStrengthList.Count);
                 break;
             case (ItemActionType.IncreaseSpeed):
                 ItemSpeedList.Add(item);
@@ -64,7 +66,10 @@ public class ConsumableManager : MonoBehaviour
         }
     }
 
-    public void ApplyStrength() => _attack.BoostedDamage = ItemStrengthList.Count <= 0 ? 0 : ItemStrengthList[0].BoostNumber;
+    public void ApplyStrength()
+    {
+        _attack.BoostedDamage = ItemStrengthList.Count <= 0 ? 0 : ItemStrengthList[0].BoostNumber;
+    }
     public void ApplySpeed() => _playerController.VelocityBoost = ItemSpeedList.Count <= 0 ? 0 : ItemSpeedList[0].BoostNumber;
 
 }

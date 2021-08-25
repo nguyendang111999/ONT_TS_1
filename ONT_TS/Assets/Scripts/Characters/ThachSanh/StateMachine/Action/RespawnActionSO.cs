@@ -19,6 +19,7 @@ public class RespawnAction : StateAction
     private SavePointListSO _savePoint;
 
     private PlayerController _playerController;
+    
     GameObject obj;
 
     private RespawnActionSO _originSO => (RespawnActionSO)base.OriginSO;

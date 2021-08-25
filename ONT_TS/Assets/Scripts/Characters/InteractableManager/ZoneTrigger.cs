@@ -3,11 +3,6 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-// [System.Serializable]
-// public class BoolEvent : UnityEvent<bool, GameObject>
-// {
-
-// }
 public class ZoneTrigger : MonoBehaviour
 {
     [HideInInspector] public List<GameObject> currentCollisionsList = new List<GameObject>();
@@ -26,7 +21,6 @@ public class ZoneTrigger : MonoBehaviour
                 currentCollisionsList.Add(other.gameObject);
             }
         }
-
     }
 
     private void OnTriggerExit(Collider other)
