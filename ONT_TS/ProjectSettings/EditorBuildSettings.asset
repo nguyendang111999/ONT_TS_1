@@ -9,8 +9,8 @@ EditorBuildSettings:
     path: Assets/Scenes/EmptySence.unity
     guid: cd77bd13c13632a43bade1590a69be7f
   - enabled: 1
-    path: Assets/Scenes/DemoWoods.unity
-    guid: 6dc68697d72e283438f1cd3bd3441279
+    path: Assets/Scenes/NewMap/NewMap.unity
+    guid: d09d7b17f7f560d4db2638c060007f0a
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f1aa08d0a5c6fd345ae3ce3582bca998,
       type: 2}
