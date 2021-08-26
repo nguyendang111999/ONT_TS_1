@@ -10,7 +10,7 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 165132f1c1a7cd046ac633d5a3986fbd, type: 3}
-  m_Name: Location1
+  m_Name: Location2
   m_EditorClassIdentifier: 
   location: {x: 308, y: 2, z: 120}
   range: 0
