@@ -6,11 +6,20 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/EmptySence.unity
-    guid: cd77bd13c13632a43bade1590a69be7f
+    path: Assets/Scenes/SplashScreen.unity
+    guid: dc2092fdc8ab8f44abd798f8220de1c9
+  - enabled: 1
+    path: Assets/Scenes/Menu(new).unity
+    guid: 326c118f62a27814483501ced7a89f8a
   - enabled: 1
     path: Assets/Scenes/NewMap/NewMap.unity
     guid: d09d7b17f7f560d4db2638c060007f0a
+  - enabled: 1
+    path: Assets/Scenes/InGameMenu.unity
+    guid: b4ad998a3882f904d950125ff83015c5
+  - enabled: 1
+    path: Assets/Scenes/StatAndResource.unity
+    guid: 6d580dd76b2829443835a182352d8abf
   m_configObjects:
     com.unity.input.settings: {fileID: 11400000, guid: f1aa08d0a5c6fd345ae3ce3582bca998,
       type: 2}
