@@ -40,10 +40,16 @@ public class InteractionManager : MonoBehaviour
                 listObj.Remove(obj);
                 break;
             }
-            else if (obj.CompareTag("NPC"))
+            if (obj.CompareTag("NPC"))
             {
                 Talk(obj);
                 listObj.Remove(obj);
+                break;
+            }
+            if(obj.CompareTag("InfoObject")){
+                Debug.Log("InfoObject");
+                ObjectInfoHandler infoHandler = obj.GetComponent<ObjectInfoHandler>();
+                infoHandler.Interact();
                 break;
             }
             if(obj.CompareTag("Savepoint")){

@@ -15,6 +15,6 @@ MonoBehaviour:
   _source: {fileID: 0}
   _name: Wolf_Howling
   _audio: {fileID: 8300000, guid: 55a63ea175e93ec4da1c1c4a24f74a96, type: 3}
-  _volume: 0.5
+  _volume: 1
   _pitch: 1
   _isLoop: 0

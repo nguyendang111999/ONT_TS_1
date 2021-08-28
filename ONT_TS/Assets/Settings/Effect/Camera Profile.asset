@@ -174,7 +174,7 @@ MonoBehaviour:
     value: 0
   colorFilter:
     overrideState: 1
-    value: {r: 1, g: 0.995283, b: 0.995283, a: 1}
+    value: {r: 1, g: 1, b: 1, a: 1}
   hueShift:
     overrideState: 1
     value: 0
@@ -1444,16 +1444,16 @@ MonoBehaviour:
     value: 1
   colored:
     overrideState: 1
-    value: 0
+    value: 1
   intensity:
     overrideState: 1
-    value: 0.15
+    value: 0.311
   size:
     overrideState: 1
     value: 0.81
   lumContrib:
     overrideState: 1
-    value: 0.8
+    value: 0
 --- !u!114 &2500259652117020844
 MonoBehaviour:
   m_ObjectHideFlags: 3
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 1
+  active: 0
   enabled:
     overrideState: 1
     value: 1
@@ -1515,13 +1515,13 @@ MonoBehaviour:
     value: {r: 0, g: 0, b: 0, a: 1}
   center:
     overrideState: 1
-    value: {x: 0.5, y: 0.69}
+    value: {x: 0.5, y: 0.36}
   intensity:
     overrideState: 1
-    value: 0.386
+    value: 0.169
   smoothness:
     overrideState: 1
-    value: 0.175
+    value: 0.072
   roundness:
     overrideState: 1
     value: 1

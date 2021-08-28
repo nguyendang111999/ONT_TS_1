@@ -31,6 +31,15 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     //Interact event
     public event UnityAction InteractEvent = delegate { };
 
+    //Equip Weapon event
+    public event UnityAction EquipWeaponEvent = delegate { };
+
+
+    //Escape event
+    public event UnityAction EscapeEvent = delegate { };
+    //Skip event
+    public event UnityAction SkipEvent = delegate { };
+
     //Open inventory event
     public event UnityAction OpenInventoryEvent = delegate { };
     public event UnityAction CloseInventoryEvent = delegate { };
@@ -48,6 +57,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction HoldHeavyAttackPerformed = delegate { };
     public event UnityAction HoldHeavyAttackCanceled = delegate { };
 
+    //Ability
     public event UnityAction EarthAbilityEvent = delegate { };
     public event UnityAction EarthAbilityCancelEvent = delegate { };
     public event UnityAction LifeAbilityEvent = delegate { };
@@ -238,7 +248,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     {
         if (context.phase == InputActionPhase.Performed)
         {
-            
+
         }
     }
 
@@ -248,9 +258,25 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
             CloseInventoryEvent.Invoke();
     }
 
+    public void OnSkip(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed){
+            SkipEvent.Invoke();
+        }
+    }
+
+    public void OnEquipWeapon(InputAction.CallbackContext context)
+    {
+        if(context.phase == InputActionPhase.Performed){
+            EquipWeaponEvent.Invoke();
+        }
+    }
+
     public void OnEscape(InputAction.CallbackContext context)
     {
-        throw new NotImplementedException();
+        if(context.phase == InputActionPhase.Performed){
+            EscapeEvent.Invoke();
+        }
     }
     #endregion
 }

@@ -16,10 +16,13 @@ public class ObjectPositionSO : ScriptableObject
             isSet = _transform != null;
         }
     }
-
     private void OnDisable()
     {
         _transform = null;
         isSet = false;
+    }
+
+    public float GetDistance(Vector3 pos){
+        return Vector3.Distance(pos, _transform.position);
     }
 }

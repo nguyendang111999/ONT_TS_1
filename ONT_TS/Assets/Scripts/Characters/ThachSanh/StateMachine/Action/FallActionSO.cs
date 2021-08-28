@@ -31,7 +31,6 @@ public class FallAction : StateAction
     {
         if (_fallingMovement > PlayerController.MAX_FALL_SPEED)
             _fallingMovement += Physics.gravity.y * _fallVelocity * Time.deltaTime;
-        Debug.Log("Falling movement: " + _fallingMovement);
-        _thachSanh.movementVector.y = _fallingMovement;
+        _thachSanh.movementVector.y += _fallingMovement;
     }
 }

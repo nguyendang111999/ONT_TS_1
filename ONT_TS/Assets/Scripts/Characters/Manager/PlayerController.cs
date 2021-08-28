@@ -10,10 +10,11 @@ public class PlayerController : MonoBehaviour
 
     [Header("Sub behaviours")]
     public ObjectPositionSO PlayerPos;
+    [SerializeField] private Transform groundDetector;
     public float groundDistance = 0.3f;
     public LayerMask groundLayer;
 
-    private bool isGrounded = false;
+    private bool isGrounded = true;
     public bool IsGrounded => isGrounded;
 
     [Header("Movements Setting")]
@@ -63,7 +64,7 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] public bool onHeavyAttack = false;
     [NonSerialized] public bool onHoldHeavyAttack = false;
 
-    //INPUT ACTION SYSTEM
+    #region INPUT ACTION SYSTEM
     private void OnEnable()
     {
         //Resgister movement
@@ -139,6 +140,7 @@ public class PlayerController : MonoBehaviour
         _inputReader.LifeAbilityCancelEvent -= OnLifeAbilityCancel;
 
     }
+    #endregion
 
     private void InstantiateMovementData()
     {
@@ -158,6 +160,8 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        CheckIfOnGround();
+        Debug.Log("is grounded: " + isGrounded);
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
     }
@@ -194,13 +198,13 @@ public class PlayerController : MonoBehaviour
             {
                 targetSpeed = 0f;
             }
-            
+
             if (isCrouching && _velocity >= statsSO.RunSpeed)
             {
                 targetSpeed += 10f;
             }
-            
-            targetSpeed += targetSpeed * VelocityBoost/100;
+
+            targetSpeed += targetSpeed * VelocityBoost / 100;
         }
         //Attach velocity
         _velocity = _velocity == targetSpeed ? _velocity : _velocity < targetSpeed
@@ -214,6 +218,12 @@ public class PlayerController : MonoBehaviour
         _velocityDebug = _velocity;
         movementInput = tempDirection.normalized * _velocity;
     }
+
+    private bool CheckIfOnGround() => isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
+    // private void OnDrawGizmos() {
+    //     Gizmos.color = Color.red;
+    //     Gizmos.DrawSphere(groundDetector.position, groundDistance);
+    // }
 
     //--- Event Listener ---
     private void OnMove(Vector2 movement)
@@ -234,7 +244,7 @@ public class PlayerController : MonoBehaviour
         isCrouching = true;
     }
     private void OnJump() => isJump = true;
-    private void OnJumpCanceled() => isJump = false;
+    private void OnJumpCanceled() => isJump = false; //Control by state machine
     private void StopCrouching() => isCrouching = false;
     private void OnAttack() => attackInput = true;
     private void OnAttackCanceled() => attackInput = false;//Used by Animation Event
@@ -243,10 +253,7 @@ public class PlayerController : MonoBehaviour
     private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
     private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
     public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Used by Animation Event
-    private void EarthPerform(){
-        earthPerform = true;//Used by Animation Event
-        Debug.Log("Earth Ability: " + earthPerform);
-    } 
+    private void EarthPerform() => earthPerform = true;//Used by Animation Event
     private void EarthAbilityCancel() => earthPerform = false;
     private void OnLifeAbilityPerform() => lifePerform = true;
     private void OnLifeAbilityCancel() => lifePerform = false;//Used by Animation Event

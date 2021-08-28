@@ -14,12 +14,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _attackRange: 2
   _lookRange: 15
+  _health: 0
   _acceleration: 8
   _decceleration: 10
   _slideDecceleration: 7
-  _walkSpeed: 5
-  _runSpeed: 7
-  _sprintSpeed: 10
-  _crouchSpeed: 3
+  _walkSpeed: 3
+  _runSpeed: 5
+  _sprintSpeed: 8
+  _crouchSpeed: 2
   _slideDuration: 1
   _startPos: {x: 0, y: 0, z: 0}

@@ -11,6 +11,8 @@ TagManager:
   - ItemDescription
   - Fire
   - Savepoint
+  - InfoObject
+  - InfoCanvas
   layers:
   - Default
   - TransparentFX
@@ -23,7 +25,7 @@ TagManager:
   - Enemy
   - PostProcessing
   - SavePoint
-  - 
+  - Environment
   - 
   - 
   - 
