@@ -5637,7 +5637,7 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 1675847500}
         m_TargetAssemblyTypeName: IngameMenu, Assembly-CSharp
-        m_MethodName: ResumeGame
+        m_MethodName: ResumeGameFromIngameMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
@@ -11269,9 +11269,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1414897431}
-        m_TargetAssemblyTypeName: MainMenu, Assembly-CSharp
-        m_MethodName: QuitGame
+      - m_Target: {fileID: 1675847500}
+        m_TargetAssemblyTypeName: IngameMenu, Assembly-CSharp
+        m_MethodName: LoadMainMenu
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

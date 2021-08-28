@@ -29,7 +29,12 @@ public class IngameMenu : MonoBehaviour
 
     public void PauseGame()
     {
-        SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);
+        
+        if (SceneManager.sceneCount>1)
+        {
+
+        }
+        else {SceneManager.LoadSceneAsync(3, LoadSceneMode.Additive);}
     }
 
     public void ResumeGameFromIngameMenu()
@@ -39,11 +44,23 @@ public class IngameMenu : MonoBehaviour
 
     public void CallStatAndResource()
     {
-        SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
+        if (SceneManager.sceneCount > 1)
+        {
+
+        }
+        else {SceneManager.LoadSceneAsync(4, LoadSceneMode.Additive);
+        }
     }
 
     public void ResumeGameFromStatAndResource()
     {
         SceneManager.UnloadSceneAsync(4);
+    }
+
+    public void LoadMainMenu()
+    {
+        SceneManager.UnloadSceneAsync(3);
+        SceneManager.UnloadSceneAsync(2);
+        SceneManager.LoadSceneAsync(1);
     }
 }
