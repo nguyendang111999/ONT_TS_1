@@ -21,7 +21,6 @@ public class IsMovingCondition : Condition
     protected override bool Statement()
     {
         Vector3 movementVector = _ThachSanh.movementInput;
-        movementVector.y = 0;
         return movementVector.magnitude > _originSO.minSpeed;
     }
 }

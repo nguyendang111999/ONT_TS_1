@@ -4,7 +4,7 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "State Machines/ThachSanh/Actions/Gravity On Ground Action")]
 public class GravityOnGroundActionSO : StateActionSO
 {
-    [Tooltip("Vertical force to keep character on groung")]
+    [Tooltip("Vertical force to keep character on ground")]
     [SerializeField] private float verticalPull = -2f;
     public float VerticalPull => verticalPull;
     protected override StateAction CreateAction() => new GravityOnGroundAction();

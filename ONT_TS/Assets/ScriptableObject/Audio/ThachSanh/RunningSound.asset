@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _source: {fileID: 0}
   _name: RunningSound
-  _audio: {fileID: 8300000, guid: 42e65e088b3f4374e851b8dbd38f3df9, type: 3}
-  _volume: 1
+  _audio: {fileID: 8300000, guid: dc3265a0bd8f85e4a9dfa24f7d9a17c8, type: 3}
+  _volume: 0.3
   _pitch: 1
   _isLoop: 1

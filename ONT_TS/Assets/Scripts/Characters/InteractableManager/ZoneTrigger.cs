@@ -9,7 +9,7 @@ public class ZoneTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint"))
+        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint") || other.CompareTag("InfoObject"))
         {
             GameObject obj = other.gameObject;
             if (currentCollisionsList.Find(gameobject => gameObject == obj))
