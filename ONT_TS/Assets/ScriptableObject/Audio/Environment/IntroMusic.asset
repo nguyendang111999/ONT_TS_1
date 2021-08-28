@@ -17,4 +17,4 @@ MonoBehaviour:
   _audio: {fileID: 8300000, guid: 18d37edf156fce64ebe73c2686a0892b, type: 3}
   _volume: 1
   _pitch: 1
-  _isLoop: 1
+  _isLoop: 0

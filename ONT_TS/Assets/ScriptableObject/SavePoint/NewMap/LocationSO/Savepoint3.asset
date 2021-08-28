@@ -12,3 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9139cd8776ba0564e80ff0c3c1ad6b8b, type: 3}
   m_Name: Savepoint3
   m_EditorClassIdentifier: 
+  _location: {x: 1179.9, y: 4, z: 184.7}
