@@ -20,7 +20,6 @@ public class BackgroundMusicManager : MonoBehaviour
 
     private void Update()
     {
-        Debug.Log("Is playing: " + aSource.isPlaying);
         if (!_holder.CompareName(_currentAudio.Name))
         {
             _currentAudio = _holder.AudioToPlay;

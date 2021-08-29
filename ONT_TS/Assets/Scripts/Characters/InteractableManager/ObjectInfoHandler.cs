@@ -36,7 +36,6 @@ public class ObjectInfoHandler : MonoBehaviour
     }
 
     public void Interact(){
-        Debug.Log("True");
         isMet = true;
         _informationPanel.SetActive(true);
         _text.text = "Hello";
