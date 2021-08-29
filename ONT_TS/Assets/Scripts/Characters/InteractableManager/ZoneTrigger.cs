@@ -28,10 +28,6 @@ public class ZoneTrigger : MonoBehaviour
         if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint"))
         {
             currentCollisionsList.Remove(other.gameObject);
-            foreach (GameObject o in currentCollisionsList)
-            {
-                Debug.Log("Delete ObjectName: " + o.name);
-            }
         }
     }
 }

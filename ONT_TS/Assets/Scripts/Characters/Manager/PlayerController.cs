@@ -161,7 +161,6 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         CheckIfOnGround();
-        Debug.Log("is grounded: " + isGrounded);
         ReCalculateMovement();
         PlayerPos.Transform = gameObject.transform;
     }

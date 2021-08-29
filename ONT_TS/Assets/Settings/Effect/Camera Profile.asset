@@ -1447,7 +1447,7 @@ MonoBehaviour:
     value: 1
   intensity:
     overrideState: 1
-    value: 0.311
+    value: 0.25
   size:
     overrideState: 1
     value: 0.81
@@ -1503,7 +1503,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b924e2dad56384a8df2a1e111bb675, type: 3}
   m_Name: Vignette
   m_EditorClassIdentifier: 
-  active: 0
+  active: 1
   enabled:
     overrideState: 1
     value: 1
@@ -1515,16 +1515,16 @@ MonoBehaviour:
     value: {r: 0, g: 0, b: 0, a: 1}
   center:
     overrideState: 1
-    value: {x: 0.5, y: 0.36}
+    value: {x: 0.5, y: 1.51}
   intensity:
     overrideState: 1
-    value: 0.169
+    value: 0.215
   smoothness:
     overrideState: 1
     value: 0.072
   roundness:
     overrideState: 1
-    value: 1
+    value: 0.853
   rounded:
     overrideState: 1
     value: 0
