@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
@@ -10,20 +11,14 @@ public class PlayerInLookRangeSO : StateConditionSO
 
 public class PlayerInLookRange : Condition
 {
-    private PlayerInLookRangeSO _originSO => (PlayerInLookRangeSO)base.OriginSO;
-    private ObjectPositionSO _playerPosition;
-    private Transform _playerPos;
-    private EnemyBehaviour _wolf;
-    private CharacterStatsSO _stat;
+    private FieldOfView _fov;
+    private List<Transform> _targets;
     public override void Awake(StateController stateController){
-        _wolf = stateController.GetComponent<EnemyBehaviour>();
-        _stat = _wolf.CharStatsSO();
-        _playerPosition = _wolf.PlayerPosition();
+        _fov = stateController.GetComponent<FieldOfView>();
+        _targets = _fov.visibleTargets;
     }
     protected override bool Statement()
     {
-        _playerPos = _playerPosition.Transform;
-        float distance = Vector3.Distance(_wolf.transform.position, _playerPos.position);
-        return distance < _stat.LookRange;
+        return _targets.Count > 0;
     }
 }

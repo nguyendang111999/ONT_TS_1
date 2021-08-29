@@ -5,6 +5,7 @@ public class ObjectPositionSO : ScriptableObject
 {
     [HideInInspector] public bool isSet = false;
 
+    [SerializeField]
     private Transform _transform;
 
     public Transform Transform

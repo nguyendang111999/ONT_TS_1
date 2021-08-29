@@ -1526,10 +1526,10 @@ GameObject:
   - component: {fileID: 4160944387794109553}
   - component: {fileID: 4160944387794109551}
   - component: {fileID: 4160944387794109550}
-  - component: {fileID: 4160944387794109548}
   - component: {fileID: 4160944387794109555}
   - component: {fileID: 4160944387794109554}
   - component: {fileID: 4160944387794109557}
+  - component: {fileID: 828704001571663746}
   - component: {fileID: 4160944387794109549}
   - component: {fileID: 8066625123783618336}
   m_Layer: 0
@@ -1697,19 +1697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackCollider: {fileID: 4160944389522143539}
---- !u!114 &4160944387794109548
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3855025420132502816}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4ec2b9600939c77468d85970e8897f74, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _audios: {fileID: 0}
 --- !u!114 &4160944387794109555
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1755,6 +1742,19 @@ MonoBehaviour:
   _meleeAbilities: {fileID: 11400000, guid: 083c108c9debd5e40852b11b95e782f1, type: 2}
   _earthAbilities: {fileID: 11400000, guid: 1bb33f289d733294887ee3009d6da07d, type: 2}
   _lifeAbilities: {fileID: 11400000, guid: 3bf3d597e5fe4c84bb00aab2b6285348, type: 2}
+--- !u!114 &828704001571663746
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3855025420132502816}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 406d99604388cc942866b26f0ba5a036, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _audios: {fileID: 11400000, guid: c10e306b3d0b75f41a907eb60f7d91d7, type: 2}
 --- !u!114 &4160944387794109549
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4927,6 +4927,11 @@ PrefabInstance:
     - target: {fileID: 4488768248720428, guid: b91dc775c64fe254b904619cecd6255f, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 173.98
+      objectReference: {fileID: 0}
+    - target: {fileID: 1069779663829758558, guid: b91dc775c64fe254b904619cecd6255f,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b91dc775c64fe254b904619cecd6255f, type: 3}

@@ -1273,6 +1273,7 @@ GameObject:
   - component: {fileID: 4998797218364639635}
   - component: {fileID: -9208310277013084716}
   - component: {fileID: 8617455025331042824}
+  - component: {fileID: 6736418525827154757}
   m_Layer: 0
   m_Name: BigBadWolf
   m_TagString: Enemy
@@ -1623,6 +1624,27 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &6736418525827154757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715086968858540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb5a7a9652eba54aa05eda3e108b558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 10
+  viewAngle: 120
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 128
+  environmentMask:
+    serializedVersion: 2
+    m_Bits: 2112
+  visibleTargets: []
 --- !u!1 &5623917879622794040
 GameObject:
   m_ObjectHideFlags: 0

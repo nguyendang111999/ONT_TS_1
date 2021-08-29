@@ -13,7 +13,8 @@ MonoBehaviour:
   m_Name: WolfStats
   m_EditorClassIdentifier: 
   _attackRange: 3
-  _lookRange: 15
+  _lookRange: 10
+  _health: 0
   _acceleration: 0
   _decceleration: 0
   _slideDecceleration: 0
