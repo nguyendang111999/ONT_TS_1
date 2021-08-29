@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c11a771cd3d18524799d3bf1049ba940, type: 3}
   m_Name: ParticleDistance
   m_EditorClassIdentifier: 
-  distance: 50
+  distance: 60
