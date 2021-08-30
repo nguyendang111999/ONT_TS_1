@@ -1354,7 +1354,7 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.31, y: 1, z: 1.73}
+  m_Size: {x: 0.72, y: 1, z: 1.63}
   m_Center: {x: 0, y: 0.5, z: 0}
 --- !u!195 &4998797218364639636
 NavMeshAgent:
@@ -1426,8 +1426,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _attackPoint: {fileID: 4998797217361136290}
-  _playerPos: {fileID: 11400000, guid: 9344a26111cf125479cc86e362f1c51a, type: 2}
-  _stat: {fileID: 11400000, guid: e515120b4ca89a84c9e63a9354dd8b79, type: 2}
+  _target: {fileID: 0}
+  _stat: {fileID: 11400000, guid: 218daea4054a5b14b85f15fbf296993e, type: 2}
   isInActive: 0
 --- !u!114 &4998797218364639641
 MonoBehaviour:

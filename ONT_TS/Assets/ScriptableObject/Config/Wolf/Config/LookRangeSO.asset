@@ -9,6 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bfd671cc4281e56449e2d5521d4c654c, type: 3}
-  m_Name: TimeToIdle
+  m_Script: {fileID: 11500000, guid: db82e09c11260824aab7d52691094fc3, type: 3}
+  m_Name: LookRangeSO
   m_EditorClassIdentifier: 
+  value: 10

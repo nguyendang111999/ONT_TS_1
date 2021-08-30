@@ -9,19 +9,19 @@ public class FacePlayerActionSO : StateActionSO
 }
 public class FacePlayerAction : StateAction
 {
-    ObjectPositionSO _playerPos;
+    Transform _playerPos;
     Transform _wolf;
 
     public override void Awake(StateController stateController)
     {
         _wolf = stateController.transform;
-        _playerPos = stateController.GetComponent<EnemyBehaviour>().PlayerPosition();
+        _playerPos = stateController.GetComponent<EnemyBehaviour>().Target;
     }
 
     public override void OnStateUpdate()
     {
-        if(_playerPos.isSet){
-            Vector3 relativePos = _playerPos.Transform.position - _wolf.position;
+        if(_playerPos){
+            Vector3 relativePos = _playerPos.position - _wolf.position;
             relativePos.y = 0;
 
             Quaternion rotation = Quaternion.LookRotation(relativePos);

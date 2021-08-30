@@ -50,4 +50,10 @@ public class FieldOfView : MonoBehaviour
             }
         }
     }
+
+    public Transform GetFirstTarget(){
+        if(visibleTargets.Count > 0) return visibleTargets[0];
+        else return null;
+    }
+    
 }

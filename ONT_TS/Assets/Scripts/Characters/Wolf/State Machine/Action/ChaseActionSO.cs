@@ -12,7 +12,7 @@ public class ChaseActionSO : StateActionSO
 public class ChaseAction : StateAction
 {
     private Transform _chaseTarget;
-    private CharacterStatsSO _stat;
+    private WolfStatSO _stat;
     private FieldOfView _fov;
     private List<Transform> _targets;
     private NavMeshAgent _agent;
@@ -20,7 +20,7 @@ public class ChaseAction : StateAction
     public override void Awake(StateController stateController)
     {
         _agent = stateController.GetComponent<NavMeshAgent>();
-        _stat = stateController.GetComponent<EnemyBehaviour>().CharStatsSO();
+        _stat = stateController.GetComponent<EnemyBehaviour>().WolfStatSO();
         _fov = stateController.GetComponent<FieldOfView>();
         _targets = _fov.visibleTargets;
     }
