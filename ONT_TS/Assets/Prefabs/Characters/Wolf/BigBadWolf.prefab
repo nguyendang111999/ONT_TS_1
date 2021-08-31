@@ -1425,7 +1425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c9243690168424a9bf3915f696f3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _attackPoint: {fileID: 4998797217361136290}
   _target: {fileID: 0}
   _stat: {fileID: 11400000, guid: 218daea4054a5b14b85f15fbf296993e, type: 2}
   isInActive: 0
@@ -1640,7 +1639,10 @@ MonoBehaviour:
   viewAngle: 120
   targetMask:
     serializedVersion: 2
-    m_Bits: 128
+    m_Bits: 4224
+  playerMask:
+    serializedVersion: 2
+    m_Bits: 0
   environmentMask:
     serializedVersion: 2
     m_Bits: 2112

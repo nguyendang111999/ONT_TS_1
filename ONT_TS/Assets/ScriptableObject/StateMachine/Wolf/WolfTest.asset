@@ -9,11 +9,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 165132f1c1a7cd046ac633d5a3986fbd, type: 3}
-  m_Name: Location1
+  m_Script: {fileID: 11500000, guid: 99e1b92e147837d48aeb4c88ea5450db, type: 3}
+  m_Name: WolfTest
   m_EditorClassIdentifier: 
-  location: {x: 30, y: 6.01, z: -19.2}
-  range: 0
-  numberToSpawn: 1
-  spawnRate: 0
-  spawnedNumber: 1
+  _transition:
+  - FromState: {fileID: 11400000, guid: 1a989d6c8b1bec0488986c02addb2e5e, type: 2}
+    StateAndCondition: []

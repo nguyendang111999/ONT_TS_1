@@ -11,12 +11,13 @@ public class FieldOfView : MonoBehaviour
     public LayerMask environmentMask;
 
     [HideInInspector]
-    public List<Transform> visibleTargets = new List<Transform>();
+    public List<ObjectPositionSO> visibleTargets = new List<ObjectPositionSO>();
 
     /// <summary>
     /// Return a vector3 with direction point to the rear of view angle
     /// </summary>
-    private void FixedUpdate() {
+    private void FixedUpdate()
+    {
         FindVisibleTarget();
     }
 
@@ -45,15 +46,21 @@ public class FieldOfView : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, environmentMask))
                 {
-                    visibleTargets.Add(target);
+                    if (target.tag.Equals("NPC"))
+                    {
+                        ObjectPositionSO a = target.GetComponent<NPCController>().Position;
+                        visibleTargets.Add(a);
+                    }
+                    if (target.tag.Equals("Player"))
+                    {
+                        ObjectPositionSO a = target.GetComponent<PlayerController>().PlayerPos;
+                        visibleTargets.Add(a);
+                    }
                 }
             }
         }
     }
 
-    public Transform GetFirstTarget(){
-        if(visibleTargets.Count > 0) return visibleTargets[0];
-        else return null;
-    }
-    
+    public bool TargetFounded() => visibleTargets.Count > 0;
+
 }

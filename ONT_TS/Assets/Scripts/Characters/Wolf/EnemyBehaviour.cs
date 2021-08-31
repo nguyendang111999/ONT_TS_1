@@ -3,16 +3,16 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    // [SerializeField] private Transform _attackPoint;
-    [SerializeField] private Transform _target;
+    // [SerializeField] private Vector3 _startPos;
+    // public Vector3 StartPos => _startPos;
+    [SerializeField] private ObjectPositionSO _target;
     [SerializeField] private WolfStatSO _stat;
     public WolfStatSO WolfStatSO() => _stat;
-    public Transform Target
+    public ObjectPositionSO Target
     {
         get { return _target; }
         set { _target = value; }
     }
-    // public Transform AttackPoint() => _attackPoint;
     private Damageable _damageable;
     public SpawnLocationSO Location { get; set; }
     [HideInInspector] public bool isInActive = false;
@@ -30,8 +30,10 @@ public class EnemyBehaviour : MonoBehaviour
         _damageable = gameObject.GetComponent<Damageable>();
     }
 
-    private void FixedUpdate() {
-        Debug.Log("Target is: " + Target.position);
+    private void FixedUpdate()
+    {
+        if (Target != null)
+            Debug.Log("Target is: " + Target.Transform.position);
     }
 
     private void DeadAction()

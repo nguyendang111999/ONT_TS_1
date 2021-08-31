@@ -11,30 +11,28 @@ public class ChaseActionSO : StateActionSO
 }
 public class ChaseAction : StateAction
 {
-    private Transform _chaseTarget;
+    private ObjectPositionSO _chaseTarget;
     private WolfStatSO _stat;
-    private FieldOfView _fov;
-    private List<Transform> _targets;
     private NavMeshAgent _agent;
+    private EnemyBehaviour _wolf;
 
     public override void Awake(StateController stateController)
     {
         _agent = stateController.GetComponent<NavMeshAgent>();
-        _stat = stateController.GetComponent<EnemyBehaviour>().WolfStatSO();
-        _fov = stateController.GetComponent<FieldOfView>();
-        _targets = _fov.visibleTargets;
+        _wolf = stateController.GetComponent<EnemyBehaviour>();
+        _stat = _wolf.WolfStatSO();
     }
 
     public override void OnStateEnter()
     {
-        if (_targets.Count > 0)
-        {
-            _chaseTarget = _targets[0];
-        }
         _agent.speed = _stat.RunSpeed;
+        _agent.stoppingDistance = 2f;
+        _chaseTarget = _wolf.Target;
+        Debug.Log(_chaseTarget.Transform.position);
     }
+
     public override void OnStateUpdate()
     {
-        _agent.destination = (_chaseTarget == null) ? _stat.StartPosition : (_chaseTarget.position - Vector3.forward);
+        _agent.destination = (_chaseTarget.Transform == null) ? _wolf.Location.Location : _chaseTarget.Transform.position;
     }
 }

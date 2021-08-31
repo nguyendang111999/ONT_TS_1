@@ -1,7 +1,7 @@
-using System.Collections.Generic;
 using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
+using UnityEngine.AI;
 
 [CreateAssetMenu(fileName = "Is Detected Condition", menuName = "State Machines/Wolf/Conditions/Detected Target Condition")]
 public class PlayerDetectedSO : StateConditionSO
@@ -11,18 +11,21 @@ public class PlayerDetectedSO : StateConditionSO
 
 public class PlayerDetected : Condition
 {
-    private EnemyBehaviour _wolf;
     private FieldOfView _fov;
-    private List<Transform> _targets;
+    private EnemyBehaviour _wolf;
+    
     public override void Awake(StateController stateController){
         _fov = stateController.GetComponent<FieldOfView>();
-        _targets = _fov.visibleTargets;
         _wolf = stateController.GetComponent<EnemyBehaviour>();
     }
-    protected override bool Statement() => _targets.Count > 0;
+
+    protected override bool Statement(){
+        return _fov.TargetFounded();
+    }
 
     public override void OnStateExit()
     {
-        _wolf.Target = _targets[0];
+        _wolf.Target = _fov.visibleTargets[0];
     }
+
 }
