@@ -13,19 +13,22 @@ public class PlayerDetected : Condition
 {
     private FieldOfView _fov;
     private EnemyBehaviour _wolf;
-    
-    public override void Awake(StateController stateController){
+
+    public override void Awake(StateController stateController)
+    {
         _fov = stateController.GetComponent<FieldOfView>();
         _wolf = stateController.GetComponent<EnemyBehaviour>();
     }
 
-    protected override bool Statement(){
+    protected override bool Statement()
+    {
         return _fov.TargetFounded();
     }
 
     public override void OnStateExit()
     {
-        _wolf.Target = _fov.visibleTargets[0];
+        if (_fov.visibleTargets.Count > 0)
+            _wolf.Target = _fov.visibleTargets[0];
     }
 
 }

@@ -155,14 +155,14 @@ public class PlayerController : MonoBehaviour
     void Awake()
     {
         InstantiateMovementData();
-        PlayerPos.Transform = gameObject.transform;
+        PlayerPos.Transform = transform;
     }
 
     void Update()
     {
         CheckIfOnGround();
         ReCalculateMovement();
-        PlayerPos.Transform = gameObject.transform;
+        PlayerPos.Transform = transform;
     }
 
     void ReCalculateMovement()

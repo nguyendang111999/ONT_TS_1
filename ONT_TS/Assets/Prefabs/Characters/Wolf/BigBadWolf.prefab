@@ -1272,14 +1272,14 @@ GameObject:
   - component: {fileID: 4998797218364639643}
   - component: {fileID: 4998797218364639635}
   - component: {fileID: -9208310277013084716}
-  - component: {fileID: 8617455025331042824}
   - component: {fileID: 6736418525827154757}
-  m_Layer: 0
+  - component: {fileID: 8617455025331042824}
+  m_Layer: 8
   m_Name: BigBadWolf
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &4816022457001409814
 Transform:
@@ -1367,9 +1367,9 @@ NavMeshAgent:
   m_AgentTypeID: 0
   m_Radius: 0.5
   m_Speed: 3.5
-  m_Acceleration: 8
+  m_Acceleration: 6
   avoidancePriority: 50
-  m_AngularSpeed: 120
+  m_AngularSpeed: 180
   m_StoppingDistance: 0
   m_AutoTraverseOffMeshLink: 1
   m_AutoBraking: 0
@@ -1377,7 +1377,7 @@ NavMeshAgent:
   m_Height: 1
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
+  m_ObstacleAvoidanceType: 3
 --- !u!95 &4998797218364639637
 Animator:
   serializedVersion: 3
@@ -1527,6 +1527,27 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _audios: {fileID: 11400000, guid: f72b6e04251ba5c478ae01f05b5dd106, type: 2}
+--- !u!114 &6736418525827154757
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5304715086968858540}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: aeb5a7a9652eba54aa05eda3e108b558, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  viewRadius: 10
+  viewAngle: 120
+  targetMask:
+    serializedVersion: 2
+    m_Bits: 4224
+  environmentMask:
+    serializedVersion: 2
+    m_Bits: 2112
+  visibleTargets: []
 --- !u!82 &8617455025331042824
 AudioSource:
   m_ObjectHideFlags: 0
@@ -1623,30 +1644,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!114 &6736418525827154757
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5304715086968858540}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb5a7a9652eba54aa05eda3e108b558, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  viewRadius: 10
-  viewAngle: 120
-  targetMask:
-    serializedVersion: 2
-    m_Bits: 4224
-  playerMask:
-    serializedVersion: 2
-    m_Bits: 0
-  environmentMask:
-    serializedVersion: 2
-    m_Bits: 2112
-  visibleTargets: []
 --- !u!1 &5623917879622794040
 GameObject:
   m_ObjectHideFlags: 0

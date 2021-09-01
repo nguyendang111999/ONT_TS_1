@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2b061e93db19674bb10abbed8d75d98, type: 3}
   m_Name: PlayerIsInAttackRange
   m_EditorClassIdentifier: 
-  _range: 2.5
+  _range: 3

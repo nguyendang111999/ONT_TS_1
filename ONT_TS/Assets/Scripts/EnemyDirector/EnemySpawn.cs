@@ -60,7 +60,7 @@ public class EnemySpawn : MonoBehaviour
                 Damageable damageable = wolf.GetComponent<Damageable>();
                 damageable.ResetHealth();
                 EnemyBehaviour wolfBehaviour = wolf.GetComponent<EnemyBehaviour>();
-                wolfBehaviour.Location = location;
+                wolfBehaviour.SpawnLocation = location;
                 location.SpawnedNumber++;
             }
         }
@@ -126,7 +126,7 @@ public class EnemySpawn : MonoBehaviour
         foreach (var wolf in agents)
         {
             EnemyBehaviour wolfBehaviour = wolf.GetComponent<EnemyBehaviour>();
-            if (wolfBehaviour.Location == location)
+            if (wolfBehaviour.SpawnLocation == location)
             {
                 wolfBehaviour.isInActive = true;
                 wolf.SetActive(false);

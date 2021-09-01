@@ -26,13 +26,11 @@ public class ChaseAction : StateAction
     public override void OnStateEnter()
     {
         _agent.speed = _stat.RunSpeed;
-        _agent.stoppingDistance = 2f;
         _chaseTarget = _wolf.Target;
-        Debug.Log(_chaseTarget.Transform.position);
     }
 
     public override void OnStateUpdate()
     {
-        _agent.destination = (_chaseTarget.Transform == null) ? _wolf.Location.Location : _chaseTarget.Transform.position;
+        _agent.destination = (_chaseTarget.Transform == null) ? _wolf.SpawnLocation.Location : _chaseTarget.Transform.position;
     }
 }
