@@ -1,0 +1,29 @@
+Begin Object Class=/Script/Engine.MaterialInstanceConstant Name="M_M_SK_Fox_M_Fox_E5566753412206A6C199B488DCAF9A6C"
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   ParameterStateId=4F548D864E2576CACC98F6A62C7B93F5
+   Parent=Material'"/Engine/EngineMaterials/NewBaseFlattenMaterial.NewBaseFlattenMaterial"'
+   bHasStaticPermutationResource=True
+   ScalarParameterValues(0)=(ParameterInfo=(Name="EmissiveScale"))
+   VectorParameterValues(0)=(ParameterInfo=(Name="EmissiveColorConst"),ParameterValue=(R=0.000000,G=0.000000,B=0.000000,A=1.000000))
+   TextureParameterValues(0)=(ParameterInfo=(Name="BaseColorTexture"),ParameterValue=Texture2D'"T_M_SK_Fox_M_Fox_E5566753412206A6C199B488DCAF9A6C_BaseColor"')
+   TextureParameterValues(1)=(ParameterInfo=(Name="RoughnessTexture"),ParameterValue=Texture2D'"T_M_SK_Fox_M_Fox_E5566753412206A6C199B488DCAF9A6C_Roughness"')
+   TextureParameterValues(2)=(ParameterInfo=(Name="NormalTexture"),ParameterValue=Texture2D'"T_M_SK_Fox_M_Fox_E5566753412206A6C199B488DCAF9A6C_Normal"')
+   TextureParameterValues(3)=(ParameterInfo=(Name="AmbientOcclusionTexture"),ParameterValue=Texture2D'"T_M_SK_Fox_M_Fox_E5566753412206A6C199B488DCAF9A6C_AmbientOcclusion"')
+   TextureParameterValues(4)=(ParameterInfo=(Name="MetallicTexture"),ParameterValue=Texture2D'"T_M_SK_Fox_M_Fox_E5566753412206A6C199B488DCAF9A6C_Metallic"')
+   BasePropertyOverrides=(OpacityMaskClipValue=0.333300)
+   ReferencedTextureGuids(0)=0FE1CA3349605D5873C0F3ACDA9CADAC
+   ReferencedTextureGuids(1)=4F5959D24C51BAA63D7FD6BC29BF13EE
+   ReferencedTextureGuids(2)=083C2A764BDE79CD4C33819FBD96DB0F
+   ReferencedTextureGuids(3)=B576B650402721361CA9F0803D0FBD46
+   ReferencedTextureGuids(4)=6A01E4A347C8FF57FB8B0396A7981C7E
+   StaticParameters=(StaticSwitchParameters=((Value=True,ParameterInfo=(Name="UseBaseColor"),bOverride=True),(Value=True,ParameterInfo=(Name="UseRoughness"),bOverride=True),(Value=True,ParameterInfo=(Name="UseNormal"),bOverride=True),(Value=True,ParameterInfo=(Name="UseAmbientOcclusion"),bOverride=True),(Value=True,ParameterInfo=(Name="UseMetallic"),bOverride=True)))
+   CachedReferencedTextures(0)=Texture2D'"/Engine/EngineMaterials/BaseFlattenNormalMap.BaseFlattenNormalMap"'
+   CachedReferencedTextures(1)=Texture2D'"/Engine/EngineMaterials/BaseFlattenDiffuseMap.BaseFlattenDiffuseMap"'
+   CachedReferencedTextures(2)=Texture2D'"/Engine/EngineMaterials/BaseFlattenEmissiveMap.BaseFlattenEmissiveMap"'
+   CachedReferencedTextures(3)=Texture2D'"/Engine/EngineMaterials/BaseFlattenGrayscaleMap.BaseFlattenGrayScaleMap"'
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=461ED4DC40BD18F80EB40090C78E8B2B
+End Object
