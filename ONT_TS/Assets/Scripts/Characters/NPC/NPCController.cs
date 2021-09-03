@@ -4,17 +4,25 @@ using UnityEngine;
 
 public class NPCController : MonoBehaviour
 {
-    [SerializeField] private ObjectPositionSO _pos;
-    public ObjectPositionSO Position => _pos;
+    [Tooltip("Stats of fox")]
+    public NPC_StatsSO FoxStats;
+    [Tooltip("Player postion")]
+    public ObjectPositionSO PlayerPosition;
+    [Tooltip("Position of current gameOject")]
+    public ObjectPositionSO Position;
+    [Tooltip("Path that NPC will lead the player")]
+    public PathSO Paths;
 
-    // Start is called before the first frame update
     private void Awake() {
-        _pos.Transform = transform;
+        Position.Transform = transform;
     }
 
-    // Update is called once per frame
     void FixedUpdate()
     {
-        _pos.Transform = transform;
+        Position.Transform = transform;
+    }
+
+    public float GetDistanceToPlayer(){
+        return PlayerPosition.GetDistance(transform.position);
     }
 }

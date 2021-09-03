@@ -4,7 +4,7 @@ using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 using Moment = ONT_TS.StateMachine.StateAction.SpecificMoment;
 
-[CreateAssetMenu(menuName = "State Machines/ThachSanh/Actions/Set Animator Parameter")]
+[CreateAssetMenu(menuName = "State Machines/Common/Actions/Set Animator Parameter")]
 public class AnimatorParameterActionSO : StateActionSO
 {
     public ParameterType parameterType = default;

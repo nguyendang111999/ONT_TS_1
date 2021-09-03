@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using Moment = ONT_TS.StateMachine.StateAction.SpecificMoment;
 
-[CreateAssetMenu(fileName = "Active NVAgent Action", menuName = "State Machines/Wolf/Actions/Active NVAgent Action")]
+[CreateAssetMenu(fileName = "Active NVAgent Action", menuName = "State Machines/Common/Actions/Active NVAgent Action")]
 public class DisableNVAgengtActionSO : StateActionSO
 {
     [Tooltip("Allow agent to move if false")]

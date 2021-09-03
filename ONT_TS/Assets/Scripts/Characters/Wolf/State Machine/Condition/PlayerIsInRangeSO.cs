@@ -1,5 +1,3 @@
-using System.Collections;
-using System.Collections.Generic;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 using UnityEngine;
@@ -30,10 +28,6 @@ public class PlayerIsInRange : Condition
 
     protected override bool Statement()
     {
-        // if (_fov.visibleTargets.Count <= 0)
-        // {
-        //     return false;
-        // }
         if(_wolf.Target == null) return false;
         float distance = Vector3.Distance(_wolf.transform.position, _wolf.Target.Transform.position);
         return distance <= _range;
