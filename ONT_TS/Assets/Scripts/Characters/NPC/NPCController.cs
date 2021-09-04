@@ -14,6 +14,7 @@ public class NPCController : MonoBehaviour
     public PathSO Paths;
 
     private void Awake() {
+        Paths.Index = 0;
         Position.Transform = transform;
     }
 

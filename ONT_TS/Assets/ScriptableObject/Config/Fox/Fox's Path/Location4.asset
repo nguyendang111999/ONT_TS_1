@@ -9,8 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 305e635114e1df84195c2618dc79a31c, type: 3}
-  m_Name: Fox_Rest
+  m_Script: {fileID: 11500000, guid: 9139cd8776ba0564e80ff0c3c1ad6b8b, type: 3}
+  m_Name: Location4
   m_EditorClassIdentifier: 
-  _actions:
-  - {fileID: 11400000, guid: 1afe853403830c847be66e394bc87386, type: 2}
+  _location: {x: 21, y: 5, z: 73}

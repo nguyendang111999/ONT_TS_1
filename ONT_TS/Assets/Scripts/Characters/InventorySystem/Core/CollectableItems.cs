@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CollectableItems : MonoBehaviour
 {
-    
     [SerializeField] private ItemSO _currentItem = default;
     // [SerializeField] private GameObject _go = default;
 

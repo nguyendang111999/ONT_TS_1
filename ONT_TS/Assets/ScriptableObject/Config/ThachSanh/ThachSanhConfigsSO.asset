@@ -10,11 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a964d27a580ffad4180ac9b392b03f34, type: 3}
-  m_Name: ThachSanhMovementConfigsSO
+  m_Name: ThachSanhConfigsSO
   m_EditorClassIdentifier: 
-  _attackRange: 2
-  _lookRange: 15
-  _health: 0
+  _exp: 100
+  _health: 100
   _acceleration: 8
   _decceleration: 10
   _slideDecceleration: 7
@@ -23,4 +22,3 @@ MonoBehaviour:
   _sprintSpeed: 8
   _crouchSpeed: 2
   _slideDuration: 1
-  _startPos: {x: 0, y: 0, z: 0}

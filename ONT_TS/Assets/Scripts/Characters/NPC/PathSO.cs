@@ -16,5 +16,6 @@ public class PathSO : ScriptableObject
         Index += 1;
         return a;
     }
-    public bool IfReachedLocation() => Index > paths.Length;
+    public bool IsLastLocation() => Index == paths.Length;
+    public bool IndexInBound() => Index <= paths.Length - 1;
 }

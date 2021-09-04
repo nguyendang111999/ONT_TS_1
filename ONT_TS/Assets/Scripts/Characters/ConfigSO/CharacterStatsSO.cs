@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "CharacterConfig/Movement Stats")]
 public class CharacterStatsSO : ScriptableObject
 {
+    [SerializeField] private int _exp;
+    public int EXP => _exp;
     [SerializeField] private int _health;
     public int Health => _health;
 

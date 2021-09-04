@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8db35c0f4eb610d428e6f4b4d881bbae, type: 3}
   m_Name: DisableFoxNVAgentAction
   m_EditorClassIdentifier: 
-  isStopped: 0
-  WhenToRun: 0
+  isStopped: 1
+  WhenToRun: 2
