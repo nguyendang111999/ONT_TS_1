@@ -167,18 +167,6 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         }
     }
 
-    // public void OnCrouch(InputAction.CallbackContext context)
-    // {
-    //     if (context.phase == InputActionPhase.Performed)
-    //     {
-    //         CrouchEvent.Invoke();
-    //     }
-    //     if (context.phase == InputActionPhase.Canceled)
-    //     {
-    //         CrouchStopEvent.Invoke();
-    //     }
-    // }
-
     public void OnDodge(InputAction.CallbackContext context)
     {
         switch (context.phase)

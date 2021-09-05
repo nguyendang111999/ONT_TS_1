@@ -5,11 +5,18 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Lore", menuName = "Environment/Lore")]
 public class LoreSO : ScriptableObject
 {
-    [SerializeField] private string loreName;
+    [SerializeField] 
+    private string loreName;
     public string LoreName => loreName;
-    [SerializeField] private Sprite icon;
+
+    [Tooltip("Image description")]
+    [SerializeField] 
+    private Sprite icon;
     public Sprite Icon => icon;
-    [SerializeField] private string detail;
+
+    [Tooltip("Detail of a lore")]
+    [SerializeField] 
+    private string detail;
     public string Detail => detail;
 
 }

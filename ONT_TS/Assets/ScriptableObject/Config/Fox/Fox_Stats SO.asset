@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   lookRange: 10
   reactRange: 4
-  walkSpeed: 2
+  walkSpeed: 1.5
   runSpeed: 7

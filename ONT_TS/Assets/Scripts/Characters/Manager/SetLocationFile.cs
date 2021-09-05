@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SetLocationFile : MonoBehaviour
 {
-    [SerializeField] private SavePointLocationSO _location;
+    [SerializeField] private LocationSO _location;
     private void Start() {
         _location.Location = transform.position;
     }

@@ -7,7 +7,6 @@ public class Damageable : MonoBehaviour
 {
     [SerializeField] private HealthConfigSO _healthConfig;
     [SerializeField] private HealthBar _healthBar;
-
     [SerializeField] private DroppableRewardSO _droppableRewardConfig;
     public DroppableRewardSO DroppableRewardConfig => _droppableRewardConfig;
 
