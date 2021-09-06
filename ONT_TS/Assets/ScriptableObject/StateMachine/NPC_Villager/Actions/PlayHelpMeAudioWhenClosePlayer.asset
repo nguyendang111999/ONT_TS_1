@@ -9,12 +9,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9734fc43f8e0f143bc38de02c416b8a, type: 3}
-  m_Name: VLG_AnimIdleFalse
+  m_Script: {fileID: 11500000, guid: a4326d57a2fad514e8b789131a933eef, type: 3}
+  m_Name: PlayHelpMeAudioWhenClosePlayer
   m_EditorClassIdentifier: 
-  parameterType: 0
-  parameterName: IsIdle
-  boolValue: 0
-  intValue: 0
-  floatValue: 0
-  whenToRun: 2
+  distance: 10
+  _audioSO: {fileID: 11400000, guid: f937ea422c7a0c045864d1dda6dbb879, type: 2}

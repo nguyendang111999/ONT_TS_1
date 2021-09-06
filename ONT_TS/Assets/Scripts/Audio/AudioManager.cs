@@ -18,20 +18,26 @@ public class AudioManager : MonoBehaviour
     public void PlayAudio(string name)
     {
         AudioSO a = _audios.GetAudio(name);
-        if(a == null) return;
-        if (_audioSource.isPlaying){
+        if (a == null) return;
+        if (_audioSource.isPlaying)
+        {
             _audioSource.Stop();
         }
         SetupAudio(a, _audioSource);
         _audioSource.Play();
     }
-    
+
     /// <summary>
     /// Play audio by audio SO file
     /// </summary>
     public void PlayAudio(AudioSO a)
     {
-        if (_audioSource.isPlaying){
+        if (_audioSource.clip == a.Clip && _audioSource.isPlaying)
+        {
+            return;
+        }
+        if (_audioSource.isPlaying)
+        {
             _audioSource.Stop();
         }
         SetupAudio(a, _audioSource);
@@ -45,8 +51,16 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource.Stop();
     }
+    public void StopAudio(AudioSO a)
+    {
+        if (_audioSource.clip == a.Clip && _audioSource.isPlaying)
+        {
+            _audioSource.Stop();
+        }
+    }
 
-    private void SetupAudio(AudioSO audioSO, AudioSource source){
+    private void SetupAudio(AudioSO audioSO, AudioSource source)
+    {
         source.clip = audioSO.Clip;
         source.loop = audioSO.IsLoop;
         source.volume = audioSO.Volume;

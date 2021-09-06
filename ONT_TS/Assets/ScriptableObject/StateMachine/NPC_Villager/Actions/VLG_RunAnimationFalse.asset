@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: d9734fc43f8e0f143bc38de02c416b8a, type: 3}
-  m_Name: VLG_AnimIdleFalse
+  m_Name: VLG_RunAnimationFalse
   m_EditorClassIdentifier: 
   parameterType: 0
-  parameterName: IsIdle
+  parameterName: IsRun
   boolValue: 0
   intValue: 0
   floatValue: 0

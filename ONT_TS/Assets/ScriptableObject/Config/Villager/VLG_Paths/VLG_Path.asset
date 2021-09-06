@@ -12,4 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 69ddba012edee784c9bdb28d6643488f, type: 3}
   m_Name: VLG_Path
   m_EditorClassIdentifier: 
-  paths: []
+  paths:
+  - {fileID: 11400000, guid: dcaaf5f4136fa3f41b7c64ca751b9e6a, type: 2}
+  - {fileID: 11400000, guid: 06534686fcb30f943809bc61db910069, type: 2}
+  - {fileID: 11400000, guid: 1132249ea38f8504e87eeb7ed6de77e7, type: 2}

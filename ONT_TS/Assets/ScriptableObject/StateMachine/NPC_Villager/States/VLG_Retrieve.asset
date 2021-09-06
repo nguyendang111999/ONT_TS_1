@@ -13,5 +13,4 @@ MonoBehaviour:
   m_Name: VLG_Retrieve
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: d73263ec1500d084bbd9595643ed6bc2, type: 2}
-  - {fileID: 11400000, guid: 2aed55936b8f4e84897d0a911f25003c, type: 2}
+  - {fileID: 11400000, guid: 548ecce2908989249b9db6539647e069, type: 2}
