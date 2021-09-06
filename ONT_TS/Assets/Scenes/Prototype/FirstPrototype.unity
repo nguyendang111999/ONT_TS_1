@@ -2453,7 +2453,7 @@ PrefabInstance:
     - target: {fileID: 919132149155446097, guid: 76e84421a49f77b4e8fc83f47ebe5370,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 76e84421a49f77b4e8fc83f47ebe5370,
         type: 3}
@@ -12606,6 +12606,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: NPC_Fox
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 45c261d16c2846c49bd8177f4318206f,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 45c261d16c2846c49bd8177f4318206f, type: 3}

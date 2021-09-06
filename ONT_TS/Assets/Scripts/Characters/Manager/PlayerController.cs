@@ -163,6 +163,7 @@ public class PlayerController : MonoBehaviour
         CheckIfOnGround();
         ReCalculateMovement();
         PlayerPos.Transform = transform;
+        Debug.Log("On Heavy Tap: " + onHeavyAttack);
     }
 
     void ReCalculateMovement()
@@ -219,10 +220,6 @@ public class PlayerController : MonoBehaviour
     }
 
     private bool CheckIfOnGround() => isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
-    // private void OnDrawGizmos() {
-    //     Gizmos.color = Color.red;
-    //     Gizmos.DrawSphere(groundDetector.position, groundDistance);
-    // }
 
     //--- Event Listener ---
     private void OnMove(Vector2 movement)
