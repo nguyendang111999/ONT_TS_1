@@ -141,12 +141,10 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
             case InputActionPhase.Performed:
                 if (context.interaction is HoldInteraction)
                 {
-                    Debug.Log("Heavy Hold");
                     HoldHeavyAttackPerformed?.Invoke();
                 }
                 else
                 {
-                    Debug.Log("Heavy Tap");
                     TapHeavyAttackEvent?.Invoke();
                 }
                 break;

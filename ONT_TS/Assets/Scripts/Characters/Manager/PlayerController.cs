@@ -163,7 +163,6 @@ public class PlayerController : MonoBehaviour
         CheckIfOnGround();
         ReCalculateMovement();
         PlayerPos.Transform = transform;
-        Debug.Log("On Heavy Tap: " + onHeavyAttack);
     }
 
     void ReCalculateMovement()

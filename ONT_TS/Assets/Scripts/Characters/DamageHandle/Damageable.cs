@@ -23,7 +23,6 @@ public class Damageable : MonoBehaviour
     public void ReceiveAttack(int dmg)
     {
         if (IsDead) return;
-
         _currentHealth -= dmg;
         _healthBar.SetHealth(_currentHealth);
 
