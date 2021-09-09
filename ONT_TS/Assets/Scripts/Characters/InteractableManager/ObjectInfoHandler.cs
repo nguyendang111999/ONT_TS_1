@@ -33,11 +33,7 @@ public class ObjectInfoHandler : MonoBehaviour
     void Update()
     {
         Debug.Log("Detail: " + _lore.LoreName);
-        if (_playerPos.GetDistance(transform.position) < _distanceToActive && !isMet)
-        {
-            _instructionText.SetActive(true);
-        }
-        else _instructionText.SetActive(false);
+        DisplayGuide();
     }
 
     public void Interact()
@@ -63,5 +59,13 @@ public class ObjectInfoHandler : MonoBehaviour
         _instructionText = _canvasContainer.InstructionText;
         _informationPanel = _canvasContainer.InformationPanel;
         _text = _canvasContainer.InfoText;
+    }
+
+    void DisplayGuide(){
+        if (_playerPos.GetDistance(transform.position) < _distanceToActive && !isMet)
+        {
+            _instructionText.SetActive(true);
+        }
+        else _instructionText.SetActive(false);
     }
 }
