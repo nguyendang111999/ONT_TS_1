@@ -25,7 +25,7 @@ public class ZoneTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint"))
+        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint") || other.CompareTag("InfoObject"))
         {
             currentCollisionsList.Remove(other.gameObject);
         }

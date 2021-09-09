@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 17438de5ee3ee9345952cb187b07b113, type: 3}
   m_Name: HeavyMelee
   m_EditorClassIdentifier: 
-  _abilityName: HeavyMelee
+  _abilityName: HoldHeavyMelee
   _icon: {fileID: 0}
   _coolDownDuration: 0
   _damage: 5

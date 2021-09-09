@@ -4,10 +4,9 @@ using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 
-[CreateAssetMenu(fileName = "Default Action", menuName = "State Machines/Actions/Default Action")]
+[CreateAssetMenu(fileName = "Default Action", menuName = "State Machines/Common/Actions/Default Action")]
 public class DefaultActionSO : StateActionSO
 {
-
     protected override StateAction CreateAction() => new DefaultAction();
 }
 

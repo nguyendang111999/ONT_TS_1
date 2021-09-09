@@ -6,7 +6,6 @@ using System.Collections.Generic;
 [CreateAssetMenu(fileName = "Chase Action", menuName = "State Machines/Wolf/Actions/Drop Item Action")]
 public class DropItemActionSO : StateActionSO
 {
-
     protected override StateAction CreateAction() => new DropItemAction();
 }
 

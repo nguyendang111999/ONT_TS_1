@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 305e635114e1df84195c2618dc79a31c, type: 3}
+  m_Name: Fox_Wait
+  m_EditorClassIdentifier: 
+  _actions:
+  - {fileID: 11400000, guid: be6c85f60ba78c54e9e1f68caf0c7cb9, type: 2}
+  - {fileID: 11400000, guid: 99fbc07f0144a984c89e138f5c71401a, type: 2}
+  - {fileID: 11400000, guid: acda9d8e2705bf94989bc1013333e15e, type: 2}

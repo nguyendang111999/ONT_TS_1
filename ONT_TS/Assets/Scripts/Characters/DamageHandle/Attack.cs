@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Attack : MonoBehaviour
 {
+    [SerializeField] private ObjectPositionSO _pos;
     public int Damage { get; set; } = 0;
     public int BoostedDamage { get; set; } = 0;
     private void Awake()
@@ -22,6 +23,9 @@ public class Attack : MonoBehaviour
                 if (!damageableComp.GetHit)
                     damageableComp.ReceiveAttack(dmg);
             }
+        }
+        if(other.GetComponent<EnemyBehaviour>() != null){
+            other.GetComponent<EnemyBehaviour>().Target = _pos;
         }
     }
 }

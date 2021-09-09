@@ -12,34 +12,55 @@ public class AudioManager : MonoBehaviour
     {
         _audioSource = gameObject.GetComponent<AudioSource>();
     }
-    public void PlayMelleSound1() => PlayAudio("AxeMelee1Sound");
-    public void PlayMelleSound2() => PlayAudio("AxeMelee2Sound");
-    public void PlayRunSound() => PlayAudio("RunningSound");
-
+    /// <summary>
+    /// Play audio by audio's name
+    /// </summary>
     public void PlayAudio(string name)
     {
         AudioSO a = _audios.GetAudio(name);
-        if(a == null) return;
-        if (_audioSource.isPlaying){
+        if (a == null) return;
+        if (_audioSource.isPlaying)
+        {
             _audioSource.Stop();
         }
         SetupAudio(a, _audioSource);
         _audioSource.Play();
     }
+
+    /// <summary>
+    /// Play audio by audio SO file
+    /// </summary>
     public void PlayAudio(AudioSO a)
     {
-        if (_audioSource.isPlaying){
+        if (_audioSource.clip == a.Clip && _audioSource.isPlaying)
+        {
+            return;
+        }
+        if (_audioSource.isPlaying)
+        {
             _audioSource.Stop();
         }
         SetupAudio(a, _audioSource);
         _audioSource.Play();
     }
+
+    /// <summary>
+    /// Use by state machine
+    /// </summary>
     public void StopAudio()
     {
         _audioSource.Stop();
     }
+    public void StopAudio(AudioSO a)
+    {
+        if (_audioSource.clip == a.Clip && _audioSource.isPlaying)
+        {
+            _audioSource.Stop();
+        }
+    }
 
-    public void SetupAudio(AudioSO audioSO, AudioSource source){
+    private void SetupAudio(AudioSO audioSO, AudioSource source)
+    {
         source.clip = audioSO.Clip;
         source.loop = audioSO.IsLoop;
         source.volume = audioSO.Volume;

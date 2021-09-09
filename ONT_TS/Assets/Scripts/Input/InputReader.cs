@@ -124,14 +124,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        switch (context.phase)
-        {
-            case InputActionPhase.Performed:
-                AttackEvent.Invoke();
-                break;
-            case InputActionPhase.Canceled:
-                AttackCanceledEvent.Invoke();
-                break;
+        if(context.phase == InputActionPhase.Performed){
+            AttackEvent.Invoke();
         }
     }
     public void OnHeavyAttack(InputAction.CallbackContext context)
@@ -154,30 +148,18 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
                     TapHeavyAttackEvent?.Invoke();
                 }
                 break;
-            case InputActionPhase.Canceled:
-                if (context.interaction is HoldInteraction)
-                {
-                    HoldHeavyAttackCanceled?.Invoke();
-                }
-                else
-                {
-                    TapHeavyAttackCanceled?.Invoke();
-                }
-                break;
+            // case InputActionPhase.Canceled:
+            //     if (context.interaction is HoldInteraction)
+            //     {
+            //         HoldHeavyAttackCanceled?.Invoke();
+            //     }
+            //     else
+            //     {
+            //         TapHeavyAttackCanceled?.Invoke();
+            //     }
+            //     break;
         }
     }
-
-    // public void OnCrouch(InputAction.CallbackContext context)
-    // {
-    //     if (context.phase == InputActionPhase.Performed)
-    //     {
-    //         CrouchEvent.Invoke();
-    //     }
-    //     if (context.phase == InputActionPhase.Canceled)
-    //     {
-    //         CrouchStopEvent.Invoke();
-    //     }
-    // }
 
     public void OnDodge(InputAction.CallbackContext context)
     {

@@ -1,39 +1,34 @@
 using UnityEngine;
 using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
+using UnityEngine.AI;
 
-//Use to detect player position
-[CreateAssetMenu(fileName = "PlayerIsInZone", menuName = "State Machines/Conditions/PlayerIsInZone")]
+[CreateAssetMenu(fileName = "Is Detected Condition", menuName = "State Machines/Wolf/Conditions/Detected Target Condition")]
 public class PlayerDetectedSO : StateConditionSO
 {
-    [SerializeField]private ObjectPositionSO _transform;
-    public ObjectPositionSO PlayerPosition() => _transform;
     protected override Condition CreateCondition() => new PlayerDetected();
 }
 
 public class PlayerDetected : Condition
 {
-    private PlayerDetectedSO _originSO => (PlayerDetectedSO)base.OriginSO;
-    private Transform _attackPoint;
-    private EnemyBehaviour detectPlayer;
-    private Transform _chaseTarget;
-    private CharacterStatsSO _stat;
+    private FieldOfView _fov;
+    private EnemyBehaviour _wolf;
+
     public override void Awake(StateController stateController)
     {
-        detectPlayer = stateController.GetComponent<EnemyBehaviour>();
-        _stat = detectPlayer?.CharStatsSO();
-        _attackPoint = detectPlayer.AttackPoint();
-        _chaseTarget = _originSO.PlayerPosition()?.Transform;
+        _fov = stateController.GetComponent<FieldOfView>();
+        _wolf = stateController.GetComponent<EnemyBehaviour>();
     }
 
     protected override bool Statement()
     {
-        return DetectPlayerPos();
+        return _fov.TargetFounded();
     }
 
-    public bool DetectPlayerPos()
+    public override void OnStateExit()
     {
-        float distance = Vector3.Distance(_attackPoint.position, _chaseTarget.position);
-        return distance > _stat.LookRange;
+        if (_fov.visibleTargets.Count > 0)
+            _wolf.Target = _fov.visibleTargets[0];
     }
+
 }
