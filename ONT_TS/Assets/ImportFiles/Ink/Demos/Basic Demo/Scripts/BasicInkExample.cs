@@ -50,9 +50,10 @@ public class BasicInkExample : MonoBehaviour {
 		}
 		// If we've read all the content and there's no choices, the story is finished!
 		else {
-			Button choice = CreateChoiceView("End of story.\nRestart?");
+			Button choice = CreateChoiceView("Exit");
 			choice.onClick.AddListener(delegate{
-				StartStory();
+				Exit();
+				// StartStory();
 			});
 		}
 	}
@@ -93,6 +94,10 @@ public class BasicInkExample : MonoBehaviour {
 		for (int i = childCount - 1; i >= 0; --i) {
 			GameObject.Destroy (canvas.transform.GetChild (i).gameObject);
 		}
+	}
+
+	void Exit(){
+		Debug.Log("Exit!");
 	}
 
 	[SerializeField]

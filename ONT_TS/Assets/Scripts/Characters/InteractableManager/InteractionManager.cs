@@ -10,10 +10,12 @@ public enum InteractionType
 
 public class InteractionManager : MonoBehaviour
 {
-    // [HideInInspector] public InteractionType currentInteractionType;
     [SerializeField] private ZoneTrigger _zone;
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private InventorySO _foodInventory;
+    [SerializeField] private DialogueController _diaController;
+
+    private bool isTalking = false;
 
     private void OnEnable()
     {
@@ -71,6 +73,9 @@ public class InteractionManager : MonoBehaviour
 
     public void Talk(GameObject obj)
     {
-        Debug.Log("Talking");
+        NPCController npcController = obj.GetComponent<NPCController>();
+        _diaController.InkJSONAsset = npcController.dialogueInfo;
+        _inputReader.EnableDialogueInput();
+        _diaController.StartStory();
     }
 }

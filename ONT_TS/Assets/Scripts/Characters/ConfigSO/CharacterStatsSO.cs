@@ -9,6 +9,8 @@ public class CharacterStatsSO : ScriptableObject
     public int EXP => _exp;
     [SerializeField] private int _health;
     public int Health => _health;
+    [SerializeField] private float _stamina;
+    public float Stamina => _stamina;
 
     [Header("Movements info")]
     [SerializeField] private float _acceleration = default;
@@ -27,5 +29,5 @@ public class CharacterStatsSO : ScriptableObject
     public float CrouchSpeed => _crouchSpeed;
     [SerializeField] private float _slideDuration = default;
     public float SlideDuration => _slideDuration;
-    
+
 }

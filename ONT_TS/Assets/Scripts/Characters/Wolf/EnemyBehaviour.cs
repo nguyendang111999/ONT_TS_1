@@ -44,7 +44,6 @@ public class EnemyBehaviour : MonoBehaviour
             relativePos1 = relativePos1.normalized;
             relativePos2 = transform.position + relativePos1;
             relativePos2.y = transform.position.y;
-            Debug.Log("Relative Pos: " + relativePos2);
             return relativePos2;
         }
         else

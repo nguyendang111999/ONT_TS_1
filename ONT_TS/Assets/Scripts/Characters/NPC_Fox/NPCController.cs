@@ -13,6 +13,8 @@ public class NPCController : MonoBehaviour
     [Tooltip("Path that NPC will lead the player")]
     public PathSO Paths;
 
+    [Tooltip("Dialogue line of character")]
+    public TextAsset dialogueInfo;
     private void Awake() {
         Position.Transform = transform;
     }
