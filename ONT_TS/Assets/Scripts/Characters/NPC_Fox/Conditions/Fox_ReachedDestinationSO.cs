@@ -25,7 +25,6 @@ public class Fox_ReachedDestination : Condition
     {
         Vector3 pos = _controller.transform.position;
         Vector3 des = _paths.GetCurrentPoint();
-        return pos.x == des.x && pos.z  == des.z;
-        // return (_agent.remainingDistance == 0) || (!_agent.hasPath);
+        return (pos.x == des.x && pos.z  == des.z) || !_agent.hasPath;
     }
 }

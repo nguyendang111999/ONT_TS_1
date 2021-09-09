@@ -31,7 +31,15 @@ public class NPC_NextLocation : StateAction
     {
         if (_paths.IndexInBound())
         {
-            _agent.SetDestination(_paths.GetNextPoint());
+            if (_paths.Index == 0)
+            {
+                _agent.SetDestination(_paths.GetCurrentPoint());
+                _paths.Index++;
+            }
+            else
+            {
+                _agent.SetDestination(_paths.GetNextPoint());
+            }
         }
         _agent.speed = _originSO.IsRun ? _stats.RunSpeed : _stats.WalkSpeed;
     }

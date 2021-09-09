@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d505ca6defe34bb4dab413dd059e313b, type: 3}
   m_Name: VLG_CheckPlayerInTalkRange
   m_EditorClassIdentifier: 
-  _range: 4
+  _range: 10

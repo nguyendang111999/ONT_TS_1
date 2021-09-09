@@ -32,7 +32,6 @@ public class ObjectInfoHandler : MonoBehaviour
 
     void Update()
     {
-        Debug.Log("Detail: " + _lore.LoreName);
         DisplayGuide();
     }
 
