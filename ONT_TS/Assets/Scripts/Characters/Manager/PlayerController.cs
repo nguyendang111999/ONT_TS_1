@@ -64,6 +64,12 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] public bool onHeavyAttack = false;
     [NonSerialized] public bool onHoldHeavyAttack = false;
 
+    private bool weaponEquip = false;
+    public bool WeaponEquip{
+        get{return weaponEquip;}
+        set{weaponEquip = value;}
+    }
+    
     #region INPUT ACTION SYSTEM
     private void OnEnable()
     {

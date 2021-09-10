@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a4bf88b43cca25944bfaf5a4e26bdd14, type: 3}
-  m_Name: Lac Long Quan
+  m_Name: Member
   m_EditorClassIdentifier: 
-  loreName: LacLongQuan
+  loreName: GroupName
   icon: {fileID: 0}
-  detail: Lac Long \nQuan Lore
+  detail: Nguyen Hai Dang \nTrinh Hoang Ngoc\nLe Quoc Tuan

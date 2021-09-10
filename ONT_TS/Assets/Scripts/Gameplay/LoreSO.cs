@@ -17,6 +17,6 @@ public class LoreSO : ScriptableObject
     [Tooltip("Detail of a lore")]
     [SerializeField] 
     private string detail;
-    public string Detail => detail;
+    public string Detail => detail.Replace("\\n", "\n");
 
 }

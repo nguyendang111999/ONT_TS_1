@@ -15,7 +15,6 @@ public class Attack : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         int dmg = Damage + BoostedDamage;
-        Debug.Log("Damage is: " + dmg);
         if (!other.CompareTag(gameObject.tag))
         {
             if (other.TryGetComponent(out Damageable damageableComp))
