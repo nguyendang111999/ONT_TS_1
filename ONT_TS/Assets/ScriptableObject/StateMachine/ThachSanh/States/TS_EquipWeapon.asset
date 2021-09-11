@@ -13,4 +13,5 @@ MonoBehaviour:
   m_Name: TS_EquipWeapon
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 2bf42a8c5afbb874a857bfe12dc1ec46, type: 2}
+  - {fileID: 11400000, guid: 12597073c431330408130d354f98ada6, type: 2}

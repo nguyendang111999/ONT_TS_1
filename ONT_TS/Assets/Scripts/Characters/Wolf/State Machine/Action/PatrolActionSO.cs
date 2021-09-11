@@ -39,7 +39,7 @@ public class PatrolAction : StateAction
 
     public override void OnStateEnter()
     {
-        _startPos = _wolfBehaviour.SpawnLocation.Location;
+        _startPos = _wolfBehaviour.SpawnLocation.Location.Position;
         _wolfBehaviour.isInActive = false;
         if (_isActiveAgent)
         {

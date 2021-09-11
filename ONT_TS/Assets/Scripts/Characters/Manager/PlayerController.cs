@@ -7,6 +7,10 @@ public class PlayerController : MonoBehaviour
     [SerializeField] private InputReader _inputReader;
     [SerializeField] Transform cam;
 
+    [Tooltip("Weapon when Thach Sanh not equiped")]
+    [SerializeField] GameObject weaponBack;
+    [Tooltip("Weapon when Thach Sanh equiped")]
+    [SerializeField] GameObject weaponFront;
 
     [Header("Sub behaviours")]
     public ObjectPositionSO PlayerPos;
@@ -19,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     [Header("Movements Setting")]
     public CharacterStatsSO statsSO;
-    public Vector2 _inputVector;
+    private Vector2 _inputVector;
     private float _velocity = 0f;
     public float _velocityDebug;
     public float Velocity => _velocity;
@@ -64,12 +68,15 @@ public class PlayerController : MonoBehaviour
     [NonSerialized] public bool onHeavyAttack = false;
     [NonSerialized] public bool onHoldHeavyAttack = false;
 
-    private bool weaponEquip = false;
-    public bool WeaponEquip{
-        get{return weaponEquip;}
-        set{weaponEquip = value;}
+    private bool onPressEquip = false;
+    public bool OnPressEquip => onPressEquip;
+    private bool weaponEquiped = true;
+    public bool WeaponEquiped
+    {
+        get { return weaponEquiped; }
+        set { weaponEquiped = value; }
     }
-    
+
     #region INPUT ACTION SYSTEM
     private void OnEnable()
     {
@@ -106,6 +113,9 @@ public class PlayerController : MonoBehaviour
         //Register life ability
         _inputReader.LifeAbilityEvent += OnLifeAbilityPerform;
         _inputReader.LifeAbilityCancelEvent += OnLifeAbilityCancel;
+
+        //Register equip weapon
+        _inputReader.EquipWeaponEvent += OnEquip;
 
     }
     private void OnDisable()
@@ -144,6 +154,9 @@ public class PlayerController : MonoBehaviour
         //Unregister life ability
         _inputReader.LifeAbilityEvent -= OnLifeAbilityPerform;
         _inputReader.LifeAbilityCancelEvent -= OnLifeAbilityCancel;
+
+        //Unregister equip weapon
+        _inputReader.EquipWeaponEvent -= OnEquip;
 
     }
     #endregion
@@ -258,4 +271,21 @@ public class PlayerController : MonoBehaviour
     private void EarthAbilityCancel() => earthPerform = false;
     private void OnLifeAbilityPerform() => lifePerform = true;
     private void OnLifeAbilityCancel() => lifePerform = false;//Used by Animation Event
+    public void OnEquipWeapon() //Use by Animation Event
+    {
+        weaponEquiped = weaponEquiped ? false : true;
+        Debug.Log("PC equiped: " + weaponEquiped);
+        if (weaponEquiped)
+        {
+            weaponBack.SetActive(false);
+            weaponFront.SetActive(true);
+        }
+        else
+        {
+            weaponBack.SetActive(true);
+            weaponFront.SetActive(false);
+        }
+    }
+    private void OnEquip() => onPressEquip = true;
+    private void OnEquipCancel() => onPressEquip = false;
 }

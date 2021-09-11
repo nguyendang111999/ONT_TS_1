@@ -14,7 +14,8 @@ public class ObjectInfoHandler : MonoBehaviour
     private GameObject _instructionText;
     private GameObject _informationPanel;
     private TextMeshProUGUI _text;
-    private bool isMet = false;
+    private bool isInteract = false;
+    private bool isEnter = false;
 
     private void OnEnable()
     {
@@ -37,17 +38,17 @@ public class ObjectInfoHandler : MonoBehaviour
 
     public void Interact()
     {
-        isMet = true;
+        isInteract = true;
         _informationPanel.SetActive(true);
         _text.text = _lore.Detail;
-        
+
         _instructionText.SetActive(false);
         _inputReader.EnableDialogueInput();
     }
 
     public void Escape()
     {
-        isMet = false;
+        isInteract = false;
         _informationPanel.SetActive(false);
         _inputReader.EnableGameplayInput();
     }
@@ -60,11 +61,23 @@ public class ObjectInfoHandler : MonoBehaviour
         _text = _canvasContainer.InfoText;
     }
 
-    void DisplayGuide(){
-        if (_playerPos.GetDistance(transform.position) < _distanceToActive && !isMet)
+    void DisplayGuide()
+    {
+        if (_playerPos.GetDistance(transform.position) < _distanceToActive && !isInteract)
         {
+            if(_instructionText.activeSelf){
+                return;
+            }
             _instructionText.SetActive(true);
+            isEnter = true;
         }
-        else _instructionText.SetActive(false);
+        else
+        {
+            if (isEnter)
+            {
+                _instructionText.SetActive(false);
+                isEnter = false;
+            }
+        }
     }
 }

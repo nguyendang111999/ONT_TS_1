@@ -31,6 +31,6 @@ public class ChaseAction : StateAction
 
     public override void OnStateUpdate()
     {
-        _agent.destination = (_chaseTarget.Transform == null) ? _wolf.SpawnLocation.Location : _chaseTarget.Transform.position;
+        _agent.destination = (_chaseTarget.Transform == null) ? _wolf.SpawnLocation.Location.Position : _chaseTarget.Transform.position;
     }
 }

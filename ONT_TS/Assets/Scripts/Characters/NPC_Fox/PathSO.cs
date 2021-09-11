@@ -13,11 +13,11 @@ public class PathSO : ScriptableObject
     public Vector3 GetNextPoint()
     {
         Index ++;
-        Vector3 a = paths[Index].Location;
+        Vector3 a = paths[Index].Position;
         return a;
     }
     public Vector3 GetCurrentPoint(){
-        Vector3 a = paths[Index].Location;
+        Vector3 a = paths[Index].Position;
         return a;
     }
     public bool IsLastLocation() => Index == paths.Length - 1;

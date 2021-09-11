@@ -6,21 +6,11 @@ public class BackgroundMusicManager : MonoBehaviour
 {
     [SerializeField]
     private BackgroundMusicHolderSO _holder;
-
-    [Tooltip("Player position")]
-    [SerializeField] 
-    ObjectPositionSO _playerPos;
-
-    [Tooltip("Distance to player that audio will start to play")]
-    [SerializeField] FloatValueSO distance;
-    float _distance = 0f;
-
     private AudioSO _currentAudio;
     private AudioSource[] aSources;
 
     private void Start()
     {
-        _distance = distance.Value;
         aSources = gameObject.GetComponents<AudioSource>();
         _currentAudio = _holder.AudioToPlay;
         SetupAudio(_currentAudio);
@@ -45,7 +35,6 @@ public class BackgroundMusicManager : MonoBehaviour
         else
         {
             aSource.clip = _currentAudio.Clip;
-            Debug.Log("Audio Name: " + _currentAudio.Name);
             aSource.loop = _currentAudio.IsLoop;
             aSource.volume = _currentAudio.Volume;
             aSource.pitch = _currentAudio.Pitch;
