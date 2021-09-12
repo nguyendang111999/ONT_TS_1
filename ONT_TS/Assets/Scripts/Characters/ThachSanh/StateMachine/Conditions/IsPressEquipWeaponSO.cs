@@ -18,7 +18,6 @@ public class IsPressEquipWeapon : Condition
 
     protected override bool Statement()
     {
-        Debug.Log("Is Press Equip:  " + _playerController.OnPressEquip);
         return _playerController.OnPressEquip;
     }
 }

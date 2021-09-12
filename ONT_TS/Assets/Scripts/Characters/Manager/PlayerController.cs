@@ -70,7 +70,7 @@ public class PlayerController : MonoBehaviour
 
     private bool onPressEquip = false;
     public bool OnPressEquip => onPressEquip;
-    private bool weaponEquiped = true;
+    private bool weaponEquiped = true;//Check if player is equipping weapon
     public bool WeaponEquiped
     {
         get { return weaponEquiped; }
@@ -86,11 +86,12 @@ public class PlayerController : MonoBehaviour
         _inputReader.StopRunningEvent += OnStopRunning;
 
         //Resgister dodge
-        _inputReader.DoubleTapDodgeEventPerformed += OnDashTrigger;
+        _inputReader.DoubleTapDodgeEventPerformed += OnDodgeTrigger;
 
         //Register jump
         _inputReader.JumpEvent += OnJump;
         _inputReader.JumpCanceledEvent += OnJumpCanceled;
+
         //Resgister crouch
         // _inputReader.CrouchEvent += OnCrouching;
         // _inputReader.CrouchStopEvent += StopCrouching;
@@ -102,7 +103,7 @@ public class PlayerController : MonoBehaviour
         //Resgister heavy attack
         _inputReader.TapHeavyAttackEvent += OnTapHeavyAttack;
         _inputReader.TapHeavyAttackCanceled += OnTapHeavyAttackCancel;
-        _inputReader.HoldHeavyAttackStarted += OnHoldHeavyAttackStart;
+        // _inputReader.HoldHeavyAttackStarted += OnHoldHeavyAttackStart;
         _inputReader.HoldHeavyAttackPerformed += OnHoldHeavyAttackPerform;
         _inputReader.HoldHeavyAttackCanceled += OnHoldHeavyAttackCancel;
 
@@ -126,7 +127,7 @@ public class PlayerController : MonoBehaviour
         _inputReader.StopRunningEvent -= OnStopRunning;
 
         //Unresgister dodge
-        _inputReader.DoubleTapDodgeEventStarted -= OnDashTrigger;
+        _inputReader.DoubleTapDodgeEventStarted -= OnDodgeTrigger;
 
         //Unregister jump
         _inputReader.JumpEvent -= OnJump;
@@ -143,7 +144,7 @@ public class PlayerController : MonoBehaviour
         //Unresgister heavy attack
         _inputReader.TapHeavyAttackEvent -= OnTapHeavyAttack;
         _inputReader.TapHeavyAttackCanceled -= OnTapHeavyAttackCancel;
-        _inputReader.HoldHeavyAttackStarted -= OnHoldHeavyAttackStart;
+        // _inputReader.HoldHeavyAttackStarted -= OnHoldHeavyAttackStart;
         _inputReader.HoldHeavyAttackPerformed -= OnHoldHeavyAttackPerform;
         _inputReader.HoldHeavyAttackCanceled -= OnHoldHeavyAttackCancel;
 
@@ -182,6 +183,8 @@ public class PlayerController : MonoBehaviour
         CheckIfOnGround();
         ReCalculateMovement();
         PlayerPos.Transform = transform;
+        Debug.Log("Dodge: " + isDashing);
+        // Debug.Log("movementvector: " + movementVector.magnitude);
     }
 
     void ReCalculateMovement()
@@ -246,8 +249,11 @@ public class PlayerController : MonoBehaviour
     }
     private void OnStartRunning() => isSprinting = true;
     private void OnStopRunning() => isSprinting = false;
-    private void OnDashTrigger() => isDashing = true;
-    public void OnDashReset() => isDashing = false; //Used by Animation Event
+    private void OnDodgeTrigger(){
+        if(_inputVector.magnitude <= 0) return;
+        isDashing = true;
+    } 
+    public void OnDodgeReset() => isDashing = false; //Used by Animation Event
     private void OnCrouching()
     {
         if (_velocity >= 7f && slideCountDown <= 0f)
@@ -260,11 +266,11 @@ public class PlayerController : MonoBehaviour
     private void OnJump() => isJump = true;
     private void OnJumpCanceled() => isJump = false; //Control by state machine
     private void StopCrouching() => isCrouching = false;
-    private void OnAttack() => attackInput = true;
+    private void OnAttack() => attackInput = weaponEquiped ? true : false;
     private void OnAttackCanceled() => attackInput = false;//Used by Animation Event
-    private void OnTapHeavyAttack() => onHeavyAttack = true;
+    private void OnTapHeavyAttack() => onHeavyAttack = weaponEquiped ? true : false;
     private void OnTapHeavyAttackCancel() => onHeavyAttack = false;//Used by Animation Event
-    private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
+    // private void OnHoldHeavyAttackStart() => onHoldHeavyAttack = false;
     private void OnHoldHeavyAttackPerform() => onHoldHeavyAttack = true;
     public void OnHoldHeavyAttackCancel() => onHoldHeavyAttack = false;//Used by Animation Event
     private void EarthPerform() => earthPerform = true;//Used by Animation Event
@@ -286,6 +292,9 @@ public class PlayerController : MonoBehaviour
             weaponFront.SetActive(false);
         }
     }
-    private void OnEquip() => onPressEquip = true;
+    private void OnEquip(){
+        if(attackInput || onHeavyAttack || earthPerform) return;
+        onPressEquip = true;
+    }
     private void OnEquipCancel() => onPressEquip = false;
 }

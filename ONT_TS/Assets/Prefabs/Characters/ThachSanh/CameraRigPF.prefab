@@ -26,8 +26,8 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 51478018844540411}
-  m_LocalRotation: {x: -0.018151848, y: 0.06429317, z: 0.0011696536, w: 0.9977653}
-  m_LocalPosition: {x: -20.087065, y: -12.078459, z: 23.196531}
+  m_LocalRotation: {x: 0.07044654, y: -0.36242417, z: 0.027484562, w: 0.9289406}
+  m_LocalPosition: {x: 10.786691, y: 0.6607704, z: 59.88433}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 424323612212496334}
@@ -251,7 +251,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 0.9631412, z: -3.3315637}
+  m_FollowOffset: {x: 0, y: 2.45, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -534,7 +534,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 0.9631412, z: -3.3315637}
+  m_FollowOffset: {x: 0, y: 2.45, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
@@ -611,6 +611,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 424323612212496334}
+  - component: {fileID: 4105531351861264465}
   m_Layer: 0
   m_Name: CameraRigPF
   m_TagString: Untagged
@@ -635,6 +636,23 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &4105531351861264465
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5840560698917307330}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d8f53386529dff94780c8af66c0855b2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _inputReader: {fileID: 11400000, guid: 76999597063712f49a0b07944d02c84b, type: 2}
+  _mainCam: {fileID: 3984862220652242916}
+  _freeCam: {fileID: 3091430725312654789}
+  _playerPos: {fileID: 11400000, guid: 9344a26111cf125479cc86e362f1c51a, type: 2}
+  _speedMultiplier: 1
 --- !u!1 &6417584438663599797
 GameObject:
   m_ObjectHideFlags: 0
@@ -786,7 +804,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7612984467765867884}
   - component: {fileID: 3091430725312654789}
-  - component: {fileID: 5335667120726818690}
   - component: {fileID: 1721071136211332392}
   m_Layer: 0
   m_Name: TPCam
@@ -848,12 +865,12 @@ MonoBehaviour:
         m_Calls: []
   m_LegacyBlendHint: 0
   m_YAxis:
-    Value: 0.18
+    Value: 0.5
     m_SpeedMode: 0
-    m_MaxSpeed: 1
+    m_MaxSpeed: 30
     m_AccelTime: 0.5
     m_DecelTime: 0.1
-    m_InputAxisName: Mouse Y
+    m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 1
     m_MinValue: 0
@@ -866,18 +883,18 @@ MonoBehaviour:
       m_LegacyHeadingDefinition: -1
       m_LegacyVelocityFilterStrength: -1
   m_YAxisRecentering:
-    m_enabled: 0
-    m_WaitTime: 1
-    m_RecenteringTime: 2
+    m_enabled: 1
+    m_WaitTime: 3
+    m_RecenteringTime: 5
     m_LegacyHeadingDefinition: -1
     m_LegacyVelocityFilterStrength: -1
   m_XAxis:
     Value: -50
     m_SpeedMode: 0
-    m_MaxSpeed: 200
-    m_AccelTime: 0.1
-    m_DecelTime: 0.05
-    m_InputAxisName: Mouse X
+    m_MaxSpeed: 5000
+    m_AccelTime: 0.5
+    m_DecelTime: 0.1
+    m_InputAxisName: 
     m_InputAxisValue: 0
     m_InvertInput: 0
     m_MinValue: -180
@@ -913,21 +930,6 @@ MonoBehaviour:
   - {fileID: 6230392361157985106}
   - {fileID: 7417443210981780266}
   - {fileID: 2216488818526738970}
---- !u!114 &5335667120726818690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7273849540375839551}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fb7194dc27b9df64c8beca7482ee8e0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  PlayerIndex: -1
-  XYAxis: {fileID: -4004765572995193235, guid: c7f57f4b6def97345827a12b16ee8455, type: 3}
-  ZAxis: {fileID: 0}
 --- !u!114 &1721071136211332392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1016,7 +1018,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_BindingMode: 4
-  m_FollowOffset: {x: 0, y: 0.9631412, z: -3.3315637}
+  m_FollowOffset: {x: 0, y: 2.45, z: -5}
   m_XDamping: 1
   m_YDamping: 1
   m_ZDamping: 1
