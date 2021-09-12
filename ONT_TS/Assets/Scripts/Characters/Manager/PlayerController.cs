@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -174,6 +175,7 @@ public class PlayerController : MonoBehaviour
 
     void Awake()
     {
+        Cursor.visible = false;
         InstantiateMovementData();
         PlayerPos.Transform = transform;
     }
@@ -183,8 +185,6 @@ public class PlayerController : MonoBehaviour
         CheckIfOnGround();
         ReCalculateMovement();
         PlayerPos.Transform = transform;
-        Debug.Log("Dodge: " + isDashing);
-        // Debug.Log("movementvector: " + movementVector.magnitude);
     }
 
     void ReCalculateMovement()
@@ -249,10 +249,17 @@ public class PlayerController : MonoBehaviour
     }
     private void OnStartRunning() => isSprinting = true;
     private void OnStopRunning() => isSprinting = false;
-    private void OnDodgeTrigger(){
-        if(_inputVector.magnitude <= 0) return;
-        isDashing = true;
-    } 
+    private void OnDodgeTrigger()
+    {
+        if (!dodgeReady) return;
+        else
+        {
+            DodgeCouroutine = DodgeCountdown(dodgeCounter);
+            StartCoroutine(DodgeCouroutine);
+            isDashing = true;
+            dodgeReady = false;
+        }
+    }
     public void OnDodgeReset() => isDashing = false; //Used by Animation Event
     private void OnCrouching()
     {
@@ -279,22 +286,46 @@ public class PlayerController : MonoBehaviour
     private void OnLifeAbilityCancel() => lifePerform = false;//Used by Animation Event
     public void OnEquipWeapon() //Use by Animation Event
     {
-        weaponEquiped = weaponEquiped ? false : true;
-        Debug.Log("PC equiped: " + weaponEquiped);
         if (weaponEquiped)
         {
-            weaponBack.SetActive(false);
-            weaponFront.SetActive(true);
-        }
-        else
-        {
+            weaponEquiped = false;
             weaponBack.SetActive(true);
             weaponFront.SetActive(false);
         }
+        else
+        {
+            weaponEquiped = true;
+            weaponBack.SetActive(false);
+            weaponFront.SetActive(true);
+        }
     }
-    private void OnEquip(){
-        if(attackInput || onHeavyAttack || earthPerform) return;
+    private void OnEquip()
+    {
+        if (!equipReady) return;
+        EquipCouroutine = EquipCountdown(equipCounter);
+        StartCoroutine(EquipCouroutine);
+        equipReady = false;
+        Debug.Log("PC equiped: " + weaponEquiped);
+        if (attackInput || onHeavyAttack || earthPerform) return;
         onPressEquip = true;
     }
     private void OnEquipCancel() => onPressEquip = false;
+
+    private float dodgeCounter = 1.5f;
+    bool dodgeReady = true;
+    IEnumerator DodgeCouroutine;
+    private IEnumerator DodgeCountdown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        dodgeReady = true;
+    }
+
+    private float equipCounter = 1.8f;
+    bool equipReady = true;
+    IEnumerator EquipCouroutine;
+    private IEnumerator EquipCountdown(float time)
+    {
+        yield return new WaitForSeconds(time);
+        equipReady = true;
+    }
 }

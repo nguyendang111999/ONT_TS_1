@@ -61533,7 +61533,7 @@ AnimationClip:
   m_HasGenericRootTransform: 0
   m_HasMotionFloatCurves: 0
   m_Events:
-  - time: 0.96666664
+  - time: 0.6666667
     functionName: OnDodgeReset
     data: 
     objectReferenceParameter: {fileID: 0}
