@@ -23,7 +23,7 @@ public class FallAction : StateAction
 
     public override void OnStateEnter()
     {
-        _fallingMovement = 0f;
+        _fallingMovement = _thachSanh.movementVector.y;
         _fallVelocity = _originSO.FallVelocity;
     }
 
@@ -31,6 +31,6 @@ public class FallAction : StateAction
     {
         if (_fallingMovement > PlayerController.MAX_FALL_SPEED)
             _fallingMovement += Physics.gravity.y * _fallVelocity * Time.deltaTime;
-        _thachSanh.movementVector.y += _fallingMovement;
+        _thachSanh.movementVector.y = _fallingMovement;
     }
 }

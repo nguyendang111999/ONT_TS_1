@@ -6,7 +6,7 @@ using UnityEngine;
 public class LocationSO : ScriptableObject
 {
     [SerializeField] private Vector3 _location;//Location to respawn player
-    public Vector3 Location
+    public Vector3 Position
     {
         get { return _location; }
         set { _location = value; }

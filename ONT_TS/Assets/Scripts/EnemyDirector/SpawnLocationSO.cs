@@ -6,7 +6,7 @@ using UnityEngine;
 public class SpawnLocationSO : ScriptableObject
 {
     [Tooltip("Enemy location to spawn")]
-    [SerializeField] Vector3 location;
+    [SerializeField] LocationSO location;
     [Tooltip("Spawn range")]
     [SerializeField] float range;
     [Tooltip("Max number of enemy to spawn")]
@@ -17,7 +17,7 @@ public class SpawnLocationSO : ScriptableObject
 
     private bool isSuccessed = false;//Check if user is finished this area
 
-    public Vector3 Location
+    public LocationSO Location
     {
         get { return location; }
     }

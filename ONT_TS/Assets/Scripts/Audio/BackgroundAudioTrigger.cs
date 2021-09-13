@@ -15,6 +15,4 @@ public class BackgroundAudioTrigger : MonoBehaviour
             _backgroundMusicHolder.AudioToPlay = _audio;
         }
     }
-
-
 }

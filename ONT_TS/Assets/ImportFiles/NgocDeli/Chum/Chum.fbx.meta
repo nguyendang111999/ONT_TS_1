@@ -3,7 +3,22 @@ guid: 20bd284ff42e17e4c9e691b683b09d7f
 ModelImporter:
   serializedVersion: 20200
   internalIDToNameTable: []
-  externalObjects: {}
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Bot
+    second: {fileID: 2100000, guid: f8e3ef84da42bc64984e81f0fafd6acd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Cap
+    second: {fileID: 2100000, guid: d0e9366b6b0e4dd4cb1cf96a8d2154ee, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Lid
+    second: {fileID: 2100000, guid: 6087bdc99cf4abe45ba44c194aa93755, type: 2}
   materials:
     materialImportMode: 2
     materialName: 0

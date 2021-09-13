@@ -10,7 +10,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     #region Action
     //Gameplay
     public event UnityAction<Vector2> MoveEvent = delegate { };
-    public event UnityAction<Vector2> RotateCameraEvent = delegate { };
+    public event UnityAction<Vector2, bool> RotateCameraEvent = delegate { };
     public event UnityAction OnAimEvent = delegate { };
     public event UnityAction StartRunningEvent = delegate { };
     public event UnityAction StopRunningEvent = delegate { };
@@ -21,12 +21,14 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction DoubleTapDodgeEventStarted = delegate { };
     public event UnityAction DoubleTapDodgeEventPerformed = delegate { };
     public event UnityAction DoubleTapDodgeEventCancel = delegate { };
+
     //Jump events
     public event UnityAction JumpEvent = delegate { };
     public event UnityAction JumpCanceledEvent = delegate { };
+
     //Crouch events
-    // public event UnityAction CrouchEvent = delegate { };
-    // public event UnityAction CrouchStopEvent = delegate { };
+    public event UnityAction CrouchEvent = delegate { };
+    public event UnityAction CrouchStopEvent = delegate { };
 
     //Interact event
     public event UnityAction InteractEvent = delegate { };
@@ -85,18 +87,21 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     public void EnableDialogueInput()
     {
+        Cursor.visible = true;
         playerInput.Menu.Enable();
         playerInput.GamePlay.Disable();
         playerInput.Dialogue.Enable();
     }
     public void EnableMenuInput()
     {
+        Cursor.visible = true;
         playerInput.Menu.Enable();
         playerInput.GamePlay.Disable();
         playerInput.Dialogue.Disable();
     }
     public void EnableGameplayInput()
     {
+        Cursor.visible = false;
         playerInput.Menu.Disable();
         playerInput.GamePlay.Enable();
         playerInput.Dialogue.Disable();
@@ -112,9 +117,16 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     #region Raise Unity Action for each input
 
     //Implements from PlayerInterface
-    void PlayerInput.IGamePlayActions.OnCamInput(InputAction.CallbackContext context)
+    public void OnCamInput(InputAction.CallbackContext context)
     {
-        // RotateCameraEvent.Invoke(context.ReadValue<Vector2>());
+        RotateCameraEvent.Invoke(context.ReadValue<Vector2>(), IsDeviceMouse(context));
+    }
+
+    private bool IsDeviceMouse(InputAction.CallbackContext context)
+    {
+        // bool a = context.control.device.name == "Mouse";
+        // Debug.Log("Is Mouse: " + a);
+        return context.control.device.name == "Mouse";
     }
 
     public void OnAim(InputAction.CallbackContext context)
@@ -124,7 +136,8 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     public void OnAttack(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed){
+        if (context.phase == InputActionPhase.Performed)
+        {
             AttackEvent.Invoke();
         }
     }
@@ -148,16 +161,6 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
                     TapHeavyAttackEvent?.Invoke();
                 }
                 break;
-            // case InputActionPhase.Canceled:
-            //     if (context.interaction is HoldInteraction)
-            //     {
-            //         HoldHeavyAttackCanceled?.Invoke();
-            //     }
-            //     else
-            //     {
-            //         TapHeavyAttackCanceled?.Invoke();
-            //     }
-            //     break;
         }
     }
 
@@ -242,21 +245,24 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     public void OnSkip(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed){
+        if (context.phase == InputActionPhase.Performed)
+        {
             SkipEvent.Invoke();
         }
     }
 
     public void OnEquipWeapon(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed){
+        if (context.phase == InputActionPhase.Performed)
+        {
             EquipWeaponEvent.Invoke();
         }
     }
 
     public void OnEscape(InputAction.CallbackContext context)
     {
-        if(context.phase == InputActionPhase.Performed){
+        if (context.phase == InputActionPhase.Performed)
+        {
             EscapeEvent.Invoke();
         }
     }

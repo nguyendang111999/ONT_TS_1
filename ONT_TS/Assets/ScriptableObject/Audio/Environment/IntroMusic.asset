@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 155d6eed3fec197449811cafb0738584, type: 3}
   m_Name: IntroMusic
   m_EditorClassIdentifier: 
-  _source: {fileID: 0}
   _name: IntroMusic
   _audio: {fileID: 8300000, guid: 18d37edf156fce64ebe73c2686a0892b, type: 3}
-  _volume: 1
+  _volume: 0.3
   _pitch: 1
   _isLoop: 0

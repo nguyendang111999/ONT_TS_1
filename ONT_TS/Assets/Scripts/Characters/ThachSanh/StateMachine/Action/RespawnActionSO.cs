@@ -45,8 +45,6 @@ public class RespawnAction : StateAction
     {
         float distance = 1f;
         obj.transform.position = _savePoint.GetLastSavePoint() + distance * Vector3.forward;
-        Debug.Log("Save pos: " + _savePoint.GetLastSavePoint());
-        Debug.Log("Player pos: " + obj.transform.position);
         _damageable.ResetHealth();
     }
 }

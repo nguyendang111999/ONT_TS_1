@@ -52,5 +52,3 @@ MonoBehaviour:
         Operator: 0
   - FromState: {fileID: 11400000, guid: 8320ef2c7169ec440b28080bc8e907f2, type: 2}
     StateAndCondition: []
-  - FromState: {fileID: 11400000, guid: 8320ef2c7169ec440b28080bc8e907f2, type: 2}
-    StateAndCondition: []

@@ -29,7 +29,7 @@ public class SavePointListSO : ScriptableObject
     public Vector3 GetLastSavePoint()
     {
         if (_list.Count > 0)
-            return _list[_list.Count - 1].Location;
+            return _list[_list.Count - 1].Position;
         else return Vector3.zero;
     }
 

@@ -25,7 +25,6 @@ public class NPCController : MonoBehaviour
 
     void FixedUpdate()
     {
-        Debug.Log("Index: " + Paths.Index);
         Position.Transform = transform;
     }
 

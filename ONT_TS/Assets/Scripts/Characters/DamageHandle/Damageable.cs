@@ -24,6 +24,7 @@ public class Damageable : MonoBehaviour
     {
         if (IsDead) return;
         _currentHealth -= dmg;
+        Debug.Log("Health: " + _currentHealth);
         _healthBar.SetHealth(_currentHealth);
 
         GetHit = true;

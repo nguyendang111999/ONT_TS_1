@@ -15,4 +15,4 @@ MonoBehaviour:
   lookRange: 10
   reactRange: 4
   walkSpeed: 1.5
-  runSpeed: 7
+  runSpeed: 8

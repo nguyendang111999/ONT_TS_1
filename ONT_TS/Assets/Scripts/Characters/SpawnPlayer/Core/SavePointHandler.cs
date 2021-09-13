@@ -11,7 +11,7 @@ public class SavePointHandler : MonoBehaviour
     [SerializeField]
     private SavePointListSO _savePointList;
     private void Start() {
-        _locationSO.Location = transform.position;
+        _locationSO.Position = transform.position;
     }
     /// <summary>
     /// Add save point to saved list
