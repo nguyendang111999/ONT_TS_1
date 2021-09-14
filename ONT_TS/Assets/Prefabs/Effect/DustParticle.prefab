@@ -668,7 +668,7 @@ ParticleSystem:
     donutRadius: 0.2
     m_Position: {x: 0, y: 0, z: 0}
     m_Rotation: {x: 0, y: 0, z: 0}
-    m_Scale: {x: 20, y: 25, z: 0.64}
+    m_Scale: {x: 10, y: 15, z: 0.64}
     placementMode: 0
     m_MeshMaterialIndex: 0
     m_MeshNormalOffset: 0
@@ -866,7 +866,7 @@ ParticleSystem:
     rateOverTime:
       serializedVersion: 2
       minMaxState: 0
-      scalar: 10
+      scalar: 15
       minScalar: 10
       maxCurve:
         serializedVersion: 2
@@ -4818,4 +4818,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _playerPos: {fileID: 11400000, guid: 9344a26111cf125479cc86e362f1c51a, type: 2}
-  _distance: {fileID: 11400000, guid: fd53020ad8ab74e479891830e028e29f, type: 2}
+  _distance: {fileID: 11400000, guid: f3e7bb14ccaa6ce46b0adc5400940e47, type: 2}

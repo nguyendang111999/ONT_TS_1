@@ -9,7 +9,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e2b061e93db19674bb10abbed8d75d98, type: 3}
+  m_Script: {fileID: 11500000, guid: eaee9952fccd82b49af2bcd5a35b4973, type: 3}
   m_Name: PlayerIsInAttackRange
   m_EditorClassIdentifier: 
-  _range: 3
+  _transform: {fileID: 11400000, guid: 9344a26111cf125479cc86e362f1c51a, type: 2}

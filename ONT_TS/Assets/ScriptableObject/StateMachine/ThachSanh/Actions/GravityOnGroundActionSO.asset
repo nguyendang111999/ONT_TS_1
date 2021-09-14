@@ -12,4 +12,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0836615aa4877b545a63ad1058f83a49, type: 3}
   m_Name: GravityOnGroundActionSO
   m_EditorClassIdentifier: 
-  verticalPull: -5
+  verticalPull: -10

@@ -15,17 +15,16 @@ public class PatrolAction : StateAction
     private EnemyBehaviour _wolfBehaviour;
     private Vector3 _startPos;
     private float _patrolRange;
-    private WolfStatSO _stats;
+    private CharacterStatsSO _stats;
 
     public override void Awake(StateController stateController)
     {
         _agent = stateController.GetComponent<NavMeshAgent>();
         _isActiveAgent = _agent != null && _agent.isActiveAndEnabled && _agent.isOnNavMesh;
         _wolfBehaviour = stateController.GetComponent<EnemyBehaviour>();
-        _stats = _wolfBehaviour.WolfStatSO();
-        _patrolRange = _stats.LookRange.Value;
+        _stats = _wolfBehaviour.CharStatsSO();
+        _patrolRange = _stats.LookRange;
     }
-
     public override void OnStateUpdate()
     {
         if (_isActiveAgent && _agent.remainingDistance <= _agent.stoppingDistance)
@@ -39,12 +38,12 @@ public class PatrolAction : StateAction
 
     public override void OnStateEnter()
     {
-        _startPos = _wolfBehaviour.SpawnLocation.Location.Position;
+        _startPos = _wolfBehaviour.Location.Location;
         _wolfBehaviour.isInActive = false;
         if (_isActiveAgent)
         {
             _agent.speed = _stats.WalkSpeed;
-            _agent.stoppingDistance = _stats.AttackRange.Value;
+            _agent.stoppingDistance = _stats.AttackRange;
         }
     }
 }

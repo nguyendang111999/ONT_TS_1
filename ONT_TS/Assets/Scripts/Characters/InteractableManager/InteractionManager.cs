@@ -10,12 +10,10 @@ public enum InteractionType
 
 public class InteractionManager : MonoBehaviour
 {
+    // [HideInInspector] public InteractionType currentInteractionType;
     [SerializeField] private ZoneTrigger _zone;
     [SerializeField] private InputReader _inputReader = default;
     [SerializeField] private InventorySO _foodInventory;
-    [SerializeField] private DialogueController _diaController;
-
-    private bool isTalking = false;
 
     private void OnEnable()
     {
@@ -28,6 +26,7 @@ public class InteractionManager : MonoBehaviour
 
     private void OnInteractionButtonPress()
     {
+        Debug.Log("Press");
         List<GameObject> listObj = _zone.currentCollisionsList;
         if(listObj == null){
             return;
@@ -41,18 +40,14 @@ public class InteractionManager : MonoBehaviour
                 listObj.Remove(obj);
                 break;
             }
-            if (obj.CompareTag("NPC"))
+            else if (obj.CompareTag("NPC"))
             {
                 Talk(obj);
                 listObj.Remove(obj);
                 break;
             }
-            if(obj.CompareTag("InfoObject")){
-                ObjectInfoHandler infoHandler = obj.GetComponent<ObjectInfoHandler>();
-                infoHandler.Interact();
-                break;
-            }
             if(obj.CompareTag("Savepoint")){
+                Debug.Log("Save point");
                 SavePointHandler sph = obj.GetComponent<SavePointHandler>();
                 sph.SaveToList();
                 break;
@@ -73,9 +68,6 @@ public class InteractionManager : MonoBehaviour
 
     public void Talk(GameObject obj)
     {
-        NPCController npcController = obj.GetComponent<NPCController>();
-        _diaController.InkJSONAsset = npcController.dialogueInfo;
-        _inputReader.EnableDialogueInput();
-        _diaController.StartStory();
+        Debug.Log("Talking");
     }
 }

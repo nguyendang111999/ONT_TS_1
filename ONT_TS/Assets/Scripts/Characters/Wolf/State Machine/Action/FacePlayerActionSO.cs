@@ -1,4 +1,4 @@
- using ONT_TS.StateMachine;
+using ONT_TS.StateMachine;
 using ONT_TS.StateMachine.ScriptableObjects;
 using UnityEngine;
 
@@ -9,24 +9,23 @@ public class FacePlayerActionSO : StateActionSO
 }
 public class FacePlayerAction : StateAction
 {
-    Transform _targetPos;
-    private EnemyBehaviour _wolf;
+    ObjectPositionSO _playerPos;
+    Transform _wolf;
 
     public override void Awake(StateController stateController)
     {
-        _wolf = stateController.GetComponent<EnemyBehaviour>();
+        _wolf = stateController.transform;
+        _playerPos = stateController.GetComponent<EnemyBehaviour>().PlayerPosition();
     }
 
     public override void OnStateUpdate()
     {
-        if(_wolf.Target != null){
-            _targetPos = _wolf.Target.Transform;
-
-            Vector3 relativePos = _targetPos.position - _wolf.transform.position;
+        if(_playerPos.isSet){
+            Vector3 relativePos = _playerPos.Transform.position - _wolf.position;
             relativePos.y = 0;
 
             Quaternion rotation = Quaternion.LookRotation(relativePos);
-            _wolf.transform.rotation = rotation;
+            _wolf.rotation = rotation;
         }
     }
 

@@ -11,8 +11,6 @@ public class EnemySpawn : MonoBehaviour
     [Tooltip("Player position")]
     [SerializeField] private ObjectPositionSO playerPos;
 
-    public FloatValueSO _activeDistance;
-
     private List<GameObject> agents = new List<GameObject>();
 
     private void Awake()
@@ -39,7 +37,7 @@ public class EnemySpawn : MonoBehaviour
 
     void SpawnEnemy(SpawnLocationSO location)
     {
-        Vector3 startPos = location.Location.Position;
+        Vector3 startPos = location.Location;
         int count = CountInactiveWolf(agents);
         int temp = location.NumberToSpawn - location.SpawnedNumber;
         if (temp > count)
@@ -57,12 +55,12 @@ public class EnemySpawn : MonoBehaviour
         {
             if (!wolf.activeSelf && location.SpawnedNumber < location.NumberToSpawn)
             {
-                wolf.transform.position = location.Location.Position;
+                wolf.transform.position = location.Location;
                 wolf.SetActive(true);
                 Damageable damageable = wolf.GetComponent<Damageable>();
                 damageable.ResetHealth();
                 EnemyBehaviour wolfBehaviour = wolf.GetComponent<EnemyBehaviour>();
-                wolfBehaviour.SpawnLocation = location;
+                wolfBehaviour.Location = location;
                 location.SpawnedNumber++;
             }
         }
@@ -95,7 +93,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 continue;
             }
-            if (Vector3.Distance((playerPos.Transform.position), (location.Location.Position)) < _activeDistance.Value && !location.IsSuccessed)
+            if (Vector3.Distance((playerPos.Transform.position), (location.Location)) < 50f && !location.IsSuccessed)
             {
                 location.IsActive = true;
             }
@@ -103,7 +101,7 @@ public class EnemySpawn : MonoBehaviour
             {
                 location.IsSuccessed = true;
             }
-            if (Vector3.Distance((playerPos.Transform.position), (location.Location.Position)) > _activeDistance.Value && !location.IsSuccessed)
+            if (Vector3.Distance((playerPos.Transform.position), (location.Location)) > 50f && !location.IsSuccessed)
             {
                 ResetLocationIfNotFinished(location);
             }
@@ -128,7 +126,7 @@ public class EnemySpawn : MonoBehaviour
         foreach (var wolf in agents)
         {
             EnemyBehaviour wolfBehaviour = wolf.GetComponent<EnemyBehaviour>();
-            if (wolfBehaviour.SpawnLocation == location)
+            if (wolfBehaviour.Location == location)
             {
                 wolfBehaviour.isInActive = true;
                 wolf.SetActive(false);

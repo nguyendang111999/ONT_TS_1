@@ -13,8 +13,9 @@ public class ConsumableManager : MonoBehaviour
     void Update()
     {
         AffectCoolDownCounter(ItemStrengthList);
-        AffectCoolDownCounter(ItemSpeedList);
+        // AffectCoolDownCounter(ItemSpeedList);
         ApplyStrength();
+        Debug.Log("Apply " + ItemStrengthList.Count);
         ApplySpeed();
     }
 

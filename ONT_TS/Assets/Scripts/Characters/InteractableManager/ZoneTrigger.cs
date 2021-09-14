@@ -9,7 +9,7 @@ public class ZoneTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint") || other.CompareTag("InfoObject"))
+        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint"))
         {
             GameObject obj = other.gameObject;
             if (currentCollisionsList.Find(gameobject => gameObject == obj))
@@ -25,9 +25,13 @@ public class ZoneTrigger : MonoBehaviour
 
     private void OnTriggerExit(Collider other)
     {
-        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint") || other.CompareTag("InfoObject"))
+        if (other.CompareTag("Pickable") || other.CompareTag("NPC") || other.CompareTag("Savepoint"))
         {
             currentCollisionsList.Remove(other.gameObject);
+            foreach (GameObject o in currentCollisionsList)
+            {
+                Debug.Log("Delete ObjectName: " + o.name);
+            }
         }
     }
 }

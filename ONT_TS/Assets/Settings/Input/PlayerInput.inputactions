@@ -67,7 +67,7 @@
                     "id": "8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": ""
+                    "interactions": "Tap"
                 },
                 {
                     "name": "HeavyAttack",
@@ -75,7 +75,7 @@
                     "id": "fa895f92-9748-4450-9ecc-3fe972a79400",
                     "expectedControlType": "Button",
                     "processors": "",
-                    "interactions": "Tap(duration=0.4,pressPoint=0.5),Hold(duration=0.7)"
+                    "interactions": "Hold(duration=0.7),Tap(duration=0.5,pressPoint=0.5)"
                 },
                 {
                     "name": "EarthAbility",
@@ -102,9 +102,9 @@
                     "interactions": ""
                 },
                 {
-                    "name": "EquipWeapon",
+                    "name": "Escape",
                     "type": "Button",
-                    "id": "ba49aa5c-cf4a-47f2-b82d-1671b78ffd27",
+                    "id": "5a92bdd7-59dd-46d1-94d7-96a2eef034b3",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -289,12 +289,12 @@
                 },
                 {
                     "name": "",
-                    "id": "e4724184-8afc-4747-a7a7-adbdee848ccb",
-                    "path": "<Keyboard>/q",
+                    "id": "43c9badc-e973-4545-add2-8a0612a79bba",
+                    "path": "<Keyboard>/escape",
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "EquipWeapon",
+                    "action": "Escape",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
@@ -316,14 +316,6 @@
                     "name": "CloseInventory",
                     "type": "Button",
                     "id": "c31660cd-d5e8-4d1b-bc2d-60531a003669",
-                    "expectedControlType": "Button",
-                    "processors": "",
-                    "interactions": ""
-                },
-                {
-                    "name": "Escape",
-                    "type": "Button",
-                    "id": "e03b6c99-2ecc-4d0c-928e-c71e7ed1473a",
                     "expectedControlType": "Button",
                     "processors": "",
                     "interactions": ""
@@ -351,17 +343,6 @@
                     "action": "CloseInventory",
                     "isComposite": false,
                     "isPartOfComposite": false
-                },
-                {
-                    "name": "",
-                    "id": "395aa574-9df0-4853-8098-ebd25e066440",
-                    "path": "<Keyboard>/escape",
-                    "interactions": "",
-                    "processors": "",
-                    "groups": "Keyboard and Mouse",
-                    "action": "Escape",
-                    "isComposite": false,
-                    "isPartOfComposite": false
                 }
             ]
         },
@@ -370,7 +351,7 @@
             "id": "49af096d-87d3-4381-860f-62b20fb466b1",
             "actions": [
                 {
-                    "name": "Skip",
+                    "name": "Interact",
                     "type": "Button",
                     "id": "9906a98e-bae2-43f9-9bf3-24d476d6b304",
                     "expectedControlType": "Button",
@@ -386,7 +367,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "Keyboard and Mouse",
-                    "action": "Skip",
+                    "action": "Interact",
                     "isComposite": false,
                     "isPartOfComposite": false
                 }
