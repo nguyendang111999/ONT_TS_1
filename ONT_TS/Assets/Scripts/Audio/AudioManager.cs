@@ -3,67 +3,58 @@ using UnityEngine;
 
 public class AudioManager : MonoBehaviour
 {
-    [Tooltip("This element hold every audio of an object")]
     [SerializeField] AudioContainerSO _audios;
     private AudioSO[] _audioList;
-    private AudioSource _audioSource;
 
-    private void Awake()
+    private void OnEnable()
     {
-        _audioSource = gameObject.GetComponent<AudioSource>();
+        SetupAudio();
     }
-    /// <summary>
-    /// Play audio by audio's name
-    /// </summary>
+    // private void OnDisable()
+    // {
+    //     AudioSource[] a = GetComponents<AudioSource>();
+    //     foreach (AudioSource audio in a)
+    //     {
+    //         Destroy(audio);
+    //     }
+    // }
+    public void PlayMelleSound1() => PlayAudio("AxeMelee1Sound");
+    public void PlayMelleSound2() => PlayAudio("AxeMelee2Sound");
+    public void PlayRunSound() => PlayAudio("RunningSound");
+
     public void PlayAudio(string name)
     {
-        AudioSO a = _audios.GetAudio(name);
-        if (a == null) return;
-        if (_audioSource.isPlaying)
-        {
-            _audioSource.Stop();
-        }
-        SetupAudio(a, _audioSource);
-        _audioSource.Play();
+        AudioSO a = Array.Find(_audioList, audio => audio.Name == name);
+        if (!a.Source.isPlaying)
+            a.Source.Play();
     }
+    public void StopAudio(string name)
+    {
+        AudioSO a = Array.Find(_audioList, audio => audio.Name == name);
+        if (a.Source.isPlaying)
+            a.Source.Stop();
+    }
+    public void SetupAudio()
+    {
+        _audioList = _audios.AudioList;
+        for (int i = 0; i < _audioList.Length; i++)
+        {
+            AudioSource[] audioSources1 = GetComponents<AudioSource>();
+            if(audioSources1.Length == _audioList.Length) break;
+            gameObject.AddComponent<AudioSource>();
+        }
+        AudioSource[] audioSources = GetComponents<AudioSource>();
 
-    /// <summary>
-    /// Play audio by audio SO file
-    /// </summary>
-    public void PlayAudio(AudioSO a)
-    {
-        if (_audioSource.clip == a.Clip && _audioSource.isPlaying)
+        for (int i = 0; i < _audioList.Length; i++)
         {
-            return;
-        }
-        if (_audioSource.isPlaying)
-        {
-            _audioSource.Stop();
-        }
-        SetupAudio(a, _audioSource);
-        _audioSource.Play();
-    }
+            AudioSO a = _audioList[i];
 
-    /// <summary>
-    /// Use by state machine
-    /// </summary>
-    public void StopAudio()
-    {
-        _audioSource.Stop();
-    }
-    public void StopAudio(AudioSO a)
-    {
-        if (_audioSource.clip == a.Clip && _audioSource.isPlaying)
-        {
-            _audioSource.Stop();
+            a.Source = audioSources[i];
+            a.Source.Stop();
+            audioSources[i].clip = a.Clip;
+            audioSources[i].loop = a.IsLoop;
+            audioSources[i].volume = a.Volume;
+            audioSources[i].pitch = a.Pitch;
         }
-    }
-
-    private void SetupAudio(AudioSO audioSO, AudioSource source)
-    {
-        source.clip = audioSO.Clip;
-        source.loop = audioSO.IsLoop;
-        source.volume = audioSO.Volume;
-        source.pitch = audioSO.Pitch;
     }
 }

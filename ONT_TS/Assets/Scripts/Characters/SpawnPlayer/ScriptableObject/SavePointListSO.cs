@@ -11,12 +11,12 @@ public class SavePointListSO : ScriptableObject
 
     [Tooltip("List of save points")]
     [SerializeField]
-    private List<LocationSO> _list;
+    private List<SavePointLocationSO> _list;
 
     public string SceneName => _sceneName;
-    public List<LocationSO> List => _list;
+    public List<SavePointLocationSO> List => _list;
 
-    public void AddSavePoint(LocationSO spl)
+    public void AddSavePoint(SavePointLocationSO spl)
     {
         if (CheckIfSaved(spl))
             return;
@@ -29,10 +29,10 @@ public class SavePointListSO : ScriptableObject
     public Vector3 GetLastSavePoint()
     {
         if (_list.Count > 0)
-            return _list[_list.Count - 1].Position;
+            return _list[_list.Count - 1].SpawnLocation;
         else return Vector3.zero;
     }
 
-    public bool CheckIfSaved(LocationSO spl) =>
+    public bool CheckIfSaved(SavePointLocationSO spl) =>
     (_list.Find(obj => obj == spl) != null) ? true : false;
 }

@@ -2,34 +2,29 @@ using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
+using DG.Tweening;
 
 public class GameManager : MonoBehaviour
 {
     public static GameManager manager;
-
-
-    private void Awake()
-    {
-
-    }
-
-
-    void Start()
-    {
-        
-    }
+    public Animator _animator;
+    bool isPressed = false;
 
     void Update()
     {
-        if (Input.anyKey)
+        if (Input.anyKey && !isPressed)
         {
+            isPressed = true;
+            //_animator.SetTrigger("Pressed");
+            _animator.gameObject.SetActive(false);
             GoToSceneStart();
         }
     }
 
     void GoToSceneStart()
     {
-        SceneManager.LoadSceneAsync(1);
+        LoadingController.instance.LoadScene(1);
     }
 
 

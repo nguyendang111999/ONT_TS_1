@@ -45,5 +45,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   prefab: {fileID: 5304715086968858540, guid: 4b6d945dc1a66c348912125654e745ed, type: 3}
   locations:
-  - {fileID: 0}
+  - {fileID: 11400000, guid: 56fed192e51d27443a175bd52ef5bf40, type: 2}
+  - {fileID: 11400000, guid: c9c0cdfdca0ee9742a47a9b42f49ec0d, type: 2}
   playerPos: {fileID: 11400000, guid: 9344a26111cf125479cc86e362f1c51a, type: 2}

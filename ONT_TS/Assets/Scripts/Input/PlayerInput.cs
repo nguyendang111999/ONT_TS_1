@@ -80,7 +80,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""8ef491fc-db09-48b4-a54d-1d0fbeaf8ee9"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": """"
+                    ""interactions"": ""Tap""
                 },
                 {
                     ""name"": ""HeavyAttack"",
@@ -88,7 +88,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""id"": ""fa895f92-9748-4450-9ecc-3fe972a79400"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
-                    ""interactions"": ""Tap(duration=0.4,pressPoint=0.5),Hold(duration=0.7)""
+                    ""interactions"": ""Hold(duration=0.7),Tap(duration=0.5,pressPoint=0.5)""
                 },
                 {
                     ""name"": ""EarthAbility"",
@@ -115,9 +115,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""EquipWeapon"",
+                    ""name"": ""Escape"",
                     ""type"": ""Button"",
-                    ""id"": ""ba49aa5c-cf4a-47f2-b82d-1671b78ffd27"",
+                    ""id"": ""5a92bdd7-59dd-46d1-94d7-96a2eef034b3"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -302,12 +302,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""e4724184-8afc-4747-a7a7-adbdee848ccb"",
-                    ""path"": ""<Keyboard>/q"",
+                    ""id"": ""43c9badc-e973-4545-add2-8a0612a79bba"",
+                    ""path"": ""<Keyboard>/escape"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""EquipWeapon"",
+                    ""action"": ""Escape"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -329,14 +329,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""name"": ""CloseInventory"",
                     ""type"": ""Button"",
                     ""id"": ""c31660cd-d5e8-4d1b-bc2d-60531a003669"",
-                    ""expectedControlType"": ""Button"",
-                    ""processors"": """",
-                    ""interactions"": """"
-                },
-                {
-                    ""name"": ""Escape"",
-                    ""type"": ""Button"",
-                    ""id"": ""e03b6c99-2ecc-4d0c-928e-c71e7ed1473a"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -364,17 +356,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""action"": ""CloseInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
-                    ""id"": ""395aa574-9df0-4853-8098-ebd25e066440"",
-                    ""path"": ""<Keyboard>/escape"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Escape"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
                 }
             ]
         },
@@ -383,7 +364,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
             ""id"": ""49af096d-87d3-4381-860f-62b20fb466b1"",
             ""actions"": [
                 {
-                    ""name"": ""Skip"",
+                    ""name"": ""Interact"",
                     ""type"": ""Button"",
                     ""id"": ""9906a98e-bae2-43f9-9bf3-24d476d6b304"",
                     ""expectedControlType"": ""Button"",
@@ -399,7 +380,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""Skip"",
+                    ""action"": ""Interact"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -439,15 +420,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_EarthAbility = m_GamePlay.FindAction("EarthAbility", throwIfNotFound: true);
         m_GamePlay_LifeAbility = m_GamePlay.FindAction("LifeAbility", throwIfNotFound: true);
         m_GamePlay_OpenInventory = m_GamePlay.FindAction("OpenInventory", throwIfNotFound: true);
-        m_GamePlay_EquipWeapon = m_GamePlay.FindAction("EquipWeapon", throwIfNotFound: true);
+        m_GamePlay_Escape = m_GamePlay.FindAction("Escape", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Choose = m_Menu.FindAction("Choose", throwIfNotFound: true);
         m_Menu_CloseInventory = m_Menu.FindAction("CloseInventory", throwIfNotFound: true);
-        m_Menu_Escape = m_Menu.FindAction("Escape", throwIfNotFound: true);
         // Dialogue
         m_Dialogue = asset.FindActionMap("Dialogue", throwIfNotFound: true);
-        m_Dialogue_Skip = m_Dialogue.FindAction("Skip", throwIfNotFound: true);
+        m_Dialogue_Interact = m_Dialogue.FindAction("Interact", throwIfNotFound: true);
     }
 
     public void Dispose()
@@ -509,7 +489,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_EarthAbility;
     private readonly InputAction m_GamePlay_LifeAbility;
     private readonly InputAction m_GamePlay_OpenInventory;
-    private readonly InputAction m_GamePlay_EquipWeapon;
+    private readonly InputAction m_GamePlay_Escape;
     public struct GamePlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -526,7 +506,7 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @EarthAbility => m_Wrapper.m_GamePlay_EarthAbility;
         public InputAction @LifeAbility => m_Wrapper.m_GamePlay_LifeAbility;
         public InputAction @OpenInventory => m_Wrapper.m_GamePlay_OpenInventory;
-        public InputAction @EquipWeapon => m_Wrapper.m_GamePlay_EquipWeapon;
+        public InputAction @Escape => m_Wrapper.m_GamePlay_Escape;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -572,9 +552,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @OpenInventory.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
                 @OpenInventory.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
-                @EquipWeapon.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEquipWeapon;
-                @EquipWeapon.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEquipWeapon;
-                @EquipWeapon.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEquipWeapon;
+                @Escape.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEscape;
+                @Escape.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEscape;
+                @Escape.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -615,9 +595,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @OpenInventory.started += instance.OnOpenInventory;
                 @OpenInventory.performed += instance.OnOpenInventory;
                 @OpenInventory.canceled += instance.OnOpenInventory;
-                @EquipWeapon.started += instance.OnEquipWeapon;
-                @EquipWeapon.performed += instance.OnEquipWeapon;
-                @EquipWeapon.canceled += instance.OnEquipWeapon;
+                @Escape.started += instance.OnEscape;
+                @Escape.performed += instance.OnEscape;
+                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -628,14 +608,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private IMenuActions m_MenuActionsCallbackInterface;
     private readonly InputAction m_Menu_Choose;
     private readonly InputAction m_Menu_CloseInventory;
-    private readonly InputAction m_Menu_Escape;
     public struct MenuActions
     {
         private @PlayerInput m_Wrapper;
         public MenuActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
         public InputAction @Choose => m_Wrapper.m_Menu_Choose;
         public InputAction @CloseInventory => m_Wrapper.m_Menu_CloseInventory;
-        public InputAction @Escape => m_Wrapper.m_Menu_Escape;
         public InputActionMap Get() { return m_Wrapper.m_Menu; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -651,9 +629,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @CloseInventory.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseInventory;
                 @CloseInventory.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseInventory;
                 @CloseInventory.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnCloseInventory;
-                @Escape.started -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
-                @Escape.performed -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
-                @Escape.canceled -= m_Wrapper.m_MenuActionsCallbackInterface.OnEscape;
             }
             m_Wrapper.m_MenuActionsCallbackInterface = instance;
             if (instance != null)
@@ -664,9 +639,6 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @CloseInventory.started += instance.OnCloseInventory;
                 @CloseInventory.performed += instance.OnCloseInventory;
                 @CloseInventory.canceled += instance.OnCloseInventory;
-                @Escape.started += instance.OnEscape;
-                @Escape.performed += instance.OnEscape;
-                @Escape.canceled += instance.OnEscape;
             }
         }
     }
@@ -675,12 +647,12 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     // Dialogue
     private readonly InputActionMap m_Dialogue;
     private IDialogueActions m_DialogueActionsCallbackInterface;
-    private readonly InputAction m_Dialogue_Skip;
+    private readonly InputAction m_Dialogue_Interact;
     public struct DialogueActions
     {
         private @PlayerInput m_Wrapper;
         public DialogueActions(@PlayerInput wrapper) { m_Wrapper = wrapper; }
-        public InputAction @Skip => m_Wrapper.m_Dialogue_Skip;
+        public InputAction @Interact => m_Wrapper.m_Dialogue_Interact;
         public InputActionMap Get() { return m_Wrapper.m_Dialogue; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -690,16 +662,16 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         {
             if (m_Wrapper.m_DialogueActionsCallbackInterface != null)
             {
-                @Skip.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSkip;
-                @Skip.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSkip;
-                @Skip.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnSkip;
+                @Interact.started -= m_Wrapper.m_DialogueActionsCallbackInterface.OnInteract;
+                @Interact.performed -= m_Wrapper.m_DialogueActionsCallbackInterface.OnInteract;
+                @Interact.canceled -= m_Wrapper.m_DialogueActionsCallbackInterface.OnInteract;
             }
             m_Wrapper.m_DialogueActionsCallbackInterface = instance;
             if (instance != null)
             {
-                @Skip.started += instance.OnSkip;
-                @Skip.performed += instance.OnSkip;
-                @Skip.canceled += instance.OnSkip;
+                @Interact.started += instance.OnInteract;
+                @Interact.performed += instance.OnInteract;
+                @Interact.canceled += instance.OnInteract;
             }
         }
     }
@@ -727,16 +699,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnEarthAbility(InputAction.CallbackContext context);
         void OnLifeAbility(InputAction.CallbackContext context);
         void OnOpenInventory(InputAction.CallbackContext context);
-        void OnEquipWeapon(InputAction.CallbackContext context);
+        void OnEscape(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
         void OnChoose(InputAction.CallbackContext context);
         void OnCloseInventory(InputAction.CallbackContext context);
-        void OnEscape(InputAction.CallbackContext context);
     }
     public interface IDialogueActions
     {
-        void OnSkip(InputAction.CallbackContext context);
+        void OnInteract(InputAction.CallbackContext context);
     }
 }

@@ -3,7 +3,9 @@ using UnityEngine.Audio;
 
 [CreateAssetMenu(menuName = "Audio/AudioClip")]
 public class AudioSO : ScriptableObject
-{    [SerializeField] private string _name;
+{
+    [SerializeField] private AudioSource _source;
+    [SerializeField] private string _name;
     [SerializeField] private AudioClip _audio;
     [Range(0f, 1f)]
     [SerializeField] private float _volume;
@@ -16,4 +18,9 @@ public class AudioSO : ScriptableObject
     public float Volume => _volume;
     public float Pitch => _pitch;
     public bool IsLoop => _isLoop;
+    public AudioSource Source
+    {
+        get { return _source; }
+        set { _source = value; }
+    }
 }

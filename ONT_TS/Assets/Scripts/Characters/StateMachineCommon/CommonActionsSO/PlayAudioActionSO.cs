@@ -5,7 +5,9 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "Audio/Play Audio Action")]
 public class PlayAudioActionSO : StateActionSO
 {
+    [SerializeField] private string _audioName;
     [SerializeField] private AudioSO _audioSO;
+    public string AudioName => _audioName;
     public AudioSO AudioSource => _audioSO;
 
     protected override StateAction CreateAction() => new PlayAudioAction();
@@ -14,23 +16,26 @@ public class PlayAudioActionSO : StateActionSO
 public class PlayAudioAction : StateAction
 {
     PlayAudioActionSO _originSO => (PlayAudioActionSO)base.OriginSO;
+    private string _audio;
     private AudioSO _audioSO;
     private AudioManager _characterAudio;
 
     public override void Awake(StateController stateController)
     {
         _characterAudio = stateController.GetComponent<AudioManager>();
-        _audioSO = _originSO.AudioSource;
     }
     public override void OnStateEnter()
     {
-        _characterAudio.PlayAudio(_audioSO);
+        _audioSO = _originSO.AudioSource;
+        _audioSO.Source.Play();
+        // _characterAudio.PlayAudio(_audioSO.Name);
     }
     public override void OnStateUpdate() { }
 
     public override void OnStateExit()
     {
-        _characterAudio.StopAudio();
+        _audioSO.Source.Stop();
+        // _characterAudio.PlayAudio(_audioSO.Name);
     }
 }
 

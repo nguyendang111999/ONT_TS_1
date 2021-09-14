@@ -7,6 +7,7 @@ public class Damageable : MonoBehaviour
 {
     [SerializeField] private HealthConfigSO _healthConfig;
     [SerializeField] private HealthBar _healthBar;
+
     [SerializeField] private DroppableRewardSO _droppableRewardConfig;
     public DroppableRewardSO DroppableRewardConfig => _droppableRewardConfig;
 
@@ -23,8 +24,8 @@ public class Damageable : MonoBehaviour
     public void ReceiveAttack(int dmg)
     {
         if (IsDead) return;
+
         _currentHealth -= dmg;
-        Debug.Log("Health: " + _currentHealth);
         _healthBar.SetHealth(_currentHealth);
 
         GetHit = true;
