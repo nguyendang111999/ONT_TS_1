@@ -6,7 +6,6 @@ using TMPro;
 
 public class VideoSetting : MonoBehaviour
 {
-
     public TMP_Dropdown resolutionDropdown;
 
     Resolution[] resolutions;
@@ -16,7 +15,10 @@ public class VideoSetting : MonoBehaviour
     {
         resolutions = Screen.resolutions;
 
-        resolutionDropdown.ClearOptions();
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.ClearOptions();
+        }
 
         List<string> options = new List<string>();
 
@@ -37,9 +39,12 @@ public class VideoSetting : MonoBehaviour
             }
         }
 
-        resolutionDropdown.AddOptions(options);
-        resolutionDropdown.value = currentResolutionIndex;
-        resolutionDropdown.RefreshShownValue();
+        if (resolutionDropdown != null)
+        {
+            resolutionDropdown.AddOptions(options);
+            resolutionDropdown.value = currentResolutionIndex;
+            resolutionDropdown.RefreshShownValue();
+        }
     }
 
     public void SetResolution(int resolutionIndex)
@@ -57,6 +62,4 @@ public class VideoSetting : MonoBehaviour
     {
         Screen.fullScreen = isFullscreen;
     }
-
-
 }
