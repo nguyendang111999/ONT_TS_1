@@ -7,6 +7,7 @@ public class SavePointHandler : MonoBehaviour
     [Tooltip("This is where player get spawn after dead")]
     [SerializeField]
     private LocationSO _locationSO;
+    
     [Tooltip("The list of savepoint of the current map")]
     [SerializeField]
     private SavePointListSO _savePointList;

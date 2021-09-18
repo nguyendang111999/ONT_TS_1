@@ -39,6 +39,9 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     //Escape event
     public event UnityAction EscapeEvent = delegate { };
+    //Open Ingame Menu
+    public event UnityAction OpenIngameMenu = delegate { };
+
     //Skip event
     public event UnityAction SkipEvent = delegate { };
 
@@ -212,6 +215,11 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         if (context.phase == InputActionPhase.Performed)
             OpenInventoryEvent.Invoke();
     }
+    public void OnCloseInventory(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+            CloseInventoryEvent.Invoke();
+    }
 
     public void OnEarthAbility(InputAction.CallbackContext context)
     {
@@ -237,12 +245,6 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         }
     }
 
-    public void OnCloseInventory(InputAction.CallbackContext context)
-    {
-        if (context.phase == InputActionPhase.Performed)
-            CloseInventoryEvent.Invoke();
-    }
-
     public void OnSkip(InputAction.CallbackContext context)
     {
         if (context.phase == InputActionPhase.Performed)
@@ -264,6 +266,14 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
         if (context.phase == InputActionPhase.Performed)
         {
             EscapeEvent.Invoke();
+        }
+    }
+
+    public void OnIngameMenu(InputAction.CallbackContext context)
+    {
+        if (context.phase == InputActionPhase.Performed)
+        {
+            OpenIngameMenu.Invoke();
         }
     }
     #endregion

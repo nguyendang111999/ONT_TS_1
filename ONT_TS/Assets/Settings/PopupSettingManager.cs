@@ -123,4 +123,16 @@ public class PopupSettingManager : MonoBehaviour
             gameObject.SetActive(false);
         };
     }
+
+    public void BackToIngameMenu()
+    {
+        if (currentChild != null)
+        {
+            currentChild.gameObject.SetActive(false);
+        }
+        frameBorder.DOScale(new Vector3(0.4f, 0.4f, 0.4f), 0.1f).onComplete += delegate
+        {
+            gameObject.SetActive(false);
+        };
+    }
 }

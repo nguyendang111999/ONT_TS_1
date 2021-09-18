@@ -107,6 +107,14 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
+                    ""name"": ""EquipWeapon"",
+                    ""type"": ""Button"",
+                    ""id"": ""ba49aa5c-cf4a-47f2-b82d-1671b78ffd27"",
+                    ""expectedControlType"": ""Button"",
+                    ""processors"": """",
+                    ""interactions"": """"
+                },
+                {
                     ""name"": ""OpenInventory"",
                     ""type"": ""Button"",
                     ""id"": ""28ee5097-72fd-4d72-8289-a6e28bfb2131"",
@@ -115,9 +123,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                     ""interactions"": """"
                 },
                 {
-                    ""name"": ""EquipWeapon"",
+                    ""name"": ""IngameMenu"",
                     ""type"": ""Button"",
-                    ""id"": ""ba49aa5c-cf4a-47f2-b82d-1671b78ffd27"",
+                    ""id"": ""022a37d7-ed45-41db-b441-b83988b49ac6"",
                     ""expectedControlType"": ""Button"",
                     ""processors"": """",
                     ""interactions"": """"
@@ -291,23 +299,34 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 },
                 {
                     ""name"": """",
-                    ""id"": ""d73cb5b5-b831-4c47-b15b-4f4652737bc6"",
-                    ""path"": ""<Keyboard>/tab"",
-                    ""interactions"": """",
-                    ""processors"": """",
-                    ""groups"": ""Keyboard and Mouse"",
-                    ""action"": ""OpenInventory"",
-                    ""isComposite"": false,
-                    ""isPartOfComposite"": false
-                },
-                {
-                    ""name"": """",
                     ""id"": ""e4724184-8afc-4747-a7a7-adbdee848ccb"",
                     ""path"": ""<Keyboard>/q"",
                     ""interactions"": """",
                     ""processors"": """",
                     ""groups"": ""Keyboard and Mouse"",
                     ""action"": ""EquipWeapon"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ab04d54f-7b92-498e-bcc5-8e5e765cd527"",
+                    ""path"": ""<Keyboard>/escape"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""IngameMenu"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""d73cb5b5-b831-4c47-b15b-4f4652737bc6"",
+                    ""path"": ""<Keyboard>/tab"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": ""Keyboard and Mouse"",
+                    ""action"": ""OpenInventory"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
                 }
@@ -438,8 +457,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         m_GamePlay_HeavyAttack = m_GamePlay.FindAction("HeavyAttack", throwIfNotFound: true);
         m_GamePlay_EarthAbility = m_GamePlay.FindAction("EarthAbility", throwIfNotFound: true);
         m_GamePlay_LifeAbility = m_GamePlay.FindAction("LifeAbility", throwIfNotFound: true);
-        m_GamePlay_OpenInventory = m_GamePlay.FindAction("OpenInventory", throwIfNotFound: true);
         m_GamePlay_EquipWeapon = m_GamePlay.FindAction("EquipWeapon", throwIfNotFound: true);
+        m_GamePlay_OpenInventory = m_GamePlay.FindAction("OpenInventory", throwIfNotFound: true);
+        m_GamePlay_IngameMenu = m_GamePlay.FindAction("IngameMenu", throwIfNotFound: true);
         // Menu
         m_Menu = asset.FindActionMap("Menu", throwIfNotFound: true);
         m_Menu_Choose = m_Menu.FindAction("Choose", throwIfNotFound: true);
@@ -508,8 +528,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
     private readonly InputAction m_GamePlay_HeavyAttack;
     private readonly InputAction m_GamePlay_EarthAbility;
     private readonly InputAction m_GamePlay_LifeAbility;
-    private readonly InputAction m_GamePlay_OpenInventory;
     private readonly InputAction m_GamePlay_EquipWeapon;
+    private readonly InputAction m_GamePlay_OpenInventory;
+    private readonly InputAction m_GamePlay_IngameMenu;
     public struct GamePlayActions
     {
         private @PlayerInput m_Wrapper;
@@ -525,8 +546,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         public InputAction @HeavyAttack => m_Wrapper.m_GamePlay_HeavyAttack;
         public InputAction @EarthAbility => m_Wrapper.m_GamePlay_EarthAbility;
         public InputAction @LifeAbility => m_Wrapper.m_GamePlay_LifeAbility;
-        public InputAction @OpenInventory => m_Wrapper.m_GamePlay_OpenInventory;
         public InputAction @EquipWeapon => m_Wrapper.m_GamePlay_EquipWeapon;
+        public InputAction @OpenInventory => m_Wrapper.m_GamePlay_OpenInventory;
+        public InputAction @IngameMenu => m_Wrapper.m_GamePlay_IngameMenu;
         public InputActionMap Get() { return m_Wrapper.m_GamePlay; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -569,12 +591,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @LifeAbility.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
                 @LifeAbility.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
                 @LifeAbility.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnLifeAbility;
-                @OpenInventory.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
-                @OpenInventory.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
                 @EquipWeapon.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEquipWeapon;
                 @EquipWeapon.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEquipWeapon;
                 @EquipWeapon.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnEquipWeapon;
+                @OpenInventory.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
+                @OpenInventory.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnOpenInventory;
+                @IngameMenu.started -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnIngameMenu;
+                @IngameMenu.performed -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnIngameMenu;
+                @IngameMenu.canceled -= m_Wrapper.m_GamePlayActionsCallbackInterface.OnIngameMenu;
             }
             m_Wrapper.m_GamePlayActionsCallbackInterface = instance;
             if (instance != null)
@@ -612,12 +637,15 @@ public class @PlayerInput : IInputActionCollection, IDisposable
                 @LifeAbility.started += instance.OnLifeAbility;
                 @LifeAbility.performed += instance.OnLifeAbility;
                 @LifeAbility.canceled += instance.OnLifeAbility;
-                @OpenInventory.started += instance.OnOpenInventory;
-                @OpenInventory.performed += instance.OnOpenInventory;
-                @OpenInventory.canceled += instance.OnOpenInventory;
                 @EquipWeapon.started += instance.OnEquipWeapon;
                 @EquipWeapon.performed += instance.OnEquipWeapon;
                 @EquipWeapon.canceled += instance.OnEquipWeapon;
+                @OpenInventory.started += instance.OnOpenInventory;
+                @OpenInventory.performed += instance.OnOpenInventory;
+                @OpenInventory.canceled += instance.OnOpenInventory;
+                @IngameMenu.started += instance.OnIngameMenu;
+                @IngameMenu.performed += instance.OnIngameMenu;
+                @IngameMenu.canceled += instance.OnIngameMenu;
             }
         }
     }
@@ -726,8 +754,9 @@ public class @PlayerInput : IInputActionCollection, IDisposable
         void OnHeavyAttack(InputAction.CallbackContext context);
         void OnEarthAbility(InputAction.CallbackContext context);
         void OnLifeAbility(InputAction.CallbackContext context);
-        void OnOpenInventory(InputAction.CallbackContext context);
         void OnEquipWeapon(InputAction.CallbackContext context);
+        void OnOpenInventory(InputAction.CallbackContext context);
+        void OnIngameMenu(InputAction.CallbackContext context);
     }
     public interface IMenuActions
     {
