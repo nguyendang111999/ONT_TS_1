@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VLG_Idle
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: 2c49a13afd7591242994ee18bed600c6, type: 2}
-  - {fileID: 11400000, guid: d4631661f1b70b344aefe9d7000b637b, type: 2}
+  - {fileID: 11400000, guid: 10ef36c539110734cabde1ace0fa7d88, type: 2}
+  - {fileID: 11400000, guid: 0fd9c4922d4c6e04397b50dd4483e277, type: 2}

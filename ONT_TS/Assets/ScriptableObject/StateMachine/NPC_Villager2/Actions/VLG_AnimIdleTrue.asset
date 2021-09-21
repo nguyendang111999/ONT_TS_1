@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: VLG_AnimIdleTrue
   m_EditorClassIdentifier: 
   parameterType: 0
-  parameterName: IsIdle
+  parameterName: Idle
   boolValue: 1
   intValue: 0
   floatValue: 0

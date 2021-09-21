@@ -40,4 +40,8 @@ public class UIManager : MonoBehaviour
         Debug.Log("Quit");
         Application.Quit();
     }
+
+    public void ReturnToMainMenu(){
+        
+    }
 }

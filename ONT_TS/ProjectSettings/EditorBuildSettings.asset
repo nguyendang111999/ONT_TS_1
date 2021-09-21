@@ -14,10 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NewMap/NewMap.unity
     guid: d09d7b17f7f560d4db2638c060007f0a
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/InGameMenu.unity
     guid: b4ad998a3882f904d950125ff83015c5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/StatAndResource.unity
     guid: 6d580dd76b2829443835a182352d8abf
   m_configObjects:

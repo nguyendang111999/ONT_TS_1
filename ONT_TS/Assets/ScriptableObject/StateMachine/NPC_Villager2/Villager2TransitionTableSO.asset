@@ -13,42 +13,17 @@ MonoBehaviour:
   m_Name: Villager2TransitionTableSO
   m_EditorClassIdentifier: 
   _transition:
-  - FromState: {fileID: 11400000, guid: 5eb415069292ef04f81b4db2d7685c05, type: 2}
+  - FromState: {fileID: 11400000, guid: 941ed8f87bdaa9849a9e97854dc3f2a0, type: 2}
     StateAndCondition:
-    - ToState: {fileID: 11400000, guid: 9296887da7d6b5a48bd3e0323fe69c21, type: 2}
+    - ToState: {fileID: 11400000, guid: 5bdfe8f823a9fda4ab153cf18ab2ca9c, type: 2}
       Conditions:
-      - ConditionSO: {fileID: 11400000, guid: be9d707aec206f540ac2d1bd46a2a930, type: 2}
+      - ConditionSO: {fileID: 11400000, guid: 037feba8c0833ce4d95b7ebc7885995d, type: 2}
         ExpectedResult: 0
         Operator: 0
-  - FromState: {fileID: 11400000, guid: 9296887da7d6b5a48bd3e0323fe69c21, type: 2}
+  - FromState: {fileID: 11400000, guid: 5bdfe8f823a9fda4ab153cf18ab2ca9c, type: 2}
     StateAndCondition:
-    - ToState: {fileID: 11400000, guid: 9296887da7d6b5a48bd3e0323fe69c21, type: 2}
+    - ToState: {fileID: 11400000, guid: 941ed8f87bdaa9849a9e97854dc3f2a0, type: 2}
       Conditions:
-      - ConditionSO: {fileID: 11400000, guid: cc6148d0850bbaa4481ec85d74d8abc5, type: 2}
-        ExpectedResult: 0
-        Operator: 0
-      - ConditionSO: {fileID: 11400000, guid: a20cde019b377de49b4529fead3f9482, type: 2}
+      - ConditionSO: {fileID: 11400000, guid: 037feba8c0833ce4d95b7ebc7885995d, type: 2}
         ExpectedResult: 1
         Operator: 0
-    - ToState: {fileID: 11400000, guid: 8320ef2c7169ec440b28080bc8e907f2, type: 2}
-      Conditions:
-      - ConditionSO: {fileID: 11400000, guid: cc6148d0850bbaa4481ec85d74d8abc5, type: 2}
-        ExpectedResult: 0
-        Operator: 0
-      - ConditionSO: {fileID: 11400000, guid: a20cde019b377de49b4529fead3f9482, type: 2}
-        ExpectedResult: 0
-        Operator: 0
-    - ToState: {fileID: 11400000, guid: 4a6863021ca3f46459552cd5927328d8, type: 2}
-      Conditions:
-      - ConditionSO: {fileID: 11400000, guid: e743dada4d29b5243aa7ebaec6fa7208, type: 2}
-        ExpectedResult: 0
-        Operator: 0
-  - FromState: {fileID: 11400000, guid: 4a6863021ca3f46459552cd5927328d8, type: 2}
-    StateAndCondition:
-    - ToState: {fileID: 11400000, guid: 9296887da7d6b5a48bd3e0323fe69c21, type: 2}
-      Conditions:
-      - ConditionSO: {fileID: 11400000, guid: e743dada4d29b5243aa7ebaec6fa7208, type: 2}
-        ExpectedResult: 1
-        Operator: 0
-  - FromState: {fileID: 11400000, guid: 8320ef2c7169ec440b28080bc8e907f2, type: 2}
-    StateAndCondition: []

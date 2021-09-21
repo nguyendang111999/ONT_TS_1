@@ -10,10 +10,4 @@ public class EffectManager : MonoBehaviour
         normalSlash.gameObject.SetActive(false);
         // heavyAttack.Stop();
     }
-
-    void ResetRenderSetting(){
-        RenderSettings.fogMode = FogMode.Linear;
-        RenderSettings.fogStartDistance = 0f;
-        RenderSettings.fogEndDistance = 100f;
-    }
 }

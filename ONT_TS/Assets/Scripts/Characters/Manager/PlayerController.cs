@@ -72,6 +72,11 @@ public class PlayerController : MonoBehaviour
     private bool onPressEquip = false;
     public bool OnPressEquip => onPressEquip;
     private bool weaponEquiped = true;//Check if player is equipping weapon
+    private bool headache = false;
+    public bool Headache{
+        get{return headache;}
+        set{headache = value;}
+    }
     public bool WeaponEquiped
     {
         get { return weaponEquiped; }
@@ -243,6 +248,9 @@ public class PlayerController : MonoBehaviour
     private bool CheckIfOnGround() => isGrounded = Physics.CheckSphere(groundDetector.position, groundDistance, groundLayer);
 
     //--- Event Listener ---
+    private void FalseHeadache(){
+        headache = false;
+    }
     private void OnMove(Vector2 movement)
     {
         _inputVector = movement.normalized;

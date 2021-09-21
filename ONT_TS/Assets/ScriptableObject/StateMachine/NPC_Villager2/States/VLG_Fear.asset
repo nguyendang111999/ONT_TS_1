@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: VLG_Fear
   m_EditorClassIdentifier: 
   _actions:
-  - {fileID: 11400000, guid: 2c49a13afd7591242994ee18bed600c6, type: 2}
-  - {fileID: 11400000, guid: d4631661f1b70b344aefe9d7000b637b, type: 2}
+  - {fileID: 11400000, guid: 83c7f4ba90858764d8c1d515592f4bac, type: 2}
+  - {fileID: 11400000, guid: 6bc89eaadc13f5d4c8a86ba4a4b86e72, type: 2}

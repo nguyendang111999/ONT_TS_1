@@ -48,7 +48,6 @@ public class DropItemAction : StateAction
 
         foreach (DropItem dropItem in dropGroup.Drops)
         {
-            Debug.Log("Item: " + dropItem.Item.ItemName);
             currentRate += dropItem.DropRate;
             if (currentRate >= dropDice)
             {
