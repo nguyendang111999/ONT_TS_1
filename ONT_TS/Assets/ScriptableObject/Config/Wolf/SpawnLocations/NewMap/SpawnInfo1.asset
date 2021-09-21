@@ -14,6 +14,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   location: {fileID: 11400000, guid: 64b9a4f7004a13a468061995f8db144c, type: 2}
   range: 0
-  numberToSpawn: 5
+  numberToSpawn: 3
   spawnRate: 0
-  spawnedNumber: 5
+  spawnedNumber: 3

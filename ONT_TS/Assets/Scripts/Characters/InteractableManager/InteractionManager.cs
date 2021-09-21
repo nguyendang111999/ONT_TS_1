@@ -53,6 +53,7 @@ public class InteractionManager : MonoBehaviour
                 break;
             }
             if(obj.CompareTag("Savepoint")){
+                Debug.Log("Saved");
                 SavePointHandler sph = obj.GetComponent<SavePointHandler>();
                 sph.SaveToList();
                 break;

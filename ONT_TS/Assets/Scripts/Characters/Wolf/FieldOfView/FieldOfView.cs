@@ -61,6 +61,14 @@ public class FieldOfView : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Use by villager 2
+    /// </summary>
+    public bool FindEnemy(){
+        Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        return targetInViewRadius.Length > 0;
+    }
+
     public bool TargetFounded() => visibleTargets.Count > 0;
 
 }
