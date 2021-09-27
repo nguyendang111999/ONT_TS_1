@@ -6,7 +6,7 @@ using UnityEngine;
 public class AbilityContainerSO : ScriptableObject
 {
     [Tooltip("Index show that what ability is being seleced")]
-    [SerializeField] private int index;
+    [SerializeField] private int index = default;
     public List<AbilityBaseSO> _abilityList;
     public List<AbilityBaseSO> AbilityList => _abilityList;
     public int Index

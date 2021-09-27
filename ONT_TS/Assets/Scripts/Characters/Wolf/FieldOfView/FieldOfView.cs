@@ -12,6 +12,7 @@ public class FieldOfView : MonoBehaviour
 
     [HideInInspector]
     public List<ObjectPositionSO> visibleTargets = new List<ObjectPositionSO>();
+    public List<Transform> visibleTargetsTransform = new List<Transform>();
 
     /// <summary>
     /// Return a vector3 with direction point to the rear of view angle
@@ -60,6 +61,27 @@ public class FieldOfView : MonoBehaviour
             }
         }
     }
+
+    #region first version
+    // void FindVisibleTarget()
+    // {
+    //     visibleTargetsTransform.Clear();
+    //     Collider[] targetInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+    //     for (int i = 0; i < targetInViewRadius.Length; i++)
+    //     {
+    //         Transform target = targetInViewRadius[i].transform;
+    //         Vector3 dirToTarget = (target.position - transform.position).normalized;
+    //         if (Vector3.Angle(transform.forward, dirToTarget) <= viewAngle / 2)
+    //         {
+    //             float dstToTarget = Vector3.Distance(transform.position, target.position);
+    //             if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, environmentMask))
+    //             {
+    //                 visibleTargetsTransform.Add(target);
+    //             }
+    //         }
+    //     }
+    // }
+    #endregion
 
     /// <summary>
     /// Use by villager 2

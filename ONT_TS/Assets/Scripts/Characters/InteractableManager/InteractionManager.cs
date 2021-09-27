@@ -15,8 +15,6 @@ public class InteractionManager : MonoBehaviour
     [SerializeField] private InventorySO _foodInventory;
     [SerializeField] private DialogueController _diaController;
 
-    private bool isTalking = false;
-
     private void OnEnable()
     {
         _inputReader.InteractEvent += OnInteractionButtonPress;

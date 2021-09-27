@@ -7,8 +7,7 @@ public class SpawnLocationSO : ScriptableObject
 {
     [Tooltip("Enemy location to spawn")]
     [SerializeField] LocationSO location;
-    [Tooltip("Spawn range")]
-    [SerializeField] float range;
+
     [Tooltip("Max number of enemy to spawn")]
     [SerializeField] int numberToSpawn;
     [Tooltip("Max number of enemy at once")]
@@ -21,10 +20,7 @@ public class SpawnLocationSO : ScriptableObject
     {
         get { return location; }
     }
-    public float Range
-    {
-        get { return range; }
-    }
+
     public int NumberToSpawn
     {
         get

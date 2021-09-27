@@ -5,9 +5,12 @@ using UnityEngine;
 public class EnemySpawn : MonoBehaviour
 {
     [Tooltip("Object to spawn")]
-    [SerializeField] private GameObject prefab;
-    [Tooltip("Spawn area")]
-    [SerializeField] private SpawnLocationSO[] locations;
+    [SerializeField] 
+    private GameObject prefab;
+
+    [Tooltip("Spawn areas")]
+    [SerializeField] 
+    private SpawnLocationSO[] locations;
     [Tooltip("Player position")]
     [SerializeField] private ObjectPositionSO playerPos;
 

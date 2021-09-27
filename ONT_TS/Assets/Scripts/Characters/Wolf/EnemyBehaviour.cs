@@ -3,7 +3,7 @@ using UnityEngine.AI;
 
 public class EnemyBehaviour : MonoBehaviour
 {
-    [SerializeField] private ObjectPositionSO _target;
+    private ObjectPositionSO _target;
     [SerializeField] private WolfStatSO _stat;
     public WolfStatSO WolfStatSO() => _stat;
     public ObjectPositionSO Target
