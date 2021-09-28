@@ -91,6 +91,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public void EnableDialogueInput()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         playerInput.Menu.Enable();
         playerInput.GamePlay.Disable();
         playerInput.Dialogue.Enable();
@@ -98,6 +99,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public void EnableMenuInput()
     {
         Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
         playerInput.Menu.Enable();
         playerInput.GamePlay.Disable();
         playerInput.Dialogue.Disable();
@@ -105,6 +107,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public void EnableGameplayInput()
     {
         Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         playerInput.Menu.Disable();
         playerInput.GamePlay.Enable();
         playerInput.Dialogue.Disable();

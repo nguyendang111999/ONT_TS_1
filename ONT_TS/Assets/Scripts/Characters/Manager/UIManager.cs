@@ -8,6 +8,7 @@ public class UIManager : MonoBehaviour
     [SerializeField] GameObject _ingameMenu;
     [SerializeField] GameObject _background;
     [SerializeField] GameObject _resourceBG;
+    [SerializeField] GameObject _TSHud;
     private void OnEnable() {
         _inputReader.OpenIngameMenu += OpenIngameMenu;
         _inputReader.EscapeEvent += CloseIngameMenu;
@@ -22,12 +23,15 @@ public class UIManager : MonoBehaviour
         _inputReader.EnableMenuInput();
         _background.SetActive(true);
         _ingameMenu.SetActive(true);
+        _TSHud.SetActive(false);
     }
     public void CloseIngameMenu(){
-        _inputReader.EnableGameplayInput();
+        // _inputReader.EnableGameplayInput();
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
         _background.SetActive(false);
         _ingameMenu.SetActive(false);
-        Cursor.visible = false;
+        _TSHud.SetActive(true);
     }
 
     public void OpenSetting(){

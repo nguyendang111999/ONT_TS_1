@@ -17,6 +17,7 @@ public class IngameUI : MonoBehaviour
     [SerializeField] GameObject ability;
     [SerializeField] GameObject skills;
     [SerializeField] UIInventory _inventoryPanel;
+    [SerializeField] GameObject _TSHud;
 
     private void OnEnable()
     {
@@ -37,6 +38,7 @@ public class IngameUI : MonoBehaviour
         background.SetActive(true);
         backgroundBag.SetActive(true);
         header.SetActive(true);
+        _TSHud.SetActive(false);
     }
 
     void DisableBackground()
@@ -44,6 +46,9 @@ public class IngameUI : MonoBehaviour
         background.SetActive(false);
         backgroundBag.SetActive(false);
         header.SetActive(false);
+        _TSHud.SetActive(true);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
     }
 
     public void OpenGlossary()

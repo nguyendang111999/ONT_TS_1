@@ -12,5 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a4326d57a2fad514e8b789131a933eef, type: 3}
   m_Name: PlayHelpMeAudioWhenClosePlayer
   m_EditorClassIdentifier: 
-  distance: 10
+  distance: 15
   _audioSO: {fileID: 11400000, guid: f937ea422c7a0c045864d1dda6dbb879, type: 2}

@@ -16,17 +16,20 @@ public class EndGame : MonoBehaviour
     public AudioSO audioSO;
     AudioSource _aSource;
     PlayerController _playerController;
+    [SerializeField] GameObject _tiger;
 
     private void Start()
     {
         _aSource = gameObject.GetComponent<AudioSource>();
         SetupAudio(audioSO, _aSource);
+        _tiger.SetActive(false);
     }
 
     private void OnTriggerEnter(Collider other)
     {
         if (other.tag.Equals("Player"))
         {
+            _tiger.SetActive(true);
             _playerController = other.gameObject.GetComponent<PlayerController>();
             StartCoroutine(_camShake.Shake(duration, magnitude, _playerController));
             if (_aSource.isPlaying) return;

@@ -1,0 +1,26 @@
+Begin Object Class=/Script/Engine.MaterialInstanceConstant Name="M_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6"
+   Begin Object Class=/Script/UnrealEd.SceneThumbnailInfoWithPrimitive Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   Begin Object Name="SceneThumbnailInfoWithPrimitive_0"
+   End Object
+   ParameterStateId=BE8AE7444BA37257285B638456CF5AAD
+   Parent=Material'"/Engine/EngineMaterials/NewBaseFlattenMaterial.NewBaseFlattenMaterial"'
+   bHasStaticPermutationResource=True
+   ScalarParameterValues(0)=(ParameterInfo=(Name="EmissiveScale"))
+   TextureParameterValues(0)=(ParameterInfo=(Name="BaseColorTexture"),ParameterValue=Texture2D'"T_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6_BaseColor"')
+   TextureParameterValues(1)=(ParameterInfo=(Name="RoughnessTexture"),ParameterValue=Texture2D'"T_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6_Roughness"')
+   TextureParameterValues(2)=(ParameterInfo=(Name="NormalTexture"),ParameterValue=Texture2D'"T_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6_Normal"')
+   TextureParameterValues(3)=(ParameterInfo=(Name="AmbientOcclusionTexture"),ParameterValue=Texture2D'"T_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6_AmbientOcclusion"')
+   TextureParameterValues(4)=(ParameterInfo=(Name="MetallicTexture"),ParameterValue=Texture2D'"T_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6_Metallic"')
+   TextureParameterValues(5)=(ParameterInfo=(Name="EmissiveColorTexture"),ParameterValue=Texture2D'"T_M_JC_TigerKing_Skin_JC_TigerKing_MaterialInstance2_887783F049BB9BE94FB038B3ED7695C6_EmissiveColor"')
+   BasePropertyOverrides=(bOverride_BlendMode=True,bOverride_TwoSided=True,TwoSided=True,BlendMode=BLEND_Masked,OpacityMaskClipValue=0.333300)
+   ReferencedTextureGuids(0)=417E19A6430630A811FF1E9EF3A920B1
+   ReferencedTextureGuids(1)=1188DFEC4861D2B64C74589671AC5D99
+   ReferencedTextureGuids(2)=E2EEAE3541946907032D028FA859FBCE
+   ReferencedTextureGuids(3)=E3C7B4EE404D31633E132BA5DE09B843
+   ReferencedTextureGuids(4)=79ECDE51457B95DB09D7828A7ED7834B
+   ReferencedTextureGuids(5)=DBF236EB4E8BC02B5FF1038335C47F04
+   StaticParameters=(StaticSwitchParameters=((Value=True,ParameterInfo=(Name="UseBaseColor"),bOverride=True),(Value=True,ParameterInfo=(Name="UseRoughness"),bOverride=True),(Value=True,ParameterInfo=(Name="UseNormal"),bOverride=True),(Value=True,ParameterInfo=(Name="UseAmbientOcclusion"),bOverride=True),(Value=True,ParameterInfo=(Name="UseMetallic"),bOverride=True),(Value=True,ParameterInfo=(Name="UseEmissiveColor"),bOverride=True)))
+   ThumbnailInfo=SceneThumbnailInfoWithPrimitive'"SceneThumbnailInfoWithPrimitive_0"'
+   LightingGuid=4D328AE3468D74EFDAFBF9BFCADBF512
+End Object

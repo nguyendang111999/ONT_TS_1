@@ -57,7 +57,7 @@ public class DropItemAction : StateAction
             }
         }
         Debug.Log("Item: " + item.ItemName);
-        float randAngle = Random.value * Mathf.PI * 2;
+        // float randAngle = Random.value * Mathf.PI * 2;
         GameObject collectibleItem = GameObject.Instantiate(itemPrefab, pos + _dropReward.DropDistance * Vector3.forward, Quaternion.identity);
     }
 }
