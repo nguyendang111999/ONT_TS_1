@@ -66,11 +66,4 @@ public class Evr_AudioController : MonoBehaviour
             audioSource.Stop();
         }
     }
-
-    #if UNITY_EDITOR
-    void OnDrawGizmos() {
-        Gizmos.color = Color.green;
-        Gizmos.DrawWireSphere(transform.position, distance);
-    }
-    #endif
 }

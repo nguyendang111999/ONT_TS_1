@@ -1,10 +1,12 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Playables;
 
 [RequireComponent(typeof(AudioSource))]
 public class EndGame : MonoBehaviour
 {
+    [SerializeField] InputReader _inputReader;
     [SerializeField] CameraShake _camShake;
 
     [Tooltip("Duration of camera shake")]
@@ -16,7 +18,10 @@ public class EndGame : MonoBehaviour
     public AudioSO audioSO;
     AudioSource _aSource;
     PlayerController _playerController;
+    [SerializeField] PlayableDirector CameraDirector;
+
     [SerializeField] GameObject _tiger;
+    [SerializeField] GameObject _TSHud;
 
     private void Start()
     {
@@ -31,11 +36,20 @@ public class EndGame : MonoBehaviour
         {
             _tiger.SetActive(true);
             _playerController = other.gameObject.GetComponent<PlayerController>();
+            _TSHud.SetActive(false);
+            CameraDirector.Play();
             StartCoroutine(_camShake.Shake(duration, magnitude, _playerController));
+            // StartCoroutine(CutScene());
             if (_aSource.isPlaying) return;
             else _aSource.Play();
         }
 
+    }
+
+    IEnumerator CutScene(){
+        CameraDirector.Play();
+        StartCoroutine(_camShake.Shake(duration, magnitude, _playerController));
+        yield return new WaitForSeconds(20f);
     }
 
     void SetupAudio(AudioSO audioSO, AudioSource source)

@@ -8,13 +8,15 @@ public class ParticleController : MonoBehaviour
     [Tooltip("Distance to start playeing a particle")]
     [SerializeField]
     private FloatValueSO _distance;
+
+    [SerializeField] bool preWarm = true;
     private ParticleSystem _system;
     private float distance;
     private void Awake() {
         _system = gameObject.GetComponent<ParticleSystem>();
         distance = _distance.Value;
         var main = _system.main;
-        main.prewarm = true;
+        main.prewarm = preWarm;
     }
 
     private void Update() {
