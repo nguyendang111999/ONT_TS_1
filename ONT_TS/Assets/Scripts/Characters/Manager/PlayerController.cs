@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -73,6 +74,9 @@ public class PlayerController : MonoBehaviour
     public bool OnPressEquip => onPressEquip;
     private bool weaponEquiped = true;//Check if player is equipping weapon
     private bool headache = false;
+
+    private const string REBINDS_KEY = "rebinds";
+
     public bool Headache{
         get{return headache;}
         set{headache = value;}

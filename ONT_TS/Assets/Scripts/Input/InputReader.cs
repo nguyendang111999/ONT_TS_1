@@ -69,7 +69,7 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
     public event UnityAction LifeAbilityCancelEvent = delegate { };
     #endregion
 
-    private PlayerInput playerInput;
+    public PlayerInput playerInput;
 
     #region Setup Functions
     private void OnEnable()
