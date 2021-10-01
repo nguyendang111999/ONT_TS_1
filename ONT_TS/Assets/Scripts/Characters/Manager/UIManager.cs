@@ -46,6 +46,6 @@ public class UIManager : MonoBehaviour
     }
 
     public void ReturnToMainMenu(){
-        
+        LoadingController.instance.LoadScene(1);
     }
 }
