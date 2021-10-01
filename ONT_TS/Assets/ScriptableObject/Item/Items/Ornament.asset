@@ -14,8 +14,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _itemName: Ornament
   _previewImage: {fileID: 21300000, guid: c006e939b0a86794e90375640233a4f6, type: 3}
-  _itemType: {fileID: 11400000, guid: 328c0bc229e9fe34e9808266552f515a, type: 2}
-  _description: Increase strength by 2
-  _boostNumber: 2
-  _coolDown: 10
+  _itemType: {fileID: 11400000, guid: 75d796f1d2b126c439a08836d4dbebf5, type: 2}
+  _description: Increase health by 20
+  _boostNumber: 20
+  _coolDown: 0
   _prefab: {fileID: 2436552302451457790, guid: fd098cbbb3724e341979a6bca248494f, type: 3}

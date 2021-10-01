@@ -1411,7 +1411,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _healthConfig: {fileID: 11400000, guid: 2e0be56aef311ab4c8416d5a21f16c50, type: 2}
   _healthBar: {fileID: 4998797217658577314}
-  _droppableRewardConfig: {fileID: 11400000, guid: e43e330de3d85cd4f9402045dd48f510,
+  _droppableRewardConfig: {fileID: 11400000, guid: b3f427baa6bed9f4891e368da7416643,
     type: 2}
 --- !u!114 &4998797218364639638
 MonoBehaviour:
@@ -1425,7 +1425,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c9c9243690168424a9bf3915f696f3a6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _target: {fileID: 0}
   _stat: {fileID: 11400000, guid: 218daea4054a5b14b85f15fbf296993e, type: 2}
   isInActive: 0
 --- !u!114 &4998797218364639641
@@ -1548,6 +1547,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 2112
   visibleTargets: []
+  visibleTargetsTransform: []
 --- !u!82 &8617455025331042824
 AudioSource:
   m_ObjectHideFlags: 0

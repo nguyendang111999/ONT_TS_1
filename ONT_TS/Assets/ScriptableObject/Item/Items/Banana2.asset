@@ -15,7 +15,9 @@ MonoBehaviour:
   _itemName: Banana
   _previewImage: {fileID: 21300000, guid: 1116f809266584e4e9e27b22f672d206, type: 3}
   _itemType: {fileID: 11400000, guid: 5b0ebf0bd8e926445b996d303f62965d, type: 2}
-  _description: This increase speed by 10%
+  _description: Bananas are extremely healthy and delicious. Aside from being very
+    nutritious, they are also a highly convenient snack food. This increase speed
+    by 10%
   _boostNumber: 10
-  _coolDown: 10
+  _coolDown: 20
   _prefab: {fileID: 3086802102617425397, guid: 738c4d81e2dd92546928b602349d2c26, type: 3}

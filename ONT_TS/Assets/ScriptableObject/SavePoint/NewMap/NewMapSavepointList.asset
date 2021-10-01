@@ -13,6 +13,4 @@ MonoBehaviour:
   m_Name: NewMapSavepointList
   m_EditorClassIdentifier: 
   _sceneName: NewMap
-  _list:
-  - {fileID: 11400000, guid: 90084b004dcb9f44a9e85093f1896f85, type: 2}
-  - {fileID: 11400000, guid: e5c6f38d19b56c547976bba55fdfef15, type: 2}
+  _list: []

@@ -13,13 +13,7 @@ MonoBehaviour:
   m_Name: FoodInventory
   m_EditorClassIdentifier: 
   _items:
-  - {fileID: 11400000, guid: b213ec829421fc644b191836907f6c98, type: 2}
-  - {fileID: 11400000, guid: 53e6e0daa5c4de64f93760fd053e48e0, type: 2}
-  - {fileID: 11400000, guid: 53e6e0daa5c4de64f93760fd053e48e0, type: 2}
-  - {fileID: 11400000, guid: 53e6e0daa5c4de64f93760fd053e48e0, type: 2}
-  - {fileID: 11400000, guid: 53e6e0daa5c4de64f93760fd053e48e0, type: 2}
   - {fileID: 11400000, guid: b933014c1b448374f8bf7cbb41b04869, type: 2}
-  - {fileID: 11400000, guid: 583cb42c65734d54eabbf9e40aef27c4, type: 2}
   - {fileID: 11400000, guid: 583cb42c65734d54eabbf9e40aef27c4, type: 2}
   - {fileID: 11400000, guid: a00e3cb35aa46494d9dbecbd40c80a64, type: 2}
   - {fileID: 11400000, guid: a00e3cb35aa46494d9dbecbd40c80a64, type: 2}
