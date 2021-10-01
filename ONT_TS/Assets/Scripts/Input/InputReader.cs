@@ -130,8 +130,6 @@ public class InputReader : ScriptableObject, PlayerInput.IGamePlayActions, Playe
 
     private bool IsDeviceMouse(InputAction.CallbackContext context)
     {
-        // bool a = context.control.device.name == "Mouse";
-        // Debug.Log("Is Mouse: " + a);
         return context.control.device.name == "Mouse";
     }
 

@@ -10,6 +10,12 @@ public class MainMenu : MonoBehaviour
     public Animator _animator;
     string eventName;
     public GameObject settingPopup;
+    public InputReader inputReader;
+
+    private void OnEnable() {
+        Cursor.visible = true;
+        inputReader.EnableMenuInput();
+    }
 
     private void Awake()
     {
