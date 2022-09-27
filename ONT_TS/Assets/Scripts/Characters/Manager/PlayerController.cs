@@ -182,6 +182,7 @@ public class PlayerController : MonoBehaviour
     {
         Cursor.visible = false;
         InstantiateMovementData();
+        _inputReader.EnableGameplayInput();
         PlayerPos.Transform = transform;
     }
 

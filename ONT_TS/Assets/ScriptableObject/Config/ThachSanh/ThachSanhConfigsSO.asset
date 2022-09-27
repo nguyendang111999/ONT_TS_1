@@ -18,8 +18,8 @@ MonoBehaviour:
   _acceleration: 8
   _decceleration: 10
   _slideDecceleration: 7
-  _walkSpeed: 3
-  _runSpeed: 5
-  _sprintSpeed: 8
+  _walkSpeed: 2
+  _runSpeed: 3
+  _sprintSpeed: 5
   _crouchSpeed: 2
   _slideDuration: 1

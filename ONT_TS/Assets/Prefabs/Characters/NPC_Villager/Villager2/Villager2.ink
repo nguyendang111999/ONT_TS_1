@@ -12,7 +12,7 @@ Thach Sanh: I'm sorry! I should've came sooner!
 * [Next]
 - Villager: But a giant tiger show up, it killed everyone that it can find! We can't do anything against that such a power!
 * [Next]
-- Thach Sanh: Maybe someone is still alive! I can save them if I get to the village!
+- Thach Sanh: Maybe someone is still alive! I can save them if I get to him!
 - Villager: No, you can't. You're going to get yourself killed!
 ** [Maybe]
 Thach Sanh: Maybe! But I can't just run away!
